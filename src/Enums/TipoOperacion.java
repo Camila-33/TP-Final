@@ -1,0 +1,6 @@
+package Enums;
+
+public enum TipoOperacion {
+
+    ALTA_PRODUCTO, BAJA_PRODUCTO, MODIFICACION_PRODUCTO, COMPRA, VENTA, ALTA_USUARIO, BAJA_USUARIO;
+}

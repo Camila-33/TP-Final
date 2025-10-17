@@ -1,0 +1,197 @@
+package Productos;
+
+import Productos.Categoria.Categoria;
+import Users.Proveedor;
+
+import java.time.LocalDate;
+import java.util.Objects;
+import java.util.UUID;
+
+public abstract class Producto {
+
+    protected String nombre;
+    protected String descripcion;
+    protected String codigo;
+    protected double precio;
+    protected double peso;
+    protected String dimension;
+    protected String marca;
+    protected boolean activo;
+    protected int stock;
+    protected int garantiaMeses;
+    protected long numeroDeSerie;
+    protected LocalDate fechaIngreso;
+    protected Categoria categoria;
+    protected Proveedor proveedor;
+
+    public Producto(String nombre, String descripcion, double precio, double peso, String dimension, String marca, boolean activo, int stock, int garantiaMeses, LocalDate fechaIngreso, Categoria categoria, Proveedor proveedor) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.codigo = "PROD-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+        this.precio = precio;
+        this.peso = peso;
+        this.dimension = dimension;
+        this.marca = marca;
+        this.activo = activo;
+        this.stock = stock;
+        this.garantiaMeses = garantiaMeses;
+        this.fechaIngreso = fechaIngreso;
+        this.categoria = categoria;
+        this.proveedor = proveedor;
+        this.numeroDeSerie = (long)(Math.random() * 90000000) + 10000000;
+    }
+
+    public Producto(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, Categoria categoria, Proveedor proveedor) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.codigo = "PROD-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+        this.precio = precio;
+        this.peso = peso;
+        this.dimension = dimension;
+        this.marca = marca;
+        this.activo = true;
+        this.stock = stock;
+        this.garantiaMeses = garantiaMeses;
+        this.fechaIngreso = LocalDate.now();
+        this.categoria = categoria;
+        this.proveedor = proveedor;
+        this.numeroDeSerie = (long)(Math.random() * 90000000) + 10000000;
+    }
+
+    public Producto() {
+    }
+
+    public long getNumeroDeSerie() {
+        return numeroDeSerie;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public double getPeso() {
+        return peso;
+    }
+
+    public void setPeso(double peso) {
+        this.peso = peso;
+    }
+
+    public String getDimension() {
+        return dimension;
+    }
+
+    public void setDimension(String dimension) {
+        this.dimension = dimension;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
+    public int getGarantiaMeses() {
+        return garantiaMeses;
+    }
+
+    public void setGarantiaMeses(int garantiaMeses) {
+        this.garantiaMeses = garantiaMeses;
+    }
+
+    public LocalDate getFechaIngreso() {
+        return fechaIngreso;
+    }
+
+    public void setFechaIngreso(LocalDate fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public Proveedor getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(Proveedor proveedor) {
+        this.proveedor = proveedor;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof Producto producto)) return false;
+        return Double.compare(precio, producto.precio) == 0 && Double.compare(peso, producto.peso) == 0 && activo == producto.activo && stock == producto.stock && garantiaMeses == producto.garantiaMeses && Objects.equals(nombre, producto.nombre) && Objects.equals(descripcion, producto.descripcion) && Objects.equals(codigo, producto.codigo) && Objects.equals(dimension, producto.dimension) && Objects.equals(marca, producto.marca) && Objects.equals(fechaIngreso, producto.fechaIngreso) && Objects.equals(categoria, producto.categoria) && Objects.equals(proveedor, producto.proveedor);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombre, descripcion, codigo, precio, peso, dimension, marca, activo, stock, garantiaMeses, fechaIngreso, categoria, proveedor);
+    }
+
+    @Override
+    public String toString() {
+        return "Productos.Producto{" +
+                "nombre = '" + nombre + '\'' +
+                ", descripcion = '" + descripcion + '\'' +
+                ", codigo = '" + codigo + '\'' +
+                ", precio = " + precio +
+                ", peso = " + peso +
+                ", dimension = '" + dimension + '\'' +
+                ", marca = '" + marca + '\'' +
+                ", activo = " + activo +
+                ", stock = " + stock +
+                ", garantiaMeses = " + garantiaMeses +
+                ", fechaIngreso = " + fechaIngreso +
+                ", categoria = " + categoria +
+                ", proveedor = " + proveedor +
+                '}';
+    }
+}
