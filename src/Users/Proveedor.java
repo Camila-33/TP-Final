@@ -13,20 +13,31 @@ public class Proveedor {
     private String apellido;
     private String email;
     private String telefono;
-    private String direccion;
     private String cuit;
     private boolean activo;
     private LocalDate fechaAlta;
     private TipoProveedor tipoProveedor;
     private Map<String, Producto> productosSuministrados; //Map o list?
 
-    public Proveedor(String nombre, String apellido, String email, String telefono, String direccion, String cuit, boolean activo, LocalDate fechaAlta, TipoProveedor tipoProveedor) {
+    public Proveedor(String nombre, String apellido, String email, String telefono, String cuit, TipoProveedor tipoProveedor) {
         this.idProveedor = "PROV-" +UUID.randomUUID().toString().substring(0, 8).toUpperCase();
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.telefono = telefono;
-        this.direccion = direccion;
+        this.cuit = cuit;
+        this.activo = true;
+        this.fechaAlta = LocalDate.now();
+        this.tipoProveedor = tipoProveedor;
+        this.productosSuministrados = new LinkedHashMap<>();
+    }
+
+    public Proveedor(String nombre, String apellido, String email, String telefono, String cuit, boolean activo, LocalDate fechaAlta, TipoProveedor tipoProveedor) {
+        this.idProveedor = "PROV-" +UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.email = email;
+        this.telefono = telefono;
         this.cuit = cuit;
         this.activo = activo;
         this.fechaAlta = fechaAlta;
@@ -75,18 +86,9 @@ public class Proveedor {
         this.telefono = telefono;
     }
 
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
     public String getCuit() {
         return cuit;
     }
-
 
     public boolean isActivo() {
         return activo;
@@ -112,6 +114,11 @@ public class Proveedor {
         this.tipoProveedor = tipoProveedor;
     }
 
+    public String getNombreCompleto() {
+
+        return this.nombre + " " + this.apellido;
+    }
+
     public Map<String, Producto> getProductosSuministrados() {
         return productosSuministrados;
     }
@@ -120,12 +127,12 @@ public class Proveedor {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Proveedor proveedor = (Proveedor) o;
-        return activo == proveedor.activo && Objects.equals(idProveedor, proveedor.idProveedor) && Objects.equals(nombre, proveedor.nombre) && Objects.equals(apellido, proveedor.apellido) && Objects.equals(email, proveedor.email) && Objects.equals(telefono, proveedor.telefono) && Objects.equals(direccion, proveedor.direccion) && Objects.equals(cuit, proveedor.cuit) && Objects.equals(fechaAlta, proveedor.fechaAlta) && tipoProveedor == proveedor.tipoProveedor && Objects.equals(productosSuministrados, proveedor.productosSuministrados);
+        return activo == proveedor.activo && Objects.equals(idProveedor, proveedor.idProveedor) && Objects.equals(nombre, proveedor.nombre) && Objects.equals(apellido, proveedor.apellido) && Objects.equals(email, proveedor.email) && Objects.equals(telefono, proveedor.telefono) && Objects.equals(cuit, proveedor.cuit) && Objects.equals(fechaAlta, proveedor.fechaAlta) && tipoProveedor == proveedor.tipoProveedor && Objects.equals(productosSuministrados, proveedor.productosSuministrados);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idProveedor, nombre, apellido, email, telefono, direccion, cuit, activo, fechaAlta, tipoProveedor, productosSuministrados);
+        return Objects.hash(idProveedor, nombre, apellido, email, telefono, cuit, activo, fechaAlta, tipoProveedor, productosSuministrados);
     }
 
     @Override
@@ -136,7 +143,6 @@ public class Proveedor {
                 ", Apellido = '" + apellido + '\'' +
                 ", email = '" + email + '\'' +
                 ", telefono = '" + telefono + '\'' +
-                ", direccion = '" + direccion + '\'' +
                 ", cuit = '" + cuit + '\'' +
                 ", activo = " + activo +
                 ", fechaAlta = " + fechaAlta +
