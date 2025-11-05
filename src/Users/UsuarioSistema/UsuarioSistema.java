@@ -8,22 +8,58 @@ import java.util.UUID;
 public abstract class UsuarioSistema {
 
     protected String idUsuario;
+    protected String userName;
     protected String nombre;
     protected String apellido;
     protected String email;
     protected String contrasena;
     protected boolean activo;
+    protected String telefono;
+    protected String dni;
+    protected String direccion;
 
-    public UsuarioSistema(String nombre, String apellido, String email, String contrasena, boolean activo) {
-        this.idUsuario = "USER-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+    public UsuarioSistema(String nombre, String apellido, String email, String contrasena, boolean activo, String userName, String telefono, String dni, String direccion) {
+        this.idUsuario = "USER-" + (long)(Math.random() * 900000) + 100000;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.contrasena = contrasena;
         this.activo = activo;
+        this.userName = userName;
+        this.telefono = telefono;
+        this.dni = dni;
+        this.direccion = direccion;
     }
 
     public UsuarioSistema() {
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     public String getIdUsuario() {
@@ -70,13 +106,17 @@ public abstract class UsuarioSistema {
         this.activo = activo;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     public String getNombreCompleto() {
 
         return this.nombre + " " + this.apellido;
-    }
-
-    public void mostrarMenu(GestionMenu gestionMenu){
-        gestionMenu.elegirMenu(this);
     }
 
     @Override
