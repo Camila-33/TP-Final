@@ -4,7 +4,66 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b2f5d35-392e-4cf3-b48b-4035d7c7adfa" name="Changes" comment="" />
+    <list default="true" id="7b2f5d35-392e-4cf3-b48b-4035d7c7adfa" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/TP Final/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/TP Final.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Enums/EstadoPedido.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Enums/MetodoDePago.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Enums/TipoCertificacion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Enums/TipoOperacion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Enums/TipoProveedor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Gestion/GestionMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Gestion/GestionProducto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Gestion/GestionProveedor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Gestion/GestionTienda.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Interfaces/Autenticable.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Objetos/Carrito.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Almacenamiento.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Categoria/Almacenamiento/Almacenamiento.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Categoria/Almacenamiento/DiscoExterno.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Categoria/Almacenamiento/DiscoRigido.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Categoria/Almacenamiento/DiscoSolidoSSD.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Categoria/Categoria.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Categoria/Conectividad/Conectividad.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Categoria/Conectividad/PlacaDeRed.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Categoria/Fuente/Certificada.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Categoria/Fuente/Fuente.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Categoria/Fuente/Generica.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Categoria/Gabinete/Gabinete.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Categoria/MemoriaRAM/Memoria.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Categoria/MemoriaRAM/MemoriaNotebook.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Categoria/MemoriaRAM/MemoriaRAM.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Categoria/PlacaDeVideo/PlacaDeVideo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Categoria/PlacaDeVideo/PlacaDeVideoGeForce.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Categoria/PlacaDeVideo/PlacaDeVideoRadeonAMD.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Categoria/PlacaMadre/PlacaAMD.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Categoria/PlacaMadre/PlacaIntel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Categoria/PlacaMadre/PlacaMadre.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Categoria/Procesador/Procesador.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Categoria/Procesador/ProcesadorAMD.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Categoria/Procesador/ProcesadorIntel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Categoria/Refrigeracion/CoolerCPU.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Categoria/Refrigeracion/CoolerFan.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Categoria/Refrigeracion/Refrigeracion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Cooler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/FuenteDePoder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Gabinete.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/MemoriaRAM.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/PlacaDeRed.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/PlacaDeVideo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/PlacaMadre.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Procesador.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Productos/Producto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Users/Proveedor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Users/UsuarioSistema/Administrador.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Users/UsuarioSistema/Cliente.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TP Final/src/Users/UsuarioSistema/UsuarioSistema.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,6 +74,7 @@
       <list>
         <option value="Interface" />
         <option value="Enum" />
+        <option value="Exception" />
         <option value="Class" />
       </list>
     </option>
@@ -30,18 +90,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/UTN/TP Final",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/TP Final&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
