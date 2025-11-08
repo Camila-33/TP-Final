@@ -11,37 +11,30 @@ public class Factura {
     // Identificador único de la factura
     private String idFactura;
 
+    // Venta asociada a la factura
+    private Venta venta;
+
     // Fecha en que se emite la factura
     private LocalDate fechaEmision;
 
-    // Venta asociada a esta factura
-    private Venta venta;
+    // Monto total de la factura
+    private double total;
 
-    /**
-     * Constructor de la clase Factura.
-     * Crea una factura asociada a una venta específica y asigna la fecha actual.
-     *
-     * @param idFactura Código o número de factura
-     * @param venta     Venta a la que corresponde la factura
-     */
-    public Factura(String idFactura, Venta venta) {
+    // Constructor
+    public Factura(String idFactura, Venta venta, LocalDate fechaEmision, double total) {
         this.idFactura = idFactura;
         this.venta = venta;
-        this.fechaEmision = LocalDate.now(); // se genera con la fecha del día
+        this.fechaEmision = fechaEmision;
+        this.total = total;
     }
 
-    // ================== Getters y Setters ==================
-
+    // Getters y setters
     public String getIdFactura() {
         return idFactura;
     }
 
     public void setIdFactura(String idFactura) {
         this.idFactura = idFactura;
-    }
-
-    public LocalDate getFechaEmision() {
-        return fechaEmision;
     }
 
     public Venta getVenta() {
@@ -52,23 +45,29 @@ public class Factura {
         this.venta = venta;
     }
 
-    // ================== Métodos funcionales ==================
-
-    /**
-     * Calcula el total de la factura tomando el total de la venta asociada.
-     *
-     * @return monto total de la venta
-     */
-    public double getTotal() {
-        return venta.calcularTotal();
+    public LocalDate getFechaEmision() {
+        return fechaEmision;
     }
 
-    /**
-     * Devuelve una representación legible de la factura,
-     * mostrando su número, fecha y total.
-     */
+    public void setFechaEmision(LocalDate fechaEmision) {
+        this.fechaEmision = fechaEmision;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
     @Override
     public String toString() {
-        return "Factura N° " + idFactura + " - Fecha: " + fechaEmision + " - Total: $" + getTotal();
+        return "Factura{" +
+                "idFactura='" + idFactura + '\'' +
+                ", venta=" + venta +
+                ", fechaEmision=" + fechaEmision +
+                ", total=" + total +
+                '}';
     }
 }
