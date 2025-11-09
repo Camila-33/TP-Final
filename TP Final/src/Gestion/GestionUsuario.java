@@ -1,66 +1,65 @@
 package Gestion;
 
-import Archivos.GestionJSONUsers.GestionJSONAdministrador;
+import Archivos.GestionJSONUsers.GestionJSONUsuario;
 import Excepciones.DatoInvalidoException;
 import Interfaces.MetodosGestion;
 import Users.RegistroUser.RegistroUser;
-import Users.UsuarioSistema.Administrador;
+import Users.UsuarioSistema.Usuario;
 import Validaciones.Validaciones;
 
 import java.util.HashSet;
 import java.util.Scanner;
 
-public class GestionAdministrador implements MetodosGestion <Administrador>{
+public class GestionUsuario implements MetodosGestion <Usuario>{
 
-    private HashSet<Administrador> listaAdministradores;
+    private HashSet<Usuario> listaUsuarios;
     private RegistroUser registroUser;
     private Scanner teclado;
 
-    public GestionAdministrador() {
-        this.listaAdministradores = new HashSet<>();
+    public GestionUsuario() {
+        this.listaUsuarios = new HashSet<>();
         this.registroUser = new RegistroUser();
         this.teclado = new Scanner(System.in);
     }
 
     @Override
-    public void agregarYguardar(Administrador nuevoAdmin){
+    public void agregarYguardar (Usuario nuevoUser){
 
-        HashSet<Administrador> listaAdmins = GestionJSONAdministrador.archivoAdminToLista("administrador.json");
-        listaAdmins.add(nuevoAdmin);
-        GestionJSONAdministrador.listaAdminsToArchivo(listaAdmins, "administrador.json");
+        HashSet<Usuario> listaUsers = GestionJSONUsuario.archivoUsuarioToLista("usuario.json");
+        listaUsers.add(nuevoUser);
+        GestionJSONUsuario.listaUsuarioToArchivo(listaUsers, "usuario.json");
     }
 
     @Override
     public void ingresarUsuario(){
-        Administrador admin = registroUser.registroAdministrador();
-        agregarYguardar(admin);
-        System.out.println("¡Administrador/a " + admin.getNombre() + " " + admin.getApellido() + " agregado con éxito!");
-
+        Usuario user = registroUser.registroUsuario();
+        agregarYguardar(user);
+        System.out.println("¡Usuario " + user.getNombre() + " " + user.getApellido() + " agregado con éxito!");
     }
 
     @Override
-    public void mostrarDatosUsuario(Administrador a){
+    public void mostrarDatosUsuario(Usuario u){
 
-        HashSet<Administrador> listaAdmins = GestionJSONAdministrador.archivoAdminToLista("administrador.json");
+        HashSet<Usuario> listaUsers = GestionJSONUsuario.archivoUsuarioToLista("usuario.json");
 
         boolean encontrado = false;
 
-        for (Administrador admin : listaAdmins){
-            if (admin.getIdUsuario().equals(a.getIdUsuario())){
+        for (Usuario user : listaUsers){
+            if (user.getIdUsuario().equals(u.getIdUsuario())){
                 System.out.println();
                 System.out.println("--------------------------------------------");
-                System.out.println("PERFIL DE ADMINISTRADOR: " + a.getNombre() + " " + a.getApellido());
+                System.out.println("PERFIL DE USUARIO: " + u.getNombre() + " " + u.getApellido());
                 System.out.println("--------------------------------------------");
 
-                System.out.println("ID: " + a.getIdUsuario());
-                System.out.println("Username: " + a.getUserName());
+                System.out.println("ID: " + u.getIdUsuario());
+                System.out.println("Username: " + u.getUserName());
                 System.out.println("Contraseña: **********");
-                System.out.println("Nombre: " + a.getNombre());
-                System.out.println("Apellido: " + a.getApellido());
-                System.out.println("DNI: " + a.getDni());
-                System.out.println("Teléfono: " + a.getTelefono());
-                System.out.println("Dirección: " + a.getDireccion());
-                System.out.println("Email: " + a.getEmail());
+                System.out.println("Nombre: " + u.getNombre());
+                System.out.println("Apellido: " + u.getApellido());
+                System.out.println("DNI: " + u.getDni());
+                System.out.println("Teléfono: " + u.getTelefono());
+                System.out.println("Dirección: " + u.getDireccion());
+                System.out.println("Email: " + u.getEmail());
                 System.out.println("--------------------------------------------");
 
                 encontrado = true;
@@ -74,13 +73,13 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
     }
 
     @Override
-    public void modificarUsuario(Administrador administrador) {
+    public void modificarUsuario(Usuario usuario) {
 
-        listaAdministradores = GestionJSONAdministrador.archivoAdminToLista("administrador.json");
+        listaUsuarios = GestionJSONUsuario.archivoUsuarioToLista("usuario.json");
         boolean salir = false;
 
-        for (Administrador a : listaAdministradores) {
-            if (a.getIdUsuario().equals(administrador.getIdUsuario())) {
+        for (Usuario a : listaUsuarios) {
+            if (a.getIdUsuario().equals(usuario.getIdUsuario())) {
 
                 while (!salir) {
                     System.out.println("¿Que desea modificar?");
@@ -291,24 +290,23 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
                     }
                 }
 
-                listaAdministradores.add(a);
-                GestionJSONAdministrador.listaAdminsToArchivo(listaAdministradores, "administrador.json");
+                listaUsuarios.add(a);
+                GestionJSONUsuario.listaUsuarioToArchivo(listaUsuarios, "usuario.json");
                 System.out.println("¡Datos cambiados con éxito!");
                 return;
             }
         }
 
-        System.out.println("No se encontró ningún administrador con ese ID.");
+        System.out.println("No se encontró al Usuario con ese ID.");
     }
 
-
     @Override
-    public void darDeBajaUsuario(Administrador a){
+    public void darDeBajaUsuario(Usuario u){
 
-        listaAdministradores = GestionJSONAdministrador.archivoAdminToLista("administrador.json");
+        listaUsuarios = GestionJSONUsuario.archivoUsuarioToLista("usuario.json");
 
-        for(Administrador admin : listaAdministradores){
-            if(admin.equals(a)){
+        for(Usuario user : listaUsuarios){
+            if(user.equals(u)){
                 System.out.println("¿Estás seguro de que quieres eliminar la cuenta? (si / no)");
                 String opcion = teclado.nextLine();
 
@@ -318,12 +316,12 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
                         System.out.println("Ingrese su contraseña para eliminar su cuenta"); //debería haber intentos limitados?
                         String contrasenia = teclado.nextLine();
 
-                        if (contrasenia.equals(admin.getContrasena())){
-                            
-                            admin.setActivo(false);
+                        if (contrasenia.equals(user.getContrasena())){
+
+                            user.setActivo(false);
                             System.out.println("¡Cuenta eliminada con éxito!");
-                            GestionJSONAdministrador.listaAdminsToArchivo(listaAdministradores,"administrador.json");
-                            
+                            GestionJSONUsuario.listaUsuarioToArchivo(listaUsuarios,"usuario.json");
+
                             return;
 
                         }else{
@@ -347,13 +345,13 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
 
 
     @Override
-    public void darDeAltaUsuario(Administrador a){
+    public void darDeAltaUsuario(Usuario u){
 
-        listaAdministradores = GestionJSONAdministrador.archivoAdminToLista("administrador.json");
+        listaUsuarios = GestionJSONUsuario.archivoUsuarioToLista("usuario.json");
 
-        for(Administrador admin : listaAdministradores){
-            if(admin.equals(a)){
-                System.out.println("¿Estás seguro de que quieres dar de alta al administrador" +admin.getNombre()+ " " +admin.getApellido()+ "? (si / no)");
+        for(Usuario user : listaUsuarios){
+            if(user.equals(u)){
+                System.out.println("¿Estás seguro de que quieres dar de alta al usuario " +user.getNombre()+ " " +user.getApellido()+ "? (si / no)");
                 String opcion = teclado.nextLine();
 
                 if(opcion.equalsIgnoreCase("si")){
@@ -362,11 +360,11 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
                         System.out.println("Ingrese su contraseña para dar de alta la cuenta");
                         String contrasenia = teclado.nextLine();
 
-                        if (contrasenia.equals(admin.getContrasena())){
+                        if (contrasenia.equals(user.getContrasena())){
 
-                            admin.setActivo(true);
+                            user.setActivo(true);
                             System.out.println("¡Cuenta dada de alta con éxito!");
-                            GestionJSONAdministrador.listaAdminsToArchivo(listaAdministradores,"administrador.json");
+                            GestionJSONUsuario.listaUsuarioToArchivo(listaUsuarios,"usuario.json");
 
                             return;
 
@@ -389,13 +387,13 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
     }
 
     @Override
-    public Administrador encontrarUsuario(String dni){
+    public Usuario encontrarUsuario(String dni){
 
-        listaAdministradores = GestionJSONAdministrador.archivoAdminToLista("administrador.json");
+        listaUsuarios = GestionJSONUsuario.archivoUsuarioToLista("usuario.json");
 
-        for(Administrador admin : listaAdministradores){
-            if(admin.getDni().equals(dni)){
-                return admin;
+        for(Usuario user : listaUsuarios){
+            if(user.getDni().equals(dni)){
+                return user;
             }
         }
 

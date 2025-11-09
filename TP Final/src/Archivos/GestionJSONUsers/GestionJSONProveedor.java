@@ -1,14 +1,16 @@
-package Archivos;
+package Archivos.GestionJSONUsers;
 
+import Archivos.OperacionesLectoEscritura;
 import Productos.Producto;
 import Users.Proveedor;
-import Users.UsuarioSistema.Empleado;
+import Users.UsuarioSistema.Usuario;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Map;
 
 public class GestionJSONProveedor {
@@ -16,11 +18,11 @@ public class GestionJSONProveedor {
     public GestionJSONProveedor() {
     }
 
-    public static void listaProveedorToArchivo(ArrayList<Proveedor> listaProveedores, String nombreArchivo){
+    public static void listaProveedorToArchivo(HashSet<Proveedor> listaProveedores, String nombreArchivo){
         OperacionesLectoEscritura.grabar(nombreArchivo, serializarListaProveedores(listaProveedores));
     }
 
-    public static JSONArray serializarListaProveedores(ArrayList<Proveedor> listaProveedores){
+    public static JSONArray serializarListaProveedores(HashSet<Proveedor> listaProveedores){
 
         JSONArray jsonArray = null;
 
@@ -55,20 +57,22 @@ public class GestionJSONProveedor {
             jsonObject.put("Tipo proveedor", p.getTipoProveedor());
 
             JSONArray listaJson = new JSONArray();
+            /*
 
-            for (Map.Entry<String, Producto> entry : p.getProductosSuministrados().entrySet()) {
-                String clave = entry.getKey();
+            for (Map.Entry<String, Producto> entry : proveedor.getProductosSuministrados().entrySet()) {
                 Producto producto = entry.getValue();
+                JSONObject productoJson;
 
-                JSONObject productoJson = new JSONObject();
-                productoJson.put("Código", clave);  // la key del map
-                productoJson.put("Nombre", producto.getNombre());
-                productoJson.put("Precio", producto.getPrecio());
-                productoJson.put("Stock", producto.getStock());
-                // agregar otros campos de Producto según necesites
-
+                if (producto instanceof Procesador) {
+                    productoJson = GestorProcesador.serializar((Procesador) producto);
+                } else if (producto instanceof TarjetaGrafica) {
+                    productoJson = GestorTarjetaGrafica.serializar((TarjetaGrafica) producto);
+                }
+                // etc para cada tipo
                 listaJson.put(productoJson);
             }
+
+             */
 
             jsonObject.put("Productos", listaJson);
 
@@ -80,30 +84,30 @@ public class GestionJSONProveedor {
     }
 
 
-    public static ArrayList<Empleado> archivoEmpleadoToLista(String nombreArchivo){
+    public static HashSet<Proveedor> archivoProveedorToLista(String nombreArchivo){
 
         JSONTokener jsonTokener = OperacionesLectoEscritura.leer(nombreArchivo);
-        ArrayList<Empleado> listaEmpleado = null;
+        HashSet<Proveedor> listaProveedor = null;
 
         try {
-            listaEmpleado = deserializarListaEmpleado(new JSONArray(jsonTokener));
+            listaProveedor = deserializarListaProveedor(new JSONArray(jsonTokener));
 
         }catch (JSONException e){
             e.printStackTrace();
         }
 
-        return listaEmpleado;
+        return listaProveedor;
     }
 
 
-    public static ArrayList<Empleado> deserializarListaEmpleado(JSONArray jsonArray){
+    public static HashSet<Proveedor> deserializarListaProveedor(JSONArray jsonArray){
 
-        ArrayList<Empleado> lista = new ArrayList<>();
+        HashSet<Proveedor> lista = new HashSet<>();
 
         try {
             for (int i = 0; i < jsonArray.length(); i++){
-                Empleado e = deserializarEmpleado(jsonArray.getJSONObject(i));
-                lista.add(e);
+                Proveedor p = deserializarProveedor(jsonArray.getJSONObject(i));
+                lista.add(p);
             }
 
         }catch (JSONException e){
@@ -113,26 +117,17 @@ public class GestionJSONProveedor {
         return lista;
     }
 
-    public static Empleado deserializarEmpleado(JSONObject jsonObject) {
+    public static Proveedor deserializarProveedor(JSONObject jsonObject) {
 
-        Empleado empleadoLeido = new Empleado();
+        Proveedor proveedorLeido = new Proveedor();
 
         try {
-            empleadoLeido.setIdUsuario(jsonObject.getString("id"));
-            empleadoLeido.setUserName(jsonObject.getString("username"));
-            empleadoLeido.setContrasena(jsonObject.getString("contrasenia"));
-            empleadoLeido.setNombre(jsonObject.getString("nombre"));
-            empleadoLeido.setApellido(jsonObject.getString("apellido"));
-            empleadoLeido.setDni(jsonObject.getString("dni"));
-            empleadoLeido.setTelefono(jsonObject.getString("telefono"));
-            empleadoLeido.setDireccion(jsonObject.getString("direccion"));
-            empleadoLeido.setEmail(jsonObject.getString("email"));
-            empleadoLeido.setActivo(jsonObject.getBoolean("estado"));
+
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        return empleadoLeido;
+        return proveedorLeido;
     }
 }

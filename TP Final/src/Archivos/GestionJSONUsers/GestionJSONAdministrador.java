@@ -1,12 +1,12 @@
-package Archivos;
+package Archivos.GestionJSONUsers;
 
+import Archivos.OperacionesLectoEscritura;
 import Users.UsuarioSistema.Administrador;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 public class GestionJSONAdministrador {

@@ -17,7 +17,7 @@ public class Proveedor {
     private boolean activo;
     private LocalDate fechaAlta;
     private TipoProveedor tipoProveedor;
-    private Map<String, Producto> productosSuministrados; //Map o list?
+    private Map<String, Producto> productosSuministrados;
 
     public Proveedor(String nombre, String apellido, String email, String telefono, String cuit, TipoProveedor tipoProveedor) {
         this.idProveedor = "PROV-" +(long)(Math.random() * 900000) + 100000;

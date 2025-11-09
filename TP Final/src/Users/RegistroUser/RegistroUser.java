@@ -2,7 +2,7 @@ package Users.RegistroUser;
 
 import Excepciones.DatoInvalidoException;
 import Users.UsuarioSistema.Administrador;
-import Users.UsuarioSistema.Empleado;
+import Users.UsuarioSistema.Usuario;
 import Validaciones.Validaciones;
 
 import java.util.Scanner;
@@ -173,7 +173,7 @@ public class RegistroUser {
     }
 
 
-    public Empleado registroEmpleado(){
+    public Usuario registroUsuario(){
 
         System.out.println("Complete con sus datos:");
 
@@ -327,40 +327,6 @@ public class RegistroUser {
             }
         }
 
-        double sueldo = 0.0;
-        boolean sueldoValido = false;
-
-        while (!sueldoValido){
-
-           try {
-               System.out.println("Sueldo: ");
-               sueldo = teclado.nextDouble();
-               Validaciones.validarSueldo(sueldo);
-
-               sueldoValido = true;
-
-           }catch (DatoInvalidoException e){
-               System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-           }
-        }
-
-        int aniosAntiguedad = 0;
-        boolean aniosAntiguedadValido = false;
-
-        while (!aniosAntiguedadValido){
-
-            try {
-                System.out.println("Años de antigüedad: ");
-                aniosAntiguedad = teclado.nextInt();
-                Validaciones.validarAniosAntiguedad(aniosAntiguedad);
-
-                aniosAntiguedadValido = true;
-
-            }catch (DatoInvalidoException e){
-                System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-            }
-        }
-
-        return new Empleado(username, contrasenia, nombre, apellido, email, telefono, dni, direccion, sueldo, aniosAntiguedad);
+        return new Usuario(username, contrasenia, nombre, apellido, email, telefono, dni, direccion);
     }
 }

@@ -8,9 +8,4 @@ public class Administrador extends UsuarioSistema{
 
     public Administrador() {
     }
-
-    @Override
-    public String toString() {
-        return "Administrador { " + super.toString();
-    }
 }

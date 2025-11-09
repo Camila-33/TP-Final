@@ -1,12 +1,11 @@
 package Users.LogInUser;
 
-import Archivos.GestionJSONAdministrador;
-import Archivos.GestionJSONEmpleado;
+import Archivos.GestionJSONUsers.GestionJSONAdministrador;
+import Archivos.GestionJSONUsers.GestionJSONUsuario;
 import Users.UsuarioSistema.Administrador;
-import Users.UsuarioSistema.Empleado;
+import Users.UsuarioSistema.Usuario;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -18,61 +17,58 @@ public class LogIn {
         this.teclado = new Scanner(System.in);
     }
 
-    public Administrador inicioSesionAdmin(String nombreArchivo) throws FileNotFoundException {
+    public Administrador inicioSesionAdministrador(String nombreArchivo) throws FileNotFoundException {
 
         if (nombreArchivo == null) {
             throw new FileNotFoundException("El archivo no existe");
         }
 
-        HashSet<Administrador> administradores = GestionJSONAdministrador.archivoAdminToLista(nombreArchivo); //hay que volver a serializarlo?
+        HashSet<Administrador> administradores = GestionJSONAdministrador.archivoAdminToLista(nombreArchivo);
         Administrador adminLeido = null;
+        boolean salir = false;
 
-        while (adminLeido == null) {
+        while (adminLeido == null && !salir) {
 
-            System.out.println("Ingrese el nombre de usuario");
+            System.out.println("Ingrese el nombre de usuario:");
             String username = teclado.next();
 
-            System.out.println("Ingrese la contraseña");
+            System.out.println("Ingrese la contraseña:");
             String contrasenia = teclado.next();
 
             boolean encontrado = false;
 
-            for (Administrador admin : administradores) {
-                if (admin.getUserName().equals(username) &&
-                        admin.getContrasena().equals(contrasenia) &&
-                        admin.isActivo()) {
-
-                    adminLeido = admin;
+            for (Administrador a : administradores) {
+                if (a.getUserName().equals(username) && a.getContrasena().equals(contrasenia)) {
                     encontrado = true;
-                    return adminLeido;
 
-                } else if (admin.getUserName().equals(username) &&
-                        admin.getContrasena().equals(contrasenia) &&
-                        !admin.isActivo()) {
+                    if (a.isActivo()) {
+                        adminLeido = a;
 
-                    System.out.println("Su cuenta se encuentra dada de baja");
-                    encontrado = true;
+                    } else {
+                        System.out.println("Su cuenta se encuentra dada de baja.");
+                    }
                     break;
                 }
             }
 
             if (!encontrado) {
-                System.out.println("Username o contraseña incorrectos");
+                System.out.println("Username o contraseña incorrectos.");
             }
 
+            if (adminLeido == null) {
+                System.out.println("¿Desea salir o intentar nuevamente? Seleccione una opción:");
+                System.out.println("1. Salir");
+                System.out.println("2. Reintentar");
 
-            System.out.println("¿Desea salir o intentar nuevamente? Seleccione una opción.");
-            System.out.println("1. Salir.");
-            System.out.println("2. Reintentar.");
+                int opcion = teclado.nextInt();
+                teclado.nextLine();
 
-            int opcion = teclado.nextInt();
-            teclado.nextLine();
-
-            if (opcion == 1) {
-                System.out.println("Saliendo del inicio de sesion...");
-                break;
-            } else if (opcion != 2) {
-                System.out.println("Opción invalida. Se lo enviara al inicio de sesión.");
+                if (opcion == 1) {
+                    System.out.println("Saliendo del inicio de sesión...");
+                    salir = true;
+                } else if (opcion != 2) {
+                    System.out.println("Opción inválida. Se lo enviará al inicio de sesión nuevamente.");
+                }
             }
         }
 
@@ -80,51 +76,61 @@ public class LogIn {
     }
 
 
-    public Empleado inicioSesionEmpleado(String nombreArchivo) throws FileNotFoundException {
+    public Usuario inicioSesionUsuario(String nombreArchivo) throws FileNotFoundException {
 
         if (nombreArchivo == null) {
             throw new FileNotFoundException("El archivo no existe");
         }
 
-        ArrayList<Empleado> empleados = GestionJSONEmpleado.archivoEmpleadoToLista(nombreArchivo);
-        Empleado empleadoLeido = null;
+        HashSet<Usuario> usuarios = GestionJSONUsuario.archivoUsuarioToLista(nombreArchivo);
+        Usuario usuarioLeido = null;
+        boolean salir = false;
 
-        while (empleadoLeido == null) {
+        while (usuarioLeido == null && !salir) {
 
-            System.out.println("Ingrese el nombre de usuario");
+            System.out.println("Ingrese el nombre de usuario:");
             String username = teclado.next();
 
-            System.out.println("Ingrese la contraseña");
+            System.out.println("Ingrese la contraseña:");
             String contrasenia = teclado.next();
 
-            for (int i = 0; i < empleados.size(); i++) {
-                if (empleados.get(i).getUserName().equals(username) && empleados.get(i).getContrasena().equals(contrasenia) && empleados.get(i).isActivo()) {
-                    empleadoLeido = new Empleado();
-                    return empleadoLeido;
+            boolean encontrado = false;
 
-                } else if (empleados.get(i).getUserName().equals(username) && empleados.get(i).getContrasena().equals(contrasenia) && !empleados.get(i).isActivo()) {
-                    System.out.println("Su cuenta se encuentra dada de baja");
+            for (Usuario u : usuarios) {
+                if (u.getUserName().equals(username) && u.getContrasena().equals(contrasenia)) {
+                    encontrado = true;
+                    if (u.isActivo()) {
+                        usuarioLeido = u;
 
-                } else if (empleados.get(i).getUserName().equals(username) || empleados.get(i).getContrasena().equals(contrasenia)) {
-                    System.out.println("Username o contraseña incorrectos");
+                    } else {
+                        System.out.println("Su cuenta se encuentra dada de baja.");
+                    }
+                    break;
                 }
             }
 
-            System.out.println("¿Desea salir o intentar nuevamente? Seleccione una opción.");
-            System.out.println("1. Salir.");
-            System.out.println("2. Reintentar.");
+            if (!encontrado) {
+                System.out.println("Username o contraseña incorrectos.");
+            }
 
-            int opcion = teclado.nextInt();
-            teclado.nextLine();
+            if (usuarioLeido == null) {
+                System.out.println("¿Desea salir o intentar nuevamente? Seleccione una opción:");
+                System.out.println("1. Salir");
+                System.out.println("2. Reintentar");
 
-            if (opcion == 1) {
-                System.out.println("Saliendo del inicio de sesion...");
-                break;
-            } else if (opcion != 2) {
-                System.out.println("Opción invalida. Se lo enviara al inicio de sesión.");
+                int opcion = teclado.nextInt();
+                teclado.nextLine();
+
+                if (opcion == 1) {
+                    System.out.println("Saliendo del inicio de sesión...");
+                    salir = true;
+                } else if (opcion != 2) {
+                    System.out.println("Opción inválida. Se lo enviará al inicio de sesión nuevamente.");
+                }
             }
         }
 
-        return empleadoLeido;
+        return usuarioLeido;
     }
+
 }

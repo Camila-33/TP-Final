@@ -1,12 +1,12 @@
 package Validaciones;
 
-import Archivos.GestionJSONAdministrador;
-import Archivos.GestionJSONEmpleado;
+import Archivos.GestionJSONUsers.GestionJSONAdministrador;
+import Archivos.GestionJSONUsers.GestionJSONUsuario;
 import Excepciones.DatoInvalidoException;
 import Productos.Producto;
 import Users.Proveedor;
 import Users.UsuarioSistema.Administrador;
-import Users.UsuarioSistema.Empleado;
+import Users.UsuarioSistema.Usuario;
 
 import java.util.*;
 
@@ -101,7 +101,6 @@ public class Validaciones {
         }
     }
 
-
     public static void validarContrasenia(String contrasenia) throws DatoInvalidoException {
 
         if (contrasenia.length() < 10) {
@@ -162,26 +161,12 @@ public class Validaciones {
         }
     }
 
-    public static void validarSueldo(double sueldo) throws DatoInvalidoException {
-
-        if(sueldo <= 0){
-            throw new DatoInvalidoException("El sueldo no puede ser inferior o igual a 0.");
-        }
-    }
-
-    public static void validarAniosAntiguedad(int aniosAntiguedad) throws DatoInvalidoException {
-
-        if(aniosAntiguedad <= 0){
-            throw new DatoInvalidoException("Los años de antigüedad no pueden ser inferior o igual a 0.");
-        }
-    }
-
     public static boolean existeDni (String dni, String tipoUsuario){
 
         boolean existe = false;
 
         HashSet<Administrador> administradores = GestionJSONAdministrador.archivoAdminToLista("administrador.json");
-        ArrayList<Empleado> empleados = GestionJSONEmpleado.archivoEmpleadoToLista("empleado.json");
+        HashSet<Usuario> usuarios = GestionJSONUsuario.archivoUsuarioToLista("empleado.json");
 
         if(tipoUsuario.equalsIgnoreCase("administrador")){
             for (Administrador a : administradores){
@@ -191,7 +176,7 @@ public class Validaciones {
             }
 
         }else{
-            for (Empleado e : empleados){
+            for (Usuario e : usuarios){
                 if (e.getDni().equals(dni)){
                     existe = true;
                 }
@@ -206,14 +191,14 @@ public class Validaciones {
         boolean existe = false;
 
         HashSet<Administrador> administradores = GestionJSONAdministrador.archivoAdminToLista("administrador.json");
-        ArrayList<Empleado> empleados = GestionJSONEmpleado.archivoEmpleadoToLista("empleado.json");
+        HashSet<Usuario> usuarios = GestionJSONUsuario.archivoUsuarioToLista("empleado.json");
         ArrayList<String> listaDeUsernames = new ArrayList<>();
 
         for (Administrador admin : administradores) {
             listaDeUsernames.add(admin.getUserName());
         }
 
-        for (Empleado emp : empleados) {
+        for (Usuario emp : usuarios) {
             listaDeUsernames.add(emp.getUserName());
         }
 

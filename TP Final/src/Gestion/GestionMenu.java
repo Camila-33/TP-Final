@@ -4,8 +4,8 @@ import Excepciones.ObjetoNoEncontradoException;
 import Productos.Producto;
 import Users.LogInUser.LogIn;
 import Users.Proveedor;
-import Users.RegistroUser.RegistroUser;
 import Users.UsuarioSistema.Administrador;
+import Users.UsuarioSistema.Usuario;
 
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -13,18 +13,18 @@ import java.util.*;
 public class GestionMenu {
 
     private Scanner teclado;
-    private Map<String, Producto> productosDisponibles;
     private GestionProducto gestionProducto;
     private GestionProveedor gestionProveedor;
     private LogIn logIn;
     private GestionAdministrador gestionAdministrador;
+    private GestionUsuario gestionUsuario;
 
-    public GestionMenu(Map<String, Producto> productosDisponibles) {
-        this.productosDisponibles = productosDisponibles;
+    public GestionMenu() {
         this.teclado = new Scanner(System.in);
         this.gestionProducto = new GestionProducto();
         this.gestionProveedor = new GestionProveedor();
         this.gestionAdministrador = new GestionAdministrador();
+        this.gestionUsuario = new GestionUsuario();
         this.logIn = new LogIn();
     }
 
@@ -38,7 +38,7 @@ public class GestionMenu {
         while (!valido) {
             System.out.println("Seleccione su tipo de usuario:");
             System.out.println("1. Administrador");
-            System.out.println("2. Empleado");
+            System.out.println("2. Usuario");
             System.out.println("3. Salir.");
 
             int opcion = teclado.nextInt();
@@ -48,13 +48,11 @@ public class GestionMenu {
                 case 1:
                     valido = true;
                     menuAdministrador();
-
                     break;
 
                 case 2:
                     valido = true;
-                    menuEmpleado();
-
+                    menuUsuario();
                     break;
 
                 case 3:
@@ -97,7 +95,7 @@ public class GestionMenu {
 
                     try {
 
-                        Administrador administrador = logIn.inicioSesionAdmin("administrador.json");
+                        Administrador administrador = logIn.inicioSesionAdministrador("administrador.json");
 
                         if(administrador == null){
 
@@ -108,7 +106,7 @@ public class GestionMenu {
                             break;
                         }
 
-                        System.out.println("Bienvenido/a " +administrador.getUserName());
+                        System.out.println("Inicio de sesión exitoso. ¡Bienvenido, " + administrador.getUserName() + "!");
                         menuInicioSesionAdministrador(administrador);
 
                     }catch (FileNotFoundException e){
@@ -137,12 +135,19 @@ public class GestionMenu {
 
         while (true) {
 
+            System.out.println("=================================================");
+            System.out.println("¡BIENVENIDO/A " +administrador.getNombre()+ " " +administrador.getApellido()+"!");
+            System.out.println("=================================================");
+
             System.out.println("Elija una opción");
             System.out.println("1. Mi cuenta");
-            System.out.println("2. Gestion productos");
-            System.out.println("3. Gestion proveedores");
-            System.out.println("4. Gestion stock");
-            System.out.println("5. Salir");
+            System.out.println("2. Gestión productos");
+            System.out.println("3. Gestión proveedores");
+            System.out.println("4. Gestión de usuarios");
+            System.out.println("5. Gestión stock");
+            System.out.println("6. Gestión de ventas");
+            System.out.println("7. Gestión de compras");
+            System.out.println("8. Salir");
 
             int opcion = teclado.nextInt();
             teclado.nextLine();
@@ -166,6 +171,18 @@ public class GestionMenu {
                     break;
 
                 case 5:
+
+                    break;
+
+                case 6:
+
+                    break;
+
+                case 7:
+
+                    break;
+
+                case 8:
                     System.out.println("Cerrando sesión...");
                     return;
 
@@ -311,7 +328,7 @@ public class GestionMenu {
 
                 case 6:
                     Proveedor pm = gestionProveedor.elegirProveedor(teclado);
-                    gestionProveedor.modificarProveedor(pm, teclado);
+                    gestionProveedor.modificarProveedor(pm);
                     break;
 
                 case 7:
@@ -361,7 +378,7 @@ public class GestionMenu {
                     break;
 
                 case 2:
-                    administrador = gestionAdministrador.modificarUsuario(administrador); // es necesario administrador = ...
+                    gestionAdministrador.modificarUsuario(administrador);
                     break;
 
                 case 3:
@@ -369,6 +386,17 @@ public class GestionMenu {
                     break;
 
                 case 4:
+                    System.out.println("Ingrese el DNI del administrador que quiere dar de alta.");
+                    String dni = teclado.nextLine();
+
+                    Administrador aux = gestionAdministrador.encontrarUsuario(dni);
+
+                    if (aux != null) {
+                        gestionAdministrador.darDeAltaUsuario(aux);
+                        System.out.println("El administrador fue dado de alta correctamente.");
+                    } else {
+                        System.out.println("No se encontró ningún administrador con ese DNI.");
+                    }
 
                     break;
 
@@ -380,35 +408,173 @@ public class GestionMenu {
                     System.out.println("Opción invalida. Por favor, ingrese una opción valida");
                     break;
             }
-
         }
     }
 
 
-    public void menuEmpleado(){
+    public void gestionUsuariosAdministrador(){
+
+        while (true) {
+
+            System.out.println("Elija una opción");
+            System.out.println("1. Registrar usuario");
+            System.out.println("2. Dar de baja usuario");
+            System.out.println("3. Dar de alta usuario");
+            System.out.println("4. Buscar un usuario por su DNI");
+            System.out.println("5. Atrás");
+
+            int opcion = teclado.nextInt();
+            teclado.nextLine();
+
+            switch (opcion) {
+
+                case 1:
+                    gestionUsuario.ingresarUsuario();
+                    break;
+
+                case 2:
+                    System.out.println("Ingrese el DNI del usuario que quiere dar de baja.");
+                    String dni1 = teclado.nextLine();
+
+                    Usuario aux1 = gestionUsuario.encontrarUsuario(dni1);
+
+                    if (aux1 != null) {
+                        gestionUsuario.darDeBajaUsuario(aux1);
+                        System.out.println("El usuario fue dado de baja correctamente.");
+                    } else {
+                        System.out.println("No se encontró ningún usuario con ese DNI.");
+                    }
+
+                    break;
+
+                case 3:
+                    System.out.println("Ingrese el DNI del usuario que quiere dar de alta.");
+                    String dni2 = teclado.nextLine();
+
+                    Usuario aux2 = gestionUsuario.encontrarUsuario(dni2);
+
+                    if (aux2 != null) {
+                        gestionUsuario.darDeAltaUsuario(aux2);
+                        System.out.println("El usuario fue dado de alta correctamente.");
+                    } else {
+                        System.out.println("No se encontró ningún usuario con ese DNI.");
+                    }
+
+                    break;
+
+                case 4:
+                    System.out.println("Ingrese el DNI del usuario que está buscando");
+                    String dni3 = teclado.nextLine();
+
+                    Usuario aux3 = gestionUsuario.encontrarUsuario(dni3);
+
+                    if (aux3 != null) {
+                        System.out.println("El usuario fue encontrado exitosamente. Mostrando perfil...");
+                        gestionUsuario.mostrarDatosUsuario(aux3);
+                    } else {
+                        System.out.println("No se encontró ningún usuario con ese DNI.");
+                    }
+
+                    break;
+
+                case 5:
+                    System.out.println("Saliendo...");
+                    return;
+
+                default:
+                    System.out.println("Opción invalida. Por favor, ingrese una opción valida");
+                    break;
+            }
+        }
+
+    }
+
+    public void menuUsuario(){
+
+        System.out.println("=====================");
+        System.out.println("MENÚ USUARIO");
+        System.out.println("=====================");
+
+        try {
+            Usuario usuario = logIn.inicioSesionUsuario("usuario.json");
+
+            if(usuario != null){
+                menuInicioDeSesionUsuario(usuario);
+
+            }else{
+                System.out.println("El usuario no existe o es invalido");
+            }
+
+        }catch (FileNotFoundException e){
+            System.out.println("Error: " +e.getMessage());
+        }
+    }
+
+
+
+    public void menuInicioDeSesionUsuario(Usuario usuario){
 
         boolean salir = true;
 
         while (salir){
 
-            System.out.println("================");
-            System.out.println("MENÚ EMPLEADO");
-            System.out.println("=================");
-            System.out.println("1. Generar orden de venta");
-            System.out.println("2. Salir");
+            System.out.println("=================================================");
+            System.out.println("¡BIENVENIDO/A " +usuario.getNombre()+ " " +usuario.getApellido()+"!");
+            System.out.println("=================================================");
+            System.out.println("1. Mi cuenta");
+            System.out.println("2. Generar orden de venta");
+            System.out.println("3. Salir");
 
             int opcion = teclado.nextInt();
             teclado.nextLine();
 
             switch (opcion){
                 case 1:
-
+                    cuentaUsuario(usuario);
                     break;
 
                 case 2:
+
+                    break;
+
+                case 3:
                     System.out.println("Saliendo del menú...");
                     salir = false;
                     break;
+
+                default:
+                    System.out.println("Opción invalida. Por favor, ingrese una opción valida");
+                    break;
+            }
+        }
+    }
+
+
+    public void cuentaUsuario(Usuario usuario) {
+
+        while (true) {
+
+            System.out.println("Elija una opción");
+            System.out.println("1. Ver mi perfil");
+            System.out.println("2. Modificar mi cuenta");
+            System.out.println("3. Atrás");
+
+            int opcion = teclado.nextInt();
+            teclado.nextLine();
+
+            switch (opcion) {
+
+                case 1:
+                    gestionUsuario.mostrarDatosUsuario(usuario);
+                    break;
+
+                case 2:
+                    gestionUsuario.modificarUsuario(usuario);
+                    break;
+
+                case 3:
+                    System.out.println("Saliendo...");
+                    return;
 
                 default:
                     System.out.println("Opción invalida. Por favor, ingrese una opción valida");

@@ -1,8 +1,11 @@
 package Gestion;
 
+import Archivos.GestionJSONUsers.GestionJSONAdministrador;
+import Archivos.GestionJSONUsers.GestionJSONProveedor;
 import Enums.TipoProveedor;
 import Excepciones.ObjetoNoEncontradoException;
 import Users.Proveedor;
+import Users.UsuarioSistema.Administrador;
 import Validaciones.Validaciones;
 
 import java.util.*;
@@ -10,81 +13,97 @@ import java.util.*;
 public class GestionProveedor {
 
     private Set<Proveedor> listaProveedores;
+    private Scanner teclado;
 
     public GestionProveedor() {
         this.listaProveedores = new HashSet<>();
+        this.teclado = new Scanner(System.in);
     }
 
-    public void agregarProveedor(Proveedor p){
-        listaProveedores.add(p);
+    public void agregarProveedor(Proveedor nuevoProveedor){
+
+        HashSet<Proveedor> listaProveedor = GestionJSONProveedor.archivoProveedorToLista("proveedor.json");
+        listaProveedor.add(nuevoProveedor);
+        GestionJSONProveedor.listaProveedorToArchivo(listaProveedor, "proveedor.json");
     }
 
-    public void modificarProveedor(Proveedor p, Scanner teclado){
+    public void modificarProveedor(Proveedor proveedor){ //aplicar validaciones
 
+        HashSet<Proveedor> listaProveedor = GestionJSONProveedor.archivoProveedorToLista("proveedor.json");
         boolean salir = false;
 
-        while (!salir) {
+        for (Proveedor p : listaProveedor) {
+            if (p.getIdProveedor().equals(proveedor.getIdProveedor())) {
 
-            System.out.println("¿Qué desea modificar?");
-            System.out.println("1. Nombre");
-            System.out.println("2. Apellido");
-            System.out.println("3. E-mail");
-            System.out.println("4. Teléfono");
-            System.out.println("5. Tipo de proveedor");
-            System.out.println("6. Salir");
+                while (!salir) {
 
-            int opcion = teclado.nextInt();
-            teclado.nextLine();
+                    System.out.println("¿Qué desea modificar?");
+                    System.out.println("1. Nombre");
+                    System.out.println("2. Apellido");
+                    System.out.println("3. E-mail");
+                    System.out.println("4. Teléfono");
+                    System.out.println("5. Tipo de proveedor");
+                    System.out.println("6. Salir");
 
-            switch (opcion) {
+                    int opcion = teclado.nextInt();
+                    teclado.nextLine();
 
-                case 1:
-                    System.out.println("Escriba el nuevo nombre");
-                    String nombreNuevo = teclado.nextLine();
-                    p.setNombre(nombreNuevo);
+                    switch (opcion) {
 
-                    break;
+                        case 1:
+                            System.out.println("Escriba el nuevo nombre");
+                            String nombreNuevo = teclado.nextLine();
+                            p.setNombre(nombreNuevo);
 
-                case 2:
-                    System.out.println("Escriba el nuevo apellido");
-                    String apellidoNuevo = teclado.nextLine();
-                    p.setApellido(apellidoNuevo);
+                            break;
 
-                    break;
+                        case 2:
+                            System.out.println("Escriba el nuevo apellido");
+                            String apellidoNuevo = teclado.nextLine();
+                            p.setApellido(apellidoNuevo);
 
-                case 3:
-                    System.out.println("Escriba el nuevo e-mail");
-                    String emailNuevo = teclado.nextLine();
-                    p.setEmail(emailNuevo);
+                            break;
 
-                    break;
+                        case 3:
+                            System.out.println("Escriba el nuevo e-mail");
+                            String emailNuevo = teclado.nextLine();
+                            p.setEmail(emailNuevo);
 
-                case 4:
-                    System.out.println("Escriba el nuevo teléfono");
-                    String telefonoNuevo = teclado.nextLine();
-                    p.setTelefono(telefonoNuevo);
+                            break;
 
-                    break;
+                        case 4:
+                            System.out.println("Escriba el nuevo teléfono");
+                            String telefonoNuevo = teclado.nextLine();
+                            p.setTelefono(telefonoNuevo);
 
-                case 5:
-                    System.out.println("Elija el nuevo tipo de proveedor");
-                    TipoProveedor tipoProveedor = elegirTipoProveedor(teclado);
-                    p.setTipoProveedor(tipoProveedor);
+                            break;
 
-                    break;
+                        case 5:
+                            System.out.println("Elija el nuevo tipo de proveedor");
+                            TipoProveedor tipoProveedor = elegirTipoProveedor(teclado);
+                            p.setTipoProveedor(tipoProveedor);
 
-                case 6:
-                    System.out.println("Saliendo del programa...");
-                    salir = true;
+                            break;
 
-                    break;
+                        case 6:
+                            System.out.println("Saliendo del apartado de modificación...");
+                            salir = true;
+                            break;
 
-                default:
-                    System.out.println("Opción ivalida. Intentelo nuevamente");
+                        default:
+                            System.out.println("Opción invalida. Por favor, inténtelo nuevamente");
+                            break;
+                    }
+                }
 
-                    break;
+                listaProveedor.add(p);
+                GestionJSONProveedor.listaProveedorToArchivo(listaProveedor, "proveedor.json");
+                System.out.println("¡Datos cambiados con éxito!");
+                return;
             }
         }
+
+        System.out.println("No se encontró ningún proveedor con ese ID.");
     }
 
     public void darBajaProveedor(Proveedor p){
