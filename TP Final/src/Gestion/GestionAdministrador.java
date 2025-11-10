@@ -176,7 +176,7 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
 
                             while(true){
 
-                                System.out.println("Nombre: ");
+                                System.out.println("Apellido: ");
 
                                 try {
                                     apellido = teclado.nextLine();

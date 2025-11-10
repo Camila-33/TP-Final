@@ -1,17 +1,13 @@
 package Archivos.GestionJSONUsers;
 
 import Archivos.OperacionesLectoEscritura;
-import Productos.Producto;
 import Users.Proveedor;
-import Users.UsuarioSistema.Usuario;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Map;
 
 public class GestionJSONProveedor {
 

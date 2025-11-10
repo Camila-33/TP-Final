@@ -12,9 +12,9 @@ import org.json.JSONTokener;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class GestionJSONAlmacenamiento {
+public class GestionJSONPlacaDeVideo {
 
-    public GestionJSONAlmacenamiento() {
+    public GestionJSONPlacaDeVideo() {
     }
 
     public static void listaAlmacenamientoToArchivo(ArrayList<Almacenamiento> listaAlmacenamiento, String nombreArchivo){

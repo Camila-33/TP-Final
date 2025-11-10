@@ -11,13 +11,13 @@ public class PlacaDeRed extends Producto{
 
     private String dispositivosCompatibles;
 
-    public PlacaDeRed(String nombre, String descripcion, double precio, double peso, String dimension, String marca, boolean activo, int stock, int garantiaMeses, LocalDate fechaIngreso, TipoCategoria categoria, TipoSubCategoria subCategoria, Proveedor proveedor, String dispositivosCompatibles) {
-        super(nombre, descripcion, precio, peso, dimension, marca, activo, stock, garantiaMeses, fechaIngreso, categoria, subCategoria, proveedor);
+    public PlacaDeRed(String nombre, String descripcion, double precio, double peso, String dimension, String marca, boolean activo, int stock, int garantiaMeses, LocalDate fechaIngreso, TipoCategoria categoria, TipoSubCategoria subCategoria, String dispositivosCompatibles) {
+        super(nombre, descripcion, precio, peso, dimension, marca, activo, stock, garantiaMeses, fechaIngreso, categoria, subCategoria);
         this.dispositivosCompatibles = dispositivosCompatibles;
     }
 
-    public PlacaDeRed(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria, Proveedor proveedor, String dispositivosCompatibles) {
-        super(nombre, descripcion, precio, peso, dimension, marca, stock, garantiaMeses, categoria, subCategoria, proveedor);
+    public PlacaDeRed(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria, String dispositivosCompatibles) {
+        super(nombre, descripcion, precio, peso, dimension, marca, stock, garantiaMeses, categoria, subCategoria);
         this.dispositivosCompatibles = dispositivosCompatibles;
     }
 

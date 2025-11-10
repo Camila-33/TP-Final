@@ -17,10 +17,10 @@ public class Proveedor {
     private boolean activo;
     private LocalDate fechaAlta;
     private TipoProveedor tipoProveedor;
-    private Map<String, Producto> productosSuministrados;
+    private HashMap<String, Producto> productosSuministrados;
 
     public Proveedor(String nombre, String apellido, String email, String telefono, String cuit, TipoProveedor tipoProveedor) {
-        this.idProveedor = "PROV-" +(long)(Math.random() * 900000) + 100000;
+        this.idProveedor = String.valueOf((long)(Math.random() * 900000) + 100000);
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -29,11 +29,11 @@ public class Proveedor {
         this.activo = true;
         this.fechaAlta = LocalDate.now();
         this.tipoProveedor = tipoProveedor;
-        this.productosSuministrados = new LinkedHashMap<>();
+        this.productosSuministrados = new HashMap<>();
     }
 
     public Proveedor(String nombre, String apellido, String email, String telefono, String cuit, boolean activo, LocalDate fechaAlta, TipoProveedor tipoProveedor) {
-        this.idProveedor = "PROV-" +UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+        this.idProveedor = String.valueOf((long)(Math.random() * 900000) + 100000);
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -42,11 +42,11 @@ public class Proveedor {
         this.activo = activo;
         this.fechaAlta = fechaAlta;
         this.tipoProveedor = tipoProveedor;
-        this.productosSuministrados = new LinkedHashMap<>();
+        this.productosSuministrados = new HashMap<>();
     }
 
     public Proveedor() {
-        this.idProveedor = "PROV-" +UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+        this.idProveedor = String.valueOf((long)(Math.random() * 900000) + 100000);
         this.productosSuministrados = new LinkedHashMap<>();
     }
 
@@ -122,6 +122,18 @@ public class Proveedor {
     public Map<String, Producto> getProductosSuministrados() {
         return productosSuministrados;
     }
+
+    public void agregarProductos(HashMap<String, Producto> productosNuevos) {
+
+        if (productosNuevos != null && !productosNuevos.isEmpty()) {
+            productosSuministrados.putAll(productosNuevos);
+            System.out.println("Productos agregados correctamente.");
+
+        } else {
+            System.out.println("No hay productos para agregar.");
+        }
+    }
+
 
     @Override
     public boolean equals(Object o) {

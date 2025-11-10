@@ -12,14 +12,14 @@ public class Cooler extends Producto{
     private String velocidad;
     private String nivelRuidoMaximo;
 
-    public Cooler(String nombre, String descripcion, double precio, double peso, String dimension, String marca, boolean activo, int stock, int garantiaMeses, LocalDate fechaIngreso, TipoCategoria categoria, TipoSubCategoria subCategoria, Proveedor proveedor, String velocidad, String nivelRuidoMaximo) {
-        super(nombre, descripcion, precio, peso, dimension, marca, activo, stock, garantiaMeses, fechaIngreso, categoria, subCategoria, proveedor);
+    public Cooler(String nombre, String descripcion, double precio, double peso, String dimension, String marca, boolean activo, int stock, int garantiaMeses, LocalDate fechaIngreso, TipoCategoria categoria, TipoSubCategoria subCategoria, String velocidad, String nivelRuidoMaximo) {
+        super(nombre, descripcion, precio, peso, dimension, marca, activo, stock, garantiaMeses, fechaIngreso, categoria, subCategoria);
         this.velocidad = velocidad;
         this.nivelRuidoMaximo = nivelRuidoMaximo;
     }
 
-    public Cooler(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria, Proveedor proveedor, String velocidad, String nivelRuidoMaximo) {
-        super(nombre, descripcion, precio, peso, dimension, marca, stock, garantiaMeses, categoria, subCategoria, proveedor);
+    public Cooler(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria, String velocidad, String nivelRuidoMaximo) {
+        super(nombre, descripcion, precio, peso, dimension, marca, stock, garantiaMeses, categoria, subCategoria);
         this.velocidad = velocidad;
         this.nivelRuidoMaximo = nivelRuidoMaximo;
     }

@@ -15,8 +15,8 @@ public class Gabinete extends Producto{
     private String alto;
     private String profundidad;
 
-    public Gabinete(String nombre, String descripcion, double precio, double peso, String dimension, String marca, boolean activo, int stock, int garantiaMeses, LocalDate fechaIngreso, TipoCategoria categoria, TipoSubCategoria subCategoria, Proveedor proveedor, boolean conVentana, String color, String ancho, String alto, String profundidad) {
-        super(nombre, descripcion, precio, peso, dimension, marca, activo, stock, garantiaMeses, fechaIngreso, categoria, subCategoria, proveedor);
+    public Gabinete(String nombre, String descripcion, double precio, double peso, String dimension, String marca, boolean activo, int stock, int garantiaMeses, LocalDate fechaIngreso, TipoCategoria categoria, TipoSubCategoria subCategoria, boolean conVentana, String color, String ancho, String alto, String profundidad) {
+        super(nombre, descripcion, precio, peso, dimension, marca, activo, stock, garantiaMeses, fechaIngreso, categoria, subCategoria);
         this.conVentana = conVentana;
         this.color = color;
         this.ancho = ancho;
@@ -24,8 +24,8 @@ public class Gabinete extends Producto{
         this.profundidad = profundidad;
     }
 
-    public Gabinete(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria, Proveedor proveedor, boolean conVentana, String color, String ancho, String alto, String profundidad) {
-        super(nombre, descripcion, precio, peso, dimension, marca, stock, garantiaMeses, categoria, subCategoria, proveedor);
+    public Gabinete(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria, boolean conVentana, String color, String ancho, String alto, String profundidad) {
+        super(nombre, descripcion, precio, peso, dimension, marca, stock, garantiaMeses, categoria, subCategoria);
         this.conVentana = conVentana;
         this.color = color;
         this.ancho = ancho;

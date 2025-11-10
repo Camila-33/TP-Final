@@ -310,32 +310,23 @@ public class GestionUsuario implements MetodosGestion <Usuario>{
                 System.out.println("¿Estás seguro de que quieres eliminar la cuenta? (si / no)");
                 String opcion = teclado.nextLine();
 
-                if(opcion.equalsIgnoreCase("si")){
+                while (true){
 
-                    while (true){
-                        System.out.println("Ingrese su contraseña para eliminar su cuenta"); //debería haber intentos limitados?
-                        String contrasenia = teclado.nextLine();
+                    if(opcion.equalsIgnoreCase("si")){
 
-                        if (contrasenia.equals(user.getContrasena())){
+                        user.setActivo(true);
+                        System.out.println("¡Cuenta dada de baja con éxito!");
+                        GestionJSONUsuario.listaUsuarioToArchivo(listaUsuarios,"usuario.json");
 
-                            user.setActivo(false);
-                            System.out.println("¡Cuenta eliminada con éxito!");
-                            GestionJSONUsuario.listaUsuarioToArchivo(listaUsuarios,"usuario.json");
+                        return;
 
-                            return;
+                    }else if (opcion.equalsIgnoreCase("no")) {
+                        System.out.println("Operación cancelada");
+                        return;
 
-                        }else{
-                            System.out.println("Contraseña incorrecta, inténtelo nuevamente");
-                        }
-
+                    }else{
+                        System.out.println("Opción invalida. Por favor, ingrese una opción valida");
                     }
-
-                }else if (opcion.equalsIgnoreCase("no")) {
-                    System.out.println("Operación cancelada");
-                    return;
-
-                }else{
-                    System.out.println("Opción invalida");
                 }
             }
         }
@@ -354,31 +345,23 @@ public class GestionUsuario implements MetodosGestion <Usuario>{
                 System.out.println("¿Estás seguro de que quieres dar de alta al usuario " +user.getNombre()+ " " +user.getApellido()+ "? (si / no)");
                 String opcion = teclado.nextLine();
 
-                if(opcion.equalsIgnoreCase("si")){
+                while (true){
 
-                    while (true){
-                        System.out.println("Ingrese su contraseña para dar de alta la cuenta");
-                        String contrasenia = teclado.nextLine();
+                    if(opcion.equalsIgnoreCase("si")){
 
-                        if (contrasenia.equals(user.getContrasena())){
+                        user.setActivo(true);
+                        System.out.println("¡Cuenta dada de alta con éxito!");
+                        GestionJSONUsuario.listaUsuarioToArchivo(listaUsuarios,"usuario.json");
 
-                            user.setActivo(true);
-                            System.out.println("¡Cuenta dada de alta con éxito!");
-                            GestionJSONUsuario.listaUsuarioToArchivo(listaUsuarios,"usuario.json");
+                        return;
 
-                            return;
+                    }else if (opcion.equalsIgnoreCase("no")) {
+                        System.out.println("Operación cancelada");
+                        return;
 
-                        }else{
-                            System.out.println("Contraseña incorrecta, inténtelo nuevamente");
-                        }
+                    }else{
+                        System.out.println("Opción invalida. Por favor, ingrese una opción valida");
                     }
-
-                }else if (opcion.equalsIgnoreCase("no")) {
-                    System.out.println("Operación cancelada");
-                    return;
-
-                }else{
-                    System.out.println("Opción invalida");
                 }
             }
         }

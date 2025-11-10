@@ -161,6 +161,22 @@ public class Validaciones {
         }
     }
 
+    public static void validarCuit(String cuit) throws DatoInvalidoException {
+
+        String regex = "^\\d{2}-\\d{8}-\\d$";
+
+        if (cuit == null || !cuit.matches(regex)) {
+            throw new DatoInvalidoException("El CUIT ingresado no es válido.");
+        }
+    }
+
+    public static void validarID(String id) throws DatoInvalidoException {
+
+        if (!id.matches("^\\d{6}$")) {
+            throw new DatoInvalidoException("El ID debe contener exactamente 6 números.");
+        }
+    }
+
     public static boolean existeDni (String dni, String tipoUsuario){
 
         boolean existe = false;

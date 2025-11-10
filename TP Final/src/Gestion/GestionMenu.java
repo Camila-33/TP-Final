@@ -1,11 +1,12 @@
 package Gestion;
 
-import Excepciones.ObjetoNoEncontradoException;
+import Excepciones.DatoInvalidoException;
 import Productos.Producto;
 import Users.LogInUser.LogIn;
 import Users.Proveedor;
 import Users.UsuarioSistema.Administrador;
 import Users.UsuarioSistema.Usuario;
+import Validaciones.Validaciones;
 
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -167,7 +168,7 @@ public class GestionMenu {
                     break;
 
                 case 4:
-
+                    gestionUsuariosAdministrador();
                     break;
 
                 case 5:
@@ -213,37 +214,43 @@ public class GestionMenu {
 
             switch (opcion) {
                 case 1:
-                    gestionProducto.cargarProductos(teclado);
-
+                    gestionProducto.cargarProductos();
                     break;
 
                 case 2:
-                    Producto darBaja = gestionProducto.elegirProductosDisponibles(teclado);
+                    Producto darBaja = gestionProducto.elegirProductosDisponibles();
                     gestionProducto.darBajaProducto(darBaja);
 
                     break;
 
                 case 3:
-                    Producto darAlta = gestionProducto.elegirProductosDeBaja(teclado);
+                    Producto darAlta = gestionProducto.elegirProductosDeBaja();
                     gestionProducto.darAltaProducto(darAlta);
 
                     break;
 
                 case 4:
                     System.out.println("Ingrese el nombre de los productos que quiere mostrar");
+                    String nombre = "";
 
-                    try {
-                        String nombreBusqueda = teclado.nextLine().toLowerCase();
-                        gestionProducto.mostrarProductosPorCoincidencia(nombreBusqueda);
+                    while (true){
 
-                    }catch (ObjetoNoEncontradoException e){
-                        System.err.println("Error: " +e.getMessage());
+                        try {
+                            nombre = teclado.nextLine();
+                            Validaciones.validarString(nombre);
+                            gestionProducto.mostrarProductosPorCoincidencia(nombre);
+
+                            break;
+
+                        }catch (DatoInvalidoException e){
+                            System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
+                        }
                     }
 
                     break;
 
                 case 5:
-                    Producto modificar = gestionProducto.elegirProductosDisponibles(teclado);
+                    Producto modificar = gestionProducto.elegirProductosDisponibles();
                     gestionProducto.modificarProducto(modificar);
 
                     break;
@@ -254,14 +261,24 @@ public class GestionMenu {
 
                 case 7:
                     System.out.println("Ingrese el código del producto que quiere buscar");
+                    String codigo = "";
 
-                    try {
-                        String codigo = teclado.nextLine();
-                        Producto p = gestionProducto.buscarProductoPorCodigo(codigo);
-                        System.out.println(p);
+                    while (true){
 
-                    }catch (ObjetoNoEncontradoException e){
-                        System.err.println("Error: " +e.getMessage());
+                        try {
+                            codigo = teclado.nextLine();
+                            Validaciones.validarID(codigo);
+                            Producto p = gestionProducto.buscarProductoPorCodigo(codigo);
+
+                            if(p != null){
+                                System.out.println(p);
+                            }
+
+                            break;
+
+                        }catch (DatoInvalidoException e){
+                            System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
+                        }
                     }
 
                     break;
@@ -298,27 +315,41 @@ public class GestionMenu {
             switch (opcion){
 
                 case 1:
-                    gestionProveedor.cargarProveedor(teclado);
+                    gestionProveedor.cargarProveedor();
                     break;
 
                 case 2:
                     System.out.println("Elija alguno de los siguientes proveedores disponibles para darlos de baja");
-                    Proveedor bajaProveedor = gestionProveedor.elegirProveedor(teclado);
+                    Proveedor bajaProveedor = gestionProveedor.elegirProveedor();
                     gestionProveedor.darBajaProveedor(bajaProveedor);
 
                     break;
 
                 case 3:
                     System.out.println("Elija alguno de los siguientes proveedores de baja para darlos de alta");
-                    Proveedor altaProveedor = gestionProveedor.elegirProveedorDeBaja(teclado);
+                    Proveedor altaProveedor = gestionProveedor.elegirProveedorDeBaja(); //elegirlos o buscarlos como en usuario por la id y de ahi darlos de baja o alta?
                     gestionProveedor.darAltaProveedor(altaProveedor);
 
                     break;
 
                 case 4:
-                    System.out.println("Ingrese el nombre de los proveedores que quiere mostrar");
-                    String nombre = teclado.nextLine().toLowerCase();
-                    gestionProveedor.mostrarProveedoresPorCoincidencia(nombre);
+                    System.out.println("Ingrese un nombre: ");
+
+                    String nombre = "";
+
+                    while (true){
+
+                        try {
+                            nombre = teclado.nextLine();
+                            Validaciones.validarString(nombre);
+                            gestionProveedor.mostrarProveedoresPorCoincidencia(nombre);
+
+                            break;
+
+                        }catch (DatoInvalidoException e){
+                            System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
+                        }
+                    }
 
                     break;
 
@@ -327,20 +358,30 @@ public class GestionMenu {
                     break;
 
                 case 6:
-                    Proveedor pm = gestionProveedor.elegirProveedor(teclado);
+                    Proveedor pm = gestionProveedor.elegirProveedor();
                     gestionProveedor.modificarProveedor(pm);
                     break;
 
                 case 7:
                     System.out.println("Ingrese la ID del proveedor que quiere buscar");
+                    String id = "";
 
-                    try {
-                        String id = teclado.nextLine();
-                        Proveedor p = gestionProveedor.buscarProveedoresPorId(id);
-                        System.out.println(p);
+                    while (true){
 
-                    }catch (ObjetoNoEncontradoException e){
-                        System.err.println("Error: " +e.getMessage());
+                        try {
+                            id = teclado.nextLine();
+                            Validaciones.validarID(id);
+                            Proveedor p = gestionProveedor.buscarProveedoresPorId(id);
+
+                            if(p != null){
+                                gestionProveedor.mostrarDatosProveedor(p);
+                            }
+
+                            break;
+
+                        }catch (DatoInvalidoException e){
+                            System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
+                        }
                     }
 
                     break;

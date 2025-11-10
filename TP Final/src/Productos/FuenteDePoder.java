@@ -13,14 +13,14 @@ public class FuenteDePoder extends Producto{
     private String potencia;
     private TipoCertificacion tipoCertificacion;
 
-    public FuenteDePoder(String nombre, String descripcion, double precio, double peso, String dimension, String marca, boolean activo, int stock, int garantiaMeses, LocalDate fechaIngreso, TipoCategoria categoria, TipoSubCategoria subCategoria, Proveedor proveedor, String potencia, TipoCertificacion tipoCertificacion) {
-        super(nombre, descripcion, precio, peso, dimension, marca, activo, stock, garantiaMeses, fechaIngreso, categoria, subCategoria, proveedor);
+    public FuenteDePoder(String nombre, String descripcion, double precio, double peso, String dimension, String marca, boolean activo, int stock, int garantiaMeses, LocalDate fechaIngreso, TipoCategoria categoria, TipoSubCategoria subCategoria, String potencia, TipoCertificacion tipoCertificacion) {
+        super(nombre, descripcion, precio, peso, dimension, marca, activo, stock, garantiaMeses, fechaIngreso, categoria, subCategoria);
         this.potencia = potencia;
         this.tipoCertificacion = tipoCertificacion;
     }
 
-    public FuenteDePoder(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria, Proveedor proveedor, String potencia, TipoCertificacion tipoCertificacion) {
-        super(nombre, descripcion, precio, peso, dimension, marca, stock, garantiaMeses, categoria, subCategoria, proveedor);
+    public FuenteDePoder(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria, String potencia, TipoCertificacion tipoCertificacion) {
+        super(nombre, descripcion, precio, peso, dimension, marca, stock, garantiaMeses, categoria, subCategoria);
         this.potencia = potencia;
         this.tipoCertificacion = tipoCertificacion;
     }

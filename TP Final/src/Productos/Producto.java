@@ -20,16 +20,15 @@ public abstract class Producto {
     protected boolean activo;
     protected int stock;
     protected int garantiaMeses;
-    protected long numeroDeSerie;
+    protected String numeroDeSerie;
     protected LocalDate fechaIngreso;
     protected TipoCategoria categoria;
     protected TipoSubCategoria subCategoria;
-    protected Proveedor proveedor;
 
-    public Producto(String nombre, String descripcion, double precio, double peso, String dimension, String marca, boolean activo, int stock, int garantiaMeses, LocalDate fechaIngreso, TipoCategoria categoria, TipoSubCategoria subCategoria, Proveedor proveedor) {
+    public Producto(String nombre, String descripcion, double precio, double peso, String dimension, String marca, boolean activo, int stock, int garantiaMeses, LocalDate fechaIngreso, TipoCategoria categoria, TipoSubCategoria subCategoria) {
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.codigo = "PROD-" + (long)(Math.random() * 900000) + 100000;
+        this.codigo = String.valueOf((long)(Math.random() * 900000) + 100000);
         this.precio = precio;
         this.peso = peso;
         this.dimension = dimension;
@@ -40,14 +39,13 @@ public abstract class Producto {
         this.fechaIngreso = fechaIngreso;
         this.categoria = categoria;
         this.subCategoria = subCategoria;
-        this.proveedor = proveedor;
-        this.numeroDeSerie = (long)(Math.random() * 90000000) + 10000000;
+        this.numeroDeSerie = String.valueOf((long)(Math.random() * 90000000) + 10000000);
     }
 
-    public Producto(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria, Proveedor proveedor) {
+    public Producto(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria) {
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.codigo = "PROD-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+        this.codigo = String.valueOf((long)(Math.random() * 900000) + 100000);
         this.precio = precio;
         this.peso = peso;
         this.dimension = dimension;
@@ -58,8 +56,7 @@ public abstract class Producto {
         this.fechaIngreso = LocalDate.now();
         this.categoria = categoria;
         this.subCategoria = subCategoria;
-        this.proveedor = proveedor;
-        this.numeroDeSerie = (long)(Math.random() * 90000000) + 10000000;
+        this.numeroDeSerie = String.valueOf((long)(Math.random() * 90000000) + 10000000);
     }
 
     public Producto() {
@@ -73,8 +70,12 @@ public abstract class Producto {
         this.subCategoria = subCategoria;
     }
 
-    public long getNumeroDeSerie() {
+    public String getNumeroDeSerie() {
         return numeroDeSerie;
+    }
+
+    public void setNumeroDeSerie(String numeroDeSerie) {
+        this.numeroDeSerie = numeroDeSerie;
     }
 
     public String getNombre() {
@@ -95,6 +96,10 @@ public abstract class Producto {
 
     public String getCodigo() {
         return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public double getPrecio() {
@@ -169,24 +174,15 @@ public abstract class Producto {
         this.categoria = categoria;
     }
 
-    public Proveedor getProveedor() {
-        return proveedor;
-    }
-
-    public void setProveedor(Proveedor proveedor) {
-        this.proveedor = proveedor;
-    }
-
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Producto producto = (Producto) o;
-        return Double.compare(precio, producto.precio) == 0 && Double.compare(peso, producto.peso) == 0 && activo == producto.activo && stock == producto.stock && garantiaMeses == producto.garantiaMeses && numeroDeSerie == producto.numeroDeSerie && Objects.equals(nombre, producto.nombre) && Objects.equals(descripcion, producto.descripcion) && Objects.equals(codigo, producto.codigo) && Objects.equals(dimension, producto.dimension) && Objects.equals(marca, producto.marca) && Objects.equals(fechaIngreso, producto.fechaIngreso) && categoria == producto.categoria && subCategoria == producto.subCategoria && Objects.equals(proveedor, producto.proveedor);
+        if (!(o instanceof Producto producto)) return false;
+        return Double.compare(precio, producto.precio) == 0 && Double.compare(peso, producto.peso) == 0 && activo == producto.activo && stock == producto.stock && garantiaMeses == producto.garantiaMeses && Objects.equals(nombre, producto.nombre) && Objects.equals(descripcion, producto.descripcion) && Objects.equals(codigo, producto.codigo) && Objects.equals(dimension, producto.dimension) && Objects.equals(marca, producto.marca) && Objects.equals(numeroDeSerie, producto.numeroDeSerie) && Objects.equals(fechaIngreso, producto.fechaIngreso) && categoria == producto.categoria && subCategoria == producto.subCategoria;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nombre, descripcion, codigo, precio, peso, dimension, marca, activo, stock, garantiaMeses, numeroDeSerie, fechaIngreso, categoria, subCategoria, proveedor);
+        return Objects.hash(nombre, descripcion, codigo, precio, peso, dimension, marca, activo, stock, garantiaMeses, numeroDeSerie, fechaIngreso, categoria, subCategoria);
     }
 
     @Override
@@ -206,7 +202,6 @@ public abstract class Producto {
                 ", fechaIngreso = " + fechaIngreso +
                 ", categoria = " + categoria +
                 ", subCategoria = " + subCategoria +
-                ", proveedo r= " + proveedor +
                 '}';
     }
 }
