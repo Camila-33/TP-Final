@@ -88,8 +88,8 @@ public class Validaciones {
         }
     }
 
-    public static void validarNumero(double valor) throws DatoInvalidoException {
-        if (valor <= 0) {
+    public static <T extends Number> void validarNumero(T valor) throws DatoInvalidoException {
+        if (valor.doubleValue() <= 0) {
             throw new DatoInvalidoException("El valor debe ser mayor a 0.");
         }
     }
@@ -102,6 +102,13 @@ public class Validaciones {
         if (!dimension.matches("[0-9xX. ]+")) {
             throw new DatoInvalidoException("La dimensión solo puede contener números, 'x' y puntos.");
         }
+    }
+
+    public static void validarMarca(String dimension) throws DatoInvalidoException { //implementacion cambiar
+        if (dimension == null || dimension.trim().isEmpty()) {
+            throw new DatoInvalidoException("La dimensión no puede estar vacía.");
+        }
+
     }
 
 

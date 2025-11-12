@@ -4,12 +4,10 @@ import Productos.Producto;
 
 public class DetalleCompra {
 
-    //Atributos
     private Producto producto;
     private int cantidad;
     private double precioUnitario;
 
-    //Constructores
     public DetalleCompra(){
     }
 
@@ -23,7 +21,6 @@ public class DetalleCompra {
         this.precioUnitario = producto.getPrecio();
     }
 
-    //Setters y getters
     public Producto getProducto() {return producto;}
 
     public void setProducto(Producto producto) {this.producto = producto;}
@@ -36,7 +33,6 @@ public class DetalleCompra {
 
     public void setPrecioUnitario(double precioUnitario) {this.precioUnitario = precioUnitario;}
 
-    //Metodos
 
     public double getSubtotal(){
         return cantidad * precioUnitario;
