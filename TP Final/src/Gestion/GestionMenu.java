@@ -40,7 +40,7 @@ public class GestionMenu {
             System.out.println("Seleccione su tipo de usuario:");
             System.out.println("1. Administrador");
             System.out.println("2. Usuario");
-            System.out.println("3. Salir.");
+            System.out.println("3. Salir");
 
             int opcion = teclado.nextInt();
 
@@ -145,7 +145,7 @@ public class GestionMenu {
             System.out.println("2. Gestión productos");
             System.out.println("3. Gestión proveedores");
             System.out.println("4. Gestión de usuarios");
-            System.out.println("5. Gestión stock");
+            System.out.println("5. Gestión de stock");
             System.out.println("6. Gestión de ventas");
             System.out.println("7. Gestión de compras");
             System.out.println("8. Salir");
@@ -218,14 +218,50 @@ public class GestionMenu {
                     break;
 
                 case 2:
-                    Producto darBaja = gestionProducto.elegirProductosDisponibles();
-                    gestionProducto.darBajaProducto(darBaja);
+                    System.out.println("Ingrese el código del producto que quiere dar de baja");
+                    String codigoB = "";
+
+                    while (true){
+
+                        try {
+                            codigoB = teclado.nextLine();
+                            Validaciones.validarIDYCodigo(codigoB);
+                            Producto p = gestionProducto.buscarProductoPorCodigo(codigoB);
+
+                            if(p != null){
+                                gestionProducto.darBajaProducto(p);
+                            }
+
+                            break;
+
+                        }catch (DatoInvalidoException e){
+                            System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
+                        }
+                    }
 
                     break;
 
                 case 3:
-                    Producto darAlta = gestionProducto.elegirProductosDeBaja();
-                    gestionProducto.darAltaProducto(darAlta);
+                    System.out.println("Ingrese el código del producto que quiere dar de alta");
+                    String codigoA = "";
+
+                    while (true){
+
+                        try {
+                            codigoA = teclado.nextLine();
+                            Validaciones.validarIDYCodigo(codigoA);
+                            Producto p = gestionProducto.buscarProductoPorCodigo(codigoA);
+
+                            if(p != null){
+                                gestionProducto.darAltaProducto(p);
+                            }
+
+                            break;
+
+                        }catch (DatoInvalidoException e){
+                            System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
+                        }
+                    }
 
                     break;
 
@@ -250,7 +286,7 @@ public class GestionMenu {
                     break;
 
                 case 5:
-                    Producto modificar = gestionProducto.elegirProductosDisponibles();
+                    Producto modificar = gestionProducto.elegirProductosDisponibles();//POR ID
                     gestionProducto.modificarProducto(modificar);
 
                     break;
@@ -267,7 +303,7 @@ public class GestionMenu {
 
                         try {
                             codigo = teclado.nextLine();
-                            Validaciones.validarID(codigo);
+                            Validaciones.validarIDYCodigo(codigo);
                             Producto p = gestionProducto.buscarProductoPorCodigo(codigo);
 
                             if(p != null){
@@ -319,22 +355,55 @@ public class GestionMenu {
                     break;
 
                 case 2:
-                    System.out.println("Elija alguno de los siguientes proveedores disponibles para darlos de baja");
-                    Proveedor bajaProveedor = gestionProveedor.elegirProveedor();
-                    gestionProveedor.darBajaProveedor(bajaProveedor);
+                    System.out.println("Ingrese la ID del proveedor que quiere dar de baja");
+                    String idB = "";
+
+                    while (true){
+
+                        try {
+                            idB = teclado.nextLine();
+                            Validaciones.validarIDYCodigo(idB);
+                            Proveedor p = gestionProveedor.buscarProveedoresPorId(idB);
+
+                            if(p != null){
+                                gestionProveedor.darBajaProveedor(p);
+                            }
+
+                            break;
+
+                        }catch (DatoInvalidoException e){
+                            System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
+                        }
+                    }
 
                     break;
 
                 case 3:
-                    System.out.println("Elija alguno de los siguientes proveedores de baja para darlos de alta");
-                    Proveedor altaProveedor = gestionProveedor.elegirProveedorDeBaja(); //elegirlos o buscarlos como en usuario por la id y de ahi darlos de baja o alta?
-                    gestionProveedor.darAltaProveedor(altaProveedor);
+                    System.out.println("Ingrese la ID del proveedor que quiere dar de alta");
+                    String idA = "";
+
+                    while (true){
+
+                        try {
+                            idA = teclado.nextLine();
+                            Validaciones.validarIDYCodigo(idA);
+                            Proveedor p = gestionProveedor.buscarProveedoresPorId(idA);
+
+                            if(p != null){
+                                gestionProveedor.darAltaProveedor(p);
+                            }
+
+                            break;
+
+                        }catch (DatoInvalidoException e){
+                            System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
+                        }
+                    }
 
                     break;
 
                 case 4:
                     System.out.println("Ingrese un nombre: ");
-
                     String nombre = "";
 
                     while (true){
@@ -358,8 +427,27 @@ public class GestionMenu {
                     break;
 
                 case 6:
-                    Proveedor pm = gestionProveedor.elegirProveedor();
-                    gestionProveedor.modificarProveedor(pm);
+                    System.out.println("Ingrese la ID del proveedor que quiere modificar");
+                    String idC = "";
+
+                    while (true){
+
+                        try {
+                            idC = teclado.nextLine();
+                            Validaciones.validarIDYCodigo(idC);
+                            Proveedor p = gestionProveedor.buscarProveedoresPorId(idC);
+
+                            if(p != null){
+                                gestionProveedor.modificarProveedor(p);
+                            }
+
+                            break;
+
+                        }catch (DatoInvalidoException e){
+                            System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
+                        }
+                    }
+
                     break;
 
                 case 7:
@@ -370,7 +458,7 @@ public class GestionMenu {
 
                         try {
                             id = teclado.nextLine();
-                            Validaciones.validarID(id);
+                            Validaciones.validarIDYCodigo(id);
                             Proveedor p = gestionProveedor.buscarProveedoresPorId(id);
 
                             if(p != null){
@@ -427,7 +515,7 @@ public class GestionMenu {
                     break;
 
                 case 4:
-                    System.out.println("Ingrese el DNI del administrador que quiere dar de alta.");
+                    System.out.println("Ingrese el DNI del administrador que quiere dar de alta."); //validar dni
                     String dni = teclado.nextLine();
 
                     Administrador aux = gestionAdministrador.encontrarUsuario(dni);
@@ -474,7 +562,7 @@ public class GestionMenu {
                     break;
 
                 case 2:
-                    System.out.println("Ingrese el DNI del usuario que quiere dar de baja.");
+                    System.out.println("Ingrese el DNI del usuario que quiere dar de baja."); //validar dni
                     String dni1 = teclado.nextLine();
 
                     Usuario aux1 = gestionUsuario.encontrarUsuario(dni1);

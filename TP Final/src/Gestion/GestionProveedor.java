@@ -23,17 +23,17 @@ public class GestionProveedor {
 
     public void agregarProveedor(Proveedor nuevoProveedor){
 
-        HashSet<Proveedor> listaProveedor = GestionJSONProveedor.archivoProveedorToLista("proveedor.json");
-        listaProveedor.add(nuevoProveedor);
-        GestionJSONProveedor.listaProveedorToArchivo(listaProveedor, "proveedor.json");
+        listaProveedores = GestionJSONProveedor.archivoProveedorToLista("proveedor.json");
+        listaProveedores.add(nuevoProveedor);
+        GestionJSONProveedor.listaProveedorToArchivo(listaProveedores, "proveedor.json");
     }
 
     public void modificarProveedor(Proveedor proveedor){
 
-        HashSet<Proveedor> listaProveedor = GestionJSONProveedor.archivoProveedorToLista("proveedor.json");
+        listaProveedores = GestionJSONProveedor.archivoProveedorToLista("proveedor.json");
         boolean salir = false;
 
-        for (Proveedor p : listaProveedor) {
+        for (Proveedor p : listaProveedores) {
             if (p.getIdProveedor().equals(proveedor.getIdProveedor())) {
 
                 while (!salir) {
@@ -157,8 +157,8 @@ public class GestionProveedor {
                     }
                 }
 
-                listaProveedor.add(p);
-                GestionJSONProveedor.listaProveedorToArchivo(listaProveedor, "proveedor.json");
+                listaProveedores.add(p);
+                GestionJSONProveedor.listaProveedorToArchivo(listaProveedores, "proveedor.json");
                 System.out.println("¡Datos cambiados con éxito!");
                 return;
             }
@@ -278,48 +278,7 @@ public class GestionProveedor {
         return proveedor;
     }
 
-    public Proveedor elegirProveedor(){
-
-        listaProveedores = GestionJSONProveedor.archivoProveedorToLista("proveedor.json");
-
-        List<Proveedor> proveedores = new ArrayList<>(listaProveedores);
-
-        for (int i = 0; i < proveedores.size(); i++) {
-            Proveedor aux = proveedores.get(i);
-            if (aux.isActivo()) {
-                System.out.println((i + 1) + ". Id: " + aux.getIdProveedor() +
-                        ", Nombre: " + aux.getNombreCompleto());
-            }
-        }
-
-        int opcion = Validaciones.esValido(teclado, proveedores);
-
-        return proveedores.get(opcion-1);
-    }
-
-    public Proveedor elegirProveedorDeBaja(){
-
-        listaProveedores = GestionJSONProveedor.archivoProveedorToLista("proveedor.json");
-
-        List<Proveedor> proveedores = new ArrayList<>(listaProveedores);
-
-        for (int i = 0; i < proveedores.size(); i++) {
-
-            Proveedor aux = proveedores.get(i);
-
-            if (!aux.isActivo()) {
-                System.out.println((i + 1) + ". Id: " + aux.getIdProveedor() +
-                        ", Nombre: " + aux.getNombreCompleto());
-            }
-        }
-
-        int opcion = Validaciones.esValido(teclado, proveedores);
-
-        return proveedores.get(opcion-1);
-    }
-
-
-    public Proveedor cargarProveedor(){
+    public void cargarProveedor(){
 
         System.out.println("Ingrese el nombre del proveedor: ");
         String nombre = "";
@@ -454,8 +413,6 @@ public class GestionProveedor {
         Proveedor proveedor = new Proveedor(nombre, apellido, email, telefono, cuit, tipoProveedor);
         proveedor.agregarProductos(nuevosProductos);
         agregarProveedor(proveedor);
-
-        return proveedor;
     }
 
 

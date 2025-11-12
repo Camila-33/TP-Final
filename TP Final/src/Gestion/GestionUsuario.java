@@ -46,6 +46,8 @@ public class GestionUsuario implements MetodosGestion <Usuario>{
 
         for (Usuario user : listaUsers){
             if (user.getIdUsuario().equals(u.getIdUsuario())){
+                u = user;
+
                 System.out.println();
                 System.out.println("--------------------------------------------");
                 System.out.println("PERFIL DE USUARIO: " + u.getNombre() + " " + u.getApellido());

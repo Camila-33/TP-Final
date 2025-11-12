@@ -1,6 +1,7 @@
 package Archivos.GestionJSONUsers;
 
 import Archivos.OperacionesLectoEscritura;
+import Users.UsuarioSistema.Administrador;
 import Users.UsuarioSistema.Usuario;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,6 +17,14 @@ public class GestionJSONUsuario {
 
     public static void listaUsuarioToArchivo(HashSet<Usuario> listaUsuarios, String nombreArchivo){
         OperacionesLectoEscritura.grabar(nombreArchivo, serializarListaUsuarios(listaUsuarios));
+    }
+
+    public static void usuarioToArchivo(Usuario usuario, String nombreArchivo){
+
+        JSONArray jsonArray = new JSONArray();
+        jsonArray.put(serializarUsuario(usuario));
+
+        OperacionesLectoEscritura.grabar(nombreArchivo, jsonArray);
     }
 
     public static JSONArray serializarListaUsuarios(HashSet<Usuario> listaUsuarios){
@@ -108,7 +117,7 @@ public class GestionJSONUsuario {
             usuarioLeido.setTelefono(jsonObject.getString("telefono"));
             usuarioLeido.setDireccion(jsonObject.getString("direccion"));
             usuarioLeido.setEmail(jsonObject.getString("email"));
-            usuarioLeido.setActivo(jsonObject.getBoolean("estado"));
+            usuarioLeido.setActivo(jsonObject.getBoolean("activo"));
 
         } catch (JSONException e) {
             e.printStackTrace();

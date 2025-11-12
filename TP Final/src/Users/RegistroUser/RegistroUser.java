@@ -144,7 +144,11 @@ public class RegistroUser {
                 dni = teclado.nextLine();
                 Validaciones.validarDNI(dni);
 
-                dniValido = true;
+                if (!Validaciones.existeDni(dni, "administrador")){
+                    dniValido = true;
+                }else {
+                    System.out.println("El DNI ya existe en el sistema");
+                }
 
             }catch (DatoInvalidoException e){
                 System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
@@ -302,7 +306,11 @@ public class RegistroUser {
                 dni = teclado.nextLine();
                 Validaciones.validarDNI(dni);
 
-                dniValido = true;
+                if (!Validaciones.existeDni(dni, "usuario")){
+                    dniValido = true;
+                }else {
+                    System.out.println("El DNI ya existe en el sistema");
+                }
 
             }catch (DatoInvalidoException e){
                 System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");

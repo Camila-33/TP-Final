@@ -18,6 +18,14 @@ public class GestionJSONAdministrador {
         OperacionesLectoEscritura.grabar(nombreArchivo, serializarListaAdministradores(listaAdmins));
     }
 
+    public static void adminToArchivo(Administrador administrador, String nombreArchivo){
+
+        JSONArray jsonArray = new JSONArray();
+        jsonArray.put(serializarAdmin(administrador));
+
+        OperacionesLectoEscritura.grabar(nombreArchivo, jsonArray);
+    }
+
     public static JSONArray serializarListaAdministradores(HashSet<Administrador> listaAdmins){
 
         JSONArray jsonArray = null;
@@ -108,7 +116,7 @@ public class GestionJSONAdministrador {
             adminLeido.setTelefono(jsonObject.getString("telefono"));
             adminLeido.setDireccion(jsonObject.getString("direccion"));
             adminLeido.setEmail(jsonObject.getString("email"));
-            adminLeido.setActivo(jsonObject.getBoolean("estado"));
+            adminLeido.setActivo(jsonObject.getBoolean("activo"));
 
         } catch (JSONException e) {
             e.printStackTrace();

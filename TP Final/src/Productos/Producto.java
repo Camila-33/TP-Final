@@ -2,14 +2,13 @@ package Productos;
 
 import Enums.TipoCategoria;
 import Enums.TipoSubCategoria;
-import Users.Proveedor;
 
 import java.time.LocalDate;
 import java.util.Objects;
-import java.util.UUID;
 
 public abstract class Producto {
 
+    protected static int contador = 0;
     protected String nombre;
     protected String descripcion;
     protected String codigo;
@@ -20,32 +19,16 @@ public abstract class Producto {
     protected boolean activo;
     protected int stock;
     protected int garantiaMeses;
+    private String idProveedor;
     protected String numeroDeSerie;
     protected LocalDate fechaIngreso;
     protected TipoCategoria categoria;
     protected TipoSubCategoria subCategoria;
 
-    public Producto(String nombre, String descripcion, double precio, double peso, String dimension, String marca, boolean activo, int stock, int garantiaMeses, LocalDate fechaIngreso, TipoCategoria categoria, TipoSubCategoria subCategoria) {
+    public Producto(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria, String idProveedor) {
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.codigo = String.valueOf((long)(Math.random() * 900000) + 100000);
-        this.precio = precio;
-        this.peso = peso;
-        this.dimension = dimension;
-        this.marca = marca;
-        this.activo = activo;
-        this.stock = stock;
-        this.garantiaMeses = garantiaMeses;
-        this.fechaIngreso = fechaIngreso;
-        this.categoria = categoria;
-        this.subCategoria = subCategoria;
-        this.numeroDeSerie = String.valueOf((long)(Math.random() * 90000000) + 10000000);
-    }
-
-    public Producto(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.codigo = String.valueOf((long)(Math.random() * 900000) + 100000);
+        this.codigo = String.valueOf(++contador);
         this.precio = precio;
         this.peso = peso;
         this.dimension = dimension;
@@ -53,6 +36,7 @@ public abstract class Producto {
         this.activo = true;
         this.stock = stock;
         this.garantiaMeses = garantiaMeses;
+        this.idProveedor = idProveedor;
         this.fechaIngreso = LocalDate.now();
         this.categoria = categoria;
         this.subCategoria = subCategoria;
@@ -156,6 +140,14 @@ public abstract class Producto {
 
     public void setGarantiaMeses(int garantiaMeses) {
         this.garantiaMeses = garantiaMeses;
+    }
+
+    public String getIdProveedor() {
+        return idProveedor;
+    }
+
+    public void setIdProveedor(String idProveedor) {
+        this.idProveedor = idProveedor;
     }
 
     public LocalDate getFechaIngreso() {

@@ -1,0 +1,12 @@
+[{
+    "apellido": "García",
+    "direccion": "Av. Siempre Viva 742",
+    "contrasenia": "pass123",
+    "id": "2",
+    "telefono": "987654321",
+    "nombre": "Ana",
+    "dni": "87654321",
+    "email": "ana.garcia@email.com",
+    "username": "usuario1",
+    "activo": true
+}]

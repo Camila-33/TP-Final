@@ -47,6 +47,8 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
 
         for (Administrador admin : listaAdmins){
             if (admin.getIdUsuario().equals(a.getIdUsuario())){
+                a = admin;
+
                 System.out.println();
                 System.out.println("--------------------------------------------");
                 System.out.println("PERFIL DE ADMINISTRADOR: " + a.getNombre() + " " + a.getApellido());

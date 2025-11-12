@@ -2,9 +2,7 @@ package Productos;
 
 import Enums.TipoCategoria;
 import Enums.TipoSubCategoria;
-import Users.Proveedor;
 
-import java.time.LocalDate;
 import java.util.Objects;
 
 public class PlacaMadre extends Producto{
@@ -14,16 +12,8 @@ public class PlacaMadre extends Producto{
     private boolean backConnect;
     private boolean botonBios;
 
-    public PlacaMadre(String nombre, String descripcion, double precio, double peso, String dimension, String marca, boolean activo, int stock, int garantiaMeses, LocalDate fechaIngreso, TipoCategoria categoria, TipoSubCategoria subCategoria, String tipoMemoria, int cantidadSlotMemoria, boolean backConnect, boolean botonBios) {
-        super(nombre, descripcion, precio, peso, dimension, marca, activo, stock, garantiaMeses, fechaIngreso, categoria, subCategoria);
-        this.tipoMemoria = tipoMemoria;
-        this.cantidadSlotMemoria = cantidadSlotMemoria;
-        this.backConnect = backConnect;
-        this.botonBios = botonBios;
-    }
-
-    public PlacaMadre(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria, String tipoMemoria, int cantidadSlotMemoria, boolean backConnect, boolean botonBios) {
-        super(nombre, descripcion, precio, peso, dimension, marca, stock, garantiaMeses, categoria, subCategoria);
+    public PlacaMadre(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria, String idProveedor, String tipoMemoria, int cantidadSlotMemoria, boolean backConnect, boolean botonBios) {
+        super(nombre, descripcion, precio, peso, dimension, marca, stock, garantiaMeses, categoria, subCategoria, idProveedor);
         this.tipoMemoria = tipoMemoria;
         this.cantidadSlotMemoria = cantidadSlotMemoria;
         this.backConnect = backConnect;
@@ -58,12 +48,12 @@ public class PlacaMadre extends Producto{
         this.backConnect = backConnect;
     }
 
-    public boolean isBobtonBios() {
+    public boolean isBotonBios() {
         return botonBios;
     }
 
-    public void setBobtonBios(boolean bobtonBios) {
-        this.botonBios = bobtonBios;
+    public void setBotonBios(boolean botonBios) {
+        this.botonBios = botonBios;
     }
 
     @Override

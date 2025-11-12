@@ -3,8 +3,6 @@ package Validaciones;
 import Archivos.GestionJSONUsers.GestionJSONAdministrador;
 import Archivos.GestionJSONUsers.GestionJSONUsuario;
 import Excepciones.DatoInvalidoException;
-import Productos.Producto;
-import Users.Proveedor;
 import Users.UsuarioSistema.Administrador;
 import Users.UsuarioSistema.Usuario;
 
@@ -16,64 +14,11 @@ public class Validaciones {
     }
 
 
-    public static int esValido(Scanner teclado, List<Proveedor> proveedores){
+    public static <T> void ingresarOpcionValida(List<T> lista, int opcion){
 
-        int opcion = 0;
-        boolean valido = false;
-
-        while (!valido){
-
-            try {
-
-                opcion = teclado.nextInt();
-                teclado.nextLine();
-
-                if (opcion < 1 || opcion > proveedores.size()){
-                    throw new IndexOutOfBoundsException("Numero fuera de rango");
-                }
-
-                valido = true;
-
-            }catch (IndexOutOfBoundsException a){
-                System.err.println("Error: " +a.getMessage());
-
-            }catch (InputMismatchException a){
-                System.err.println("Error: Tipo de dato invalido");
-            }
+        if (opcion < 1 || opcion > lista.size()){
+            throw new IndexOutOfBoundsException("Numero fuera de rango");
         }
-
-        return opcion;
-    }
-
-
-    public static int ingresarOpcionValida(Scanner teclado, List<Producto> productos){
-
-        boolean valido = false;
-        int opcion = 0;
-
-        while (!valido){
-
-            try {
-                System.out.println("Ingrese una opcion del 1 al " +productos.size());
-                opcion = teclado.nextInt();
-
-                if (opcion < 1 || opcion > productos.size()){
-                    throw new IndexOutOfBoundsException("Numero fuera de rango");
-                }
-
-                valido = true;
-
-            }catch (IndexOutOfBoundsException e){ //¿Este try-catch se maneja aca?
-                System.err.println("Error: " +e.getMessage());
-
-            }catch (InputMismatchException e){
-                System.err.println("Error: Debe ingresar un número");
-
-                teclado.nextLine();
-            }
-        }
-
-        return opcion;
     }
 
     public static void validarBoton(char boton){
@@ -103,8 +48,8 @@ public class Validaciones {
 
     public static void validarContrasenia(String contrasenia) throws DatoInvalidoException {
 
-        if (contrasenia.length() < 10) {
-            throw new DatoInvalidoException("La contraseña debe contener al menos 10 caracteres.");
+        if (contrasenia.length() < 8) {
+            throw new DatoInvalidoException("La contraseña debe contener al menos 8 caracteres.");
         }
 
         if (!contrasenia.matches(".*[0-9].*")) {
@@ -124,6 +69,43 @@ public class Validaciones {
             }
         }
     }
+
+    public static void validarNombreProducto(String nombre) throws DatoInvalidoException {
+
+        if (!nombre.matches("^[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\\s\\-_,.]+$")) {
+            throw new DatoInvalidoException("El nombre del producto solo puede contener letras, números y los símbolos -, _ , .");
+        }
+    }
+
+    public static void validarDescripcionProducto(String descripcion) throws DatoInvalidoException {
+
+        if (!descripcion.matches("^[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\\s.,;:!¡¿?\\-_%()\"']+$")) {
+            throw new DatoInvalidoException("La descripción solo puede contener letras, números y signos de puntuación válidos.");
+        }
+
+        if (descripcion.trim().length() < 10) {
+            throw new DatoInvalidoException("La descripción debe tener al menos 10 caracteres.");
+        }
+    }
+
+    public static void validarNumero(double valor) throws DatoInvalidoException {
+        if (valor <= 0) {
+            throw new DatoInvalidoException("El valor debe ser mayor a 0.");
+        }
+    }
+
+    public static void validarDimension(String dimension) throws DatoInvalidoException {
+        if (dimension == null || dimension.trim().isEmpty()) {
+            throw new DatoInvalidoException("La dimensión no puede estar vacía.");
+        }
+
+        if (!dimension.matches("[0-9xX. ]+")) {
+            throw new DatoInvalidoException("La dimensión solo puede contener números, 'x' y puntos.");
+        }
+    }
+
+
+
 
     public static void validarDNI(String dni) throws DatoInvalidoException {
 
@@ -170,12 +152,13 @@ public class Validaciones {
         }
     }
 
-    public static void validarID(String id) throws DatoInvalidoException {
+    public static void validarIDYCodigo(String id) throws DatoInvalidoException {
 
-        if (!id.matches("^\\d{6}$")) {
-            throw new DatoInvalidoException("El ID debe contener exactamente 6 números.");
+        if (!id.matches("\\d+")) {
+            throw new DatoInvalidoException("El ID o código solo debe contener números.");
         }
     }
+
 
     public static boolean existeDni (String dni, String tipoUsuario){
 
@@ -207,7 +190,7 @@ public class Validaciones {
         boolean existe = false;
 
         HashSet<Administrador> administradores = GestionJSONAdministrador.archivoAdminToLista("administrador.json");
-        HashSet<Usuario> usuarios = GestionJSONUsuario.archivoUsuarioToLista("empleado.json");
+        HashSet<Usuario> usuarios = GestionJSONUsuario.archivoUsuarioToLista("usuario.json");
         ArrayList<String> listaDeUsernames = new ArrayList<>();
 
         for (Administrador admin : administradores) {

@@ -1,10 +1,11 @@
 package Gestion;
 
+import Archivos.GestionJSONProductos.GestionJSONProducto;
 import Enums.TipoCategoria;
 import Enums.TipoCertificacion;
 import Enums.TipoSubCategoria;
+import Excepciones.DatoInvalidoException;
 import Productos.*;
-import Users.Proveedor;
 import Validaciones.Validaciones;
 
 import java.util.*;
@@ -12,26 +13,24 @@ import java.util.*;
 public class GestionProducto {
 
     private HashMap<String, Producto> listaProductos;
-    private GestionProveedor gestionProveedor;
     private Scanner teclado;
 
     public GestionProducto() {
-        this.gestionProveedor = new GestionProveedor();
         this.listaProductos = new HashMap<>();
         this.teclado = new Scanner(System.in);
     }
 
     public void agregarProducto(Producto p){
 
-        //falta JSON
+        listaProductos = GestionJSONProducto.archivoProductosToLista("producto.json");
         listaProductos.put(p.getCodigo(), p);
-        //falta JSON
+        GestionJSONProducto.listaProductosToArchivo(listaProductos, "producto.json");
 
     }
 
     public void darBajaProducto(Producto p){
 
-        //falta JSON
+        listaProductos = GestionJSONProducto.archivoProductosToLista("producto.json");
 
         for(Map.Entry<String, Producto> entry : listaProductos.entrySet()){
             if(entry.getValue().equals(p)){
@@ -44,7 +43,7 @@ public class GestionProducto {
 
                         p.setActivo(false);
                         System.out.println("¡Producto dado de baja con éxito!");
-                        //falta JSON
+                        GestionJSONProducto.listaProductosToArchivo(listaProductos, "producto.json");
 
                         return;
 
@@ -64,7 +63,7 @@ public class GestionProducto {
 
     public void darAltaProducto(Producto p){
 
-        //falta JSON
+        listaProductos = GestionJSONProducto.archivoProductosToLista("producto.json");
 
         for(Map.Entry<String, Producto> entry : listaProductos.entrySet()){
             if(entry.getValue().equals(p)){
@@ -77,7 +76,7 @@ public class GestionProducto {
 
                         p.setActivo(true);
                         System.out.println("¡Producto dado de alta con éxito!");
-                        //falta JSON
+                        GestionJSONProducto.listaProductosToArchivo(listaProductos, "producto.json");
 
                         return;
 
@@ -97,7 +96,7 @@ public class GestionProducto {
 
     public void mostrarProductosPorCoincidencia(String nombreBusqueda){
 
-        //falta JSON
+        listaProductos = GestionJSONProducto.archivoProductosToLista("producto.json");
 
         boolean encontrado = false;
 
@@ -118,7 +117,7 @@ public class GestionProducto {
 
     public Producto buscarProductoPorCodigo(String codigo){
 
-        //falta JSON
+        listaProductos = GestionJSONProducto.archivoProductosToLista("producto.json");
 
         boolean encontrado = false;
         Producto producto = null;
@@ -139,9 +138,10 @@ public class GestionProducto {
         return producto;
     }
 
+
     public void mostrarProductos(){
 
-        //falta JSON
+        listaProductos = GestionJSONProducto.archivoProductosToLista("producto.json");
 
         for (Map.Entry<String, Producto> entry : listaProductos.entrySet()){
             if(entry.getValue().isActivo()){
@@ -153,7 +153,7 @@ public class GestionProducto {
 
     public Producto elegirProductosDisponibles(){
 
-        //falta JSON
+        listaProductos = GestionJSONProducto.archivoProductosToLista("producto.json");
 
         List<Producto> productos = new ArrayList<>(listaProductos.values());
         System.out.println("Elija un producto");
@@ -166,30 +166,37 @@ public class GestionProducto {
             }
         }
 
-        int opcion = Validaciones.ingresarOpcionValida(teclado, productos); //corregir
+        int opcion = ingresarOpcionValida(productos);
 
         return productos.get(opcion-1);
     }
 
 
-    public Producto elegirProductosDeBaja(){
+    public int ingresarOpcionValida(List<Producto> lista){ //puede que no funcione
 
-        //falta JSON
+        int opcion;
 
-        List<Producto> productos = new ArrayList<>(listaProductos.values());
-        System.out.println("Elija un producto");
+        while (true){
 
-        int i = 0;
+            try {
+                System.out.println("Ingrese una opcion del 1 al " +lista.size());
+                opcion = teclado.nextInt();
+                teclado.nextLine();
+                Validaciones.ingresarOpcionValida(lista, opcion);
 
-        for (Producto p : productos){
-            if(!p.isActivo()){
-                System.out.println(i+1 + "- " + "Nombre: " + p.getNombre() + ", Precio: " +p.getPrecio());
+                break;
+
+            }catch (IndexOutOfBoundsException e){
+                System.err.println("Error: " +e.getMessage());
+
+            }catch (InputMismatchException e){
+                System.err.println("Error: Debe ingresar un número");
+
+                teclado.nextLine();
             }
         }
 
-        int opcion = Validaciones.ingresarOpcionValida(teclado, productos);
-
-        return productos.get(opcion-1);
+        return opcion;
     }
 
 
@@ -204,17 +211,71 @@ public class GestionProducto {
             int opcion = elegirTipoProducto();
             teclado.nextLine();
 
-            System.out.println("Ingrese el nombre del producto");
-            String nombre = teclado.nextLine();
+            String nombre = "";
 
-            System.out.println("Ingrese la descripción de producto");
-            String descripcion = teclado.nextLine();
+            while (true){
+                System.out.println("Ingrese el nombre del producto");
 
-            System.out.println("Ingrese el precio del producto");
-            double precio = teclado.nextDouble();
+                try {
+                    nombre = teclado.nextLine();
+                    Validaciones.validarNombreProducto(nombre);
 
-            System.out.println("Ingrese el peso del producto");
-            double peso = teclado.nextDouble();
+                    break;
+
+                }catch (DatoInvalidoException e){
+                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
+                }
+            }
+
+
+            String descripcion = "";
+
+            while (true){
+                System.out.println("Ingrese la descripción de producto");
+
+                try {
+                    descripcion = teclado.nextLine();
+                    Validaciones.validarDescripcionProducto(descripcion);
+
+                    break;
+
+                }catch (DatoInvalidoException e){
+                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
+                }
+            }
+
+
+            double precio;
+
+            while (true){
+                System.out.println("Ingrese el precio del producto");
+
+                try {
+                    precio = teclado.nextDouble();
+                    Validaciones.validarNumero(precio);
+
+                    break;
+
+                }catch (DatoInvalidoException e){
+                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
+                }
+            }
+
+            double peso;
+
+            while (true){
+                System.out.println("Ingrese el peso del producto");
+
+                try {
+                    peso = teclado.nextDouble();
+                    Validaciones.validarNumero(peso);
+
+                    break;
+
+                }catch (DatoInvalidoException e){
+                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
+                }
+            }
 
             System.out.println("Ingrese la dimension del producto");
             String dimension = teclado.nextLine();
@@ -222,17 +283,24 @@ public class GestionProducto {
             System.out.println("Ingrese la marca del producto");
             String marca = teclado.nextLine();
 
-            System.out.println("Ingrese el stock disponible");
+            System.out.println("Ingrese el stock disponible");//generico en validar numero?
             int stock = teclado.nextInt();
 
             System.out.println("Ingrese la garantía en meses");
             int garantia = teclado.nextInt();
 
+            System.out.println("Ingrese el código del proveedor del producto");
+            String codigo = teclado.next();
+
             System.out.println("Seleccione la categoria del producto");
             TipoCategoria categoria = elegirCategoria();
 
-            System.out.println("Seleccione la subcategoría del producto");
-            TipoSubCategoria subCategoria = elegirSubCategoria(categoria);
+            TipoSubCategoria subCategoria = null;
+
+            if(opcion != 4){
+                System.out.println("Seleccione la subcategoría del producto");
+                subCategoria = elegirSubCategoria(categoria);
+            }
 
             switch (opcion){
                 case 1:
@@ -242,7 +310,7 @@ public class GestionProducto {
                     System.out.println("Ingrese la velocidad");
                     String velocidad = teclado.nextLine();
 
-                    nuevoProducto = new Almacenamiento(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, capacidad, velocidad);
+                    nuevoProducto = new Almacenamiento(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, capacidad, velocidad, codigo);
                     nuevosProductos.put(nuevoProducto.getCodigo(), nuevoProducto);
                     agregarProducto(nuevoProducto);
                     break;
@@ -254,7 +322,7 @@ public class GestionProducto {
                     System.out.println("Ingrese el nivel de ruido maximo");
                     String ruidoMax = teclado.nextLine();
 
-                    nuevoProducto = new Cooler(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, velocidad1, ruidoMax);
+                    nuevoProducto = new Cooler(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, velocidad1, ruidoMax, codigo);
                     nuevosProductos.put(nuevoProducto.getCodigo(), nuevoProducto);
                     agregarProducto(nuevoProducto);
                     break;
@@ -301,12 +369,12 @@ public class GestionProducto {
                                 break;
                         }
 
-                        nuevoProducto = new FuenteDePoder(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, potencia, tipoCertificacion);
+                        nuevoProducto = new FuenteDePoder(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, potencia, codigo, tipoCertificacion);
                         nuevosProductos.put(nuevoProducto.getCodigo(), nuevoProducto);
                         agregarProducto(nuevoProducto);
 
                     }else {
-                        nuevoProducto = new FuenteDePoder(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, potencia, null);
+                        nuevoProducto = new FuenteDePoder(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, potencia, codigo,null);
                         nuevosProductos.put(nuevoProducto.getCodigo(), nuevoProducto);
                         agregarProducto(nuevoProducto);
                     }
@@ -342,7 +410,7 @@ public class GestionProducto {
                     System.out.println("Ingrese la profundidad del gabinete");
                     String profundidad = teclado.nextLine();
 
-                    nuevoProducto = new Gabinete(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, ventana, color, ancho, alto, profundidad);
+                    nuevoProducto = new Gabinete(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, codigo, ventana, color, ancho, alto, profundidad);
                     nuevosProductos.put(nuevoProducto.getCodigo(), nuevoProducto);
                     agregarProducto(nuevoProducto);
                     break;
@@ -357,7 +425,7 @@ public class GestionProducto {
                     System.out.println("Ingrese la frecuencia");
                     String frecuencia = teclado.nextLine();
 
-                    nuevoProducto = new MemoriaRAM(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, capacidadMemoria, tipoMemoria, frecuencia);
+                    nuevoProducto = new MemoriaRAM(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, codigo,capacidadMemoria, tipoMemoria, frecuencia);
                     nuevosProductos.put(nuevoProducto.getCodigo(), nuevoProducto);
                     agregarProducto(nuevoProducto);
                     break;
@@ -366,7 +434,7 @@ public class GestionProducto {
                     System.out.println("Ingrese los dispositivos compatibles");
                     String dispositivosCompatibles = teclado.nextLine();
 
-                    nuevoProducto = new PlacaDeRed(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, dispositivosCompatibles);
+                    nuevoProducto = new PlacaDeRed(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, codigo, dispositivosCompatibles);
                     nuevosProductos.put(nuevoProducto.getCodigo(), nuevoProducto);
                     agregarProducto(nuevoProducto);
                     break;
@@ -384,7 +452,7 @@ public class GestionProducto {
                     System.out.println("Ingrese el ancho de banda");
                     String anchoBanda = teclado.nextLine();
 
-                    nuevoProducto = new PlacaDeVideo(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, GPU, VRAM, frecuenciaNucleo, anchoBanda);
+                    nuevoProducto = new PlacaDeVideo(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, codigo, GPU, VRAM, frecuenciaNucleo, anchoBanda);
                     nuevosProductos.put(nuevoProducto.getCodigo(), nuevoProducto);
                     agregarProducto(nuevoProducto);
                     break;
@@ -428,7 +496,7 @@ public class GestionProducto {
                         }
                     }
 
-                    nuevoProducto = new PlacaMadre(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, memoriaTipo, slotsMemoria, backConnect, botonBios);
+                    nuevoProducto = new PlacaMadre(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, codigo, memoriaTipo, slotsMemoria, backConnect, botonBios);
                     nuevosProductos.put(nuevoProducto.getCodigo(), nuevoProducto);
                     agregarProducto(nuevoProducto);
                     break;
@@ -437,10 +505,10 @@ public class GestionProducto {
                     System.out.println("Ingrese la frecuencia de reloj");
                     String frecuenciaDeReloj = teclado.nextLine();
 
-                    System.out.println("Ingrese el número de nucleos");
+                    System.out.println("Ingrese el número de núcleos");
                     int numeroNucleos = teclado.nextInt();
 
-                    nuevoProducto = new Procesador(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, frecuenciaDeReloj, numeroNucleos);
+                    nuevoProducto = new Procesador(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, codigo, frecuenciaDeReloj, numeroNucleos);
                     nuevosProductos.put(nuevoProducto.getCodigo(), nuevoProducto);
                     agregarProducto(nuevoProducto);
                     break;
@@ -465,6 +533,8 @@ public class GestionProducto {
             }
         }
 
+        agregarProductos(nuevosProductos);
+
         return nuevosProductos;
     }
 
@@ -474,7 +544,7 @@ public class GestionProducto {
         System.out.println("1. Almacenamiento");
         System.out.println("2. Cooler");
         System.out.println("3. Fuente de Poder");
-        System.out.println("4. Gabinete");
+        System.out.println("4. Gabinete"); //
         System.out.println("5. Memoria RAM");
         System.out.println("6. Placa de Red");
         System.out.println("7. Placa de Video");
@@ -531,7 +601,7 @@ public class GestionProducto {
                     break;
 
                 case 3:
-                    tipoCategoria = TipoCategoria.FUENTE;
+                    tipoCategoria = TipoCategoria.FUENTE_DE_PODER;
                     break;
 
                 case 4:
@@ -594,7 +664,13 @@ public class GestionProducto {
         }
 
 
-        if(categoria == TipoCategoria.FUENTE) {
+        if(categoria == TipoCategoria.CONECTIVIDAD) {
+            System.out.println("Se elegirá automáticamente la subCategoria para la categoría de conectividad");
+            return TipoSubCategoria.PLACA_DE_RED;
+        }
+
+
+        if(categoria == TipoCategoria.FUENTE_DE_PODER) {
             System.out.println("Elija una subcategoría");
             System.out.println("1. Certificada");
             System.out.println("2. Generica");
@@ -745,6 +821,19 @@ public class GestionProducto {
         }
 
         return null;
+    }
+
+    public void agregarProductos(HashMap<String, Producto> productos){
+
+        listaProductos = GestionJSONProducto.archivoProductosToLista("producto.json");
+
+        for (Map.Entry<String, Producto> entry : productos.entrySet()) {
+            String codigo = entry.getKey();
+            Producto producto = entry.getValue();
+            listaProductos.put(codigo, producto);
+        }
+
+        GestionJSONProducto.listaProductosToArchivo(listaProductos, "producto.json");
     }
 
     public void modificarProducto(Producto p){

@@ -2,9 +2,7 @@ package Productos;
 
 import Enums.TipoCategoria;
 import Enums.TipoSubCategoria;
-import Users.Proveedor;
 
-import java.time.LocalDate;
 import java.util.Objects;
 
 public class PlacaDeVideo extends  Producto{
@@ -14,16 +12,8 @@ public class PlacaDeVideo extends  Producto{
     private String frecuenciaNucleo;
     private String anchoDeBanda;
 
-    public PlacaDeVideo(String nombre, String descripcion, double precio, double peso, String dimension, String marca, boolean activo, int stock, int garantiaMeses, LocalDate fechaIngreso, TipoCategoria categoria, TipoSubCategoria subCategoria, String GPU, String VRAM, String frecuenciaNucleo, String anchoDeBanda) {
-        super(nombre, descripcion, precio, peso, dimension, marca, activo, stock, garantiaMeses, fechaIngreso, categoria, subCategoria);
-        this.GPU = GPU;
-        this.VRAM = VRAM;
-        this.frecuenciaNucleo = frecuenciaNucleo;
-        this.anchoDeBanda = anchoDeBanda;
-    }
-
-    public PlacaDeVideo(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria, String GPU, String VRAM, String frecuenciaNucleo, String anchoDeBanda) {
-        super(nombre, descripcion, precio, peso, dimension, marca, stock, garantiaMeses, categoria, subCategoria);
+    public PlacaDeVideo(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria, String idProveedor, String GPU, String VRAM, String frecuenciaNucleo, String anchoDeBanda) {
+        super(nombre, descripcion, precio, peso, dimension, marca, stock, garantiaMeses, categoria, subCategoria, idProveedor);
         this.GPU = GPU;
         this.VRAM = VRAM;
         this.frecuenciaNucleo = frecuenciaNucleo;

@@ -8,6 +8,7 @@ import java.util.*;
 
 public class Proveedor {
 
+    private static int contador = 0;
     private String idProveedor;
     private String nombre;
     private String apellido;
@@ -20,7 +21,7 @@ public class Proveedor {
     private HashMap<String, Producto> productosSuministrados;
 
     public Proveedor(String nombre, String apellido, String email, String telefono, String cuit, TipoProveedor tipoProveedor) {
-        this.idProveedor = String.valueOf((long)(Math.random() * 900000) + 100000);
+        this.idProveedor = String.valueOf(++contador);
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -32,19 +33,6 @@ public class Proveedor {
         this.productosSuministrados = new HashMap<>();
     }
 
-    public Proveedor(String nombre, String apellido, String email, String telefono, String cuit, boolean activo, LocalDate fechaAlta, TipoProveedor tipoProveedor) {
-        this.idProveedor = String.valueOf((long)(Math.random() * 900000) + 100000);
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.email = email;
-        this.telefono = telefono;
-        this.cuit = cuit;
-        this.activo = activo;
-        this.fechaAlta = fechaAlta;
-        this.tipoProveedor = tipoProveedor;
-        this.productosSuministrados = new HashMap<>();
-    }
-
     public Proveedor() {
         this.idProveedor = String.valueOf((long)(Math.random() * 900000) + 100000);
         this.productosSuministrados = new LinkedHashMap<>();
@@ -52,6 +40,10 @@ public class Proveedor {
 
     public String getIdProveedor() {
         return idProveedor;
+    }
+
+    public void setIdProveedor(String idProveedor) {
+        this.idProveedor = idProveedor;
     }
 
     public String getNombre() {
@@ -67,7 +59,7 @@ public class Proveedor {
     }
 
     public void setApellido(String apellido) {
-        apellido = apellido;
+        this.apellido = apellido;
     }
 
     public String getEmail() {
@@ -88,6 +80,10 @@ public class Proveedor {
 
     public String getCuit() {
         return cuit;
+    }
+
+    public void setCuit(String cuit) {
+        this.cuit = cuit;
     }
 
     public boolean isActivo() {
@@ -121,6 +117,10 @@ public class Proveedor {
 
     public Map<String, Producto> getProductosSuministrados() {
         return productosSuministrados;
+    }
+
+    public void setProductosSuministrados(HashMap<String, Producto> productosSuministrados) {
+        this.productosSuministrados = productosSuministrados;
     }
 
     public void agregarProductos(HashMap<String, Producto> productosNuevos) {

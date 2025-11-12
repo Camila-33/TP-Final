@@ -2,9 +2,7 @@ package Productos;
 
 import Enums.TipoCategoria;
 import Enums.TipoSubCategoria;
-import Users.Proveedor;
 
-import java.time.LocalDate;
 import java.util.Objects;
 
 public class Almacenamiento extends Producto{
@@ -12,14 +10,8 @@ public class Almacenamiento extends Producto{
     private String capacidad;
     private String velocidad;
 
-    public Almacenamiento(String nombre, String descripcion, double precio, double peso, String dimension, String marca, boolean activo, int stock, int garantiaMeses, LocalDate fechaIngreso, TipoCategoria categoria, TipoSubCategoria subCategoria, String capacidad, String velocidad) {
-        super(nombre, descripcion, precio, peso, dimension, marca, activo, stock, garantiaMeses, fechaIngreso, categoria, subCategoria);
-        this.capacidad = capacidad;
-        this.velocidad = velocidad;
-    }
-
-    public Almacenamiento(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria, String capacidad, String velocidad) {
-        super(nombre, descripcion, precio, peso, dimension, marca, stock, garantiaMeses, categoria, subCategoria);
+    public Almacenamiento(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria, String idProveedor, String capacidad, String velocidad) {
+        super(nombre, descripcion, precio, peso, dimension, marca, stock, garantiaMeses, categoria, subCategoria, idProveedor);
         this.capacidad = capacidad;
         this.velocidad = velocidad;
     }

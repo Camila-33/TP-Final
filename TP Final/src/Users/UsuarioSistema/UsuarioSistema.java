@@ -2,6 +2,7 @@ package Users.UsuarioSistema;
 
 public abstract class UsuarioSistema {
 
+    protected static int contador = 0;
     protected String idUsuario;
     protected String userName;
     protected String contrasena;
@@ -14,7 +15,7 @@ public abstract class UsuarioSistema {
     protected String direccion;
 
     public UsuarioSistema(String userName, String contrasena, String nombre, String apellido, String email, String telefono, String dni, String direccion) {
-        this.idUsuario = "USER-" + (long)(Math.random() * 900000) + 100000;
+        this.idUsuario = String.valueOf(++contador);
         this.contrasena = contrasena;
         this.nombre = nombre;
         this.apellido = apellido;
