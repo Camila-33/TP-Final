@@ -1,6 +1,0 @@
-package Enums;
-
-public enum MetodoDePago {
-
-    EFECTIVO, TARJETA_CREDITO, TARJETA_DEBITO, TRANSFERENCIA, MERCADO_PAGO, CUENTA_DNI;
-}
