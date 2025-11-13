@@ -10,6 +10,7 @@ import java.util.List;
 
 public class Venta {
 
+    private static int contador = 0;
     private String idVenta;
     private List<DetalleVenta> detalleVenta;
     private double total;
@@ -17,7 +18,7 @@ public class Venta {
     private boolean activo;
 
     public Venta(List<DetalleVenta> detalleVenta, double total, LocalDate fecha, boolean activo) {
-        this.idVenta = String.valueOf((long)(Math.random() * 900000) + 100000);
+        this.idVenta = String.valueOf(++contador);
         this.detalleVenta = detalleVenta;
         this.total = total;
         this.fecha = fecha;

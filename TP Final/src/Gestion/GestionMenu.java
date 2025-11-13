@@ -19,6 +19,7 @@ public class GestionMenu {
     private LogIn logIn;
     private GestionAdministrador gestionAdministrador;
     private GestionUsuario gestionUsuario;
+    private GestionCompra gestionCompra;
 
     public GestionMenu() {
         this.teclado = new Scanner(System.in);
@@ -26,6 +27,7 @@ public class GestionMenu {
         this.gestionProveedor = new GestionProveedor();
         this.gestionAdministrador = new GestionAdministrador();
         this.gestionUsuario = new GestionUsuario();
+        this.gestionCompra = new GestionCompra();
         this.logIn = new LogIn();
     }
 
@@ -176,11 +178,11 @@ public class GestionMenu {
                     break;
 
                 case 6:
-
+                    gestionComprasAdministrador();
                     break;
 
                 case 7:
-
+                    gestionVentasAdministrador();
                     break;
 
                 case 8:
@@ -702,6 +704,104 @@ public class GestionMenu {
                     break;
 
                 case 3:
+                    System.out.println("Saliendo...");
+                    return;
+
+                default:
+                    System.out.println("Opción invalida. Por favor, ingrese una opción valida");
+                    break;
+            }
+        }
+    }
+
+
+    public void gestionComprasAdministrador() {
+
+        while (true) {
+
+            System.out.println("Elija una opción");
+            System.out.println("1. Generar orden de compra");
+            System.out.println("2. Cancelar orden de compra");
+            System.out.println("3. Mostrar ordenes de compra");
+            System.out.println("4. Modificar orden de compra");
+            System.out.println("5. Buscar orden de compra");
+            System.out.println("6. Atrás");
+
+            int opcion = teclado.nextInt();
+            teclado.nextLine();
+
+            switch (opcion) {
+
+                case 1:
+
+                    break;
+
+                case 2:
+
+                    break;
+
+                case 3:
+
+                    break;
+
+                case 4:
+
+                    break;
+
+                case 5:
+
+                    break;
+
+                case 6:
+                    System.out.println("Saliendo...");
+                    return;
+
+                default:
+                    System.out.println("Opción invalida. Por favor, ingrese una opción valida");
+                    break;
+            }
+        }
+    }
+
+
+    public void gestionVentasAdministrador() {
+
+        while (true) {
+
+            System.out.println("Elija una opción");
+            System.out.println("1. Cargar orden de venta");
+            System.out.println("2. Cancelar orden de venta");
+            System.out.println("3. Mostrar ordenes de venta");
+            System.out.println("4. Modificar orden de venta");
+            System.out.println("4. Buscar orden de venta");
+            System.out.println("5. Atrás");
+
+            int opcion = teclado.nextInt();
+            teclado.nextLine();
+
+            switch (opcion) {
+
+                case 1:
+
+                    break;
+
+                case 2:
+
+                    break;
+
+                case 3:
+
+                    break;
+
+                case 4:
+
+                    break;
+
+                case 5:
+
+                    break;
+
+                case 6:
                     System.out.println("Saliendo...");
                     return;
 

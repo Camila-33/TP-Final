@@ -28,7 +28,7 @@ public class GestionJSONProducto {
     }
 
 
-    public static void ProductoToArchivo(Producto producto, String nombreArchivo) {
+    public static void productoToArchivo(Producto producto, String nombreArchivo) {
 
         JSONArray jsonArray = new JSONArray();
         jsonArray.put(serializarProducto(producto));

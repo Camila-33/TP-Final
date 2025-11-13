@@ -261,6 +261,7 @@ public class GestionProducto {
                 }
             }
 
+
             double peso;
 
             while (true){
@@ -277,20 +278,90 @@ public class GestionProducto {
                 }
             }
 
-            System.out.println("Ingrese la dimension del producto");
-            String dimension = teclado.nextLine();
 
-            System.out.println("Ingrese la marca del producto");
-            String marca = teclado.nextLine();
+            String dimension;
 
-            System.out.println("Ingrese el stock disponible");//generico en validar numero?
-            int stock = teclado.nextInt();
+            while (true){
+                System.out.println("Ingrese la dimension del producto");
 
-            System.out.println("Ingrese la garantía en meses");
-            int garantia = teclado.nextInt();
+                try {
+                    dimension = teclado.nextLine();
+                    Validaciones.validarDimension(dimension);
 
-            System.out.println("Ingrese el código del proveedor del producto");
-            String codigo = teclado.next();
+                    break;
+
+                }catch (DatoInvalidoException e){
+                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
+                }
+            }
+
+
+            String marca;
+
+            while (true){
+                System.out.println("Ingrese la marca del producto");
+
+                try {
+                    marca = teclado.nextLine();
+                    Validaciones.validarMarca(marca);
+
+                    break;
+
+                }catch (DatoInvalidoException e){
+                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
+                }
+            }
+
+
+            int stock;
+
+            while (true){
+                System.out.println("Ingrese el stock disponible");
+
+                try {
+                    stock = teclado.nextInt();
+                    Validaciones.validarNumero(stock);
+
+                    break;
+
+                }catch (DatoInvalidoException e){
+                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
+                }
+            }
+
+
+            int garantia;
+
+            while (true){
+                System.out.println("Ingrese la garantía en meses");
+
+                try {
+                    garantia = teclado.nextInt();
+                    Validaciones.validarNumero(stock);
+
+                    break;
+
+                }catch (DatoInvalidoException e){
+                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
+                }
+            }
+
+
+            String codigo;
+
+            while (true){
+                System.out.println("Ingrese el código del proveedor del producto");
+
+                try {
+                    codigo = teclado.next();
+                    Validaciones.validarIDYCodigo(codigo);
+
+                    break;
+
+                }catch (DatoInvalidoException e){
+                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
+                }
+            }
 
             System.out.println("Seleccione la categoria del producto");
             TipoCategoria categoria = elegirCategoria();
