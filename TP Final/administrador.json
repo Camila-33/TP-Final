@@ -1,0 +1,12 @@
+[{
+    "apellido": "Pérez",
+    "direccion": "Calle Falsa 123",
+    "contrasenia": "1234",
+    "id": "1",
+    "telefono": "1234567890",
+    "nombre": "Juan",
+    "dni": "12345678",
+    "email": "juan.perez@email.com",
+    "username": "admin1",
+    "activo": true
+}]
