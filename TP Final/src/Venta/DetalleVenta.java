@@ -2,16 +2,11 @@ package Venta;
 
 import Productos.Producto;
 
-/**
- * Representa un detalle individual dentro de una venta.
- * Cada detalle corresponde a un producto, su cantidad y su subtotal.
- */
-
 public class DetalleVenta {
 
     private Producto producto;
     private int cantidad;
-    private double precioUnitario;
+    private double precioUnitario; // Se congela el precio del momento de la venta
 
     public DetalleVenta(Producto producto, int cantidad, double precioUnitario) {
         this.producto = producto;
@@ -42,8 +37,6 @@ public class DetalleVenta {
     public void setPrecioUnitario(double precioUnitario) {
         this.precioUnitario = precioUnitario;
     }
-
-
 
     @Override
     public String toString() {
