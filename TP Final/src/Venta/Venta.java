@@ -1,12 +1,8 @@
 package Venta;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
-
-/**
- * Representa una venta realizada en el sistema.
- * Contiene los detalles de los productos vendidos, el cliente, y el estado de la venta.
- */
 
 public class Venta {
 
@@ -17,6 +13,7 @@ public class Venta {
     private LocalDate fecha;
     private boolean activo;
 
+    // Constructor completo (si querés usarlo igual)
     public Venta(List<DetalleVenta> detalleVenta, double total, LocalDate fecha, boolean activo) {
         this.idVenta = String.valueOf(++contador);
         this.detalleVenta = detalleVenta;
@@ -25,7 +22,28 @@ public class Venta {
         this.activo = activo;
     }
 
+    // ✅ Constructor más práctico: calcula el total solo y la venta arranca activa
+    public Venta(List<DetalleVenta> detalleVenta, LocalDate fecha) {
+        this.idVenta = String.valueOf(++contador);
+        this.detalleVenta = (detalleVenta != null) ? detalleVenta : new ArrayList<>();
+        this.fecha = fecha;
+        this.activo = true;
+        recalcularTotal();
+    }
+
+    // Constructor vacío (por si lo necesita JSON / frameworks)
     public Venta() {
+    }
+
+    // ✅ Recalcular el total a partir de los detalles
+    public void recalcularTotal() {
+        double acum = 0.0;
+        if (detalleVenta != null) {
+            for (DetalleVenta d : detalleVenta) {
+                acum += d.getCantidad() * d.getPrecioUnitario();
+            }
+        }
+        this.total = acum;
     }
 
     public String getIdVenta() {
@@ -42,12 +60,14 @@ public class Venta {
 
     public void setDetalleVenta(List<DetalleVenta> detalleVenta) {
         this.detalleVenta = detalleVenta;
+        recalcularTotal();
     }
 
     public double getTotal() {
         return total;
     }
 
+    // Si se quiere forzar un total manualmente
     public void setTotal(double total) {
         this.total = total;
     }
@@ -68,12 +88,21 @@ public class Venta {
         this.activo = activo;
     }
 
+    // ✅ Cuando agrego un detalle, actualizo total
     public void agregarDetalle(DetalleVenta detalle) {
+        if (detalleVenta == null) {
+            detalleVenta = new ArrayList<>();
+        }
         detalleVenta.add(detalle);
+        recalcularTotal();
     }
 
+    // ✅ Cuando quito un detalle, actualizo total
     public void quitarDetalle(DetalleVenta detalle) {
-        detalleVenta.remove(detalle);
+        if (detalleVenta != null) {
+            detalleVenta.remove(detalle);
+            recalcularTotal();
+        }
     }
 
     @Override

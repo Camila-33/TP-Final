@@ -20,6 +20,7 @@ public class GestionMenu {
     private GestionAdministrador gestionAdministrador;
     private GestionUsuario gestionUsuario;
     private GestionCompra gestionCompra;
+    private GestionVenta gestionVenta;
 
     public GestionMenu() {
         this.teclado = new Scanner(System.in);
@@ -28,6 +29,7 @@ public class GestionMenu {
         this.gestionAdministrador = new GestionAdministrador();
         this.gestionUsuario = new GestionUsuario();
         this.gestionCompra = new GestionCompra();
+        this.gestionVenta = new GestionVenta();
         this.logIn = new LogIn();
     }
 
@@ -148,8 +150,8 @@ public class GestionMenu {
             System.out.println("3. Gestión proveedores");
             System.out.println("4. Gestión de usuarios");
             System.out.println("5. Gestión de stock");
-            System.out.println("6. Gestión de ventas");
-            System.out.println("7. Gestión de compras");
+            System.out.println("6. Gestión de compras");
+            System.out.println("7. Gestión de ventas");
             System.out.println("8. Salir");
 
             int opcion = teclado.nextInt();
@@ -773,8 +775,8 @@ public class GestionMenu {
             System.out.println("2. Cancelar orden de venta");
             System.out.println("3. Mostrar ordenes de venta");
             System.out.println("4. Modificar orden de venta");
-            System.out.println("4. Buscar orden de venta");
-            System.out.println("5. Atrás");
+            System.out.println("5. Buscar orden de venta");
+            System.out.println("6. Atrás");
 
             int opcion = teclado.nextInt();
             teclado.nextLine();
@@ -782,27 +784,33 @@ public class GestionMenu {
             switch (opcion) {
 
                 case 1:
-
+                    gestionVenta.cargarOrdenVenta();
                     break;
 
                 case 2:
-
+                    System.out.println("Ingrese el ID de la venta a cancelar:");
+                    String idCancelar = teclado.nextLine();
+                    gestionVenta.cancelarOrdenDeVenta(idCancelar);
                     break;
 
                 case 3:
-
+                    gestionVenta.mostrarOrdenesVenta();
                     break;
 
                 case 4:
-
+                    System.out.println("Ingrese el ID de la venta a modificar:");
+                    String idMod = teclado.nextLine();
+                    gestionVenta.modificarOrdenVenta(idMod);
                     break;
 
                 case 5:
-
+                    System.out.println("Ingrese el ID de la venta a buscar:");
+                    String idBusc = teclado.nextLine();
+                    gestionVenta.mostrarOrdenVentaPorId(idBusc);
                     break;
 
                 case 6:
-                    System.out.println("Saliendo...");
+                    System.out.println("Volviendo al menú anterior...");
                     return;
 
                 default:
