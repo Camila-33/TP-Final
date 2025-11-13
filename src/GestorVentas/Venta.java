@@ -1,110 +1,110 @@
 package GestorVentas;
 
-import Enums.MetodoDePago;
-import Productos.Producto;
+import Users.UsuarioSistema.Cliente;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Representa una venta realizada en el sistema.
- * Contiene los detalles de los productos vendidos, el pago y la factura asociada.
+ * Contiene los detalles de los productos vendidos, el cliente, y el estado de la venta.
  */
 public class Venta {
 
     // Identificador único de la venta
     private String idVenta;
 
-    // Lista de los detalles (productos, cantidades y precios)
-    private List<DetalleVenta> detalles;
+    // Cliente que realizó la compra
+    private Cliente cliente;
 
-    // Pago asociado a la venta
-    private Pago pago;
+    // Lista de detalles de la venta
+    private List<DetalleVenta> detalles = new ArrayList<>();
 
-    // Factura generada una vez finalizada la venta
-    private Factura factura;
+    // Monto total de la venta
+    private double total;
 
-    /**
-     * Constructor de la clase Venta.
-     * Inicializa la venta con un ID y una lista vacía de detalles.
-     *
-     * @param idVenta Identificador único de la venta
-     */
-    public Venta(String idVenta) {
+    // Fecha en que se realizó la venta
+    private LocalDate fecha;
+
+    // Estado de la venta (activa o no)
+    private boolean activo;
+
+    // Constructor
+    public Venta(String idVenta, Cliente cliente, LocalDate fecha) {
         this.idVenta = idVenta;
-        this.detalles = new ArrayList<>();
+        this.cliente = cliente;
+        this.fecha = fecha;
+        this.activo = true;
     }
 
-    // ================== Getters y Setters ==================
-
+    // Getters y setters
     public String getIdVenta() {
         return idVenta;
+    }
+
+    public void setIdVenta(String idVenta) {
+        this.idVenta = idVenta;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public List<DetalleVenta> getDetalles() {
         return detalles;
     }
 
-    public Pago getPago() {
-        return pago;
+    public void setDetalles(List<DetalleVenta> detalles) {
+        this.detalles = detalles;
     }
 
-    public Factura getFactura() {
-        return factura;
-    }
-
-    // ================== Métodos funcionales ==================
-
-    /**
-     * Agrega un nuevo detalle a la venta con el producto, cantidad y precio unitario indicados.
-     *
-     * @param producto       Producto vendido
-     * @param cantidad       Cantidad de unidades
-     * @param precioUnitario Precio por unidad
-     */
-    public void agregarDetalle(Producto producto, int cantidad, double precioUnitario) {
-        DetalleVenta detalle = new DetalleVenta(producto, cantidad, precioUnitario);
-        detalles.add(detalle);
-    }
-
-    /**
-     * Calcula el total de la venta sumando los subtotales de todos los detalles.
-     *
-     * @return total de la venta
-     */
-    public double calcularTotal() {
-        double total = 0;
-        for (DetalleVenta d : detalles) {
-            total += d.calcularSubtotal();
-        }
+    public double getTotal() {
         return total;
     }
 
-    /**
-     * Finaliza la venta generando un pago y una factura.
-     * Asigna el metodo de pago elegido y registra el total automáticamente.
-     *
-     * @param metodo Metodo de pago utilizado (enum MetodoDePago)
-     */
-    public void finalizarVenta(MetodoDePago metodo) {
-        this.pago = new Pago(metodo, calcularTotal());
-        this.factura = new Factura(idVenta, this);
+    public void setTotal(double total) {
+        this.total = total;
     }
 
-    /**
-     * Devuelve una representación completa de la venta,
-     * mostrando los detalles, el total y el metodo de pago si existe.
-     */
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public boolean isActivo() {
+        return activo;
+    }
+
+    public void setActivo(boolean activo) {
+        this.activo = activo;
+    }
+
+    // Métodos de manejo de detalles
+    public void agregarDetalle(DetalleVenta detalle) {
+        detalles.add(detalle);
+    }
+
+    public void quitarDetalle(DetalleVenta detalle) {
+        detalles.remove(detalle);
+    }
+
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Venta N° ").append(idVenta).append("\n");
-        for (DetalleVenta d : detalles) {
-            sb.append(" - ").append(d).append("\n");
-        }
-        sb.append("TOTAL: $").append(calcularTotal()).append("\n");
-        if (pago != null) {
-            sb.append(pago).append("\n");
-        }
-        return sb.toString();
+        return "Venta{" +
+                "idVenta='" + idVenta + '\'' +
+                ", cliente=" + cliente +
+                ", detalles=" + detalles +
+                ", total=" + total +
+                ", fecha=" + fecha +
+                ", activo=" + activo +
+                '}';
     }
 }

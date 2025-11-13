@@ -8,36 +8,54 @@ import java.time.LocalDate;
  * Guarda el metodo de pago utilizado, el monto total y la fecha en que se efectuó.
  */
 public class Pago {
-    // Metodo utilizado para realizar el pago (efectivo, tarjeta, etc.)
-    private MetodoDePago metodo;
 
-    // Monto total abonado en el pago
+    // Identificador del pago
+    private String idPago;
+
+    // Venta asociada al pago
+    private Venta venta;
+
+    // Metodo utilizado para realizar el pago
+    private MetodoDePago metodoPago;
+
+    // Monto total abonado
     private double monto;
 
-    // Fecha en la que se realizó el pago
-    private LocalDate fecha;
+    // Fecha en que se efectuó el pago
+    private LocalDate fechaPago;
 
-    /**
-     * Constructor del pago.
-     * Recibe el metodo de pago y el monto, y guarda automáticamente la fecha actual.
-     *
-     * @param metodo Tipo de metodo de pago utilizado (enum MetodoDePago)
-     * @param monto  Importe total pagado
-     */
-    public Pago(MetodoDePago metodo, double monto) {
-        this.metodo = metodo;
+    // Constructor
+    public Pago(String idPago, Venta venta, MetodoDePago metodoPago, double monto, LocalDate fechaPago) {
+        this.idPago = idPago;
+        this.venta = venta;
+        this.metodoPago = metodoPago;
         this.monto = monto;
-        this.fecha = LocalDate.now(); // se toma la fecha actual al crear el pago
+        this.fechaPago = fechaPago;
     }
 
-    // ================== Getters y Setters ==================
-
-    public MetodoDePago getMetodo() {
-        return metodo;
+    // Getters y setters
+    public String getIdPago() {
+        return idPago;
     }
 
-    public void setMetodo(MetodoDePago metodo) {
-        this.metodo = metodo;
+    public void setIdPago(String idPago) {
+        this.idPago = idPago;
+    }
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
+    }
+
+    public MetodoDePago getMetodoPago() {
+        return metodoPago;
+    }
+
+    public void setMetodoPago(MetodoDePago metodoPago) {
+        this.metodoPago = metodoPago;
     }
 
     public double getMonto() {
@@ -48,18 +66,22 @@ public class Pago {
         this.monto = monto;
     }
 
-    public LocalDate getFecha() {
-        return fecha;
+    public LocalDate getFechaPago() {
+        return fechaPago;
     }
 
-    // ================== Métodos auxiliares ==================
+    public void setFechaPago(LocalDate fechaPago) {
+        this.fechaPago = fechaPago;
+    }
 
-    /**
-     * Devuelve una representación en texto del pago,
-     * útil para mostrar información en pantalla o en reportes.
-     */
     @Override
     public String toString() {
-        return "Pago de $" + monto + " mediante " + metodo + " el " + fecha;
+        return "Pago{" +
+                "idPago='" + idPago + '\'' +
+                ", venta=" + venta +
+                ", metodoPago=" + metodoPago +
+                ", monto=" + monto +
+                ", fechaPago=" + fechaPago +
+                '}';
     }
 }
