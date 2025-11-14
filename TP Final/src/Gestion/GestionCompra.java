@@ -1,6 +1,7 @@
 package Gestion;
 
 import Archivos.GestionJSONCompra.GestionJSONCompra;
+import IngresoDeDatos.InputHelper;
 import Transacciones.Compra;
 import Excepciones.DatoInvalidoException;
 import Productos.Producto;
@@ -79,15 +80,9 @@ public class GestionCompra {
 
         while (true) {
             try {
-                System.out.print("Ingrese la cantidad a comprar: ");
-                cantidad = teclado.nextInt();
-                teclado.nextLine();
-
-                Validaciones.validarNumero(cantidad);
+                cantidad = InputHelper.leerInt("Ingrese la cantidad a comprar: ");
                 break;
 
-            } catch (DatoInvalidoException e) {
-                System.err.println("Error: " + e.getMessage() + ". Por favor, inténtelo nuevamente.");
             } catch (InputMismatchException e) {
                 System.err.println("Debe ingresar un número válido.");
                 teclado.nextLine();
@@ -281,49 +276,6 @@ public class GestionCompra {
     }
 
 
-    /**
-     * Devuelve la compra con el monto total más alto.
-     *
-     * @return La compra con el total más alto, o null si no hay compras registradas.
-     */
-    public Compra obtenerCompraMaxima() {
-
-        compras = GestionJSONCompra.archivoCompraToLista("compra.json");
-
-        if (compras.isEmpty()) return null;
-
-        Compra max = null;
-        for (Compra c : compras.values()) {
-            if (max == null || c.getTotal() > max.getTotal()) {
-                max = c;
-            }
-        }
-
-        return max;
-    }
-
-    /**
-     * Devuelve la compra con el monto total más bajo.
-     *
-     * @return La compra con el total más bajo, o null si no hay compras registradas.
-     */
-    public Compra obtenerCompraMinima() {
-
-        compras = GestionJSONCompra.archivoCompraToLista("compra.json");
-
-        if (compras.isEmpty()) return null;
-
-        Compra min = null;
-        for (Compra c : compras.values()) {
-            if (min == null || c.getTotal() < min.getTotal()) {
-                min = c;
-            }
-        }
-
-        return min;
-    }
-
-
     public void mostrarCompra(Compra compra) {
 
         System.out.println("\n=== Detalle de la Compra ===");
@@ -342,7 +294,4 @@ public class GestionCompra {
         System.out.println("Total de la compra: $" + compra.getTotal());
         System.out.println("============================\n");
     }
-
-
-
 }

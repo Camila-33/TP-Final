@@ -2,7 +2,7 @@ package Gestion;
 
 import Archivos.GestionJSONUsers.GestionJSONProveedor;
 import Enums.TipoProveedor;
-import Excepciones.DatoInvalidoException;
+import IngresoDeDatos.InputHelper;
 import Productos.Producto;
 import Users.Proveedor;
 import Validaciones.Validaciones;
@@ -34,6 +34,7 @@ public class GestionProveedor {
         boolean salir = false;
 
         for (Proveedor p : listaProveedores) {
+
             if (p.getIdProveedor().equals(proveedor.getIdProveedor())) {
 
                 while (!salir) {
@@ -43,121 +44,56 @@ public class GestionProveedor {
                     System.out.println("2. Apellido");
                     System.out.println("3. E-mail");
                     System.out.println("4. Teléfono");
-                    System.out.println("5. Tipo de proveedor");
-                    System.out.println("6. Salir");
+                    System.out.println("4. CUIT");
+                    System.out.println("6. Tipo de proveedor");
+                    System.out.println("7. Salir");
 
-                    int opcion = teclado.nextInt();
-                    teclado.nextLine();
+                    int opcion;
+
+                    try {
+                        opcion = Integer.parseInt(teclado.nextLine());
+                    } catch(NumberFormatException e) {
+                        System.err.println("Debe ingresar un número.");
+                        continue;
+                    }
 
                     switch (opcion) {
 
                         case 1:
-
-                            String nombre = "";
-
-                            while (true){
-
-                                System.out.println("Nombre: ");
-
-                                try {
-                                    nombre = teclado.nextLine();
-                                    Validaciones.validarString(nombre);
-                                    p.setNombre(nombre);
-
-                                    break;
-
-                                }catch (DatoInvalidoException e){
-                                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                                }
-                            }
-
+                            p.setNombre(InputHelper.pedirString("Nuevo nombre:"));
                             break;
 
                         case 2:
-
-                            String apellido = "";
-
-                            while (true){
-
-                                System.out.println("Apellido: ");
-
-                                try {
-                                    apellido = teclado.nextLine();
-                                    Validaciones.validarString(apellido);
-                                    p.setApellido(apellido);
-
-                                    break;
-
-                                }catch (DatoInvalidoException e){
-                                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                                }
-                            }
-
+                            p.setApellido(InputHelper.pedirString("Nuevo apellido:"));
                             break;
 
                         case 3:
-
-                            String email = "";
-
-                            while (true){
-
-                                System.out.println("Email: ");
-
-                                try {
-                                    email = teclado.nextLine();
-                                    Validaciones.validarEmail(email);
-                                    p.setEmail(email);
-
-                                    break;
-
-                                }catch (DatoInvalidoException e){
-                                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                                }
-                            }
-
+                            p.setEmail(InputHelper.pedirEmail("Nuevo email:"));
                             break;
 
                         case 4:
-
-                            String telefono = "";
-
-                            while (true){
-
-                                System.out.println("Teléfono: ");
-
-                                try {
-                                    telefono = teclado.nextLine();
-                                    Validaciones.validarTelefono(telefono);
-                                    p.setTelefono(telefono);
-
-                                    break;
-
-                                }catch (DatoInvalidoException e){
-                                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                                }
-                            }
-
+                            p.setCuit(InputHelper.pedirCuit("Nuevo CUIT:"));
                             break;
 
                         case 5:
-                            System.out.println("Elija el nuevo tipo de proveedor");
-                            TipoProveedor tipoProveedor = elegirTipoProveedor();
-                            p.setTipoProveedor(tipoProveedor);
-
+                            p.setTelefono(InputHelper.pedirTelefono("Nuevo teléfono:"));
                             break;
 
                         case 6:
+                            System.out.println("Elija el nuevo tipo de proveedor:");
+                            p.setTipoProveedor(elegirTipoProveedor());
+                            break;
+
+                        case 7:
                             System.out.println("Saliendo del apartado de modificación...");
                             salir = true;
                             break;
 
                         default:
-                            System.out.println("Opción invalida. Por favor, inténtelo nuevamente");
-                            break;
+                            System.out.println("Opción inválida. Intente nuevamente.");
                     }
                 }
 
-                listaProveedores.add(p);
                 GestionJSONProveedor.listaProveedorToArchivo(listaProveedores, "proveedor.json");
                 System.out.println("¡Datos cambiados con éxito!");
                 return;
@@ -166,6 +102,7 @@ public class GestionProveedor {
 
         System.out.println("No se encontró ningún proveedor con ese ID.");
     }
+
 
     public void darBajaProveedor(Proveedor p){
 
@@ -233,14 +170,6 @@ public class GestionProveedor {
         System.out.println("No se encontró al proveedor");
     }
 
-
-    public void mostrarProveedoresDisponibles(){
-
-        for (Proveedor p : listaProveedores){
-            System.out.println(p);
-        }
-    }
-
     public void mostrarProveedoresPorCoincidencia(String nombre){
 
         boolean encontrado = false;
@@ -280,139 +209,72 @@ public class GestionProveedor {
 
     public void cargarProveedor(){
 
-        System.out.println("Ingrese el nombre del proveedor: ");
-        String nombre = "";
-
-        while (true){
-
-            try {
-                nombre = teclado.nextLine();
-                Validaciones.validarString(nombre);
-
-                break;
-
-            }catch (DatoInvalidoException e){
-                System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-            }
-        }
-
-        System.out.println("Ingrese el apellido: ");
-        String apellido = "";
-
-        while (true){
-
-            try {
-                apellido = teclado.nextLine();
-                Validaciones.validarString(apellido);
-
-                break;
-
-            }catch (DatoInvalidoException e){
-                System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-            }
-        }
-
-        System.out.println("Ingrese un e-mail: ");
-        String email = "";
-
-        while (true){
-
-            try {
-                email = teclado.nextLine();
-                Validaciones.validarEmail(email);
-
-                break;
-
-            }catch (DatoInvalidoException e){
-                System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-            }
-        }
-
-        System.out.println("Ingrese un teléfono: ");
-        String telefono = "";
-
-        while (true){
-
-            try {
-                telefono = teclado.nextLine();
-                Validaciones.validarTelefono(telefono);
-
-                break;
-
-            }catch (DatoInvalidoException e){
-                System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-            }
-        }
-
-        System.out.println("Ingrese el CUIT: ");
-        String cuit = "";
-
-        while (true){
-
-            try {
-                cuit = teclado.nextLine();
-                Validaciones.validarCuit(cuit);
-
-                break;
-
-            }catch (DatoInvalidoException e){
-                System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-            }
-        }
+        String nombre = InputHelper.pedirString("Ingrese el nombre del proveedor:");
+        String apellido = InputHelper.pedirString("Ingrese el apellido:");
+        String email = InputHelper.pedirEmail("Ingrese un e-mail:");
+        String telefono = InputHelper.pedirTelefono("Ingrese un teléfono:");
+        String cuit = InputHelper.pedirCuit("Ingrese el CUIT:");
 
         System.out.println("Elija el tipo de proveedor: ");
         TipoProveedor tipoProveedor = elegirTipoProveedor();
 
-        System.out.println("¿Desea cargar productos nuevos (1) o elegir algunos ya existentes (2)?");
-        int opcion = teclado.nextInt();
-        HashMap<String, Producto> nuevosProductos = new HashMap<>();
-        Producto producto = null;
-
-        while (true){
-
-            if (opcion == 1){
-                nuevosProductos = gestionProducto.cargarProductos();
-                break;
-
-            }else if(opcion == 2){
-
-                while (true){
-
-                    producto = gestionProducto.elegirProductosDisponibles();
-                    nuevosProductos.put(producto.getCodigo(), producto);
-                    System.out.println("Producto agregado correctamente");
-
-                    int op;
-
-                    while (true) {
-                        System.out.println("Si desea salir presione 1, de otra manera presione cualquier otro número");
-
-                        try {
-                            op = teclado.nextInt();
-                            teclado.nextLine();
-                            break;
-
-                        } catch (InputMismatchException e) {
-                            System.out.println("Opción inválida. Por favor ingrese un número.");
-                            teclado.nextLine();
-                        }
-                    }
-
-                    if (op == 1) {
-                        break;
-                    }
-                }
-
-                break;
-
-            }else {
-                System.out.println("Opción invalida. Por favor, ingrese una opción valida");
-            }
-        }
+        HashMap<String, Producto> nuevosProductos = cargarProductosParaProveedor();
 
         Proveedor proveedor = new Proveedor(nombre, apellido, email, telefono, cuit, tipoProveedor);
         proveedor.agregarProductos(nuevosProductos);
+
         agregarProveedor(proveedor);
+    }
+
+    private HashMap<String, Producto> cargarProductosParaProveedor() {
+
+        HashMap<String, Producto> nuevosProductos = new HashMap<>();
+
+        int opcion;
+        while (true) {
+
+            System.out.println("¿Desea cargar productos nuevos (1) o elegir algunos ya existentes (2)?");
+
+            try {
+                opcion = Integer.parseInt(teclado.nextLine());
+            } catch (NumberFormatException e) {
+                System.err.println("Debe ingresar un número.");
+                continue;
+            }
+
+            if (opcion == 1) {
+                return gestionProducto.cargarProductos();
+            }
+
+            if (opcion == 2) {
+                while (true) {
+
+                    Producto producto = gestionProducto.elegirProductosDisponibles();
+                    nuevosProductos.put(producto.getCodigo(), producto);
+                    System.out.println("Producto agregado correctamente.");
+
+                    int opSalir;
+
+                    while (true) {
+                        System.out.println("Para dejar de agregar productos presione 1. Para continuar, otro número.");
+
+                        try {
+                            opSalir = Integer.parseInt(teclado.nextLine());
+                            break;
+
+                        } catch (NumberFormatException e) {
+                            System.err.println("Opción inválida. Ingrese un número.");
+                        }
+                    }
+
+                    if (opSalir == 1) break;
+                }
+
+                return nuevosProductos;
+            }
+
+            System.out.println("Opción inválida. Ingrese 1 o 2.");
+        }
     }
 
 
@@ -504,16 +366,14 @@ public class GestionProveedor {
     }
 
 
-    public int ingresarOpcionValida(List<Proveedor> lista){ //puede que no funcione
+    public int ingresarOpcionValida(List<Proveedor> lista){
 
         int opcion;
 
         while (true){
 
             try {
-                System.out.println("Ingrese una opción del 1 al " +lista.size());
-                opcion = teclado.nextInt();
-                teclado.nextLine();
+                opcion = InputHelper.leerInt("Ingrese una opción del 1 al " +lista.size());
                 Validaciones.ingresarOpcionValida(lista, opcion);
 
                 break;
@@ -530,4 +390,24 @@ public class GestionProveedor {
 
         return opcion;
     }
+
+    public void mostrarTodosLosProveedores() {
+
+        listaProveedores = GestionJSONProveedor.archivoProveedorToLista("proveedor.json");
+
+        System.out.println("--- Lista de Proveedores ---");
+        for (Proveedor proveedor : listaProveedores) {
+            System.out.println("ID: " + proveedor.getIdProveedor());
+            System.out.println("Nombre: " + proveedor.getNombre() + " " + proveedor.getApellido());
+            System.out.println("Email: " + proveedor.getEmail());
+            System.out.println("Teléfono: " + proveedor.getTelefono());
+            System.out.println("CUIT: " + proveedor.getCuit());
+            System.out.println("Tipo: " + proveedor.getTipoProveedor());
+            System.out.println("Activo: " + (proveedor.isActivo() ? "Sí" : "No"));
+            System.out.println("Fecha de alta: " + proveedor.getFechaAlta());
+            System.out.println("Cantidad de productos suministrados: " + proveedor.getProductosSuministrados().size());
+            System.out.println("----------------------------------");
+        }
+    }
+
 }

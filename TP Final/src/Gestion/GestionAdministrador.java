@@ -1,11 +1,10 @@
 package Gestion;
 
 import Archivos.GestionJSONUsers.GestionJSONAdministrador;
-import Excepciones.DatoInvalidoException;
+import IngresoDeDatos.InputHelper;
 import Interfaces.MetodosGestion;
 import Users.RegistroUser.RegistroUser;
 import Users.UsuarioSistema.Administrador;
-import Validaciones.Validaciones;
 
 import java.util.HashSet;
 import java.util.Scanner;
@@ -66,6 +65,7 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
         boolean salir = false;
 
         for (Administrador a : listaAdministradores) {
+
             if (a.getIdUsuario().equals(administrador.getIdUsuario())) {
 
                 while (!salir) {
@@ -80,190 +80,47 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
                     System.out.println("8. Dirección");
                     System.out.println("9. Salir");
 
-                    int opcion = teclado.nextInt();
-                    teclado.nextLine();
+                    int opcion = -1;
+
+                    try {
+                        opcion = Integer.parseInt(teclado.nextLine());
+                    } catch (NumberFormatException e) {
+                        System.err.println("Debe ingresar un número.");
+                        continue;
+                    }
 
                     switch (opcion) {
 
                         case 1:
-
-                            String username = "";
-
-                            while (true){
-
-                                System.out.println("Username: ");
-
-                                try {
-                                    username = teclado.nextLine();
-                                    Validaciones.validarNombreUsuario(username);
-
-                                    if(!Validaciones.existeUser(username)){
-                                        a.setUserName(username);
-                                        break;
-
-                                    }else {
-                                        System.out.println("El Username ya existe en el sistema. Por favor, ingrese otro");
-                                    }
-
-                                }catch (DatoInvalidoException e){
-                                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                                }
-                            }
-
+                            a.setUserName(InputHelper.pedirUsername("Nuevo username:"));
                             break;
 
                         case 2:
-
-                            String contrasenia = "";
-
-                            while (true){
-
-                                System.out.println("Contraseña: ");
-
-                                try {
-                                    contrasenia = teclado.nextLine();
-                                    Validaciones.validarContrasenia(contrasenia);
-                                    a.setContrasena(contrasenia);
-
-                                    break;
-
-                                }catch (DatoInvalidoException e){
-                                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                                }
-                            }
-
+                            a.setContrasena(InputHelper.pedirContrasenia("Nueva contraseña: "));
                             break;
 
                         case 3:
-
-                            String nombre = "";
-
-                            while(true){
-
-                                System.out.println("Nombre: ");
-
-                                try {
-                                    nombre = teclado.nextLine();
-                                    Validaciones.validarString(nombre);
-                                    a.setNombre(nombre);
-
-                                    break;
-
-                                }catch (DatoInvalidoException e){
-                                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                                }
-                            }
-
+                            a.setNombre(InputHelper.pedirString("Nuevo nombre:"));
                             break;
 
                         case 4:
-
-                            String apellido = "";
-
-                            while(true){
-
-                                System.out.println("Apellido: ");
-
-                                try {
-                                    apellido = teclado.nextLine();
-                                    Validaciones.validarString(apellido);
-                                    a.setApellido(apellido);
-
-                                    break;
-
-                                }catch (DatoInvalidoException e){
-                                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                                }
-                            }
-
+                            a.setApellido(InputHelper.pedirString("Nuevo apellido:"));
                             break;
 
                         case 5:
-
-                            String email = "";
-
-                            while (true){
-
-                                System.out.println("Email: ");
-
-                                try {
-                                    email = teclado.nextLine();
-                                    Validaciones.validarEmail(email);
-                                    a.setEmail(email);
-
-                                    break;
-
-                                }catch (DatoInvalidoException e){
-                                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                                }
-                            }
-
+                            a.setEmail(InputHelper.pedirEmail("Nuevo email:"));
                             break;
 
                         case 6:
-
-                            String telefono = "";
-
-                            while (true){
-
-                                System.out.println("Teléfono: ");
-
-                                try {
-                                    telefono = teclado.nextLine();
-                                    Validaciones.validarTelefono(telefono);
-                                    a.setTelefono(telefono);
-
-                                    break;
-
-                                }catch (DatoInvalidoException e){
-                                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                                }
-                            }
-
+                            a.setTelefono(InputHelper.pedirTelefono("Nuevo teléfono:"));
                             break;
 
                         case 7:
-
-                            String dni = "";
-
-                            while (true){
-
-                                System.out.println("DNI: ");
-
-                                try {
-                                    dni = teclado.nextLine();
-                                    Validaciones.validarDNI(dni);
-                                    a.setDni(dni);
-
-                                    break;
-
-                                }catch (DatoInvalidoException e){
-                                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                                }
-                            }
-
+                            a.setDni(InputHelper.pedirDni("administrador", "Nuevo DNI:"));
                             break;
 
                         case 8:
-
-                            String direccion = "";
-
-                            while (true){
-
-                                System.out.println("Dirección: ");
-
-                                try {
-                                    direccion = teclado.nextLine();
-                                    Validaciones.validarDireccion(direccion);
-                                    a.setDireccion(direccion);
-
-                                    break;
-
-                                }catch (DatoInvalidoException e){
-                                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                                }
-                            }
-
+                            a.setDireccion(InputHelper.pedirDireccion("Nueva dirección:"));
                             break;
 
                         case 9:
@@ -272,12 +129,11 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
                             break;
 
                         default:
-                            System.out.println("Opción invalida. Por favor, inténtelo nuevamente");
+                            System.out.println("Opción invalida. Por favor, inténtelo nuevamente.");
                             break;
                     }
                 }
 
-                listaAdministradores.add(a);
                 GestionJSONAdministrador.listaAdminsToArchivo(listaAdministradores, "administrador.json");
                 System.out.println("¡Datos cambiados con éxito!");
                 return;
@@ -289,90 +145,104 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
 
 
     @Override
-    public void darDeBajaUsuario(Administrador a){
+    public void darDeBajaUsuario(Administrador a) {
 
         listaAdministradores = GestionJSONAdministrador.archivoAdminToLista("administrador.json");
 
-        for(Administrador admin : listaAdministradores){
-            if(admin.equals(a)){
+        for (Administrador admin : listaAdministradores) {
+            if (admin.equals(a)) {
                 System.out.println("¿Estás seguro de que quieres eliminar la cuenta? (si / no)");
                 String opcion = teclado.nextLine();
 
-                if(opcion.equalsIgnoreCase("si")){
+                if (opcion.equalsIgnoreCase("si")) {
 
-                    while (true){
-                        System.out.println("Ingrese su contraseña para eliminar su cuenta"); //debería haber intentos limitados?
+                    int intentos = 0;
+
+                    while (intentos < 3) {
+                        System.out.println("Ingrese su contraseña para eliminar su cuenta");
                         String contrasenia = teclado.nextLine();
 
-                        if (contrasenia.equals(admin.getContrasena())){
-                            
+                        if (contrasenia.equals(admin.getContrasena())) {
                             admin.setActivo(false);
                             System.out.println("¡Cuenta eliminada con éxito!");
-                            GestionJSONAdministrador.listaAdminsToArchivo(listaAdministradores,"administrador.json");
-                            
+                            GestionJSONAdministrador.listaAdminsToArchivo(listaAdministradores, "administrador.json");
                             return;
 
-                        }else{
-                            System.out.println("Contraseña incorrecta, inténtelo nuevamente");
-                        }
+                        } else {
+                            intentos++;
 
+                            if (intentos < 3) {
+                                System.out.println("Contraseña incorrecta, inténtelo nuevamente (" + (3 - intentos) + " intentos restantes)");
+                            } else {
+                                System.out.println("Ha superado el número máximo de intentos. Operación cancelada.");
+                            }
+                        }
                     }
 
-                }else if (opcion.equalsIgnoreCase("no")) {
+                } else if (opcion.equalsIgnoreCase("no")) {
                     System.out.println("Operación cancelada");
                     return;
 
-                }else{
-                    System.out.println("Opción invalida");
+                } else {
+                    System.out.println("Opción inválida");
                 }
             }
         }
 
         System.out.println("No se encontró al usuario");
     }
+
 
 
     @Override
-    public void darDeAltaUsuario(Administrador a){
+    public void darDeAltaUsuario(Administrador a) {
 
         listaAdministradores = GestionJSONAdministrador.archivoAdminToLista("administrador.json");
 
-        for(Administrador admin : listaAdministradores){
-            if(admin.equals(a)){
-                System.out.println("¿Estás seguro de que quieres dar de alta al administrador" +admin.getNombre()+ " " +admin.getApellido()+ "? (si / no)");
+        for (Administrador admin : listaAdministradores) {
+            if (admin.equals(a)) {
+                System.out.println("¿Estás seguro de que quieres dar de alta al administrador "
+                        + admin.getNombre() + " " + admin.getApellido() + "? (si / no)");
                 String opcion = teclado.nextLine();
 
-                if(opcion.equalsIgnoreCase("si")){
+                if (opcion.equalsIgnoreCase("si")) {
 
-                    while (true){
+                    int intentos = 0;
+
+                    while (intentos < 3) {
                         System.out.println("Ingrese su contraseña para dar de alta la cuenta");
                         String contrasenia = teclado.nextLine();
 
-                        if (contrasenia.equals(admin.getContrasena())){
-
+                        if (contrasenia.equals(admin.getContrasena())) {
                             admin.setActivo(true);
                             System.out.println("¡Cuenta dada de alta con éxito!");
-                            GestionJSONAdministrador.listaAdminsToArchivo(listaAdministradores,"administrador.json");
-
+                            GestionJSONAdministrador.listaAdminsToArchivo(listaAdministradores, "administrador.json");
                             return;
 
-                        }else{
-                            System.out.println("Contraseña incorrecta, inténtelo nuevamente");
+                        } else {
+                            intentos++;
+
+                            if (intentos < 3) {
+                                System.out.println("Contraseña incorrecta, inténtelo nuevamente (" + (3 - intentos) + " intentos restantes)");
+                            } else {
+                                System.out.println("Ha superado el número máximo de intentos. Operación cancelada.");
+                            }
                         }
                     }
 
-                }else if (opcion.equalsIgnoreCase("no")) {
+                } else if (opcion.equalsIgnoreCase("no")) {
                     System.out.println("Operación cancelada");
                     return;
 
-                }else{
-                    System.out.println("Opción invalida");
+                } else {
+                    System.out.println("Opción inválida");
                 }
             }
         }
 
         System.out.println("No se encontró al usuario");
     }
+
 
     @Override
     public Administrador encontrarUsuario(String dni){

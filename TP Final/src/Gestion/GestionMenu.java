@@ -448,7 +448,7 @@ public class GestionMenu {
                     break;
 
                 case 5:
-                    gestionProveedor.mostrarProveedoresDisponibles();
+                    gestionProveedor.mostrarTodosLosProveedores();
                     break;
 
                 case 6:

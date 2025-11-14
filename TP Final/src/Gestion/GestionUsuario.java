@@ -1,11 +1,10 @@
 package Gestion;
 
 import Archivos.GestionJSONUsers.GestionJSONUsuario;
-import Excepciones.DatoInvalidoException;
+import IngresoDeDatos.InputHelper;
 import Interfaces.MetodosGestion;
 import Users.RegistroUser.RegistroUser;
 import Users.UsuarioSistema.Usuario;
-import Validaciones.Validaciones;
 
 import java.util.HashSet;
 import java.util.Scanner;
@@ -25,9 +24,9 @@ public class GestionUsuario implements MetodosGestion <Usuario>{
     @Override
     public void agregarYguardar (Usuario nuevoUser){
 
-        HashSet<Usuario> listaUsers = GestionJSONUsuario.archivoUsuarioToLista("usuario.json");
-        listaUsers.add(nuevoUser);
-        GestionJSONUsuario.listaUsuarioToArchivo(listaUsers, "usuario.json");
+        listaUsuarios = GestionJSONUsuario.archivoUsuarioToLista("usuario.json");
+        listaUsuarios.add(nuevoUser);
+        GestionJSONUsuario.listaUsuarioToArchivo(listaUsuarios, "usuario.json");
     }
 
     @Override
@@ -64,8 +63,9 @@ public class GestionUsuario implements MetodosGestion <Usuario>{
         listaUsuarios = GestionJSONUsuario.archivoUsuarioToLista("usuario.json");
         boolean salir = false;
 
-        for (Usuario a : listaUsuarios) {
-            if (a.getIdUsuario().equals(usuario.getIdUsuario())) {
+        for (Usuario u : listaUsuarios) {
+
+            if (u.getIdUsuario().equals(usuario.getIdUsuario())) {
 
                 while (!salir) {
                     System.out.println("¿Que desea modificar?");
@@ -79,190 +79,47 @@ public class GestionUsuario implements MetodosGestion <Usuario>{
                     System.out.println("8. Dirección");
                     System.out.println("9. Salir");
 
-                    int opcion = teclado.nextInt();
-                    teclado.nextLine();
+                    int opcion = -1;
+
+                    try {
+                        opcion = Integer.parseInt(teclado.nextLine());
+                    } catch (NumberFormatException e) {
+                        System.err.println("Debe ingresar un número.");
+                        continue;
+                    }
 
                     switch (opcion) {
 
                         case 1:
-
-                            String username = "";
-
-                            while (true){
-
-                                System.out.println("Username: ");
-
-                                try {
-                                    username = teclado.nextLine();
-                                    Validaciones.validarNombreUsuario(username);
-
-                                    if(!Validaciones.existeUser(username)){
-                                        a.setUserName(username);
-                                        break;
-
-                                    }else {
-                                        System.out.println("El Username ya existe en el sistema. Por favor, ingrese otro");
-                                    }
-
-                                }catch (DatoInvalidoException e){
-                                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                                }
-                            }
-
+                            u.setUserName(InputHelper.pedirUsername("Nuevo username:"));
                             break;
 
                         case 2:
-
-                            String contrasenia = "";
-
-                            while (true){
-
-                                System.out.println("Contraseña: ");
-
-                                try {
-                                    contrasenia = teclado.nextLine();
-                                    Validaciones.validarContrasenia(contrasenia);
-                                    a.setContrasena(contrasenia);
-
-                                    break;
-
-                                }catch (DatoInvalidoException e){
-                                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                                }
-                            }
-
+                            u.setContrasena(InputHelper.pedirContrasenia("Nueva contraseña: "));
                             break;
 
                         case 3:
-
-                            String nombre = "";
-
-                            while(true){
-
-                                System.out.println("Nombre: ");
-
-                                try {
-                                    nombre = teclado.nextLine();
-                                    Validaciones.validarString(nombre);
-                                    a.setNombre(nombre);
-
-                                    break;
-
-                                }catch (DatoInvalidoException e){
-                                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                                }
-                            }
-
+                            u.setNombre(InputHelper.pedirString("Nuevo nombre:"));
                             break;
 
                         case 4:
-
-                            String apellido = "";
-
-                            while(true){
-
-                                System.out.println("Nombre: ");
-
-                                try {
-                                    apellido = teclado.nextLine();
-                                    Validaciones.validarString(apellido);
-                                    a.setApellido(apellido);
-
-                                    break;
-
-                                }catch (DatoInvalidoException e){
-                                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                                }
-                            }
-
+                            u.setApellido(InputHelper.pedirString("Nuevo apellido:"));
                             break;
 
                         case 5:
-
-                            String email = "";
-
-                            while (true){
-
-                                System.out.println("Email: ");
-
-                                try {
-                                    email = teclado.nextLine();
-                                    Validaciones.validarEmail(email);
-                                    a.setEmail(email);
-
-                                    break;
-
-                                }catch (DatoInvalidoException e){
-                                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                                }
-                            }
-
+                            u.setEmail(InputHelper.pedirEmail("Nuevo email:"));
                             break;
 
                         case 6:
-
-                            String telefono = "";
-
-                            while (true){
-
-                                System.out.println("Teléfono: ");
-
-                                try {
-                                    telefono = teclado.nextLine();
-                                    Validaciones.validarTelefono(telefono);
-                                    a.setTelefono(telefono);
-
-                                    break;
-
-                                }catch (DatoInvalidoException e){
-                                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                                }
-                            }
-
+                            u.setTelefono(InputHelper.pedirTelefono("Nuevo teléfono:"));
                             break;
 
                         case 7:
-
-                            String dni = "";
-
-                            while (true){
-
-                                System.out.println("DNI: ");
-
-                                try {
-                                    dni = teclado.nextLine();
-                                    Validaciones.validarDNI(dni);
-                                    a.setDni(dni);
-
-                                    break;
-
-                                }catch (DatoInvalidoException e){
-                                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                                }
-                            }
-
+                            u.setDni(InputHelper.pedirDni("usuario", "Nuevo DNI:"));
                             break;
 
                         case 8:
-
-                            String direccion = "";
-
-                            while (true){
-
-                                System.out.println("Dirección: ");
-
-                                try {
-                                    direccion = teclado.nextLine();
-                                    Validaciones.validarDireccion(direccion);
-                                    a.setDireccion(direccion);
-
-                                    break;
-
-                                }catch (DatoInvalidoException e){
-                                    System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                                }
-                            }
-
+                            u.setDireccion(InputHelper.pedirDireccion("Nueva dirección:"));
                             break;
 
                         case 9:
@@ -271,20 +128,20 @@ public class GestionUsuario implements MetodosGestion <Usuario>{
                             break;
 
                         default:
-                            System.out.println("Opción invalida. Por favor, inténtelo nuevamente");
+                            System.out.println("Opción invalida. Por favor, inténtelo nuevamente.");
                             break;
                     }
                 }
 
-                listaUsuarios.add(a);
                 GestionJSONUsuario.listaUsuarioToArchivo(listaUsuarios, "usuario.json");
                 System.out.println("¡Datos cambiados con éxito!");
                 return;
             }
         }
 
-        System.out.println("No se encontró al Usuario con ese ID.");
+        System.out.println("No se encontró ningún administrador con ese ID.");
     }
+
 
     @Override
     public void darDeBajaUsuario(Usuario u){

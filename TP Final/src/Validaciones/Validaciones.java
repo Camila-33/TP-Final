@@ -118,7 +118,6 @@ public class Validaciones {
         }
     }
 
-
     public static void validarDNI(String dni) throws DatoInvalidoException {
 
         if (!dni.matches("^[0-9]+$")) {

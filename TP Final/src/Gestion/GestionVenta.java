@@ -3,8 +3,6 @@ package Gestion;
 import Archivos.GestionJSONVenta.GestionJSONVenta;
 import Excepciones.DatoInvalidoException;
 import Productos.Producto;
-import Transacciones.Compra;
-import Transacciones.Detalles.DetalleCompra;
 import Validaciones.Validaciones;
 import Transacciones.Detalles.DetalleVenta;
 import Transacciones.Venta;
@@ -165,7 +163,7 @@ public class GestionVenta {
             return;
         }
 
-        int opcion;
+        int opcion = 0;
 
         do {
             System.out.println("Modificar orden de venta ID: " + venta.getIdVenta());
@@ -180,7 +178,6 @@ public class GestionVenta {
             } catch (InputMismatchException e) {
                 System.err.println("Error: Debe ingresar un número válido.");
                 teclado.nextLine();
-                opcion = 0;
             }
 
             switch (opcion) {
