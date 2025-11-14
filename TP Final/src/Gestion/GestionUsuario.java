@@ -38,41 +38,25 @@ public class GestionUsuario implements MetodosGestion <Usuario>{
     }
 
     @Override
-    public void mostrarDatosUsuario(Usuario u){
+    public void mostrarDatosUsuario(Usuario u) {
 
-        HashSet<Usuario> listaUsers = GestionJSONUsuario.archivoUsuarioToLista("usuario.json");
+        System.out.println();
+        System.out.println("--------------------------------------------");
+        System.out.println("PERFIL DE USUARIO: " + u.getNombre() + " " + u.getApellido());
+        System.out.println("--------------------------------------------");
 
-        boolean encontrado = false;
-
-        for (Usuario user : listaUsers){
-            if (user.getIdUsuario().equals(u.getIdUsuario())){
-                u = user;
-
-                System.out.println();
-                System.out.println("--------------------------------------------");
-                System.out.println("PERFIL DE USUARIO: " + u.getNombre() + " " + u.getApellido());
-                System.out.println("--------------------------------------------");
-
-                System.out.println("ID: " + u.getIdUsuario());
-                System.out.println("Username: " + u.getUserName());
-                System.out.println("Contraseña: **********");
-                System.out.println("Nombre: " + u.getNombre());
-                System.out.println("Apellido: " + u.getApellido());
-                System.out.println("DNI: " + u.getDni());
-                System.out.println("Teléfono: " + u.getTelefono());
-                System.out.println("Dirección: " + u.getDireccion());
-                System.out.println("Email: " + u.getEmail());
-                System.out.println("--------------------------------------------");
-
-                encontrado = true;
-                break;
-            }
-        }
-
-        if(!encontrado){
-            System.out.print("No se encontró al usuario");
-        }
+        System.out.println("ID: " + u.getIdUsuario());
+        System.out.println("Username: " + u.getUserName());
+        System.out.println("Contraseña: **********");
+        System.out.println("Nombre: " + u.getNombre());
+        System.out.println("Apellido: " + u.getApellido());
+        System.out.println("DNI: " + u.getDni());
+        System.out.println("Teléfono: " + u.getTelefono());
+        System.out.println("Dirección: " + u.getDireccion());
+        System.out.println("Email: " + u.getEmail());
+        System.out.println("--------------------------------------------");
     }
+
 
     @Override
     public void modificarUsuario(Usuario usuario) {

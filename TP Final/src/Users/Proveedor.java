@@ -115,7 +115,7 @@ public class Proveedor {
         return this.nombre + " " + this.apellido;
     }
 
-    public Map<String, Producto> getProductosSuministrados() {
+    public HashMap<String, Producto> getProductosSuministrados() {
         return productosSuministrados;
     }
 

@@ -1,6 +1,9 @@
-package Venta;
+package Transacciones;
+
+import Transacciones.Detalles.DetalleVenta;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,15 +20,26 @@ public class Venta {
     private LocalDate fecha;
     private boolean activo;
 
-    public Venta(List<DetalleVenta> detalleVenta, double total, LocalDate fecha, boolean activo) {
+
+    public Venta(List<DetalleVenta> detalleVenta) {
         this.idVenta = String.valueOf(++contador);
-        this.detalleVenta = detalleVenta;
-        this.total = total;
-        this.fecha = fecha;
-        this.activo = activo;
+        this.detalleVenta = (detalleVenta != null) ? detalleVenta : new ArrayList<>();
+        this.fecha = LocalDate.now();
+        this.activo = true;
+        recalcularTotal();
     }
 
     public Venta() {
+    }
+
+    public void recalcularTotal() {
+        double acum = 0.0;
+        if (detalleVenta != null) {
+            for (DetalleVenta d : detalleVenta) {
+                acum += d.getCantidad() * d.getPrecioUnitario();
+            }
+        }
+        this.total = acum;
     }
 
     public String getIdVenta() {
@@ -42,6 +56,7 @@ public class Venta {
 
     public void setDetalleVenta(List<DetalleVenta> detalleVenta) {
         this.detalleVenta = detalleVenta;
+        recalcularTotal();
     }
 
     public double getTotal() {
@@ -69,11 +84,18 @@ public class Venta {
     }
 
     public void agregarDetalle(DetalleVenta detalle) {
+        if (detalleVenta == null) {
+            detalleVenta = new ArrayList<>();
+        }
         detalleVenta.add(detalle);
+        recalcularTotal();
     }
 
     public void quitarDetalle(DetalleVenta detalle) {
-        detalleVenta.remove(detalle);
+        if (detalleVenta != null) {
+            detalleVenta.remove(detalle);
+            recalcularTotal();
+        }
     }
 
     @Override

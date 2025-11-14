@@ -2,6 +2,8 @@ package Gestion;
 
 import Excepciones.DatoInvalidoException;
 import Productos.Producto;
+import Transacciones.Compra;
+import Transacciones.Venta;
 import Users.LogInUser.LogIn;
 import Users.Proveedor;
 import Users.UsuarioSistema.Administrador;
@@ -19,6 +21,7 @@ public class GestionMenu {
     private LogIn logIn;
     private GestionAdministrador gestionAdministrador;
     private GestionUsuario gestionUsuario;
+    private GestionVenta gestionVenta;
     private GestionCompra gestionCompra;
 
     public GestionMenu() {
@@ -28,6 +31,7 @@ public class GestionMenu {
         this.gestionAdministrador = new GestionAdministrador();
         this.gestionUsuario = new GestionUsuario();
         this.gestionCompra = new GestionCompra();
+        this.gestionVenta = new GestionVenta();
         this.logIn = new LogIn();
     }
 
@@ -221,7 +225,7 @@ public class GestionMenu {
 
                 case 2:
                     System.out.println("Ingrese el código del producto que quiere dar de baja");
-                    String codigoB = "";
+                    String codigoB;
 
                     while (true){
 
@@ -245,7 +249,7 @@ public class GestionMenu {
 
                 case 3:
                     System.out.println("Ingrese el código del producto que quiere dar de alta");
-                    String codigoA = "";
+                    String codigoA;
 
                     while (true){
 
@@ -269,7 +273,7 @@ public class GestionMenu {
 
                 case 4:
                     System.out.println("Ingrese el nombre de los productos que quiere mostrar");
-                    String nombre = "";
+                    String nombre;
 
                     while (true){
 
@@ -288,8 +292,27 @@ public class GestionMenu {
                     break;
 
                 case 5:
-                    Producto modificar = gestionProducto.elegirProductosDisponibles();//POR ID
-                    gestionProducto.modificarProducto(modificar);
+                    System.out.println("Ingrese el código del producto que quiere modificar");
+                    String codigo;
+
+                    while (true){
+
+                        try {
+                            codigo = teclado.nextLine();
+                            Validaciones.validarIDYCodigo(codigo);
+                            Producto p = gestionProducto.buscarProductoPorCodigo(codigo);
+                            gestionProducto.modificarProducto(p);
+
+                            if(p != null){
+                                System.out.println(p);
+                            }
+
+                            break;
+
+                        }catch (DatoInvalidoException e){
+                            System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
+                        }
+                    }
 
                     break;
 
@@ -299,14 +322,14 @@ public class GestionMenu {
 
                 case 7:
                     System.out.println("Ingrese el código del producto que quiere buscar");
-                    String codigo = "";
+                    String codigoC;
 
                     while (true){
 
                         try {
-                            codigo = teclado.nextLine();
-                            Validaciones.validarIDYCodigo(codigo);
-                            Producto p = gestionProducto.buscarProductoPorCodigo(codigo);
+                            codigoC = teclado.nextLine();
+                            Validaciones.validarIDYCodigo(codigoC);
+                            Producto p = gestionProducto.buscarProductoPorCodigo(codigoC);
 
                             if(p != null){
                                 System.out.println(p);
@@ -358,7 +381,7 @@ public class GestionMenu {
 
                 case 2:
                     System.out.println("Ingrese la ID del proveedor que quiere dar de baja");
-                    String idB = "";
+                    String idB;
 
                     while (true){
 
@@ -382,7 +405,7 @@ public class GestionMenu {
 
                 case 3:
                     System.out.println("Ingrese la ID del proveedor que quiere dar de alta");
-                    String idA = "";
+                    String idA;
 
                     while (true){
 
@@ -406,7 +429,7 @@ public class GestionMenu {
 
                 case 4:
                     System.out.println("Ingrese un nombre: ");
-                    String nombre = "";
+                    String nombre;
 
                     while (true){
 
@@ -430,7 +453,7 @@ public class GestionMenu {
 
                 case 6:
                     System.out.println("Ingrese la ID del proveedor que quiere modificar");
-                    String idC = "";
+                    String idC;
 
                     while (true){
 
@@ -454,7 +477,7 @@ public class GestionMenu {
 
                 case 7:
                     System.out.println("Ingrese la ID del proveedor que quiere buscar");
-                    String id = "";
+                    String id;
 
                     while (true){
 
@@ -665,7 +688,7 @@ public class GestionMenu {
                     break;
 
                 case 2:
-
+                    gestionVenta.cargarOrdenVenta();
                     break;
 
                 case 3:
@@ -733,22 +756,87 @@ public class GestionMenu {
             switch (opcion) {
 
                 case 1:
-
+                    gestionCompra.cargarCompra();
                     break;
 
                 case 2:
+                    System.out.println("Ingrese el ID de la compra que quiere cancelar: ");
+                    String id;
+
+                    while (true){
+
+                        try {
+                            id = teclado.nextLine();
+                            Validaciones.validarIDYCodigo(id);
+                            break;
+
+                        }catch (DatoInvalidoException e){
+                            System.err.println("Error: " +e.getMessage());
+                        }
+                    }
+
+                    try {
+                        gestionCompra.cancelarCompra(id);
+
+                    }catch (IllegalArgumentException e){
+                        System.err.println("Error: " +e.getMessage());
+                    }
 
                     break;
 
                 case 3:
-
+                    gestionCompra.mostrarCompras();
                     break;
 
                 case 4:
+                    System.out.println("Ingrese el ID de la compra que quiere modificar: ");
+                    String idA;
+
+                    while (true){
+
+                        try {
+                            idA = teclado.nextLine();
+                            Validaciones.validarIDYCodigo(idA);
+                            break;
+
+                        }catch (DatoInvalidoException e){
+                            System.err.println("Error: " +e.getMessage());
+                        }
+                    }
+
+                    try {
+                        Compra modificarCompra = gestionCompra.buscarPorId(idA);
+                        gestionCompra.modificarCompra(modificarCompra);
+
+                    }catch (IllegalArgumentException e){
+                        System.err.println("Error: " +e.getMessage());
+                    }
 
                     break;
 
                 case 5:
+                    System.out.println("Ingrese el ID de la compra que quiere buscar: ");
+                    String idB;
+
+                    while (true){
+
+                        try {
+                            idB = teclado.nextLine();
+                            Validaciones.validarIDYCodigo(idB);
+                            break;
+
+                        }catch (DatoInvalidoException e){
+                            System.err.println("Error: " +e.getMessage());
+                        }
+                    }
+
+                    try {
+                        Compra compra = gestionCompra.buscarPorId(idB);
+                        gestionCompra.mostrarCompra(compra);
+
+                    }catch (IllegalArgumentException e){
+                        System.err.println("Error: " +e.getMessage());
+                    }
 
                     break;
 
@@ -773,8 +861,8 @@ public class GestionMenu {
             System.out.println("2. Cancelar orden de venta");
             System.out.println("3. Mostrar ordenes de venta");
             System.out.println("4. Modificar orden de venta");
-            System.out.println("4. Buscar orden de venta");
-            System.out.println("5. Atrás");
+            System.out.println("5. Buscar orden de venta");
+            System.out.println("6. Atrás");
 
             int opcion = teclado.nextInt();
             teclado.nextLine();
@@ -782,27 +870,96 @@ public class GestionMenu {
             switch (opcion) {
 
                 case 1:
-
+                    gestionVenta.cargarOrdenVenta();
                     break;
 
                 case 2:
+                    System.out.println("Ingrese el ID de la venta a cancelar:");
+                    String idCancelar;
+
+                    while (true){
+
+                        try {
+                            idCancelar = teclado.nextLine();
+                            Validaciones.validarIDYCodigo(idCancelar);
+
+                            break;
+
+                        }catch (DatoInvalidoException e){
+                            System.err.println("Error: " +e.getMessage());
+                        }
+                    }
+
+                    try {
+                        Venta cancelarVenta = gestionVenta.buscarOrdenVentaPorId(idCancelar);
+                        gestionVenta.cancelarOrdenDeVenta(cancelarVenta);
+
+                    }catch (IllegalArgumentException e){
+                        System.err.println("Error: " +e.getMessage());
+                    }
 
                     break;
 
                 case 3:
-
+                    gestionVenta.mostrarOrdenesVenta();
                     break;
 
                 case 4:
+                    System.out.println("Ingrese el ID de la venta a modificar:");
+                    String idMod;
+
+                    while (true){
+
+                        try {
+                            idMod = teclado.nextLine();
+                            Validaciones.validarIDYCodigo(idMod);
+
+                            break;
+
+                        }catch (DatoInvalidoException e){
+                            System.err.println("Error: " +e.getMessage());
+                        }
+                    }
+
+                    try {
+                        Venta modificarVenta = gestionVenta.buscarOrdenVentaPorId(idMod);
+                        gestionVenta.modificarOrdenVenta(modificarVenta);
+
+                    }catch (IllegalArgumentException e){
+                        System.err.println("Error: " +e.getMessage());
+                    }
 
                     break;
 
                 case 5:
+                    System.out.println("Ingrese el ID de la venta a buscar:");
+                    String idBusc;
+
+                    while (true){
+
+                        try {
+                            idBusc = teclado.nextLine();
+                            Validaciones.validarIDYCodigo(idBusc);
+
+                            break;
+
+                        }catch (DatoInvalidoException e){
+                            System.err.println("Error: " +e.getMessage());
+                        }
+                    }
+
+                    try {
+                        Venta buscarVenta = gestionVenta.buscarOrdenVentaPorId(idBusc);
+                        gestionVenta.mostrarVenta(buscarVenta);
+
+                    }catch (IllegalArgumentException e){
+                        System.err.println("Error: " +e.getMessage());
+                    }
 
                     break;
 
                 case 6:
-                    System.out.println("Saliendo...");
+                    System.out.println("Volviendo al menú anterior...");
                     return;
 
                 default:

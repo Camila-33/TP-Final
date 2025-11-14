@@ -6,6 +6,7 @@ import Enums.TipoCertificacion;
 import Enums.TipoSubCategoria;
 import Excepciones.DatoInvalidoException;
 import Productos.*;
+import Users.Proveedor;
 import Validaciones.Validaciones;
 
 import java.util.*;
@@ -25,7 +26,6 @@ public class GestionProducto {
         listaProductos = GestionJSONProducto.archivoProductosToLista("producto.json");
         listaProductos.put(p.getCodigo(), p);
         GestionJSONProducto.listaProductosToArchivo(listaProductos, "producto.json");
-
     }
 
     public void darBajaProducto(Producto p){
@@ -154,16 +154,34 @@ public class GestionProducto {
     public Producto elegirProductosDisponibles(){
 
         listaProductos = GestionJSONProducto.archivoProductosToLista("producto.json");
-
         List<Producto> productos = new ArrayList<>(listaProductos.values());
-        System.out.println("Elija un producto");
 
         int i = 0;
 
+        System.out.println("=== Lista de Productos ===");
         for (Producto p : productos){
             if(p.isActivo()){
                 System.out.println(i+1 + "- " + "Nombre: " + p.getNombre() + ", Precio: " +p.getPrecio());
             }
+        }
+
+        System.out.println("Elija un producto: ");
+        int opcion = ingresarOpcionValida(productos);
+
+        return productos.get(opcion-1);
+    }
+
+    public Producto elegirProductosDeUnProveedor(Proveedor proveedor) {
+
+        listaProductos = GestionJSONProducto.archivoProductosToLista("producto.json");
+        listaProductos = proveedor.getProductosSuministrados();
+        List<Producto> productos = new ArrayList<>(listaProductos.values());
+
+        int i = 0;
+
+        System.out.println("Productos disponibles de " + proveedor.getNombre() + ":");
+        for (Producto p : productos) {
+            System.out.println(i+1 + ". " + p.getNombre() + " (Stock actual: " + p.getStock() + ")");
         }
 
         int opcion = ingresarOpcionValida(productos);
@@ -179,7 +197,7 @@ public class GestionProducto {
         while (true){
 
             try {
-                System.out.println("Ingrese una opcion del 1 al " +lista.size());
+                System.out.println("Ingrese una opción del 1 al " +lista.size());
                 opcion = teclado.nextInt();
                 teclado.nextLine();
                 Validaciones.ingresarOpcionValida(lista, opcion);

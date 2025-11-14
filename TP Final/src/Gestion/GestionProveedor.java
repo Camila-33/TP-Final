@@ -459,7 +459,7 @@ public class GestionProveedor {
                     salir = false;
 
                 default:
-                    System.out.println("Opción invalida.Intentelo nuevamente");
+                    System.out.println("Opción invalida.Inténtelo nuevamente");
                     break;
             }
         }
@@ -467,36 +467,67 @@ public class GestionProveedor {
         return tipoProveedor;
     }
 
-    public void mostrarDatosProveedor(Proveedor proveedor){
+    public void mostrarDatosProveedor(Proveedor proveedor) {
+
+        System.out.println();
+        System.out.println("--------------------------------------------");
+        System.out.println("PERFIL DE PROVEEDOR: " + proveedor.getNombreCompleto());
+        System.out.println("--------------------------------------------");
+
+        System.out.println("ID: " + proveedor.getIdProveedor());
+        System.out.println("Nombre: " + proveedor.getNombre());
+        System.out.println("Apellido: " + proveedor.getApellido());
+        System.out.println("Email: " + proveedor.getEmail());
+        System.out.println("Teléfono: " + proveedor.getTelefono());
+        System.out.println("CUIT: " + proveedor.getCuit());
+        System.out.println("Fecha de alta: " + proveedor.getFechaAlta());
+        System.out.println("Tipo de proveedor: " + proveedor.getTipoProveedor());
+        System.out.println("--------------------------------------------");
+    }
+
+
+    public Proveedor elegirProveedorDisponible(){
 
         listaProveedores = GestionJSONProveedor.archivoProveedorToLista("proveedor.json");
+        ArrayList<Proveedor> proveedores = new ArrayList<>(listaProveedores);
 
-        boolean encontrado = false;
-
-        for (Proveedor p : listaProveedores){
-            if (p.getIdProveedor().equals(proveedor.getIdProveedor())){
-                System.out.println();
-                System.out.println("--------------------------------------------");
-                System.out.println("PERFIL DE PROVEEDOR: " + p.getNombreCompleto());
-                System.out.println("--------------------------------------------");
-
-                System.out.println("ID: " + p.getIdProveedor());
-                System.out.println("Nombre: " + p.getNombre());
-                System.out.println("Apellido: " +p.getApellido());
-                System.out.println("Email: " + p.getEmail());
-                System.out.println("Teléfono: " + p.getTelefono());
-                System.out.println("CUIT: " + p.getCuit());
-                System.out.println("Fecha de alta: " + p.getFechaAlta());
-                System.out.println("Tipo de proveedor: " + p.getTipoProveedor());
-                System.out.println("--------------------------------------------");
-
-                encontrado = true;
-                break;
+        System.out.println("=== Lista de Proveedores ===");
+        for (int i = 0; i < proveedores.size(); i++) {
+            if (proveedores.get(i).isActivo()){
+                System.out.println(i+1 + ". " + proveedores.get(i).getNombre() + " " + proveedores.get(i).getApellido());
             }
         }
 
-        if(!encontrado){
-            System.out.print("No se encontró al proveedor");
+        int opcion = ingresarOpcionValida(proveedores);
+
+        return proveedores.get(opcion-1);
+    }
+
+
+    public int ingresarOpcionValida(List<Proveedor> lista){ //puede que no funcione
+
+        int opcion;
+
+        while (true){
+
+            try {
+                System.out.println("Ingrese una opción del 1 al " +lista.size());
+                opcion = teclado.nextInt();
+                teclado.nextLine();
+                Validaciones.ingresarOpcionValida(lista, opcion);
+
+                break;
+
+            }catch (IndexOutOfBoundsException e){
+                System.err.println("Error: " +e.getMessage());
+
+            }catch (InputMismatchException e){
+                System.err.println("Error: Debe ingresar un número");
+
+                teclado.nextLine();
+            }
         }
+
+        return opcion;
     }
 }

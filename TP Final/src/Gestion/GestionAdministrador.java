@@ -41,39 +41,23 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
     @Override
     public void mostrarDatosUsuario(Administrador a){
 
-        HashSet<Administrador> listaAdmins = GestionJSONAdministrador.archivoAdminToLista("administrador.json");
+        System.out.println();
+        System.out.println("--------------------------------------------");
+        System.out.println("PERFIL DE ADMINISTRADOR: " + a.getNombre() + " " + a.getApellido());
+        System.out.println("--------------------------------------------");
 
-        boolean encontrado = false;
-
-        for (Administrador admin : listaAdmins){
-            if (admin.getIdUsuario().equals(a.getIdUsuario())){
-                a = admin;
-
-                System.out.println();
-                System.out.println("--------------------------------------------");
-                System.out.println("PERFIL DE ADMINISTRADOR: " + a.getNombre() + " " + a.getApellido());
-                System.out.println("--------------------------------------------");
-
-                System.out.println("ID: " + a.getIdUsuario());
-                System.out.println("Username: " + a.getUserName());
-                System.out.println("Contraseña: **********");
-                System.out.println("Nombre: " + a.getNombre());
-                System.out.println("Apellido: " + a.getApellido());
-                System.out.println("DNI: " + a.getDni());
-                System.out.println("Teléfono: " + a.getTelefono());
-                System.out.println("Dirección: " + a.getDireccion());
-                System.out.println("Email: " + a.getEmail());
-                System.out.println("--------------------------------------------");
-
-                encontrado = true;
-                break;
-            }
-        }
-
-        if(!encontrado){
-            System.out.print("No se encontró al usuario");
-        }
+        System.out.println("ID: " + a.getIdUsuario());
+        System.out.println("Username: " + a.getUserName());
+        System.out.println("Contraseña: **********");
+        System.out.println("Nombre: " + a.getNombre());
+        System.out.println("Apellido: " + a.getApellido());
+        System.out.println("DNI: " + a.getDni());
+        System.out.println("Teléfono: " + a.getTelefono());
+        System.out.println("Dirección: " + a.getDireccion());
+        System.out.println("Email: " + a.getEmail());
+        System.out.println("--------------------------------------------");
     }
+
 
     @Override
     public void modificarUsuario(Administrador administrador) {

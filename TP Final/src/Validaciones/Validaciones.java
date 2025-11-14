@@ -104,14 +104,19 @@ public class Validaciones {
         }
     }
 
-    public static void validarMarca(String dimension) throws DatoInvalidoException { //implementacion cambiar
-        if (dimension == null || dimension.trim().isEmpty()) {
-            throw new DatoInvalidoException("La dimensión no puede estar vacía.");
+    public static void validarMarca(String marca) throws DatoInvalidoException {
+        if (marca == null || marca.trim().isEmpty()) {
+            throw new DatoInvalidoException("La marca no puede estar vacía.");
         }
 
+        if (!marca.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
+            throw new DatoInvalidoException("La marca solo puede contener letras y espacios.");
+        }
+
+        if (marca.length() < 2 || marca.length() > 50) {
+            throw new DatoInvalidoException("La marca debe tener entre 2 y 50 caracteres.");
+        }
     }
-
-
 
 
     public static void validarDNI(String dni) throws DatoInvalidoException {
