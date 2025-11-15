@@ -115,14 +115,22 @@ public abstract class UsuarioSistema {
         return this.nombre + " " + this.apellido;
     }
 
-    @Override
-    public String toString() {
-        return "idUsuario = '" + idUsuario + '\'' +
-                ", nombre = '" + nombre + '\'' +
-                ", apellido = '" + apellido + '\'' +
-                ", email = '" + email + '\'' +
-                ", contrasena = '" + contrasena + '\'' +
-                ", activo = " + activo +
-                '}';
+    public void mostrarDatosUsuario(){
+
+        System.out.println();
+        System.out.println("--------------------------------------------");
+        System.out.println("PERFIL DE " + getClass().getSimpleName().toUpperCase() + ": " + nombre + " " + apellido);
+        System.out.println("--------------------------------------------");
+
+        System.out.println("ID: " + idUsuario);
+        System.out.println("Username: " + userName);
+        System.out.println("Contraseña: **********");
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Apellido: " + apellido);
+        System.out.println("DNI: " + dni);
+        System.out.println("Teléfono: " + telefono);
+        System.out.println("Dirección: " + direccion);
+        System.out.println("Email: " + email);
+        System.out.println("--------------------------------------------");
     }
 }

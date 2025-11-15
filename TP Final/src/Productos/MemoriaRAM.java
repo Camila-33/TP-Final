@@ -59,11 +59,11 @@ public class MemoriaRAM extends Producto{
     }
 
     @Override
-    public String toString() {
-        return "MemoriaRAM {" +
-                "capacidad = " + capacidad +
-                ", tipoDeMemoria = '" + tipoDeMemoria + '\'' +
-                ", frecuencia = '" + frecuencia + '\'' +
-                " " + super.toString();
+    public void mostrarProducto() {
+        super.mostrarProducto();
+        System.out.println("Capacidad: " + capacidad);
+        System.out.println("Tipo de memoria: " + tipoDeMemoria);
+        System.out.println("Frecuencia: " + frecuencia);
+        System.out.println("-------------------------\n");
     }
 }

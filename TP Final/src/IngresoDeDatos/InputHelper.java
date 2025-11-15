@@ -4,6 +4,7 @@ import Enums.TipoCertificacion;
 import Excepciones.DatoInvalidoException;
 import Validaciones.Validaciones;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputHelper {
@@ -12,6 +13,20 @@ public class InputHelper {
 
     public InputHelper() {
     }
+
+    public static String leerIDOCodigo(String mensaje) {
+        while (true) {
+            System.out.println(mensaje);
+            String input = teclado.nextLine().trim();
+            try {
+                Validaciones.validarIDYCodigo(input);
+                return input;
+            } catch (DatoInvalidoException e) {
+                System.err.println("Error: " + e.getMessage());
+            }
+        }
+    }
+
 
     public static String pedirString(String mensaje) {
         while (true) {
@@ -137,7 +152,7 @@ public class InputHelper {
         }
     }
 
-    public static String leerNombre(String mensaje) {
+    public static String leerNombreProducto(String mensaje) {
         while(true) {
             System.out.println(mensaje);
             String input = teclado.nextLine();
@@ -189,6 +204,9 @@ public class InputHelper {
 
             } catch (DatoInvalidoException e) {
                 System.err.println("Error: " + e.getMessage());
+
+            }catch (InputMismatchException e) {
+                System.err.println("Debe ingresar un número válido. Intente nuevamente.");
             }
         }
     }
@@ -210,20 +228,6 @@ public class InputHelper {
     public static String leerString(String mensaje) {
         System.out.println(mensaje);
         return teclado.nextLine();
-    }
-
-    public static String leerCodigo(String mensaje) {
-        while(true) {
-            System.out.println(mensaje);
-            String input = teclado.next();
-            teclado.nextLine();
-            try {
-                Validaciones.validarIDYCodigo(input);
-                return input;
-            } catch (DatoInvalidoException e) {
-                System.err.println("Error: " + e.getMessage());
-            }
-        }
     }
 
     public static TipoCertificacion leerCertificacion() {
@@ -253,9 +257,11 @@ public class InputHelper {
             System.out.println(mensaje);
             char c = teclado.next().toLowerCase().charAt(0);
             teclado.nextLine();
+
             try {
                 Validaciones.validarBoton(c);
                 return c;
+
             } catch (IllegalArgumentException e) {
                 System.err.println("Error: " + e.getMessage());
             }
@@ -269,6 +275,7 @@ public class InputHelper {
             try {
                 Validaciones.validarDimension(input);
                 return input;
+
             } catch (DatoInvalidoException e) {
                 System.err.println("Error: " + e.getMessage() + ". Por favor, inténtelo nuevamente.");
             }
@@ -282,8 +289,24 @@ public class InputHelper {
             try {
                 Validaciones.validarMarca(input);
                 return input;
+
             } catch (DatoInvalidoException e) {
                 System.err.println("Error: " + e.getMessage() + ". Por favor, inténtelo nuevamente.");
+            }
+        }
+    }
+
+    public static int leerEnteroSwitch() {
+        int numero;
+
+        while (true) {
+            try {
+                numero = teclado.nextInt();
+                return numero;
+
+            } catch (InputMismatchException e) {
+                System.err.println("Debe ingresar un número válido. Intente nuevamente.");
+                teclado.nextLine();
             }
         }
     }

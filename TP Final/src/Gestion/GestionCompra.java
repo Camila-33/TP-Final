@@ -3,7 +3,6 @@ package Gestion;
 import Archivos.GestionJSONCompra.GestionJSONCompra;
 import IngresoDeDatos.InputHelper;
 import Transacciones.Compra;
-import Excepciones.DatoInvalidoException;
 import Productos.Producto;
 import Transacciones.Detalles.DetalleCompra;
 import Users.Proveedor;
@@ -14,7 +13,6 @@ import java.util.*;
 public class GestionCompra {
 
     private HashMap<String, Compra> compras;
-    private Scanner teclado;
     private GestionProveedor gestionProveedor;
     private GestionProducto gestionProducto;
 
@@ -22,7 +20,6 @@ public class GestionCompra {
         this.compras = new HashMap<>();
         this.gestionProveedor = new GestionProveedor();
         this.gestionProducto = new GestionProducto();
-        this.teclado = new Scanner(System.in);
     }
 
 
@@ -46,8 +43,6 @@ public class GestionCompra {
         compra.setProveedor(proveedor);
 
         boolean seguir = true;
-        Scanner sc = new Scanner(System.in);
-
 
         while (seguir) {
 
@@ -59,10 +54,9 @@ public class GestionCompra {
 
             System.out.println("Stock actualizado para " + p.getNombre() + ": " + p.getStock());
 
-            System.out.print("¿Desea agregar otro producto de este proveedor? (s/n): ");
-            String respuesta = sc.nextLine().trim().toLowerCase();
+            char respuesta = InputHelper.leerChar("¿Desea agregar otro producto de este proveedor? (s/n): ");
 
-            if (!respuesta.equals("s")) {
+            if (respuesta != 's') {
                 seguir = false;
             }
         }
@@ -78,16 +72,7 @@ public class GestionCompra {
 
         int cantidad;
 
-        while (true) {
-            try {
-                cantidad = InputHelper.leerInt("Ingrese la cantidad a comprar: ");
-                break;
-
-            } catch (InputMismatchException e) {
-                System.err.println("Debe ingresar un número válido.");
-                teclado.nextLine();
-            }
-        }
+        cantidad = InputHelper.leerInt("Ingrese la cantidad a comprar: ");
 
         return new DetalleCompra(productoSeleccionado, cantidad);
     }
@@ -105,22 +90,21 @@ public class GestionCompra {
             System.out.println("2. Detalles de compra (productos y cantidades)");
             System.out.println("3. Cancelar modificación");
 
-            System.out.print("Seleccione una opción: ");
-            String opcion = teclado.nextLine().trim();
+            int opcion = InputHelper.leerEnteroSwitch();
 
             switch (opcion) {
-                case "1":
+                case 1:
 
                     Proveedor nuevoProveedor = gestionProveedor.elegirProveedorDisponible();
                     compra.setProveedor(nuevoProveedor);
                     System.out.println("Proveedor actualizado correctamente.");
                     break;
 
-                case "2":
+                case 2:
                     modificarDetallesCompra(compra);
                     break;
 
-                case "3":
+                case 3:
                     seguirModificando = false;
                     break;
 
@@ -143,13 +127,12 @@ public class GestionCompra {
         }
 
         boolean seguir = true;
-        mostrarDetallesCompra(compra);
+        compra.mostrarDetallesCompra();
 
         while (seguir) {
 
             System.out.print("Seleccione el número del detalle a modificar (o 0 para salir): ");
-            int numDetalle = teclado.nextInt();
-            teclado.nextLine();
+            int numDetalle = InputHelper.leerEnteroSwitch();
 
             if (numDetalle == 0) {
                 seguir = false;
@@ -170,58 +153,20 @@ public class GestionCompra {
             System.out.println("\nModificando producto: " + producto.getNombre());
             System.out.println("Cantidad actual: " + detalleSeleccionado.getCantidad());
 
-            int nuevaCantidad = -1;
+            int nuevaCantidad = InputHelper.leerInt("Ingrese nueva cantidad (o -1 para no cambiar): ");
 
-            while (true) {
-                try {
-                    System.out.print("Ingrese nueva cantidad (o -1 para no cambiar): ");
-                    nuevaCantidad = teclado.nextInt();
-                    teclado.nextLine();
+            if (nuevaCantidad == -1) break;
 
-                    if (nuevaCantidad == -1) break;
+            int stockActual = producto.getStock();
+            producto.setStock(stockActual - detalleSeleccionado.getCantidad() + nuevaCantidad);
 
-                    Validaciones.validarNumero(nuevaCantidad);
+            detalleSeleccionado.setCantidad(nuevaCantidad);
+            System.out.println("Cantidad actualizada correctamente.");
 
-                    int stockActual = producto.getStock();
-                    producto.setStock(stockActual - detalleSeleccionado.getCantidad() + nuevaCantidad);
-
-                    detalleSeleccionado.setCantidad(nuevaCantidad);
-                    System.out.println("Cantidad actualizada correctamente.");
-                    break;
-
-                } catch (DatoInvalidoException e) {
-                    System.err.println("Error: " + e.getMessage());
-                } catch (InputMismatchException e) {
-                    System.err.println("Debe ingresar un número válido.");
-                    teclado.nextLine();
-                }
-            }
-
-            System.out.print("¿Desea modificar otro detalle? (s/n): ");
-            String resp = teclado.nextLine().trim().toLowerCase();
-            if (!resp.equals("s")) {
+            char resp = InputHelper.leerChar("¿Desea modificar otro detalle? (s/n): ");
+            if (resp != 's') {
                 seguir = false;
             }
-        }
-    }
-
-    public void mostrarDetallesCompra(Compra compra) {
-
-        List<DetalleCompra> detalles = compra.getDetallesCompra();
-
-        if (detalles.isEmpty()) {
-            System.out.println("Esta compra no tiene detalles registrados.");
-            return;
-        }
-
-        System.out.println("\nDetalles de la compra:");
-
-        for (int i = 0; i < detalles.size(); i++) {
-            DetalleCompra d = detalles.get(i);
-            System.out.println((i + 1) + ". Producto: " + d.getProducto().getNombre()
-                    + " | Cantidad: " + d.getCantidad()
-                    + " | Precio unitario: " + d.getProducto().getPrecio()
-                    + " | Subtotal: " + (d.getCantidad() * d.getProducto().getPrecio()));
         }
     }
 
@@ -271,27 +216,7 @@ public class GestionCompra {
         compras = GestionJSONCompra.archivoCompraToLista("compra.json");
 
         for (Compra c : compras.values()) {
-            System.out.println(c.mostrarDetalles());
+            c.mostrarCompra();
         }
-    }
-
-
-    public void mostrarCompra(Compra compra) {
-
-        System.out.println("\n=== Detalle de la Compra ===");
-        System.out.println("ID Pedido: " + compra.getIdPedido());
-        System.out.println("Fecha: " + compra.getFechaCompra().toString());
-        System.out.println("Proveedor: " + compra.getProveedor().getNombre() + " " + compra.getProveedor().getApellido());
-        System.out.println("Estado: " + (compra.isActivo() ? "Activa" : "Cancelada"));
-
-        if (compra.getDetallesCompra().isEmpty()) {
-            System.out.println("No hay productos en esta compra.");
-
-        } else {
-            mostrarDetallesCompra(compra);
-        }
-
-        System.out.println("Total de la compra: $" + compra.getTotal());
-        System.out.println("============================\n");
     }
 }

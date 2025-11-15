@@ -98,14 +98,41 @@ public class Venta {
         }
     }
 
-    @Override
-    public String toString() {
-        return "Venta {" +
-                "idVenta = '" + idVenta + '\'' +
-                ", detalleVenta = " + detalleVenta +
-                ", total = " + total +
-                ", fecha = " + fecha +
-                ", activo = " + activo +
-                '}';
+    public void mostrarVenta() {
+
+        System.out.println("\n=== Detalle de la venta ===");
+        System.out.println("ID Pedido: " + idVenta);
+        System.out.println("Fecha: " + fecha.toString());
+        System.out.println("Estado: " + (activo ? "Activa" : "Cancelada"));
+
+        if (detalleVenta.isEmpty()) {
+            System.out.println("No hay productos en esta venta.");
+
+        } else {
+            mostrarDetallesVenta();
+        }
+
+        System.out.println("Total de la venta: $" + getTotal());
+        System.out.println("============================\n");
+    }
+
+    public void mostrarDetallesVenta() {
+
+        List<DetalleVenta> detalles = detalleVenta;
+
+        if (detalles.isEmpty()) {
+            System.out.println("Esta venta no tiene detalles registrados.");
+            return;
+        }
+
+        System.out.println("\nDetalles de la venta:");
+
+        for (int i = 0; i < detalles.size(); i++) {
+            DetalleVenta d = detalles.get(i);
+            System.out.println((i + 1) + ". Producto: " + d.getProducto().getNombre()
+                    + " | Cantidad: " + d.getCantidad()
+                    + " | Precio unitario: " + d.getProducto().getPrecio()
+                    + " | Subtotal: " + (d.getCantidad() * d.getProducto().getPrecio()));
+        }
     }
 }

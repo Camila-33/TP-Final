@@ -49,10 +49,10 @@ public class Almacenamiento extends Producto{
     }
 
     @Override
-    public String toString() {
-        return "Almacenamiento {" +
-                "capacidad = '" + capacidad + '\'' +
-                ", velocidad = '" + velocidad + '\'' +
-                " " + super.toString();
+    public void mostrarProducto() {
+        super.mostrarProducto();
+        System.out.println("Capacidad: " + capacidad);
+        System.out.println("Velocidad: " + velocidad);
+        System.out.println("-------------------------\n");
     }
 }

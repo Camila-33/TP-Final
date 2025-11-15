@@ -35,7 +35,6 @@ public class Validaciones {
         }
     }
 
-
     public static void validarNombreUsuario (String username) throws DatoInvalidoException {
 
         if (username.length() < 5 || username.length() > 30){
@@ -221,5 +220,4 @@ public class Validaciones {
 
         return existe;
     }
-
 }

@@ -147,19 +147,23 @@ public class Proveedor {
         return Objects.hash(idProveedor, nombre, apellido, email, telefono, cuit, activo, fechaAlta, tipoProveedor, productosSuministrados);
     }
 
-    @Override
-    public String toString() {
-        return "Users.Proveedor{" +
-                "idProveedor = '" + idProveedor + '\'' +
-                ", nombre = '" + nombre + '\'' +
-                ", Apellido = '" + apellido + '\'' +
-                ", email = '" + email + '\'' +
-                ", telefono = '" + telefono + '\'' +
-                ", cuit = '" + cuit + '\'' +
-                ", activo = " + activo +
-                ", fechaAlta = " + fechaAlta +
-                ", tipoProveedor = " + tipoProveedor +
-                ", productosSuministrados = " + productosSuministrados +
-                '}';
+    public void mostrarDatosProveedor() {
+
+        System.out.println();
+        System.out.println("--------------------------------------------");
+        System.out.println("PERFIL DE PROVEEDOR: " + getNombreCompleto());
+        System.out.println("--------------------------------------------");
+
+        System.out.println("ID: " + idProveedor);
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Apellido: " + apellido);
+        System.out.println("Email: " + email);
+        System.out.println("Teléfono: " + telefono);
+        System.out.println("CUIT: " + cuit);
+        System.out.println("Activo: " + (activo ? "Sí" : "No"));
+        System.out.println("Fecha de alta: " + fechaAlta);
+        System.out.println("Tipo de proveedor: " + tipoProveedor);
+        System.out.println("Cantidad de productos suministrados: " + productosSuministrados.size());
+        System.out.println("--------------------------------------------");
     }
 }

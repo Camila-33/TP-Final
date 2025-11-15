@@ -69,12 +69,12 @@ public class PlacaDeVideo extends  Producto{
     }
 
     @Override
-    public String toString() {
-        return "PlacaDeVideo {" +
-                "GPU = '" + GPU + '\'' +
-                ", VRAM = '" + VRAM + '\'' +
-                ", frecuenciaNucleo = '" + frecuenciaNucleo + '\'' +
-                ", anchoDeBanda = '" + anchoDeBanda + '\'' +
-                " " + super.toString();
+    public void mostrarProducto() {
+        super.mostrarProducto();
+        System.out.println("GPU: " + GPU);
+        System.out.println("VRAM: " + VRAM);
+        System.out.println("Frecuencia del núcleo: " + frecuenciaNucleo);
+        System.out.println("Ancho de banda: " + anchoDeBanda);
+        System.out.println("-------------------------\n");
     }
 }

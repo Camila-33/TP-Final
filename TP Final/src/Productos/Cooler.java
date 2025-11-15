@@ -49,10 +49,10 @@ public class Cooler extends Producto{
     }
 
     @Override
-    public String toString() {
-        return "Cooler {" +
-                "velocidad = '" + velocidad + '\'' +
-                ", nivelRuidoMaximo = '" + nivelRuidoMaximo + '\'' +
-                " " + super.toString();
+    public void mostrarProducto() {
+        super.mostrarProducto();
+        System.out.println("Velocidad: " + velocidad);
+        System.out.println("Nivel de ruido máximo: " + nivelRuidoMaximo);
+        System.out.println("-------------------------\n");
     }
 }

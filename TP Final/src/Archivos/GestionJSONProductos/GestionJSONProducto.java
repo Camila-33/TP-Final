@@ -56,12 +56,8 @@ public class GestionJSONProducto {
         json.put("numeroDeSerie", p.getNumeroDeSerie());
         json.put("fechaIngreso", p.getFechaIngreso().toString());
         json.put("categoria", p.getCategoria().name());
+        json.put("subCategoria", p.getSubCategoria().name());
 
-        if (p.getSubCategoria() != null) {
-            json.put("subCategoria", p.getSubCategoria().name());
-        } else {
-            json.put("subCategoria", "NINGUNA");
-        }
 
         switch (p) {
             case Almacenamiento a -> {
@@ -165,12 +161,8 @@ public class GestionJSONProducto {
             p.setNumeroDeSerie(json.getString("numeroDeSerie"));
             p.setFechaIngreso(LocalDate.parse(json.getString("fechaIngreso")));
             p.setCategoria(TipoCategoria.valueOf(json.getString("categoria").toUpperCase()));
+            p.setSubCategoria(TipoSubCategoria.valueOf(json.getString("subCategoria").toUpperCase()));
 
-            if (json.has("subCategoria") && !json.isNull("subCategoria") && !json.getString("subCategoria").isEmpty()) {
-                p.setSubCategoria(TipoSubCategoria.valueOf(json.getString("subCategoria").toUpperCase()));
-            } else {
-                p.setSubCategoria(TipoSubCategoria.valueOf("NINGUNA"));
-            }
 
             if (p instanceof Almacenamiento a) {
                 a.setCapacidad(json.getString("capacidad"));

@@ -7,18 +7,15 @@ import Users.RegistroUser.RegistroUser;
 import Users.UsuarioSistema.Administrador;
 
 import java.util.HashSet;
-import java.util.Scanner;
 
 public class GestionAdministrador implements MetodosGestion <Administrador>{
 
     private HashSet<Administrador> listaAdministradores;
     private RegistroUser registroUser;
-    private Scanner teclado;
 
     public GestionAdministrador() {
         this.listaAdministradores = new HashSet<>();
         this.registroUser = new RegistroUser();
-        this.teclado = new Scanner(System.in);
     }
 
     @Override
@@ -36,27 +33,6 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
         System.out.println("¡Administrador/a " + admin.getNombre() + " " + admin.getApellido() + " agregado con éxito!");
 
     }
-
-    @Override
-    public void mostrarDatosUsuario(Administrador a){
-
-        System.out.println();
-        System.out.println("--------------------------------------------");
-        System.out.println("PERFIL DE ADMINISTRADOR: " + a.getNombre() + " " + a.getApellido());
-        System.out.println("--------------------------------------------");
-
-        System.out.println("ID: " + a.getIdUsuario());
-        System.out.println("Username: " + a.getUserName());
-        System.out.println("Contraseña: **********");
-        System.out.println("Nombre: " + a.getNombre());
-        System.out.println("Apellido: " + a.getApellido());
-        System.out.println("DNI: " + a.getDni());
-        System.out.println("Teléfono: " + a.getTelefono());
-        System.out.println("Dirección: " + a.getDireccion());
-        System.out.println("Email: " + a.getEmail());
-        System.out.println("--------------------------------------------");
-    }
-
 
     @Override
     public void modificarUsuario(Administrador administrador) {
@@ -80,14 +56,7 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
                     System.out.println("8. Dirección");
                     System.out.println("9. Salir");
 
-                    int opcion = -1;
-
-                    try {
-                        opcion = Integer.parseInt(teclado.nextLine());
-                    } catch (NumberFormatException e) {
-                        System.err.println("Debe ingresar un número.");
-                        continue;
-                    }
+                    int opcion = InputHelper.leerEnteroSwitch();
 
                     switch (opcion) {
 
@@ -151,16 +120,15 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
 
         for (Administrador admin : listaAdministradores) {
             if (admin.equals(a)) {
-                System.out.println("¿Estás seguro de que quieres eliminar la cuenta? (si / no)");
-                String opcion = teclado.nextLine();
 
-                if (opcion.equalsIgnoreCase("si")) {
+                char opcion = InputHelper.leerChar("¿Estás seguro de que quieres dar de baja la cuenta? (s / n)");
+
+                if (opcion == 's') {
 
                     int intentos = 0;
 
                     while (intentos < 3) {
-                        System.out.println("Ingrese su contraseña para eliminar su cuenta");
-                        String contrasenia = teclado.nextLine();
+                        String contrasenia = InputHelper.pedirContrasenia("Ingrese su contraseña para eliminar su cuenta");
 
                         if (contrasenia.equals(admin.getContrasena())) {
                             admin.setActivo(false);
@@ -172,19 +140,18 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
                             intentos++;
 
                             if (intentos < 3) {
-                                System.out.println("Contraseña incorrecta, inténtelo nuevamente (" + (3 - intentos) + " intentos restantes)");
+                                System.out.println(
+                                        "Contraseña incorrecta, inténtelo nuevamente (" + (3 - intentos) + " intentos restantes)"
+                                );
                             } else {
                                 System.out.println("Ha superado el número máximo de intentos. Operación cancelada.");
                             }
                         }
                     }
 
-                } else if (opcion.equalsIgnoreCase("no")) {
+                } else {
                     System.out.println("Operación cancelada");
                     return;
-
-                } else {
-                    System.out.println("Opción inválida");
                 }
             }
         }
@@ -201,17 +168,16 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
 
         for (Administrador admin : listaAdministradores) {
             if (admin.equals(a)) {
-                System.out.println("¿Estás seguro de que quieres dar de alta al administrador "
-                        + admin.getNombre() + " " + admin.getApellido() + "? (si / no)");
-                String opcion = teclado.nextLine();
 
-                if (opcion.equalsIgnoreCase("si")) {
+                char opcion = InputHelper.leerChar(
+                        "¿Estás seguro de que quieres dar de alta al administrador " + admin.getNombre() + " " + admin.getApellido() + "? (s / n)");
+
+                if (opcion == 's') {
 
                     int intentos = 0;
 
                     while (intentos < 3) {
-                        System.out.println("Ingrese su contraseña para dar de alta la cuenta");
-                        String contrasenia = teclado.nextLine();
+                        String contrasenia = InputHelper.pedirContrasenia("Ingrese su contraseña para dar de alta la cuenta");
 
                         if (contrasenia.equals(admin.getContrasena())) {
                             admin.setActivo(true);
@@ -223,19 +189,18 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
                             intentos++;
 
                             if (intentos < 3) {
-                                System.out.println("Contraseña incorrecta, inténtelo nuevamente (" + (3 - intentos) + " intentos restantes)");
+                                System.out.println(
+                                        "Contraseña incorrecta, inténtelo nuevamente (" + (3 - intentos) + " intentos restantes)"
+                                );
                             } else {
                                 System.out.println("Ha superado el número máximo de intentos. Operación cancelada.");
                             }
                         }
                     }
 
-                } else if (opcion.equalsIgnoreCase("no")) {
+                } else {
                     System.out.println("Operación cancelada");
                     return;
-
-                } else {
-                    System.out.println("Opción inválida");
                 }
             }
         }
@@ -256,5 +221,15 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
         }
 
         return null;
+    }
+
+    @Override
+    public void mostrarTodosLosUsuarios(){
+
+        listaAdministradores = GestionJSONAdministrador.archivoAdminToLista("administrador.json");
+
+        for(Administrador admin : listaAdministradores) {
+            admin.mostrarDatosUsuario();
+        }
     }
 }

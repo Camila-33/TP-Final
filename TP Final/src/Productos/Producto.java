@@ -1,5 +1,6 @@
 package Productos;
 
+import Archivos.GestionJSONProductos.GestionJSONProducto;
 import Enums.TipoCategoria;
 import Enums.TipoSubCategoria;
 
@@ -177,23 +178,16 @@ public abstract class Producto {
         return Objects.hash(nombre, descripcion, codigo, precio, peso, dimension, marca, activo, stock, garantiaMeses, numeroDeSerie, fechaIngreso, categoria, subCategoria);
     }
 
-    @Override
-    public String toString() {
-        return "Producto{" +
-                "nombre = '" + nombre + '\'' +
-                ", descripcion = '" + descripcion + '\'' +
-                ", codigo = '" + codigo + '\'' +
-                ", precio = " + precio +
-                ", peso = " + peso +
-                ", dimension = '" + dimension + '\'' +
-                ", marca = '" + marca + '\'' +
-                ", activo = " + activo +
-                ", stock = " + stock +
-                ", garantiaMeses = " + garantiaMeses +
-                ", numeroDeSerie = " + numeroDeSerie +
-                ", fechaIngreso = " + fechaIngreso +
-                ", categoria = " + categoria +
-                ", subCategoria = " + subCategoria +
-                '}';
+    public void mostrarProducto() {
+        System.out.println("-------------------------");
+        System.out.println("Código: " + codigo);
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Descripción: " + descripcion);
+        System.out.println("Precio: $" + precio);
+        System.out.println("Peso: " + peso);
+        System.out.println("Dimensión: " + dimension);
+        System.out.println("Marca: " + marca);
+        System.out.println("Stock: " + stock);
+        System.out.println("Garantía: " + garantiaMeses + " meses");
     }
 }

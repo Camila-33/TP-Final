@@ -92,15 +92,42 @@ public class Compra {
     }
 
 
-    public String mostrarDetalles() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("\n--- Detalles de la Compra ").append(idPedido).append(" ---\n");
-        for (DetalleCompra d : detallesCompra) {
-            sb.append(d.toString()).append("\n");
+    public void mostrarCompra() {
+
+        System.out.println("\n=== Detalle de la Compra ===");
+        System.out.println("ID Pedido: " + idPedido);
+        System.out.println("Fecha: " + fechaCompra);
+        System.out.println("Proveedor: " +proveedor.getNombre() + " " + proveedor.getApellido());
+        System.out.println("Estado: " + (activo ? "Activa" : "Cancelada"));
+
+        if (detallesCompra.isEmpty()) {
+            System.out.println("No hay productos en esta compra.");
+
+        } else {
+            mostrarDetallesCompra();
         }
-        sb.append("TOTAL = $").append(getTotal()).append("\n");
-        sb.append("FECHA = ").append(fechaCompra).append("\n");
-        sb.append("PROVEEDOR = ").append(proveedor);
-        return sb.toString();
+
+        System.out.println("Total de la compra: $" + getTotal());
+        System.out.println("============================\n");
+    }
+
+    public void mostrarDetallesCompra() {
+
+        List<DetalleCompra> detalles = detallesCompra;
+
+        if (detalles.isEmpty()) {
+            System.out.println("Esta compra no tiene detalles registrados.");
+            return;
+        }
+
+        System.out.println("\nDetalles de la compra:");
+
+        for (int i = 0; i < detalles.size(); i++) {
+            DetalleCompra d = detalles.get(i);
+            System.out.println((i + 1) + ". Producto: " + d.getProducto().getNombre()
+                    + " | Cantidad: " + d.getCantidad()
+                    + " | Precio unitario: " + d.getProducto().getPrecio()
+                    + " | Subtotal: " + (d.getCantidad() * d.getProducto().getPrecio()));
+        }
     }
 }

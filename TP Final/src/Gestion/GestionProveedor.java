@@ -13,12 +13,10 @@ public class GestionProveedor {
 
     private HashSet<Proveedor> listaProveedores;
     private GestionProducto gestionProducto;
-    private Scanner teclado;
 
     public GestionProveedor() {
         this.listaProveedores = new HashSet<>();
         this.gestionProducto = new GestionProducto();
-        this.teclado = new Scanner(System.in);
     }
 
     public void agregarProveedor(Proveedor nuevoProveedor){
@@ -48,14 +46,7 @@ public class GestionProveedor {
                     System.out.println("6. Tipo de proveedor");
                     System.out.println("7. Salir");
 
-                    int opcion;
-
-                    try {
-                        opcion = Integer.parseInt(teclado.nextLine());
-                    } catch(NumberFormatException e) {
-                        System.err.println("Debe ingresar un número.");
-                        continue;
-                    }
+                    int opcion = InputHelper.leerInt("Elija una opción");
 
                     switch (opcion) {
 
@@ -108,29 +99,21 @@ public class GestionProveedor {
 
         listaProveedores = GestionJSONProveedor.archivoProveedorToLista("proveedor.json");
 
-        for(Proveedor proveedor : listaProveedores){
-            if(proveedor.equals(p)){
-                System.out.println("¿Estás seguro de que quieres dar de baja a este proveedor? (si / no)");
-                String opcion = teclado.nextLine();
+        for (Proveedor proveedor : listaProveedores) {
+            if (proveedor.equals(p)) {
 
-                while (true){
+                char opcion = InputHelper.leerChar("¿Estás seguro de que quieres dar de baja a este proveedor? (s / n)");
 
-                    if(opcion.equalsIgnoreCase("si")){
+                if (opcion == 's') {
+                    p.setActivo(false);
+                    System.out.println("¡Proveedor dado de baja con éxito!");
+                    GestionJSONProveedor.listaProveedorToArchivo(listaProveedores, "proveedor.json");
 
-                        p.setActivo(false);
-                        System.out.println("¡Proveedor dado de baja con éxito!");
-                        GestionJSONProveedor.listaProveedorToArchivo(listaProveedores,"proveedor.json");
-
-                        return;
-
-                    }else if (opcion.equalsIgnoreCase("no")) {
-                        System.out.println("Operación cancelada");
-                        return;
-
-                    }else{
-                        System.out.println("Opción invalida. Por favor, ingrese una opción valida");
-                    }
+                } else {
+                    System.out.println("Operación cancelada");
                 }
+
+                return;
             }
         }
 
@@ -141,29 +124,21 @@ public class GestionProveedor {
 
         listaProveedores = GestionJSONProveedor.archivoProveedorToLista("proveedor.json");
 
-        for(Proveedor proveedor : listaProveedores){
-            if(proveedor.equals(p)){
-                System.out.println("¿Estás seguro de que quieres dar de alta a este proveedor? (si / no)");
-                String opcion = teclado.nextLine();
+        for (Proveedor proveedor : listaProveedores) {
+            if (proveedor.equals(p)) {
 
-                while (true){
+                char opcion = InputHelper.leerChar("¿Estás seguro de que quieres dar de baja a este proveedor? (s / n)");
 
-                    if(opcion.equalsIgnoreCase("si")){
+                if (opcion == 's') {
+                    p.setActivo(false);
+                    System.out.println("¡Proveedor dado de baja con éxito!");
+                    GestionJSONProveedor.listaProveedorToArchivo(listaProveedores, "proveedor.json");
 
-                        p.setActivo(true);
-                        System.out.println("¡Proveedor dado de alta con éxito!");
-                        GestionJSONProveedor.listaProveedorToArchivo(listaProveedores,"proveedor.json");
-
-                        return;
-
-                    }else if (opcion.equalsIgnoreCase("no")) {
-                        System.out.println("Operación cancelada");
-                        return;
-
-                    }else{
-                        System.out.println("Opción invalida. Por favor, ingrese una opción valida");
-                    }
+                } else {
+                    System.out.println("Operación cancelada");
                 }
+
+                return;
             }
         }
 
@@ -176,7 +151,7 @@ public class GestionProveedor {
 
         for(Proveedor p : listaProveedores){
             if(p.getNombre().toLowerCase().contains(nombre)){
-                System.out.println("ID: " + p.getIdProveedor() + ", Nombre: " + p.getNombreCompleto());
+                p.mostrarDatosProveedor();
                 encontrado = true;
             }
         }
@@ -233,14 +208,8 @@ public class GestionProveedor {
         int opcion;
         while (true) {
 
-            System.out.println("¿Desea cargar productos nuevos (1) o elegir algunos ya existentes (2)?");
-
-            try {
-                opcion = Integer.parseInt(teclado.nextLine());
-            } catch (NumberFormatException e) {
-                System.err.println("Debe ingresar un número.");
-                continue;
-            }
+            System.out.println();
+            opcion = InputHelper.leerInt("¿Desea cargar productos nuevos (1) o elegir algunos ya existentes (2)?");
 
             if (opcion == 1) {
                 return gestionProducto.cargarProductos();
@@ -253,19 +222,9 @@ public class GestionProveedor {
                     nuevosProductos.put(producto.getCodigo(), producto);
                     System.out.println("Producto agregado correctamente.");
 
-                    int opSalir;
 
-                    while (true) {
-                        System.out.println("Para dejar de agregar productos presione 1. Para continuar, otro número.");
-
-                        try {
-                            opSalir = Integer.parseInt(teclado.nextLine());
-                            break;
-
-                        } catch (NumberFormatException e) {
-                            System.err.println("Opción inválida. Ingrese un número.");
-                        }
-                    }
+                    System.out.println("Para dejar de agregar productos presione 1. Para continuar, otro número.");
+                    int opSalir = InputHelper.leerEnteroSwitch();
 
                     if (opSalir == 1) break;
                 }
@@ -292,8 +251,7 @@ public class GestionProveedor {
             System.out.println("4. Importador");
             System.out.println("5. Ensamblador");
 
-            int opcion = teclado.nextInt();
-            teclado.nextLine();
+            int opcion = InputHelper.leerEnteroSwitch();
 
             switch (opcion) {
                 case 1:
@@ -329,24 +287,6 @@ public class GestionProveedor {
         return tipoProveedor;
     }
 
-    public void mostrarDatosProveedor(Proveedor proveedor) {
-
-        System.out.println();
-        System.out.println("--------------------------------------------");
-        System.out.println("PERFIL DE PROVEEDOR: " + proveedor.getNombreCompleto());
-        System.out.println("--------------------------------------------");
-
-        System.out.println("ID: " + proveedor.getIdProveedor());
-        System.out.println("Nombre: " + proveedor.getNombre());
-        System.out.println("Apellido: " + proveedor.getApellido());
-        System.out.println("Email: " + proveedor.getEmail());
-        System.out.println("Teléfono: " + proveedor.getTelefono());
-        System.out.println("CUIT: " + proveedor.getCuit());
-        System.out.println("Fecha de alta: " + proveedor.getFechaAlta());
-        System.out.println("Tipo de proveedor: " + proveedor.getTipoProveedor());
-        System.out.println("--------------------------------------------");
-    }
-
 
     public Proveedor elegirProveedorDisponible(){
 
@@ -378,13 +318,8 @@ public class GestionProveedor {
 
                 break;
 
-            }catch (IndexOutOfBoundsException e){
+            }catch (IndexOutOfBoundsException e){ //puede no funcionar
                 System.err.println("Error: " +e.getMessage());
-
-            }catch (InputMismatchException e){
-                System.err.println("Error: Debe ingresar un número");
-
-                teclado.nextLine();
             }
         }
 
@@ -395,18 +330,8 @@ public class GestionProveedor {
 
         listaProveedores = GestionJSONProveedor.archivoProveedorToLista("proveedor.json");
 
-        System.out.println("--- Lista de Proveedores ---");
         for (Proveedor proveedor : listaProveedores) {
-            System.out.println("ID: " + proveedor.getIdProveedor());
-            System.out.println("Nombre: " + proveedor.getNombre() + " " + proveedor.getApellido());
-            System.out.println("Email: " + proveedor.getEmail());
-            System.out.println("Teléfono: " + proveedor.getTelefono());
-            System.out.println("CUIT: " + proveedor.getCuit());
-            System.out.println("Tipo: " + proveedor.getTipoProveedor());
-            System.out.println("Activo: " + (proveedor.isActivo() ? "Sí" : "No"));
-            System.out.println("Fecha de alta: " + proveedor.getFechaAlta());
-            System.out.println("Cantidad de productos suministrados: " + proveedor.getProductosSuministrados().size());
-            System.out.println("----------------------------------");
+            proveedor.mostrarDatosProveedor();
         }
     }
 

@@ -50,10 +50,14 @@ public class FuenteDePoder extends Producto{
     }
 
     @Override
-    public String toString() {
-        return "FuenteDePoder {" +
-                "potencia = '" + potencia + '\'' +
-                ", tipoCertificacion = " + tipoCertificacion +
-                " " + super.toString();
+    public void mostrarProducto() {
+        super.mostrarProducto();
+        System.out.println("Potencia: " + potencia);
+
+        if (subCategoria == TipoSubCategoria.CERTIFICADA) {
+            System.out.println("Tipo de certificación: " + tipoCertificacion);
+        }
+
+        System.out.println("-------------------------\n");
     }
 }

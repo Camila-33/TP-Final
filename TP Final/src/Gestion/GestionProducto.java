@@ -14,11 +14,9 @@ import java.util.*;
 public class GestionProducto {
 
     private HashMap<String, Producto> listaProductos;
-    private Scanner teclado;
 
     public GestionProducto() {
         this.listaProductos = new HashMap<>();
-        this.teclado = new Scanner(System.in);
     }
 
     public void agregarProducto(Producto p){
@@ -34,12 +32,11 @@ public class GestionProducto {
 
         for(Map.Entry<String, Producto> entry : listaProductos.entrySet()){
             if(entry.getValue().equals(p)){
-                System.out.println("¿Estás seguro de que quieres dar de baja este producto? (si / no)");
-                String opcion = teclado.nextLine();
+                char opcion = InputHelper.leerChar("¿Estás seguro de que quieres dar de baja este producto? (s / n)");
 
                 while (true){
 
-                    if(opcion.equalsIgnoreCase("si")){
+                    if(opcion == 's'){
 
                         p.setActivo(false);
                         System.out.println("¡Producto dado de baja con éxito!");
@@ -47,12 +44,9 @@ public class GestionProducto {
 
                         return;
 
-                    }else if (opcion.equalsIgnoreCase("no")) {
+                    }else if (opcion == 'n') {
                         System.out.println("Operación cancelada");
                         return;
-
-                    }else{
-                        System.out.println("Opción invalida. Por favor, ingrese una opción valida");
                     }
                 }
             }
@@ -67,12 +61,11 @@ public class GestionProducto {
 
         for(Map.Entry<String, Producto> entry : listaProductos.entrySet()){
             if(entry.getValue().equals(p)){
-                System.out.println("¿Estás seguro de que quieres dar de alta este producto? (si / no)");
-                String opcion = teclado.nextLine();
+                char opcion = InputHelper.leerChar("¿Estás seguro de que quieres dar de alta este producto? (s / n)");
 
                 while (true){
 
-                    if(opcion.equalsIgnoreCase("si")){
+                    if(opcion == 's'){
 
                         p.setActivo(true);
                         System.out.println("¡Producto dado de alta con éxito!");
@@ -80,12 +73,9 @@ public class GestionProducto {
 
                         return;
 
-                    }else if (opcion.equalsIgnoreCase("no")) {
+                    }else if (opcion == 'n') {
                         System.out.println("Operación cancelada");
                         return;
-
-                    }else{
-                        System.out.println("Opción invalida. Por favor, ingrese una opción valida");
                     }
                 }
             }
@@ -139,14 +129,12 @@ public class GestionProducto {
     }
 
 
-    public void mostrarProductos(){
+    public void mostrarTodosLosProductos() {
 
         listaProductos = GestionJSONProducto.archivoProductosToLista("producto.json");
 
-        for (Map.Entry<String, Producto> entry : listaProductos.entrySet()){
-            if(entry.getValue().isActivo()){
-                System.out.println("Código: " + entry.getKey() + ", Valor: " +entry.getValue());
-            }
+        for (Producto producto : listaProductos.values()) {
+            producto.mostrarProducto();
         }
     }
 
@@ -198,18 +186,12 @@ public class GestionProducto {
 
             try {
                 opcion = InputHelper.leerInt("Ingrese una opción del 1 al " +lista.size());
-                teclado.nextLine();
                 Validaciones.ingresarOpcionValida(lista, opcion);
 
                 break;
 
             }catch (IndexOutOfBoundsException e){
                 System.err.println("Error: " +e.getMessage());
-
-            }catch (InputMismatchException e){
-                System.err.println("Error: Debe ingresar un número");
-
-                teclado.nextLine();
             }
         }
 
@@ -223,9 +205,8 @@ public class GestionProducto {
 
         do {
             int opcion = elegirTipoProducto();
-            teclado.nextLine();
 
-            String nombre = InputHelper.leerNombre("Ingrese el nombre del producto: ");
+            String nombre = InputHelper.leerNombreProducto("Ingrese el nombre del producto: ");
             String descripcion = InputHelper.leerDescripcion("Ingrese la descripción del producto: ");
             double precio = InputHelper.leerDouble("Ingrese el precio del producto: ");
             double peso = InputHelper.leerDouble("Ingrese el peso del producto: ");
@@ -233,17 +214,13 @@ public class GestionProducto {
             String marca = InputHelper.leerMarca("Ingrese la marca del producto: ");
             int stock = InputHelper.leerInt("Ingrese el stock disponible: ");
             int garantia = InputHelper.leerInt("Ingrese la garantía en meses: ");
-            String codigo = InputHelper.leerCodigo("Ingrese el código del proveedor: ");
+            String codigo = InputHelper.leerIDOCodigo("Ingrese el código del proveedor: ");
 
             System.out.println("Seleccione la categoría del producto");
             TipoCategoria categoria = elegirCategoria();
 
-            TipoSubCategoria subCategoria = null;
-
-            if(opcion != 4) {
-                System.out.println("Seleccione la subcategoría del producto");
-                subCategoria = elegirSubCategoria(categoria);
-            }
+            System.out.println("Seleccione la subcategoría del producto");
+            TipoSubCategoria subCategoria = elegirSubCategoria(categoria);
 
             Producto nuevoProducto = null;
 
@@ -363,24 +340,20 @@ public class GestionProducto {
         System.out.println("8. Placa Madre");
         System.out.println("9. Procesador");
 
-         int opcion = 0;
+        int opcion;
 
-         while (true) {
+        while (true) {
+            opcion = InputHelper.leerInt("Ingrese una opción:");
 
-             try {
-                 opcion = teclado.nextInt();
-                 teclado.nextLine();
-                 Validaciones.validarOpcionNumero(opcion);
-                 break;
+            try {
+                Validaciones.validarOpcionNumero(opcion);
+                break;
 
-             } catch (IllegalArgumentException e) {
-                 System.err.println("Error: " +e.getMessage());
+            } catch (IllegalArgumentException e) {
+                System.err.println("Error: " + e.getMessage());
+            }
+        }
 
-             }catch (InputMismatchException e) {
-                 System.err.println("Error: Debe ingresar un número válido.");
-                 teclado.nextLine();
-             }
-         }
 
         return opcion;
     }
@@ -399,8 +372,7 @@ public class GestionProducto {
         System.out.println("8. Procesador");
         System.out.println("9. Refrigeración");
 
-            int opcion = teclado.nextInt();
-            teclado.nextLine();
+            int opcion = InputHelper.leerEnteroSwitch();
 
         tipoCategoria = switch (opcion) {
             case 1 -> TipoCategoria.ALMACENAMIENTO;
@@ -428,8 +400,7 @@ public class GestionProducto {
                     System.out.println("2. Disco Rígido");
                     System.out.println("3. Disco Sólido SSD");
 
-                    int opcion = teclado.nextInt();
-                    teclado.nextLine();
+                    int opcion = InputHelper.leerEnteroSwitch();
 
                     switch (opcion) {
                         case 1: return TipoSubCategoria.DISCO_EXTERNO;
@@ -451,8 +422,7 @@ public class GestionProducto {
                     System.out.println("1. Certificada");
                     System.out.println("2. Genérica");
 
-                    int opcion = teclado.nextInt();
-                    teclado.nextLine();
+                    int opcion = InputHelper.leerEnteroSwitch();
 
                     switch (opcion) {
                         case 1: return TipoSubCategoria.CERTIFICADA;
@@ -468,8 +438,7 @@ public class GestionProducto {
                     System.out.println("1. Memoria RAM");
                     System.out.println("2. Memoria Notebook");
 
-                    int opcion = teclado.nextInt();
-                    teclado.nextLine();
+                    int opcion = InputHelper.leerEnteroSwitch();
 
                     switch (opcion) {
                         case 1: return TipoSubCategoria.MEMORIA_RAM;
@@ -485,8 +454,7 @@ public class GestionProducto {
                     System.out.println("1. Placa de Video GeForce");
                     System.out.println("2. Placa de Video Radeon AMD");
 
-                    int opcion = teclado.nextInt();
-                    teclado.nextLine();
+                    int opcion = InputHelper.leerEnteroSwitch();
 
                     switch (opcion) {
                         case 1: return TipoSubCategoria.PLACA_DE_VIDEO_GEFORCE;
@@ -502,8 +470,7 @@ public class GestionProducto {
                     System.out.println("1. Placa Madre AMD");
                     System.out.println("2. Placa Madre Intel");
 
-                    int opcion = teclado.nextInt();
-                    teclado.nextLine();
+                    int opcion = InputHelper.leerEnteroSwitch();
 
                     switch (opcion) {
                         case 1: return TipoSubCategoria.PLACA_AMD;
@@ -519,8 +486,7 @@ public class GestionProducto {
                     System.out.println("1. Procesador AMD");
                     System.out.println("2. Procesador Intel");
 
-                    int opcion = teclado.nextInt();
-                    teclado.nextLine();
+                    int opcion = InputHelper.leerEnteroSwitch();
 
                     switch (opcion) {
                         case 1: return TipoSubCategoria.PROCESADOR_AMD;
@@ -536,8 +502,7 @@ public class GestionProducto {
                     System.out.println("1. Cooler CPU");
                     System.out.println("2. Cooler Fan");
 
-                    int opcion = teclado.nextInt();
-                    teclado.nextLine();
+                    int opcion = InputHelper.leerEnteroSwitch();
 
                     switch (opcion) {
                         case 1: return TipoSubCategoria.COOLER_CPU;
@@ -545,6 +510,11 @@ public class GestionProducto {
                         default: System.out.println("Opción inválida. Intente nuevamente.");
                     }
                 }
+            }
+
+            case GABINETE -> {
+                System.out.println("No hay subcategoría para Gabinete, se usará por defecto");
+                return TipoSubCategoria.NINGUNA;
             }
 
             default -> {
@@ -591,12 +561,11 @@ public class GestionProducto {
             System.out.println("8. Garantía");
             System.out.println("9. Código de proveedor");
 
-            int opcion = teclado.nextInt();
-            teclado.nextLine();
+            int opcion = InputHelper.leerEnteroSwitch();
 
             switch (opcion) {
                 case 1:
-                    producto.setNombre(InputHelper.leerNombre("Ingrese el nuevo nombre: "));
+                    producto.setNombre(InputHelper.leerNombreProducto("Ingrese el nuevo nombre: "));
                     break;
                 case 2:
                     producto.setDescripcion(InputHelper.leerDescripcion("Ingrese la nueva descripción: "));
@@ -620,7 +589,7 @@ public class GestionProducto {
                     producto.setGarantiaMeses(InputHelper.leerInt("Ingrese la nueva garantía (meses): "));
                     break;
                 case 9:
-                    producto.setCodigo(InputHelper.leerCodigo("Ingrese el nuevo código de proveedor: "));
+                    producto.setCodigo(InputHelper.leerIDOCodigo("Ingrese el nuevo código de proveedor: "));
                     break;
                 default:
                     System.out.println("Opción inválida.");
@@ -630,8 +599,7 @@ public class GestionProducto {
                 System.out.println("10. Capacidad");
                 System.out.println("11. Velocidad");
 
-                int op = teclado.nextInt();
-                teclado.nextLine();
+                int op = InputHelper.leerEnteroSwitch();
 
                 switch (op) {
                     case 10:
@@ -646,8 +614,7 @@ public class GestionProducto {
                 System.out.println("10. Velocidad");
                 System.out.println("11. Nivel de ruido");
 
-                int op = teclado.nextInt();
-                teclado.nextLine();
+                int op = InputHelper.leerEnteroSwitch();
 
                 switch (op) {
                     case 10:
@@ -665,8 +632,7 @@ public class GestionProducto {
                     System.out.println("11. Tipo de certificación");
                 }
 
-                int op = teclado.nextInt();
-                teclado.nextLine();
+                int op = InputHelper.leerEnteroSwitch();
 
                 switch (op) {
                     case 10:
@@ -686,8 +652,7 @@ public class GestionProducto {
                 System.out.println("13. Alto");
                 System.out.println("14. Profundidad");
 
-                int op = teclado.nextInt();
-                teclado.nextLine();
+                int op = InputHelper.leerEnteroSwitch();
 
                 switch (op) {
                     case 10:
@@ -712,8 +677,7 @@ public class GestionProducto {
                 System.out.println("11. Tipo de memoria");
                 System.out.println("12. Frecuencia");
 
-                int op = teclado.nextInt();
-                teclado.nextLine();
+                int op = InputHelper.leerEnteroSwitch();
 
                 switch (op) {
                     case 10:
@@ -738,8 +702,7 @@ public class GestionProducto {
                 System.out.println("12. Frecuencia del núcleo");
                 System.out.println("13. Ancho de banda");
 
-                int op = teclado.nextInt();
-                teclado.nextLine();
+                int op = InputHelper.leerEnteroSwitch();
 
                 switch (op) {
                     case 10:
@@ -762,8 +725,7 @@ public class GestionProducto {
                 System.out.println("12. Back Connect (s/n)");
                 System.out.println("13. Botón de Bios (s/n)");
 
-                int op = teclado.nextInt();
-                teclado.nextLine();
+                int op = InputHelper.leerEnteroSwitch();;
 
                 switch (op) {
                     case 10:
@@ -784,8 +746,7 @@ public class GestionProducto {
                 System.out.println("10. Frecuencia de reloj");
                 System.out.println("11. Número de núcleos");
 
-                int op = teclado.nextInt();
-                teclado.nextLine();
+                int op = InputHelper.leerEnteroSwitch();
 
                 switch (op) {
                     case 10:
@@ -797,9 +758,7 @@ public class GestionProducto {
                 }
             }
 
-            System.out.println("¿Desea modificar otro atributo? (s/n)");
-            opcionContinuar = teclado.next().toLowerCase().charAt(0);
-            teclado.nextLine();
+            opcionContinuar = InputHelper.leerChar("¿Desea modificar otro atributo? (s/n)");
 
         } while (opcionContinuar == 's');
 

@@ -49,10 +49,10 @@ public class Procesador extends Producto{
     }
 
     @Override
-    public String toString() {
-        return "Procesador {" +
-                "frecuenciaDeReloj = '" + frecuenciaDeReloj + '\'' +
-                ", numeroDeNucleos = " + numeroDeNucleos +
-                " " + super.toString();
+    public void mostrarProducto() {
+        super.mostrarProducto();
+        System.out.println("Frecuencia de reloj: " + frecuenciaDeReloj);
+        System.out.println("Número de núcleos: " + numeroDeNucleos);
+        System.out.println("-------------------------\n");
     }
 }

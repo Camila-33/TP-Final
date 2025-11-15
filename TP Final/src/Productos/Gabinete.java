@@ -79,13 +79,13 @@ public class Gabinete extends Producto{
     }
 
     @Override
-    public String toString() {
-        return "Gabinete {" +
-                "conVentana = " + conVentana +
-                ", color = '" + color + '\'' +
-                ", ancho = '" + ancho + '\'' +
-                ", alto = '" + alto + '\'' +
-                ", profundidad = '" + profundidad + '\'' +
-                " " + super.toString();
+    public void mostrarProducto() {
+        super.mostrarProducto();
+        System.out.println("Con ventana: " + (conVentana ? "Sí" : "No"));
+        System.out.println("Color: " + color);
+        System.out.println("Ancho: " + ancho);
+        System.out.println("Alto: " + alto);
+        System.out.println("Profundidad: " + profundidad);
+        System.out.println("-------------------------\n");
     }
 }

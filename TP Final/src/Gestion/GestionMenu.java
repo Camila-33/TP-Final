@@ -1,6 +1,6 @@
 package Gestion;
 
-import Excepciones.DatoInvalidoException;
+import IngresoDeDatos.InputHelper;
 import Productos.Producto;
 import Transacciones.Compra;
 import Transacciones.Venta;
@@ -8,14 +8,12 @@ import Users.LogInUser.LogIn;
 import Users.Proveedor;
 import Users.UsuarioSistema.Administrador;
 import Users.UsuarioSistema.Usuario;
-import Validaciones.Validaciones;
 
 import java.io.FileNotFoundException;
 import java.util.*;
 
 public class GestionMenu {
 
-    private Scanner teclado;
     private GestionProducto gestionProducto;
     private GestionProveedor gestionProveedor;
     private LogIn logIn;
@@ -25,7 +23,6 @@ public class GestionMenu {
     private GestionCompra gestionCompra;
 
     public GestionMenu() {
-        this.teclado = new Scanner(System.in);
         this.gestionProducto = new GestionProducto();
         this.gestionProveedor = new GestionProveedor();
         this.gestionAdministrador = new GestionAdministrador();
@@ -48,7 +45,7 @@ public class GestionMenu {
             System.out.println("2. Usuario");
             System.out.println("3. Salir");
 
-            int opcion = teclado.nextInt();
+            int opcion = InputHelper.leerEnteroSwitch();
 
             switch (opcion) {
 
@@ -88,8 +85,7 @@ public class GestionMenu {
             System.out.println("2. Iniciar Sesión");
             System.out.println("3. Atrás");
 
-            int opcion = teclado.nextInt();
-            teclado.nextLine();
+            int opcion = InputHelper.leerEnteroSwitch();
 
             switch (opcion) {
 
@@ -156,8 +152,7 @@ public class GestionMenu {
             System.out.println("7. Gestión de compras");
             System.out.println("8. Salir");
 
-            int opcion = teclado.nextInt();
-            teclado.nextLine();
+            int opcion = InputHelper.leerEnteroSwitch();
 
             switch (opcion) {
 
@@ -215,8 +210,7 @@ public class GestionMenu {
             System.out.println("7. Buscar un producto por el código");
             System.out.println("8. Atrás");
 
-            int opcion = teclado.nextInt();
-            teclado.nextLine();
+            int opcion = InputHelper.leerEnteroSwitch();
 
             switch (opcion) {
                 case 1:
@@ -224,122 +218,52 @@ public class GestionMenu {
                     break;
 
                 case 2:
-                    System.out.println("Ingrese el código del producto que quiere dar de baja");
-                    String codigoB;
+                    String codigoB = InputHelper.leerIDOCodigo("Ingrese el código del producto que quiere dar de baja");
+                    Producto pB = gestionProducto.buscarProductoPorCodigo(codigoB);
 
-                    while (true){
-
-                        try {
-                            codigoB = teclado.nextLine();
-                            Validaciones.validarIDYCodigo(codigoB);
-                            Producto p = gestionProducto.buscarProductoPorCodigo(codigoB);
-
-                            if(p != null){
-                                gestionProducto.darBajaProducto(p);
-                            }
-
-                            break;
-
-                        }catch (DatoInvalidoException e){
-                            System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                        }
+                    if(pB != null){
+                        gestionProducto.darBajaProducto(pB);
                     }
 
                     break;
 
                 case 3:
-                    System.out.println("Ingrese el código del producto que quiere dar de alta");
-                    String codigoA;
+                    String codigoA = InputHelper.leerIDOCodigo("Ingrese el código del producto que quiere dar de alta");
+                    Producto pA = gestionProducto.buscarProductoPorCodigo(codigoA);
 
-                    while (true){
-
-                        try {
-                            codigoA = teclado.nextLine();
-                            Validaciones.validarIDYCodigo(codigoA);
-                            Producto p = gestionProducto.buscarProductoPorCodigo(codigoA);
-
-                            if(p != null){
-                                gestionProducto.darAltaProducto(p);
-                            }
-
-                            break;
-
-                        }catch (DatoInvalidoException e){
-                            System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                        }
+                    if(pA != null){
+                        gestionProducto.darAltaProducto(pA);
                     }
 
                     break;
 
                 case 4:
-                    System.out.println("Ingrese el nombre de los productos que quiere mostrar");
-                    String nombre;
-
-                    while (true){
-
-                        try {
-                            nombre = teclado.nextLine();
-                            Validaciones.validarString(nombre);
-                            gestionProducto.mostrarProductosPorCoincidencia(nombre);
-
-                            break;
-
-                        }catch (DatoInvalidoException e){
-                            System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                        }
-                    }
+                    String nombre = InputHelper.leerNombreProducto("Ingrese el nombre de los productos que quiere mostrar");
+                    gestionProducto.mostrarProductosPorCoincidencia(nombre);
 
                     break;
 
                 case 5:
-                    System.out.println("Ingrese el código del producto que quiere modificar");
-                    String codigo;
+                    String codigo = InputHelper.leerIDOCodigo("Ingrese el código del producto que quiere modificar");
+                    Producto pM = gestionProducto.buscarProductoPorCodigo(codigo);
+                    gestionProducto.modificarProducto(pM);
 
-                    while (true){
-
-                        try {
-                            codigo = teclado.nextLine();
-                            Validaciones.validarIDYCodigo(codigo);
-                            Producto p = gestionProducto.buscarProductoPorCodigo(codigo);
-                            gestionProducto.modificarProducto(p);
-
-                            if(p != null){
-                                System.out.println(p);
-                            }
-
-                            break;
-
-                        }catch (DatoInvalidoException e){
-                            System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                        }
+                    if(pM != null){
+                        pM.mostrarProducto();
                     }
 
                     break;
 
                 case 6:
-                    gestionProducto.mostrarProductos();
+                    gestionProducto.mostrarTodosLosProductos();
                     break;
 
                 case 7:
-                    System.out.println("Ingrese el código del producto que quiere buscar");
-                    String codigoC;
+                    String codigoC = InputHelper.leerIDOCodigo("Ingrese el código del producto que quiere buscar");
+                    Producto p = gestionProducto.buscarProductoPorCodigo(codigoC);
 
-                    while (true){
-
-                        try {
-                            codigoC = teclado.nextLine();
-                            Validaciones.validarIDYCodigo(codigoC);
-                            Producto p = gestionProducto.buscarProductoPorCodigo(codigoC);
-
-                            if(p != null){
-                                System.out.println(p);
-                            }
-
-                            break;
-
-                        }catch (DatoInvalidoException e){
-                            System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                        }
+                    if(p != null){
+                        p.mostrarProducto();
                     }
 
                     break;
@@ -370,8 +294,7 @@ public class GestionMenu {
             System.out.println("7. Buscar proveedor por su ID");
             System.out.println("8. Atrás");
 
-            int opcion = teclado.nextInt();
-            teclado.nextLine();
+            int opcion = InputHelper.leerEnteroSwitch();
 
             switch (opcion){
 
@@ -380,70 +303,28 @@ public class GestionMenu {
                     break;
 
                 case 2:
-                    System.out.println("Ingrese la ID del proveedor que quiere dar de baja");
-                    String idB;
+                    String idB = InputHelper.leerIDOCodigo("Ingrese la ID del proveedor que quiere dar de baja");
+                    Proveedor pB = gestionProveedor.buscarProveedoresPorId(idB);
 
-                    while (true){
-
-                        try {
-                            idB = teclado.nextLine();
-                            Validaciones.validarIDYCodigo(idB);
-                            Proveedor p = gestionProveedor.buscarProveedoresPorId(idB);
-
-                            if(p != null){
-                                gestionProveedor.darBajaProveedor(p);
-                            }
-
-                            break;
-
-                        }catch (DatoInvalidoException e){
-                            System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                        }
+                    if(pB != null){
+                        gestionProveedor.darBajaProveedor(pB);
                     }
 
                     break;
 
                 case 3:
-                    System.out.println("Ingrese la ID del proveedor que quiere dar de alta");
-                    String idA;
+                    String idA = InputHelper.leerIDOCodigo("Ingrese la ID del proveedor que quiere dar de alta");
+                    Proveedor pA = gestionProveedor.buscarProveedoresPorId(idA);
 
-                    while (true){
-
-                        try {
-                            idA = teclado.nextLine();
-                            Validaciones.validarIDYCodigo(idA);
-                            Proveedor p = gestionProveedor.buscarProveedoresPorId(idA);
-
-                            if(p != null){
-                                gestionProveedor.darAltaProveedor(p);
-                            }
-
-                            break;
-
-                        }catch (DatoInvalidoException e){
-                            System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                        }
+                    if(pA != null){
+                        gestionProveedor.darAltaProveedor(pA);
                     }
 
                     break;
 
                 case 4:
-                    System.out.println("Ingrese un nombre: ");
-                    String nombre;
-
-                    while (true){
-
-                        try {
-                            nombre = teclado.nextLine();
-                            Validaciones.validarString(nombre);
-                            gestionProveedor.mostrarProveedoresPorCoincidencia(nombre);
-
-                            break;
-
-                        }catch (DatoInvalidoException e){
-                            System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                        }
-                    }
+                    String nombre = InputHelper.pedirString("Ingrese un nombre: ");
+                    gestionProveedor.mostrarProveedoresPorCoincidencia(nombre);
 
                     break;
 
@@ -452,49 +333,21 @@ public class GestionMenu {
                     break;
 
                 case 6:
-                    System.out.println("Ingrese la ID del proveedor que quiere modificar");
-                    String idC;
+                    String idC = InputHelper.leerIDOCodigo("Ingrese la ID del proveedor que quiere modificar");
+                    Proveedor pM = gestionProveedor.buscarProveedoresPorId(idC);
 
-                    while (true){
-
-                        try {
-                            idC = teclado.nextLine();
-                            Validaciones.validarIDYCodigo(idC);
-                            Proveedor p = gestionProveedor.buscarProveedoresPorId(idC);
-
-                            if(p != null){
-                                gestionProveedor.modificarProveedor(p);
-                            }
-
-                            break;
-
-                        }catch (DatoInvalidoException e){
-                            System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                        }
+                    if(pM != null){
+                        gestionProveedor.modificarProveedor(pM);
                     }
 
                     break;
 
                 case 7:
-                    System.out.println("Ingrese la ID del proveedor que quiere buscar");
-                    String id;
+                    String id = InputHelper.leerIDOCodigo("Ingrese la ID del proveedor que quiere buscar:");
+                    Proveedor p = gestionProveedor.buscarProveedoresPorId(id);
 
-                    while (true){
-
-                        try {
-                            id = teclado.nextLine();
-                            Validaciones.validarIDYCodigo(id);
-                            Proveedor p = gestionProveedor.buscarProveedoresPorId(id);
-
-                            if(p != null){
-                                gestionProveedor.mostrarDatosProveedor(p);
-                            }
-
-                            break;
-
-                        }catch (DatoInvalidoException e){
-                            System.err.println("Error: " +e.getMessage()+ ". Por favor, inténtelo nuevamente");
-                        }
+                    if(p != null){
+                        p.mostrarDatosProveedor();
                     }
 
                     break;
@@ -520,15 +373,15 @@ public class GestionMenu {
             System.out.println("2. Modificar mi cuenta");
             System.out.println("3. Eliminar cuenta");
             System.out.println("4. Dar de alta administrador");
-            System.out.println("5. Atrás");
+            System.out.println("5. Mostrar todos los administradores");
+            System.out.println("6. Atrás");
 
-            int opcion = teclado.nextInt();
-            teclado.nextLine();
+            int opcion = InputHelper.leerEnteroSwitch();
 
             switch (opcion) {
 
                 case 1:
-                    gestionAdministrador.mostrarDatosUsuario(administrador);
+                    administrador.mostrarDatosUsuario();
                     break;
 
                 case 2:
@@ -540,9 +393,7 @@ public class GestionMenu {
                     break;
 
                 case 4:
-                    System.out.println("Ingrese el DNI del administrador que quiere dar de alta."); //validar dni
-                    String dni = teclado.nextLine();
-
+                    String dni = InputHelper.pedirDni("administrador", "Ingrese el DNI del administrador que quiere dar de alta.");
                     Administrador aux = gestionAdministrador.encontrarUsuario(dni);
 
                     if (aux != null) {
@@ -555,6 +406,10 @@ public class GestionMenu {
                     break;
 
                 case 5:
+                    gestionAdministrador.mostrarTodosLosUsuarios();
+                    break;
+
+                case 6:
                     System.out.println("Saliendo...");
                     return;
 
@@ -575,10 +430,10 @@ public class GestionMenu {
             System.out.println("2. Dar de baja usuario");
             System.out.println("3. Dar de alta usuario");
             System.out.println("4. Buscar un usuario por su DNI");
-            System.out.println("5. Atrás");
+            System.out.println("5. Mostrar todos los usuarios");
+            System.out.println("6. Atrás");
 
-            int opcion = teclado.nextInt();
-            teclado.nextLine();
+            int opcion = InputHelper.leerEnteroSwitch();
 
             switch (opcion) {
 
@@ -587,9 +442,7 @@ public class GestionMenu {
                     break;
 
                 case 2:
-                    System.out.println("Ingrese el DNI del usuario que quiere dar de baja."); //validar dni
-                    String dni1 = teclado.nextLine();
-
+                    String dni1 = InputHelper.pedirDni("usuario", "Ingrese el DNI del usuario que quiere dar de baja.");
                     Usuario aux1 = gestionUsuario.encontrarUsuario(dni1);
 
                     if (aux1 != null) {
@@ -602,9 +455,7 @@ public class GestionMenu {
                     break;
 
                 case 3:
-                    System.out.println("Ingrese el DNI del usuario que quiere dar de alta.");
-                    String dni2 = teclado.nextLine();
-
+                    String dni2 = InputHelper.pedirDni("usuario", "Ingrese el DNI del usuario que quiere dar de alta.");
                     Usuario aux2 = gestionUsuario.encontrarUsuario(dni2);
 
                     if (aux2 != null) {
@@ -617,14 +468,12 @@ public class GestionMenu {
                     break;
 
                 case 4:
-                    System.out.println("Ingrese el DNI del usuario que está buscando");
-                    String dni3 = teclado.nextLine();
-
+                    String dni3 = InputHelper.pedirDni("usuario", "Ingrese el DNI del usuario que está buscando");
                     Usuario aux3 = gestionUsuario.encontrarUsuario(dni3);
 
                     if (aux3 != null) {
                         System.out.println("El usuario fue encontrado exitosamente. Mostrando perfil...");
-                        gestionUsuario.mostrarDatosUsuario(aux3);
+                        aux3.mostrarDatosUsuario();
                     } else {
                         System.out.println("No se encontró ningún usuario con ese DNI.");
                     }
@@ -632,6 +481,10 @@ public class GestionMenu {
                     break;
 
                 case 5:
+                    gestionUsuario.mostrarTodosLosUsuarios();
+                    break;
+
+                case 6:
                     System.out.println("Saliendo...");
                     return;
 
@@ -665,7 +518,6 @@ public class GestionMenu {
     }
 
 
-
     public void menuInicioDeSesionUsuario(Usuario usuario){
 
         boolean salir = true;
@@ -679,8 +531,7 @@ public class GestionMenu {
             System.out.println("2. Generar orden de venta");
             System.out.println("3. Salir");
 
-            int opcion = teclado.nextInt();
-            teclado.nextLine();
+            int opcion = InputHelper.leerEnteroSwitch();
 
             switch (opcion){
                 case 1:
@@ -713,13 +564,12 @@ public class GestionMenu {
             System.out.println("2. Modificar mi cuenta");
             System.out.println("3. Atrás");
 
-            int opcion = teclado.nextInt();
-            teclado.nextLine();
+            int opcion = InputHelper.leerEnteroSwitch();
 
             switch (opcion) {
 
                 case 1:
-                    gestionUsuario.mostrarDatosUsuario(usuario);
+                    usuario.mostrarDatosUsuario();
                     break;
 
                 case 2:
@@ -750,8 +600,7 @@ public class GestionMenu {
             System.out.println("5. Buscar orden de compra");
             System.out.println("6. Atrás");
 
-            int opcion = teclado.nextInt();
-            teclado.nextLine();
+            int opcion = InputHelper.leerEnteroSwitch();
 
             switch (opcion) {
 
@@ -760,20 +609,7 @@ public class GestionMenu {
                     break;
 
                 case 2:
-                    System.out.println("Ingrese el ID de la compra que quiere cancelar: ");
-                    String id;
-
-                    while (true){
-
-                        try {
-                            id = teclado.nextLine();
-                            Validaciones.validarIDYCodigo(id);
-                            break;
-
-                        }catch (DatoInvalidoException e){
-                            System.err.println("Error: " +e.getMessage());
-                        }
-                    }
+                    String id = InputHelper.leerIDOCodigo("Ingrese el ID de la compra que quiere cancelar: ");
 
                     try {
                         gestionCompra.cancelarCompra(id);
@@ -789,20 +625,7 @@ public class GestionMenu {
                     break;
 
                 case 4:
-                    System.out.println("Ingrese el ID de la compra que quiere modificar: ");
-                    String idA;
-
-                    while (true){
-
-                        try {
-                            idA = teclado.nextLine();
-                            Validaciones.validarIDYCodigo(idA);
-                            break;
-
-                        }catch (DatoInvalidoException e){
-                            System.err.println("Error: " +e.getMessage());
-                        }
-                    }
+                    String idA = InputHelper.leerIDOCodigo("Ingrese el ID de la compra que quiere modificar: ");
 
                     try {
                         Compra modificarCompra = gestionCompra.buscarPorId(idA);
@@ -815,24 +638,11 @@ public class GestionMenu {
                     break;
 
                 case 5:
-                    System.out.println("Ingrese el ID de la compra que quiere buscar: ");
-                    String idB;
-
-                    while (true){
-
-                        try {
-                            idB = teclado.nextLine();
-                            Validaciones.validarIDYCodigo(idB);
-                            break;
-
-                        }catch (DatoInvalidoException e){
-                            System.err.println("Error: " +e.getMessage());
-                        }
-                    }
+                    String idB = InputHelper.leerIDOCodigo("Ingrese el ID de la compra que quiere buscar: ");
 
                     try {
                         Compra compra = gestionCompra.buscarPorId(idB);
-                        gestionCompra.mostrarCompra(compra);
+                        compra.mostrarCompra();
 
                     }catch (IllegalArgumentException e){
                         System.err.println("Error: " +e.getMessage());
@@ -864,8 +674,7 @@ public class GestionMenu {
             System.out.println("5. Buscar orden de venta");
             System.out.println("6. Atrás");
 
-            int opcion = teclado.nextInt();
-            teclado.nextLine();
+            int opcion = InputHelper.leerEnteroSwitch();
 
             switch (opcion) {
 
@@ -874,21 +683,7 @@ public class GestionMenu {
                     break;
 
                 case 2:
-                    System.out.println("Ingrese el ID de la venta a cancelar:");
-                    String idCancelar;
-
-                    while (true){
-
-                        try {
-                            idCancelar = teclado.nextLine();
-                            Validaciones.validarIDYCodigo(idCancelar);
-
-                            break;
-
-                        }catch (DatoInvalidoException e){
-                            System.err.println("Error: " +e.getMessage());
-                        }
-                    }
+                    String idCancelar = InputHelper.leerIDOCodigo("Ingrese el ID de la venta a cancelar:");
 
                     try {
                         Venta cancelarVenta = gestionVenta.buscarOrdenVentaPorId(idCancelar);
@@ -905,21 +700,7 @@ public class GestionMenu {
                     break;
 
                 case 4:
-                    System.out.println("Ingrese el ID de la venta a modificar:");
-                    String idMod;
-
-                    while (true){
-
-                        try {
-                            idMod = teclado.nextLine();
-                            Validaciones.validarIDYCodigo(idMod);
-
-                            break;
-
-                        }catch (DatoInvalidoException e){
-                            System.err.println("Error: " +e.getMessage());
-                        }
-                    }
+                    String idMod = InputHelper.leerIDOCodigo("Ingrese el ID de la venta a modificar:");
 
                     try {
                         Venta modificarVenta = gestionVenta.buscarOrdenVentaPorId(idMod);
@@ -932,25 +713,11 @@ public class GestionMenu {
                     break;
 
                 case 5:
-                    System.out.println("Ingrese el ID de la venta a buscar:");
-                    String idBusc;
-
-                    while (true){
-
-                        try {
-                            idBusc = teclado.nextLine();
-                            Validaciones.validarIDYCodigo(idBusc);
-
-                            break;
-
-                        }catch (DatoInvalidoException e){
-                            System.err.println("Error: " +e.getMessage());
-                        }
-                    }
+                    String idBusc = InputHelper.leerIDOCodigo("Ingrese el ID de la venta a buscar:");
 
                     try {
                         Venta buscarVenta = gestionVenta.buscarOrdenVentaPorId(idBusc);
-                        gestionVenta.mostrarVenta(buscarVenta);
+                        buscarVenta.mostrarVenta();
 
                     }catch (IllegalArgumentException e){
                         System.err.println("Error: " +e.getMessage());

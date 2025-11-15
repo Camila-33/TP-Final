@@ -69,12 +69,12 @@ public class PlacaMadre extends Producto{
     }
 
     @Override
-    public String toString() {
-        return "PlacaMadre {" +
-                "tipoMemoria = '" + tipoMemoria + '\'' +
-                ", cantidadSlotMemoria = " + cantidadSlotMemoria +
-                ", backConnect = " + backConnect +
-                ", bobtonBios = " + botonBios +
-                " " + super.toString();
+    public void mostrarProducto() {
+        super.mostrarProducto();
+        System.out.println("Tipo de memoria: " +tipoMemoria);
+        System.out.println("Cantidad de slots: " + cantidadSlotMemoria);
+        System.out.println("Back Connect: " + (backConnect ? "Sí" : "No"));
+        System.out.println("Botón de Bios: " + (botonBios ? "Sí" : "No"));
+        System.out.println("-------------------------\n");
     }
 }

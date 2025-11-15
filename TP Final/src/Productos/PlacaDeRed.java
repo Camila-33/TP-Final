@@ -39,9 +39,9 @@ public class PlacaDeRed extends Producto{
     }
 
     @Override
-    public String toString() {
-        return "PlacaDeRed {" +
-                "dispositivosCompatibles = '" + dispositivosCompatibles + '\'' +
-                " " + super.toString();
+    public void mostrarProducto() {
+        super.mostrarProducto();
+        System.out.println("Dispositivos compatibles: " + dispositivosCompatibles);
+        System.out.println("-------------------------\n");
     }
 }
