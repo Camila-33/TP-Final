@@ -1,11 +1,11 @@
 [
     {
         "fechaCompra": "2025-11-17",
-        "total": 159.96,
+        "total": 199.95000000000002,
         "detallesCompra": [{
             "precioUnitario": 39.99,
             "idDetalle": "446157291",
-            "cantidad": 4,
+            "cantidad": 5,
             "productos": {
                 "descripcion": "Módulo DDR4 económico de 8GB",
                 "garantiaMeses": 24,
@@ -22,17 +22,12 @@
                 "fechaIngreso": "2025-11-16",
                 "precio": 39.99,
                 "idProveedores": ["363510186"],
-                "stock": 30,
+                "stock": 31,
                 "dimension": "133x30x7 mm",
                 "activo": true,
                 "capacidad": 8
             }
         }],
-        "proveedor": {
-            "Nombre": "Nicolás",
-            "Apellido": "Castro",
-            "ID": "424368618"
-        },
         "idPedido": "920499969",
         "activo": true
     },
@@ -64,11 +59,6 @@
                 "activo": true
             }
         }],
-        "proveedor": {
-            "Nombre": "Ana",
-            "Apellido": "Martínez",
-            "ID": "363510186"
-        },
         "idPedido": "260738829",
         "activo": true
     },
@@ -129,11 +119,6 @@
                 }
             }
         ],
-        "proveedor": {
-            "Nombre": "Diego",
-            "Apellido": "Fernández",
-            "ID": "830748676"
-        },
         "idPedido": "710132993",
         "activo": true
     },
@@ -217,11 +202,6 @@
                 }
             }
         ],
-        "proveedor": {
-            "Nombre": "Lucía",
-            "Apellido": "Sánchez",
-            "ID": "361950682"
-        },
         "idPedido": "439121322",
         "activo": true
     },
@@ -256,11 +236,6 @@
                 "activo": true
             }
         }],
-        "proveedor": {
-            "Nombre": "María",
-            "Apellido": "Gómez",
-            "ID": "847517749"
-        },
         "idPedido": "812576822",
         "activo": true
     },
@@ -291,11 +266,6 @@
                 "activo": true
             }
         }],
-        "proveedor": {
-            "Nombre": "Sofía",
-            "Apellido": "Rodríguez",
-            "ID": "909995649"
-        },
         "idPedido": "267850293",
         "activo": true
     },
@@ -327,11 +297,6 @@
                 "activo": true
             }
         }],
-        "proveedor": {
-            "Nombre": "Sergio",
-            "Apellido": "Acosta",
-            "ID": "892940319"
-        },
         "idPedido": "533530187",
         "activo": true
     },
@@ -420,11 +385,6 @@
                 }
             }
         ],
-        "proveedor": {
-            "Nombre": "Nicolás",
-            "Apellido": "Castro",
-            "ID": "424368618"
-        },
         "idPedido": "225497681",
         "activo": true
     },
@@ -507,11 +467,6 @@
                 }
             }
         ],
-        "proveedor": {
-            "Nombre": "Sergio",
-            "Apellido": "Acosta",
-            "ID": "892940319"
-        },
         "idPedido": "582595419",
         "activo": true
     },
@@ -575,11 +530,6 @@
                 }
             }
         ],
-        "proveedor": {
-            "Nombre": "Luis",
-            "Apellido": "García",
-            "ID": "961210452"
-        },
         "idPedido": "590466311",
         "activo": true
     },
@@ -613,11 +563,6 @@
                 "activo": true
             }
         }],
-        "proveedor": {
-            "Nombre": "Nicolás",
-            "Apellido": "Castro",
-            "ID": "424368618"
-        },
         "idPedido": "287906637",
         "activo": true
     },
@@ -678,11 +623,6 @@
                 }
             }
         ],
-        "proveedor": {
-            "Nombre": "Juan",
-            "Apellido": "Pérez",
-            "ID": "133717095"
-        },
         "idPedido": "420706858",
         "activo": true
     },
@@ -771,11 +711,6 @@
                 }
             }
         ],
-        "proveedor": {
-            "Nombre": "Carla",
-            "Apellido": "Vargas",
-            "ID": "411600851"
-        },
         "idPedido": "401014712",
         "activo": true
     },
@@ -807,11 +742,6 @@
                 "activo": true
             }
         }],
-        "proveedor": {
-            "Nombre": "Luis",
-            "Apellido": "García",
-            "ID": "961210452"
-        },
         "idPedido": "876175522",
         "activo": true
     },
@@ -872,11 +802,6 @@
                 }
             }
         ],
-        "proveedor": {
-            "Nombre": "Nicolás",
-            "Apellido": "Castro",
-            "ID": "424368618"
-        },
         "idPedido": "507494807",
         "activo": true
     }

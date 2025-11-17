@@ -40,16 +40,11 @@ public class GestionCompra {
 
         Compra compra = new Compra();
 
-        System.out.println("Elija el proveedor al cual desea comprarle productos:");
-
-        Proveedor proveedor = gestionProveedor.elegirProveedorDisponible();
-        compra.setProveedor(proveedor);
-
         boolean seguir = true;
 
         while (seguir) {
 
-            DetalleCompra detalleCompra = cargarDetalleCompra(proveedor);
+            DetalleCompra detalleCompra = cargarDetalleCompra();
             compra.agregarDetalleCompra(detalleCompra);
 
             Producto p = detalleCompra.getProducto();
@@ -69,9 +64,11 @@ public class GestionCompra {
     }
 
 
-    public DetalleCompra cargarDetalleCompra(Proveedor proveedor) {
+    public DetalleCompra cargarDetalleCompra() {
 
-        Producto productoSeleccionado = gestionProducto.elegirProductosDeUnProveedor(proveedor);
+        System.out.println("Elija alguno de los siguientes productos para comprar a un proveedor");
+
+        Producto productoSeleccionado = gestionProducto.elegirProductosDisponibles();
 
         int cantidad;
 
@@ -89,25 +86,17 @@ public class GestionCompra {
 
         while (seguirModificando) {
             System.out.println("\n¿Qué desea modificar?");
-            System.out.println("1. Proveedor");
-            System.out.println("2. Detalles de compra (productos y cantidades)");
-            System.out.println("3. Salir dle apartado de modificación");
+            System.out.println("1. Detalles de compra (productos y cantidades)");
+            System.out.println("2. Salir del apartado de modificación");
 
             int opcion = InputHelper.leerEnteroSwitch();
 
             switch (opcion) {
                 case 1:
-
-                    Proveedor nuevoProveedor = gestionProveedor.elegirProveedorDisponible();
-                    compra.setProveedor(nuevoProveedor);
-                    System.out.println("Proveedor actualizado correctamente.");
-                    break;
-
-                case 2:
                     modificarDetallesCompra(compra);
                     break;
 
-                case 3:
+                case 2:
                     seguirModificando = false;
                     break;
 
@@ -116,9 +105,12 @@ public class GestionCompra {
             }
         }
 
+        compras.put(compra.getIdPedido(), compra);
+
         GestionJSONCompra.listaCompraToArchivo(compras, "compra.json");
         System.out.println("Compra modificada y guardada correctamente.");
     }
+
 
     private void modificarDetallesCompra(Compra compra) {
 

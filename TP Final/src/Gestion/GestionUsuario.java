@@ -8,8 +8,6 @@ import Users.UsuarioSistema.Usuario;
 
 import java.util.HashSet;
 
-import static IngresoDeDatos.InputHelper.teclado;
-
 public class GestionUsuario implements MetodosGestion <Usuario>{
 
     private HashSet<Usuario> listaUsuarios;
@@ -58,7 +56,6 @@ public class GestionUsuario implements MetodosGestion <Usuario>{
                     System.out.println("9. Salir");
 
                     int opcion = InputHelper.leerEnteroSwitch();
-                    teclado.nextLine();
 
                     switch (opcion) {
 

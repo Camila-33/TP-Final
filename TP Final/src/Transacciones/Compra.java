@@ -13,7 +13,6 @@ public class Compra {
     private String idPedido;
     private double total;
     private LocalDate fechaCompra;
-    private Proveedor proveedor;
     private boolean activo;
     private List<DetalleCompra> detallesCompra;
 
@@ -26,7 +25,6 @@ public class Compra {
         this.detallesCompra = new ArrayList<>();
         this.total = getTotal();
         this.fechaCompra = LocalDate.now();
-        this.proveedor = proveedor;
         this.activo = true;
     }
 
@@ -58,14 +56,6 @@ public class Compra {
         this.fechaCompra = fechaCompra;
     }
 
-    public Proveedor getProveedor() {
-        return proveedor;
-    }
-
-    public void setProveedor(Proveedor proveedor) {
-        this.proveedor = proveedor;
-    }
-
     public List<DetalleCompra> getDetallesCompra() {
         return detallesCompra;
     }
@@ -92,7 +82,6 @@ public class Compra {
         System.out.println("\n===Compra ===");
         System.out.println("ID Pedido: " + idPedido);
         System.out.println("Fecha: " + fechaCompra);
-        System.out.println("Proveedor: " +proveedor.getNombre() + " " + proveedor.getApellido());
         System.out.println("Estado: " + (activo ? "Activa" : "Cancelada"));
 
         if (detallesCompra.isEmpty()) {

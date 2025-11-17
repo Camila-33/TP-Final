@@ -4,8 +4,6 @@ import IngresoDeDatos.InputHelper;
 import Users.UsuarioSistema.Administrador;
 import Users.UsuarioSistema.Usuario;
 
-import java.util.Scanner;
-
 public class RegistroUser {
 
     public RegistroUser() {

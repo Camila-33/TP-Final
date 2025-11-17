@@ -52,8 +52,6 @@ public class GestionJSONCompra {
             jsonObject.put("fechaCompra", c.getFechaCompra().toString());
             jsonObject.put("activo", c.isActivo());
 
-            jsonObject.put("proveedor", GestionJSONProveedor.serializarProveedorParcial(c.getProveedor()));
-
             JSONArray detallesArray = new JSONArray();
             for (DetalleCompra d : c.getDetallesCompra()) {
                 detallesArray.put(GestionJSONDetalleCompra.serializarDetalleCompra(d));
@@ -115,10 +113,6 @@ public class GestionJSONCompra {
             compraLeida.setFechaCompra(LocalDate.parse(fechaString));
 
             compraLeida.setActivo(jsonObject.getBoolean("activo"));
-
-            JSONObject jsonProveedor = jsonObject.getJSONObject("proveedor");
-            Proveedor proveedor = GestionJSONProveedor.deserializarProveedorParcial(jsonProveedor);
-            compraLeida.setProveedor(proveedor);
 
             JSONArray jsonDetalles = jsonObject.getJSONArray("detallesCompra");
             List<DetalleCompra> listaDetalles = new ArrayList<>();

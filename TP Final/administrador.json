@@ -84,6 +84,18 @@
         "activo": true
     },
     {
+        "apellido": "Doe",
+        "direccion": "Calle Falsa 876",
+        "contrasenia": "password123@",
+        "id": "448472527",
+        "telefono": "5551234564",
+        "nombre": "John",
+        "dni": "12344321",
+        "email": "john.doe@email.com",
+        "username": "admin10",
+        "activo": true
+    },
+    {
         "apellido": "Sánchez",
         "direccion": "Calle Río 505",
         "contrasenia": "simple78@",

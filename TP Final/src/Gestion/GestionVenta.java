@@ -119,11 +119,8 @@ public class GestionVenta {
 
         for (Map.Entry<String, Venta> entry : listaVentas.entrySet()) {
             Venta v = entry.getValue();
-            System.out.println("-------------------------------------");
-            System.out.println("ID Venta: " + entry.getKey());
-            System.out.println(v);
+            v.mostrarVenta();
         }
-        System.out.println("-------------------------------------");
     }
 
 
