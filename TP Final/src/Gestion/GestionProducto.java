@@ -29,7 +29,9 @@ public class GestionProducto {
         listaProductos = GestionJSONProducto.archivoProductosToLista("producto.json");
         listaProductos.put(p.getCodigo(), p);
         GestionJSONProducto.listaProductosToArchivo(listaProductos, "producto.json");
-
+        
+        inventario.registrarStockProducto(p);
+        
     }
 
     public void darBajaProducto(Producto p){
@@ -48,7 +50,7 @@ public class GestionProducto {
                         p.setActivo(false);
                         System.out.println("¡Producto dado de baja con éxito!");
                         GestionJSONProducto.listaProductosToArchivo(listaProductos, "producto.json");
-
+                        inventario.darBajaStockProducto(p.getCodigo);
                         return;
 
                     }else if (opcion.equalsIgnoreCase("no")) {
