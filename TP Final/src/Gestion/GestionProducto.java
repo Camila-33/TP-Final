@@ -15,8 +15,12 @@ public class GestionProducto {
     private HashMap<String, Producto> listaProductos;
     private Scanner teclado;
 
-    public GestionProducto() {
+    private Inventario inventario;
+
+    public GestionProducto(Inventario inventario) {
+        this.inventario = inventario;
         this.listaProductos = new HashMap<>();
+        
         this.teclado = new Scanner(System.in);
     }
 
