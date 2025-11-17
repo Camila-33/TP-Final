@@ -1,5 +1,6 @@
 package Gestion;
 
+import Excepciones.ProveedorNoEncontradoException;
 import IngresoDeDatos.InputHelper;
 import Productos.Producto;
 import Transacciones.Compra;
@@ -302,7 +303,13 @@ public class GestionMenu {
 
                 case 2:
                     String idB = InputHelper.leerIDOCodigo("Ingrese la ID del proveedor que quiere dar de baja");
-                    Proveedor pB = gestionProveedor.buscarProveedorPorId(idB);
+                    Proveedor pB = null;
+
+                    try {
+                        pB = gestionProveedor.buscarProveedorPorId(idB);
+                    } catch (ProveedorNoEncontradoException e) {
+                        System.err.println("Error: " +e.getMessage());
+                    }
 
                     if(pB != null){
                         gestionProveedor.darBajaProveedor(pB);
@@ -312,7 +319,13 @@ public class GestionMenu {
 
                 case 3:
                     String idA = InputHelper.leerIDOCodigo("Ingrese la ID del proveedor que quiere dar de alta");
-                    Proveedor pA = gestionProveedor.buscarProveedorPorId(idA);
+                    Proveedor pA = null;
+
+                    try {
+                        pA = gestionProveedor.buscarProveedorPorId(idA);
+                    } catch (ProveedorNoEncontradoException e) {
+                        System.err.println("Error: " +e.getMessage());
+                    }
 
                     if(pA != null){
                         gestionProveedor.darAltaProveedor(pA);
@@ -322,7 +335,12 @@ public class GestionMenu {
 
                 case 4:
                     String nombre = InputHelper.pedirString("Ingrese un nombre: ");
-                    gestionProveedor.mostrarProveedoresPorCoincidencia(nombre);
+
+                    try {
+                        gestionProveedor.mostrarProveedoresPorCoincidencia(nombre);
+                    } catch (ProveedorNoEncontradoException e) {
+                        System.err.println("Error: " +e.getMessage());
+                    }
 
                     break;
 
@@ -332,7 +350,13 @@ public class GestionMenu {
 
                 case 6:
                     String idC = InputHelper.leerIDOCodigo("Ingrese la ID del proveedor que quiere modificar");
-                    Proveedor pM = gestionProveedor.buscarProveedorPorId(idC);
+                    Proveedor pM = null;
+
+                    try {
+                        pM = gestionProveedor.buscarProveedorPorId(idC);
+                    } catch (ProveedorNoEncontradoException e) {
+                        System.err.println("Error: " +e.getMessage());
+                    }
 
                     if(pM != null){
                         gestionProveedor.modificarProveedor(pM);
@@ -342,7 +366,13 @@ public class GestionMenu {
 
                 case 7:
                     String id = InputHelper.leerIDOCodigo("Ingrese la ID del proveedor que quiere buscar:");
-                    Proveedor p = gestionProveedor.buscarProveedorPorId(id);
+                    Proveedor p = null;
+
+                    try {
+                        p = gestionProveedor.buscarProveedorPorId(id);
+                    } catch (ProveedorNoEncontradoException e) {
+                        System.err.println("Error: " +e.getMessage());
+                    }
 
                     if(p != null){
                         gestionProveedor.mostrarDatosProveedor(p);

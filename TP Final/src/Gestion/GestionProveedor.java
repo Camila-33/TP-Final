@@ -3,14 +3,13 @@ package Gestion;
 import Archivos.GestionJSONProductos.GestionJSONProducto;
 import Archivos.GestionJSONUsers.GestionJSONProveedor;
 import Enums.TipoProveedor;
+import Excepciones.ProveedorNoEncontradoException;
 import IngresoDeDatos.InputHelper;
 import Productos.Producto;
 import Users.Proveedor;
 import Validaciones.Validaciones;
 
 import java.util.*;
-
-import static IngresoDeDatos.InputHelper.teclado;
 
 public class GestionProveedor {
 
@@ -47,7 +46,6 @@ public class GestionProveedor {
                     System.out.println("4. CUIT");
                     System.out.println("5. Teléfono");
                     System.out.println("6. Tipo de proveedor");
-                    System.out.println("7. ");
                     System.out.println("7. Salir");
 
                     int opcion = InputHelper.leerInt("Elija una opción");
@@ -159,7 +157,7 @@ public class GestionProveedor {
     }
 
 
-    public void mostrarProveedoresPorCoincidencia(String nombre){
+    public void mostrarProveedoresPorCoincidencia(String nombre) throws ProveedorNoEncontradoException {
 
         boolean encontrado = false;
 
@@ -171,11 +169,11 @@ public class GestionProveedor {
         }
 
         if (!encontrado) {
-            System.out.println("No se encontraron proveedores que coincidan con ese nombre");
+            throw new ProveedorNoEncontradoException("No se encontraron proveedores");
         }
     }
 
-    public Proveedor buscarProveedorPorId(String id) {
+    public Proveedor buscarProveedorPorId(String id) throws ProveedorNoEncontradoException {
 
         listaProveedores = GestionJSONProveedor.archivoProveedorToLista("proveedor.json");
 
@@ -190,7 +188,7 @@ public class GestionProveedor {
         }
 
         if (!encontrado) {
-            System.out.println("No se encontraron proveedores con esa ID");
+            throw new ProveedorNoEncontradoException("No se encontraron proveedores con esa ID");
         }
 
         return proveedor;
