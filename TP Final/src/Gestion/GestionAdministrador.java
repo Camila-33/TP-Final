@@ -80,7 +80,7 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
                             break;
 
                         case 5:
-                            a.setEmail(InputHelper.pedirEmail("Nuevo email:"));
+                            a.setEmail(InputHelper.pedirEmail("administrador", "Nuevo email:"));
                             break;
 
                         case 6:
@@ -123,6 +123,11 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
 
         for (Administrador admin : listaAdministradores) {
             if (admin.equals(a)) {
+
+                if (!admin.isActivo()) {
+                    System.err.println("Error: el administrador ya está dado de baja.");
+                    return;
+                }
 
                 char opcion = InputHelper.leerChar("¿Estás seguro de que quieres dar de baja la cuenta? (s / n)");
 
@@ -171,8 +176,12 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
         for (Administrador admin : listaAdministradores) {
             if (admin.equals(a)) {
 
-                char opcion = InputHelper.leerChar(
-                        "¿Estás seguro de que quieres dar de alta al administrador " + admin.getNombreCompleto() + "? (s / n)");
+                if (admin.isActivo()) {
+                    System.err.println("Error: el administrador ya está dado de alta.");
+                    return;
+                }
+
+                char opcion = InputHelper.leerChar("¿Estás seguro de que quieres dar de alta al administrador " + admin.getNombreCompleto() + "? (s / n)");
 
                 if (opcion == 's') {
                     admin.setActivo(true);

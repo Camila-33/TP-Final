@@ -146,8 +146,8 @@ public class GestionMenu {
             System.out.println("3. Gestión proveedores");
             System.out.println("4. Gestión de usuarios");
             System.out.println("5. Gestión de stock");
-            System.out.println("6. Gestión de ventas");
-            System.out.println("7. Gestión de compras");
+            System.out.println("6. Gestión de compras");
+            System.out.println("7. Gestión de ventas");
             System.out.println("8. Salir");
 
             int opcion = InputHelper.leerEnteroSwitch();
@@ -445,7 +445,6 @@ public class GestionMenu {
 
                     if (aux1 != null) {
                         gestionUsuario.darDeBajaUsuario(aux1);
-                        System.out.println("El usuario fue dado de baja correctamente.");
                     } else {
                         System.out.println("No se encontró ningún usuario con ese DNI.");
                     }
@@ -458,7 +457,6 @@ public class GestionMenu {
 
                     if (aux2 != null) {
                         gestionUsuario.darDeAltaUsuario(aux2);
-                        System.out.println("El usuario fue dado de alta correctamente.");
                     } else {
                         System.out.println("No se encontró ningún usuario con ese DNI.");
                     }
@@ -749,7 +747,11 @@ public class GestionMenu {
                 case 1:
                     String codigo = InputHelper.leerIDOCodigo("Ingrese el código del producto para consultar su stock:");
                     Producto p = gestionProducto.buscarProductoPorCodigo(codigo);
-                    System.out.println("Código: " + p.getCodigo() + " - Nombre: " +p.getNombre());
+
+                    if(p != null) {
+                        System.out.println("Código: " + p.getCodigo() + " - Nombre: " + p.getNombre() + " - Stock: " + p.getStock());
+                    }
+
                     break;
 
                 case 2:

@@ -59,7 +59,7 @@ public class GestionJSONProveedor {
             for (Map.Entry<String, Producto> entry : p.getProductosSuministrados().entrySet()) {
                 Producto producto = entry.getValue();
 
-                JSONObject productoJson = GestionJSONProducto.serializarProductoParcial(producto);
+                JSONObject productoJson = GestionJSONProducto.serializarProductoParcialProveedor(producto);
 
                 listaJson.put(productoJson);
             }
@@ -106,22 +106,6 @@ public class GestionJSONProveedor {
         return listaProveedor;
     }
 
-    public static Proveedor archivoProveedorToObjeto(String nombreArchivo) {
-
-        JSONTokener jsonTokener = OperacionesLectoEscritura.leer(nombreArchivo);
-        Proveedor proveedor = null;
-
-        try {
-            JSONObject jsonProveedor = new JSONObject(jsonTokener);
-            proveedor = deserializarProveedor(jsonProveedor);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        return proveedor;
-    }
-
     public static HashSet<Proveedor> deserializarListaProveedor(JSONArray jsonArray){
 
         HashSet<Proveedor> lista = new HashSet<>();
@@ -166,7 +150,7 @@ public class GestionJSONProveedor {
 
                 JSONObject productoJson = productosArray.getJSONObject(i);
 
-                Producto producto = GestionJSONProducto.deserializarProductoParcial(productoJson);
+                Producto producto = GestionJSONProducto.deserializarProductoParcialProveedor(productoJson);
 
                 if (producto != null && producto.getCodigo() != null) {
                     productosProveedor.put(producto.getCodigo(), producto);

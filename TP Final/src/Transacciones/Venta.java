@@ -100,7 +100,7 @@ public class Venta {
 
     public void mostrarVenta() {
 
-        System.out.println("\n=== Detalle de la venta ===");
+        System.out.println("\n=== Venta ===");
         System.out.println("ID Pedido: " + idVenta);
         System.out.println("Fecha: " + fecha.toString());
         System.out.println("Estado: " + (activo ? "Activa" : "Cancelada"));

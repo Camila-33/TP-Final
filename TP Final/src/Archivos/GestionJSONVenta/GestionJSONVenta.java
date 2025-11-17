@@ -22,13 +22,6 @@ public class GestionJSONVenta {
         OperacionesLectoEscritura.grabar(nombreArchivo, serializarListaVenta(listaVentas));
     }
 
-    public static void ventaToArchivo(Venta venta, String nombreArchivo){
-
-        JSONArray jsonArray = new JSONArray();
-        jsonArray.put(serializarVenta(venta));
-
-        OperacionesLectoEscritura.grabar(nombreArchivo, jsonArray);
-    }
 
     public static JSONArray serializarListaVenta(HashMap<String, Venta> listaVentas) {
 

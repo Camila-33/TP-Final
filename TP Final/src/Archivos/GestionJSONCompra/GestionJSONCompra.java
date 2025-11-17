@@ -24,13 +24,6 @@ public class GestionJSONCompra {
         OperacionesLectoEscritura.grabar(nombreArchivo, serializarListaCompra(listaCompras));
     }
 
-    public static void compraToArchivo(Compra compra, String nombreArchivo){
-
-        JSONArray jsonArray = new JSONArray();
-        jsonArray.put(serializarCompra(compra));
-
-        OperacionesLectoEscritura.grabar(nombreArchivo, jsonArray);
-    }
 
     public static JSONArray serializarListaCompra(HashMap<String, Compra> listaCompras) {
 

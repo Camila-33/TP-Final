@@ -1,414 +1,827 @@
 [
     {
-        "total": 1199.98,
+        "total": 197.5,
         "detallesVenta": [{
-            "precioUnitario": 599.99,
-            "idDetalle": "533510612",
-            "cantidad": 2,
-            "producto": {
-                "tipo": "PlacaDeVideo",
-                "codigo": "825749770",
-                "nombre": "NVIDIA GeForce RTX 3070"
-            }
-        }],
-        "idVenta": "114541239",
-        "fechaVenta": "2025-11-16",
-        "activo": true
-    },
-    {
-        "total": 539.9300000000001,
-        "detallesVenta": [
-            {
-                "precioUnitario": 219.99,
-                "idDetalle": "635992098",
-                "cantidad": 2,
-                "producto": {
-                    "tipo": "PlacaMadre",
-                    "codigo": "413276641",
-                    "nombre": "ASRock Z590 Steel Legend"
-                }
-            },
-            {
-                "precioUnitario": 19.99,
-                "idDetalle": "533173896",
-                "cantidad": 5,
-                "producto": {
-                    "tipo": "PlacaDeRed",
-                    "codigo": "853045521",
-                    "nombre": "TP-Link TG-3468"
-                }
-            }
-        ],
-        "idVenta": "833013968",
-        "fechaVenta": "2025-11-16",
-        "activo": true
-    },
-    {
-        "total": 2478.48,
-        "detallesVenta": [
-            {
-                "precioUnitario": 359.5,
-                "idDetalle": "875011478",
-                "cantidad": 3,
-                "producto": {
-                    "tipo": "Procesador",
-                    "codigo": "166907182",
-                    "nombre": "Intel Core i7-11700K"
-                }
-            },
-            {
-                "precioUnitario": 699.99,
-                "idDetalle": "660145401",
-                "cantidad": 2,
-                "producto": {
-                    "tipo": "PlacaDeVideo",
-                    "codigo": "106060709",
-                    "nombre": "AMD Radeon RX 6800"
-                }
-            }
-        ],
-        "idVenta": "157214394",
-        "fechaVenta": "2025-11-16",
-        "activo": true
-    },
-    {
-        "total": 552.46,
-        "detallesVenta": [
-            {
-                "precioUnitario": 84.99,
-                "idDetalle": "974111305",
-                "cantidad": 4,
-                "producto": {
-                    "tipo": "MemoriaRAM",
-                    "codigo": "508587642",
-                    "nombre": "G.Skill Ripjaws V 16GB"
-                }
-            },
-            {
-                "precioUnitario": 42.5,
-                "idDetalle": "737195884",
-                "cantidad": 5,
-                "producto": {
-                    "tipo": "MemoriaRAM",
-                    "codigo": "222359604",
-                    "nombre": "Kingston HyperX Fury 8GB"
-                }
-            }
-        ],
-        "idVenta": "251326186",
-        "fechaVenta": "2025-11-16",
-        "activo": true
-    },
-    {
-        "total": 2001.91,
-        "detallesVenta": [
-            {
-                "precioUnitario": 199.99,
-                "idDetalle": "856478805",
-                "cantidad": 4,
-                "producto": {
-                    "tipo": "Procesador",
-                    "codigo": "714192743",
-                    "nombre": "AMD Ryzen 5 5600X"
-                }
-            },
-            {
-                "precioUnitario": 25.5,
-                "idDetalle": "730303201",
-                "cantidad": 4,
-                "producto": {
-                    "tipo": "Cooler",
-                    "codigo": "810379011",
-                    "nombre": "Noctua NF-F12"
-                }
-            },
-            {
-                "precioUnitario": 219.99,
-                "idDetalle": "456011272",
-                "cantidad": 5,
-                "producto": {
-                    "tipo": "PlacaMadre",
-                    "codigo": "413276641",
-                    "nombre": "ASRock Z590 Steel Legend"
-                }
-            }
-        ],
-        "idVenta": "585196775",
-        "fechaVenta": "2025-11-16",
-        "activo": true
-    },
-    {
-        "total": 149.97,
-        "detallesVenta": [{
-            "precioUnitario": 49.99,
-            "idDetalle": "734044685",
-            "cantidad": 3,
-            "producto": {
+            "precioUnitario": 39.5,
+            "idDetalle": "669327200",
+            "cantidad": 5,
+            "productos": {
+                "descripcion": "Adaptador inalámbrico PCIe con soporte Wi-Fi 6 y Bluetooth 5.0",
+                "garantiaMeses": 36,
                 "tipo": "PlacaDeRed",
-                "codigo": "190521756",
-                "nombre": "Asus PCE-AC68"
+                "codigo": "472898769",
+                "dispositivosCompatibles": "PCs de escritorio y laptops con ranura M.2 o adaptador PCIe",
+                "subCategoria": "PLACA_DE_RED",
+                "peso": 0.03,
+                "categoria": "CONECTIVIDAD",
+                "numeroDeSerie": "69808614",
+                "nombre": "Intel Wi-Fi 6 AX200",
+                "marca": "Intel",
+                "fechaIngreso": "2025-11-16",
+                "precio": 39.5,
+                "idProveedores": ["909995649"],
+                "stock": 15,
+                "dimension": "110x55x15 mm",
+                "activo": true
             }
         }],
-        "idVenta": "125452541",
-        "fechaVenta": "2025-11-16",
+        "idVenta": "451179831",
+        "fechaVenta": "2025-11-17",
         "activo": true
     },
     {
-        "total": 80145.98000000001,
+        "total": 331.98,
         "detallesVenta": [
             {
-                "precioUnitario": 19999,
-                "idDetalle": "343905663",
-                "cantidad": 4,
-                "producto": {
-                    "tipo": "Almacenamiento",
-                    "codigo": "371921696",
-                    "nombre": "WD Blue 1TB"
-                }
-            },
-            {
-                "precioUnitario": 49.99,
-                "idDetalle": "125264286",
-                "cantidad": 1,
-                "producto": {
-                    "tipo": "PlacaDeRed",
-                    "codigo": "190521756",
-                    "nombre": "Asus PCE-AC68"
-                }
-            },
-            {
-                "precioUnitario": 99.99,
-                "idDetalle": "380258160",
-                "cantidad": 1,
-                "producto": {
-                    "tipo": "Gabinete",
-                    "codigo": "356571105",
-                    "nombre": "Fractal Design Meshify C"
-                }
-            }
-        ],
-        "idVenta": "961039547",
-        "fechaVenta": "2025-11-16",
-        "activo": true
-    },
-    {
-        "total": 100794.96,
-        "detallesVenta": [
-            {
-                "precioUnitario": 199.99,
-                "idDetalle": "180311070",
-                "cantidad": 4,
-                "producto": {
-                    "tipo": "Procesador",
-                    "codigo": "714192743",
-                    "nombre": "AMD Ryzen 5 5600X"
-                }
-            },
-            {
-                "precioUnitario": 19999,
-                "idDetalle": "313527224",
-                "cantidad": 5,
-                "producto": {
-                    "tipo": "Almacenamiento",
-                    "codigo": "371921696",
-                    "nombre": "WD Blue 1TB"
-                }
-            }
-        ],
-        "idVenta": "659730337",
-        "fechaVenta": "2025-11-16",
-        "activo": true
-    },
-    {
-        "total": 20398.98,
-        "detallesVenta": [
-            {
-                "precioUnitario": 199.99,
-                "idDetalle": "166916122",
+                "precioUnitario": 39.99,
+                "idDetalle": "895893261",
                 "cantidad": 2,
-                "producto": {
-                    "tipo": "Procesador",
-                    "codigo": "714192743",
-                    "nombre": "AMD Ryzen 5 5600X"
+                "productos": {
+                    "descripcion": "Módulo DDR4 económico de 8GB",
+                    "garantiaMeses": 24,
+                    "tipo": "MemoriaRAM",
+                    "codigo": "523258948",
+                    "frecuencia": "2666 MHz",
+                    "subCategoria": "MEMORIA_RAM",
+                    "peso": 0.05,
+                    "categoria": "MEMORIA_RAM",
+                    "tipoDeMemoria": "DDR4",
+                    "numeroDeSerie": "11197911",
+                    "nombre": "Teamgroup T-Force 8GB",
+                    "marca": "Teamgroup",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 39.99,
+                    "idProveedores": ["363510186"],
+                    "stock": 30,
+                    "dimension": "133x30x7 mm",
+                    "activo": true,
+                    "capacidad": 8
                 }
             },
             {
-                "precioUnitario": 19999,
-                "idDetalle": "300292054",
+                "precioUnitario": 54.5,
+                "idDetalle": "517198177",
                 "cantidad": 1,
-                "producto": {
-                    "tipo": "Almacenamiento",
-                    "codigo": "371921696",
-                    "nombre": "WD Blue 1TB"
-                }
-            }
-        ],
-        "idVenta": "898112150",
-        "fechaVenta": "2025-11-16",
-        "activo": true
-    },
-    {
-        "total": 1919.41,
-        "detallesVenta": [
-            {
-                "precioUnitario": 219.99,
-                "idDetalle": "630767838",
-                "cantidad": 4,
-                "producto": {
-                    "tipo": "PlacaMadre",
-                    "codigo": "413276641",
-                    "nombre": "ASRock Z590 Steel Legend"
+                "productos": {
+                    "descripcion": "Gabinete microATX compacto con flujo de aire optimizado",
+                    "garantiaMeses": 12,
+                    "tipo": "Gabinete",
+                    "codigo": "119963682",
+                    "subCategoria": "NINGUNA",
+                    "color": "Blanco",
+                    "peso": 5.2,
+                    "categoria": "GABINETE",
+                    "numeroDeSerie": "74305118",
+                    "alto": "450 mm",
+                    "nombre": "Cooler Master MasterBox Q300L",
+                    "marca": "Cooler Master",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 54.5,
+                    "conVentana": false,
+                    "ancho": "230 mm",
+                    "profundidad": "381 mm",
+                    "idProveedores": ["972453970"],
+                    "stock": 18,
+                    "dimension": "230x450x381 mm",
+                    "activo": true
                 }
             },
             {
                 "precioUnitario": 39.5,
-                "idDetalle": "665077336",
-                "cantidad": 1,
-                "producto": {
-                    "tipo": "PlacaDeRed",
-                    "codigo": "987617880",
-                    "nombre": "Intel Wi-Fi 6 AX200"
-                }
-            },
-            {
-                "precioUnitario": 199.99,
-                "idDetalle": "673553901",
+                "idDetalle": "515551162",
                 "cantidad": 5,
-                "producto": {
-                    "tipo": "FuenteDePoder",
-                    "codigo": "640557392",
-                    "nombre": "Corsair HX850"
+                "productos": {
+                    "descripcion": "Adaptador inalámbrico PCIe con soporte Wi-Fi 6 y Bluetooth 5.0",
+                    "garantiaMeses": 36,
+                    "tipo": "PlacaDeRed",
+                    "codigo": "472898769",
+                    "dispositivosCompatibles": "PCs de escritorio y laptops con ranura M.2 o adaptador PCIe",
+                    "subCategoria": "PLACA_DE_RED",
+                    "peso": 0.03,
+                    "categoria": "CONECTIVIDAD",
+                    "numeroDeSerie": "69808614",
+                    "nombre": "Intel Wi-Fi 6 AX200",
+                    "marca": "Intel",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 39.5,
+                    "idProveedores": ["909995649"],
+                    "stock": 15,
+                    "dimension": "110x55x15 mm",
+                    "activo": true
                 }
             }
         ],
-        "idVenta": "661240972",
-        "fechaVenta": "2025-11-16",
+        "idVenta": "433145944",
+        "fechaVenta": "2025-11-17",
         "activo": true
     },
     {
-        "total": 1797.5,
+        "total": 170.97,
         "detallesVenta": [{
-            "precioUnitario": 359.5,
-            "idDetalle": "588960915",
-            "cantidad": 5,
-            "producto": {
-                "tipo": "Procesador",
-                "codigo": "166907182",
-                "nombre": "Intel Core i7-11700K"
+            "precioUnitario": 56.99,
+            "idDetalle": "672290212",
+            "cantidad": 3,
+            "productos": {
+                "descripcion": "Adaptador PCIe Wi-Fi AC1900",
+                "garantiaMeses": 24,
+                "tipo": "PlacaDeRed",
+                "codigo": "436838352",
+                "dispositivosCompatibles": "PCs de escritorio con ranura PCIe",
+                "subCategoria": "PLACA_DE_RED",
+                "peso": 0.05,
+                "categoria": "CONECTIVIDAD",
+                "numeroDeSerie": "89565904",
+                "nombre": "Asus PCE-AC68",
+                "marca": "Asus",
+                "fechaIngreso": "2025-11-16",
+                "precio": 56.99,
+                "idProveedores": ["169176549"],
+                "stock": 12,
+                "dimension": "120x70x20 mm",
+                "activo": true
             }
         }],
-        "idVenta": "616913607",
-        "fechaVenta": "2025-11-16",
+        "idVenta": "235799674",
+        "fechaVenta": "2025-11-17",
         "activo": true
     },
     {
-        "total": 150025.45,
+        "total": 19.98,
+        "detallesVenta": [{
+            "precioUnitario": 9.99,
+            "idDetalle": "959954884",
+            "cantidad": 2,
+            "productos": {
+                "descripcion": "Ventilador silencioso de 120mm para gabinete",
+                "garantiaMeses": 12,
+                "tipo": "Cooler",
+                "codigo": "230379575",
+                "subCategoria": "COOLER_FAN",
+                "peso": 0.12,
+                "categoria": "REFRIGERACION",
+                "numeroDeSerie": "81679594",
+                "nombre": "ARCTIC F12 PWM",
+                "marca": "ARCTIC",
+                "fechaIngreso": "2025-11-16",
+                "precio": 9.99,
+                "idProveedores": ["909995649"],
+                "stock": 20,
+                "dimension": "120x120x25 mm",
+                "nivelRuidoMaximo": "20 dB",
+                "velocidad": "1200 RPM",
+                "activo": true
+            }
+        }],
+        "idVenta": "148934457",
+        "fechaVenta": "2025-11-17",
+        "activo": true
+    },
+    {
+        "total": 49.99,
+        "detallesVenta": [{
+            "precioUnitario": 49.99,
+            "idDetalle": "609145516",
+            "cantidad": 1,
+            "productos": {
+                "descripcion": "Fuente de poder económica y confiable, 80 Plus White",
+                "garantiaMeses": 36,
+                "tipo": "FuenteDePoder",
+                "codigo": "638133287",
+                "subCategoria": "GENERICA",
+                "peso": 1.5,
+                "categoria": "FUENTE_DE_PODER",
+                "numeroDeSerie": "86753025",
+                "nombre": "EVGA 500 W1",
+                "marca": "EVGA",
+                "fechaIngreso": "2025-11-16",
+                "potencia": "500W",
+                "precio": 49.99,
+                "tipoCertificacion": "NINGUNA",
+                "idProveedores": ["361950682"],
+                "stock": 30,
+                "dimension": "140x85x150 mm",
+                "activo": true
+            }
+        }],
+        "idVenta": "631099131",
+        "fechaVenta": "2025-11-17",
+        "activo": true
+    },
+    {
+        "total": 199.99,
+        "detallesVenta": [{
+            "precioUnitario": 199.99,
+            "idDetalle": "369046563",
+            "cantidad": 1,
+            "productos": {
+                "descripcion": "Fuente modular de alto rendimiento, 80 Plus Platinum",
+                "garantiaMeses": 60,
+                "tipo": "FuenteDePoder",
+                "codigo": "773899287",
+                "subCategoria": "CERTIFICADA",
+                "peso": 2,
+                "categoria": "FUENTE_DE_PODER",
+                "numeroDeSerie": "43337105",
+                "nombre": "Corsair HX850",
+                "marca": "Corsair",
+                "fechaIngreso": "2025-11-16",
+                "potencia": "850W",
+                "precio": 199.99,
+                "tipoCertificacion": "PLATINUM",
+                "idProveedores": ["510927829"],
+                "stock": 12,
+                "dimension": "150x86x180 mm",
+                "activo": true
+            }
+        }],
+        "idVenta": "929507677",
+        "fechaVenta": "2025-11-17",
+        "activo": true
+    },
+    {
+        "total": 559.93,
+        "detallesVenta": [
+            {
+                "precioUnitario": 79.99,
+                "idDetalle": "457541165",
+                "cantidad": 1,
+                "productos": {
+                    "descripcion": "Kit de 2 módulos DDR4 de alto rendimiento para gaming y overclock",
+                    "garantiaMeses": 36,
+                    "tipo": "MemoriaRAM",
+                    "codigo": "836484049",
+                    "frecuencia": "3200 MHz",
+                    "subCategoria": "MEMORIA_RAM",
+                    "peso": 0.1,
+                    "categoria": "MEMORIA_RAM",
+                    "tipoDeMemoria": "DDR4",
+                    "numeroDeSerie": "40979574",
+                    "nombre": "Corsair Vengeance LPX 16GB",
+                    "marca": "Corsair",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 79.99,
+                    "idProveedores": ["133717095"],
+                    "stock": 25,
+                    "dimension": "133x34x7 mm",
+                    "activo": true,
+                    "capacidad": 16
+                }
+            },
+            {
+                "precioUnitario": 29.99,
+                "idDetalle": "325772163",
+                "cantidad": 1,
+                "productos": {
+                    "descripcion": "Tarjeta de red PCIe AC1300",
+                    "garantiaMeses": 36,
+                    "tipo": "PlacaDeRed",
+                    "codigo": "649054274",
+                    "dispositivosCompatibles": "PCs de escritorio con ranura PCIe",
+                    "subCategoria": "PLACA_DE_RED",
+                    "peso": 0.03,
+                    "categoria": "CONECTIVIDAD",
+                    "numeroDeSerie": "32847248",
+                    "nombre": "TP-Link Archer T6E",
+                    "marca": "TP-Link",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 29.99,
+                    "idProveedores": ["361950682"],
+                    "stock": 15,
+                    "dimension": "110x55x15 mm",
+                    "activo": true
+                }
+            },
+            {
+                "precioUnitario": 89.99,
+                "idDetalle": "691072876",
+                "cantidad": 5,
+                "productos": {
+                    "descripcion": "Gabinete ATX con panel lateral de vidrio templado y diseño minimalista",
+                    "garantiaMeses": 24,
+                    "tipo": "Gabinete",
+                    "codigo": "720903875",
+                    "subCategoria": "NINGUNA",
+                    "color": "Negro",
+                    "peso": 6.8,
+                    "categoria": "GABINETE",
+                    "numeroDeSerie": "54183422",
+                    "alto": "460 mm",
+                    "nombre": "NZXT H510",
+                    "marca": "NZXT",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 89.99,
+                    "conVentana": true,
+                    "ancho": "210 mm",
+                    "profundidad": "428 mm",
+                    "idProveedores": ["411600851"],
+                    "stock": 12,
+                    "dimension": "210x460x428 mm",
+                    "activo": true
+                }
+            }
+        ],
+        "idVenta": "149983645",
+        "fechaVenta": "2025-11-17",
+        "activo": true
+    },
+    {
+        "total": 199.95000000000002,
+        "detallesVenta": [{
+            "precioUnitario": 39.99,
+            "idDetalle": "892812068",
+            "cantidad": 5,
+            "productos": {
+                "descripcion": "Módulo DDR4 económico de 8GB",
+                "garantiaMeses": 24,
+                "tipo": "MemoriaRAM",
+                "codigo": "523258948",
+                "frecuencia": "2666 MHz",
+                "subCategoria": "MEMORIA_RAM",
+                "peso": 0.05,
+                "categoria": "MEMORIA_RAM",
+                "tipoDeMemoria": "DDR4",
+                "numeroDeSerie": "11197911",
+                "nombre": "Teamgroup T-Force 8GB",
+                "marca": "Teamgroup",
+                "fechaIngreso": "2025-11-16",
+                "precio": 39.99,
+                "idProveedores": ["363510186"],
+                "stock": 30,
+                "dimension": "133x30x7 mm",
+                "activo": true,
+                "capacidad": 8
+            }
+        }],
+        "idVenta": "600812529",
+        "fechaVenta": "2025-11-17",
+        "activo": true
+    },
+    {
+        "total": 912.98,
         "detallesVenta": [
             {
                 "precioUnitario": 25.5,
-                "idDetalle": "451550674",
-                "cantidad": 1,
-                "producto": {
-                    "tipo": "Cooler",
-                    "codigo": "810379011",
-                    "nombre": "Noctua NF-F12"
-                }
-            },
-            {
-                "precioUnitario": 29999.99,
-                "idDetalle": "123660225",
-                "cantidad": 5,
-                "producto": {
-                    "tipo": "Almacenamiento",
-                    "codigo": "212948272",
-                    "nombre": "SSD Kingston A400"
-                }
-            }
-        ],
-        "idVenta": "748172791",
-        "fechaVenta": "2025-11-16",
-        "activo": true
-    },
-    {
-        "total": 399.95000000000005,
-        "detallesVenta": [
-            {
-                "precioUnitario": 42.5,
-                "idDetalle": "299285481",
+                "idDetalle": "605008864",
                 "cantidad": 4,
-                "producto": {
-                    "tipo": "MemoriaRAM",
-                    "codigo": "222359604",
-                    "nombre": "Kingston HyperX Fury 8GB"
+                "productos": {
+                    "descripcion": "Ventilador de alto flujo de aire para refrigeración eficiente",
+                    "garantiaMeses": 36,
+                    "tipo": "Cooler",
+                    "codigo": "209471685",
+                    "subCategoria": "COOLER_FAN",
+                    "peso": 0.25,
+                    "categoria": "REFRIGERACION",
+                    "numeroDeSerie": "46289688",
+                    "nombre": "Noctua NF-F12",
+                    "marca": "Noctua",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 25.5,
+                    "idProveedores": ["961210452"],
+                    "stock": 10,
+                    "dimension": "120x120x25 mm",
+                    "nivelRuidoMaximo": "22 dB",
+                    "velocidad": "1500 RPM",
+                    "activo": true
                 }
             },
             {
                 "precioUnitario": 45.99,
-                "idDetalle": "465994595",
-                "cantidad": 5,
-                "producto": {
+                "idDetalle": "744941280",
+                "cantidad": 2,
+                "productos": {
+                    "descripcion": "Disipador de CPU con alto rendimiento y ventilador silencioso",
+                    "garantiaMeses": 24,
                     "tipo": "Cooler",
-                    "codigo": "370882173",
-                    "nombre": "Cooler Master Hyper 212"
+                    "codigo": "611176964",
+                    "subCategoria": "COOLER_CPU",
+                    "peso": 0.75,
+                    "categoria": "REFRIGERACION",
+                    "numeroDeSerie": "16182868",
+                    "nombre": "Cooler Master Hyper 212",
+                    "marca": "Cooler Master",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 45.99,
+                    "idProveedores": ["363510186"],
+                    "stock": 15,
+                    "dimension": "120x120x80 mm",
+                    "nivelRuidoMaximo": "30 dB",
+                    "velocidad": "2000 RPM",
+                    "activo": true
+                }
+            },
+            {
+                "precioUnitario": 359.5,
+                "idDetalle": "257680726",
+                "cantidad": 2,
+                "productos": {
+                    "descripcion": "Procesador de 8 núcleos y 16 hilos para alto rendimiento",
+                    "garantiaMeses": 36,
+                    "tipo": "Procesador",
+                    "codigo": "823757090",
+                    "subCategoria": "PROCESADOR_INTEL",
+                    "peso": 0.12,
+                    "categoria": "PROCESADOR",
+                    "numeroDeSerie": "81565675",
+                    "nombre": "Intel Core i7-11700K",
+                    "marca": "Intel",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 359.5,
+                    "numeroDeNucleos": 8,
+                    "idProveedores": ["945747393"],
+                    "frecuenciaDeReloj": "3.6 GHz",
+                    "stock": 10,
+                    "dimension": "40x40 mm",
+                    "activo": true
                 }
             }
         ],
-        "idVenta": "591023707",
-        "fechaVenta": "2025-11-16",
+        "idVenta": "617123415",
+        "fechaVenta": "2025-11-17",
         "activo": true
     },
     {
-        "total": 1236.93,
+        "total": 49.97,
         "detallesVenta": [
             {
-                "precioUnitario": 219.99,
-                "idDetalle": "407663553",
-                "cantidad": 4,
-                "producto": {
-                    "tipo": "PlacaMadre",
-                    "codigo": "413276641",
-                    "nombre": "ASRock Z590 Steel Legend"
+                "precioUnitario": 19.99,
+                "idDetalle": "274151688",
+                "cantidad": 2,
+                "productos": {
+                    "descripcion": "Tarjeta de red Gigabit PCI Express para escritorio",
+                    "garantiaMeses": 24,
+                    "tipo": "PlacaDeRed",
+                    "codigo": "568019221",
+                    "dispositivosCompatibles": "PCs de escritorio con ranura PCIe",
+                    "subCategoria": "PLACA_DE_RED",
+                    "peso": 0.05,
+                    "categoria": "CONECTIVIDAD",
+                    "numeroDeSerie": "88775724",
+                    "nombre": "TP-Link TG-3468",
+                    "marca": "TP-Link",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 19.99,
+                    "idProveedores": ["961210452"],
+                    "stock": 20,
+                    "dimension": "120x70x20 mm",
+                    "activo": true
                 }
             },
             {
-                "precioUnitario": 84.99,
-                "idDetalle": "381100612",
-                "cantidad": 3,
-                "producto": {
-                    "tipo": "MemoriaRAM",
-                    "codigo": "508587642",
-                    "nombre": "G.Skill Ripjaws V 16GB"
-                }
-            },
-            {
-                "precioUnitario": 25.5,
-                "idDetalle": "767784153",
-                "cantidad": 4,
-                "producto": {
+                "precioUnitario": 9.99,
+                "idDetalle": "143739358",
+                "cantidad": 1,
+                "productos": {
+                    "descripcion": "Ventilador silencioso de 120mm para gabinete",
+                    "garantiaMeses": 12,
                     "tipo": "Cooler",
-                    "codigo": "810379011",
-                    "nombre": "Noctua NF-F12"
+                    "codigo": "230379575",
+                    "subCategoria": "COOLER_FAN",
+                    "peso": 0.12,
+                    "categoria": "REFRIGERACION",
+                    "numeroDeSerie": "81679594",
+                    "nombre": "ARCTIC F12 PWM",
+                    "marca": "ARCTIC",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 9.99,
+                    "idProveedores": ["909995649"],
+                    "stock": 20,
+                    "dimension": "120x120x25 mm",
+                    "nivelRuidoMaximo": "20 dB",
+                    "velocidad": "1200 RPM",
+                    "activo": true
                 }
             }
         ],
-        "idVenta": "586939915",
-        "fechaVenta": "2025-11-16",
+        "idVenta": "422960730",
+        "fechaVenta": "2025-11-17",
         "activo": true
     },
     {
-        "total": 29999.99,
+        "total": 629.47,
+        "detallesVenta": [
+            {
+                "precioUnitario": 229.5,
+                "idDetalle": "766791794",
+                "cantidad": 1,
+                "productos": {
+                    "descripcion": "Placa madre ATX con soporte para Intel 10ma/11va generación y PCIe 4.0",
+                    "garantiaMeses": 36,
+                    "backConnect": true,
+                    "tipo": "PlacaMadre",
+                    "codigo": "316725012",
+                    "subCategoria": "PLACA_INTEL",
+                    "peso": 1.2,
+                    "categoria": "PLACA_MADRE",
+                    "numeroDeSerie": "41810583",
+                    "nombre": "MSI MPG Z590 Gaming Edge",
+                    "botonBios": true,
+                    "marca": "MSI",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 229.5,
+                    "idProveedores": ["945747393"],
+                    "stock": 10,
+                    "tipoMemoria": "DDR4",
+                    "dimension": "305x244 mm",
+                    "activo": true,
+                    "cantidadSlotMemoria": 4
+                }
+            },
+            {
+                "precioUnitario": 189.99,
+                "idDetalle": "923567032",
+                "cantidad": 2,
+                "productos": {
+                    "descripcion": "Placa madre ATX para procesadores AMD Ryzen",
+                    "garantiaMeses": 36,
+                    "backConnect": true,
+                    "tipo": "PlacaMadre",
+                    "codigo": "466563186",
+                    "subCategoria": "PLACA_AMD",
+                    "peso": 1.1,
+                    "categoria": "PLACA_MADRE",
+                    "numeroDeSerie": "75279122",
+                    "nombre": "Gigabyte B550 AORUS Elite",
+                    "botonBios": false,
+                    "marca": "Gigabyte",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 189.99,
+                    "idProveedores": ["424368618"],
+                    "stock": 10,
+                    "tipoMemoria": "DDR4",
+                    "dimension": "305x244 mm",
+                    "activo": true,
+                    "cantidadSlotMemoria": 4
+                }
+            },
+            {
+                "precioUnitario": 19.99,
+                "idDetalle": "647020973",
+                "cantidad": 1,
+                "productos": {
+                    "descripcion": "Tarjeta de red Gigabit PCI Express para escritorio",
+                    "garantiaMeses": 24,
+                    "tipo": "PlacaDeRed",
+                    "codigo": "568019221",
+                    "dispositivosCompatibles": "PCs de escritorio con ranura PCIe",
+                    "subCategoria": "PLACA_DE_RED",
+                    "peso": 0.05,
+                    "categoria": "CONECTIVIDAD",
+                    "numeroDeSerie": "88775724",
+                    "nombre": "TP-Link TG-3468",
+                    "marca": "TP-Link",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 19.99,
+                    "idProveedores": ["961210452"],
+                    "stock": 20,
+                    "dimension": "120x70x20 mm",
+                    "activo": true
+                }
+            }
+        ],
+        "idVenta": "384785275",
+        "fechaVenta": "2025-11-17",
+        "activo": true
+    },
+    {
+        "total": 60303,
+        "detallesVenta": [
+            {
+                "precioUnitario": 25.5,
+                "idDetalle": "685681210",
+                "cantidad": 3,
+                "productos": {
+                    "descripcion": "Ventilador de alto flujo de aire para refrigeración eficiente",
+                    "garantiaMeses": 36,
+                    "tipo": "Cooler",
+                    "codigo": "209471685",
+                    "subCategoria": "COOLER_FAN",
+                    "peso": 0.25,
+                    "categoria": "REFRIGERACION",
+                    "numeroDeSerie": "46289688",
+                    "nombre": "Noctua NF-F12",
+                    "marca": "Noctua",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 25.5,
+                    "idProveedores": ["961210452"],
+                    "stock": 10,
+                    "dimension": "120x120x25 mm",
+                    "nivelRuidoMaximo": "22 dB",
+                    "velocidad": "1500 RPM",
+                    "activo": true
+                }
+            },
+            {
+                "precioUnitario": 229.5,
+                "idDetalle": "137751416",
+                "cantidad": 1,
+                "productos": {
+                    "descripcion": "Placa madre ATX con soporte para Intel 10ma/11va generación y PCIe 4.0",
+                    "garantiaMeses": 36,
+                    "backConnect": true,
+                    "tipo": "PlacaMadre",
+                    "codigo": "316725012",
+                    "subCategoria": "PLACA_INTEL",
+                    "peso": 1.2,
+                    "categoria": "PLACA_MADRE",
+                    "numeroDeSerie": "41810583",
+                    "nombre": "MSI MPG Z590 Gaming Edge",
+                    "botonBios": true,
+                    "marca": "MSI",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 229.5,
+                    "idProveedores": ["945747393"],
+                    "stock": 10,
+                    "tipoMemoria": "DDR4",
+                    "dimension": "305x244 mm",
+                    "activo": true,
+                    "cantidadSlotMemoria": 4
+                }
+            },
+            {
+                "precioUnitario": 19999,
+                "idDetalle": "965525064",
+                "cantidad": 3,
+                "productos": {
+                    "descripcion": "Disco rígido mecánico de 1TB para PC",
+                    "garantiaMeses": 24,
+                    "tipo": "Almacenamiento",
+                    "codigo": "929094428",
+                    "subCategoria": "DISCO_RIGIDO",
+                    "peso": 0.45,
+                    "categoria": "ALMACENAMIENTO",
+                    "numeroDeSerie": "44449585",
+                    "nombre": "WD Blue 1TB",
+                    "marca": "Western Digital",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 19999,
+                    "idProveedores": ["169176549"],
+                    "stock": 15,
+                    "dimension": "3.5 pulgadas",
+                    "velocidad": "7200 RPM",
+                    "activo": true,
+                    "capacidad": "1TB"
+                }
+            }
+        ],
+        "idVenta": "860912302",
+        "fechaVenta": "2025-11-17",
+        "activo": true
+    },
+    {
+        "total": 979.94,
+        "detallesVenta": [
+            {
+                "precioUnitario": 199.99,
+                "idDetalle": "972137865",
+                "cantidad": 4,
+                "productos": {
+                    "descripcion": "Placa madre ATX con soporte para procesadores AMD Ryzen y PCIe 4.0",
+                    "garantiaMeses": 36,
+                    "backConnect": true,
+                    "tipo": "PlacaMadre",
+                    "codigo": "449190627",
+                    "subCategoria": "PLACA_AMD",
+                    "peso": 1.1,
+                    "categoria": "PLACA_MADRE",
+                    "numeroDeSerie": "63841411",
+                    "nombre": "ASUS ROG Strix B550-F",
+                    "botonBios": true,
+                    "marca": "ASUS",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 199.99,
+                    "idProveedores": ["892940319"],
+                    "stock": 12,
+                    "tipoMemoria": "DDR4",
+                    "dimension": "305x244 mm",
+                    "activo": true,
+                    "cantidadSlotMemoria": 4
+                }
+            },
+            {
+                "precioUnitario": 89.99,
+                "idDetalle": "838212994",
+                "cantidad": 2,
+                "productos": {
+                    "descripcion": "Gabinete ATX con panel lateral de vidrio templado y diseño minimalista",
+                    "garantiaMeses": 24,
+                    "tipo": "Gabinete",
+                    "codigo": "720903875",
+                    "subCategoria": "NINGUNA",
+                    "color": "Negro",
+                    "peso": 6.8,
+                    "categoria": "GABINETE",
+                    "numeroDeSerie": "54183422",
+                    "alto": "460 mm",
+                    "nombre": "NZXT H510",
+                    "marca": "NZXT",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 89.99,
+                    "conVentana": true,
+                    "ancho": "210 mm",
+                    "profundidad": "428 mm",
+                    "idProveedores": ["411600851"],
+                    "stock": 12,
+                    "dimension": "210x460x428 mm",
+                    "activo": true
+                }
+            }
+        ],
+        "idVenta": "359392075",
+        "fechaVenta": "2025-11-17",
+        "activo": true
+    },
+    {
+        "total": 3599.95,
+        "detallesVenta": [
+            {
+                "precioUnitario": 899.99,
+                "idDetalle": "300159723",
+                "cantidad": 2,
+                "productos": {
+                    "descripcion": "Tarjeta gráfica de gama alta optimizada para 4K y aplicaciones profesionales",
+                    "VRAM": "20GB GDDR6",
+                    "frecuenciaNucleo": "1980 MHz",
+                    "garantiaMeses": 24,
+                    "tipo": "PlacaDeVideo",
+                    "codigo": "163547253",
+                    "subCategoria": "PLACA_DE_VIDEO_RADEONAMD",
+                    "peso": 1.65,
+                    "categoria": "PLACA_DE_VIDEO",
+                    "numeroDeSerie": "38595379",
+                    "nombre": "AMD Radeon RX 7900 XT",
+                    "GPU": "Navi 31",
+                    "marca": "AMD",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 899.99,
+                    "anchoDeBanda": "320 bits",
+                    "idProveedores": ["133717095"],
+                    "stock": 8,
+                    "dimension": "276x135x51 mm",
+                    "activo": true
+                }
+            },
+            {
+                "precioUnitario": 599.99,
+                "idDetalle": "316384983",
+                "cantidad": 3,
+                "productos": {
+                    "descripcion": "Tarjeta gráfica de gama alta para gaming 1440p",
+                    "VRAM": "8GB GDDR6",
+                    "frecuenciaNucleo": "1500 MHz",
+                    "garantiaMeses": 36,
+                    "tipo": "PlacaDeVideo",
+                    "codigo": "908999221",
+                    "subCategoria": "PLACA_DE_VIDEO_GEFORCE",
+                    "peso": 1.5,
+                    "categoria": "PLACA_DE_VIDEO",
+                    "numeroDeSerie": "84990857",
+                    "nombre": "NVIDIA GeForce RTX 3070",
+                    "GPU": "GA104",
+                    "marca": "NVIDIA",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 599.99,
+                    "anchoDeBanda": "256 bits",
+                    "idProveedores": ["972453970"],
+                    "stock": 5,
+                    "dimension": "242x112x40 mm",
+                    "activo": true
+                }
+            }
+        ],
+        "idVenta": "975390080",
+        "fechaVenta": "2025-11-17",
+        "activo": true
+    },
+    {
+        "total": 84.99,
         "detallesVenta": [{
-            "precioUnitario": 29999.99,
-            "idDetalle": "780830160",
+            "precioUnitario": 84.99,
+            "idDetalle": "817543775",
             "cantidad": 1,
-            "producto": {
-                "tipo": "Almacenamiento",
-                "codigo": "212948272",
-                "nombre": "SSD Kingston A400"
+            "productos": {
+                "descripcion": "DDR4 3200 MHz, kit de 2 módulos",
+                "garantiaMeses": 36,
+                "tipo": "MemoriaRAM",
+                "codigo": "771592288",
+                "frecuencia": "3200 MHz",
+                "subCategoria": "MEMORIA_RAM",
+                "peso": 0.1,
+                "categoria": "MEMORIA_RAM",
+                "tipoDeMemoria": "DDR4",
+                "numeroDeSerie": "78523765",
+                "nombre": "G.Skill Ripjaws V 16GB",
+                "marca": "G.Skill",
+                "fechaIngreso": "2025-11-16",
+                "precio": 84.99,
+                "idProveedores": ["169176549"],
+                "stock": 20,
+                "dimension": "133x34x7 mm",
+                "activo": true,
+                "capacidad": 16
             }
         }],
-        "idVenta": "401790389",
-        "fechaVenta": "2025-11-16",
+        "idVenta": "723793864",
+        "fechaVenta": "2025-11-17",
         "activo": true
     }
 ]

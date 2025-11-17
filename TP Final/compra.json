@@ -1,141 +1,31 @@
 [
     {
-        "fechaCompra": "2025-11-16",
-        "total": 449999.91,
+        "fechaCompra": "2025-11-17",
+        "total": 159.96,
         "detallesCompra": [{
-            "precioUnitario": 49999.99,
-            "idDetalle": "938087133",
-            "cantidad": 9,
-            "producto": {
-                "tipo": "Almacenamiento",
-                "codigo": "966489655",
-                "nombre": "SSD Crucial MX500 1TB"
-            }
-        }],
-        "proveedor": {
-            "Nombre": "Luis",
-            "Apellido": "García",
-            "ID": "961210452"
-        },
-        "idPedido": "669440855",
-        "activo": true
-    },
-    {
-        "fechaCompra": "2025-11-16",
-        "total": 699999.86,
-        "detallesCompra": [{
-            "precioUnitario": 49999.99,
-            "idDetalle": "673554027",
-            "cantidad": 14,
-            "producto": {
-                "tipo": "Almacenamiento",
-                "codigo": "966489655",
-                "nombre": "SSD Crucial MX500 1TB"
-            }
-        }],
-        "proveedor": {
-            "Nombre": "Sofía",
-            "Apellido": "Rodríguez",
-            "ID": "909995649"
-        },
-        "idPedido": "321004203",
-        "activo": true
-    },
-    {
-        "fechaCompra": "2025-11-16",
-        "total": 649999.87,
-        "detallesCompra": [{
-            "precioUnitario": 49999.99,
-            "idDetalle": "212520652",
-            "cantidad": 13,
-            "producto": {
-                "tipo": "Almacenamiento",
-                "codigo": "966489655",
-                "nombre": "SSD Crucial MX500 1TB"
-            }
-        }],
-        "proveedor": {
-            "Nombre": "Carlos",
-            "Apellido": "López",
-            "ID": "169176549"
-        },
-        "idPedido": "257719191",
-        "activo": true
-    },
-    {
-        "fechaCompra": "2025-11-16",
-        "total": 149999.97,
-        "detallesCompra": [{
-            "precioUnitario": 49999.99,
-            "idDetalle": "572220050",
-            "cantidad": 3,
-            "producto": {
-                "tipo": "Almacenamiento",
-                "codigo": "966489655",
-                "nombre": "SSD Crucial MX500 1TB"
-            }
-        }],
-        "proveedor": {
-            "Nombre": "Ana",
-            "Apellido": "Martínez",
-            "ID": "363510186"
-        },
-        "idPedido": "169534655",
-        "activo": true
-    },
-    {
-        "fechaCompra": "2025-11-16",
-        "total": 249999.94999999998,
-        "detallesCompra": [{
-            "precioUnitario": 49999.99,
-            "idDetalle": "195584940",
-            "cantidad": 5,
-            "producto": {
-                "tipo": "Almacenamiento",
-                "codigo": "966489655",
-                "nombre": "SSD Crucial MX500 1TB"
-            }
-        }],
-        "proveedor": {
-            "Nombre": "Carla",
-            "Apellido": "Vargas",
-            "ID": "411600851"
-        },
-        "idPedido": "133616580",
-        "activo": true
-    },
-    {
-        "fechaCompra": "2025-11-16",
-        "total": 349999.93,
-        "detallesCompra": [{
-            "precioUnitario": 49999.99,
-            "idDetalle": "158815276",
-            "cantidad": 7,
-            "producto": {
-                "tipo": "Almacenamiento",
-                "codigo": "966489655",
-                "nombre": "SSD Crucial MX500 1TB"
-            }
-        }],
-        "proveedor": {
-            "Nombre": "Valentina",
-            "Apellido": "Rojas",
-            "ID": "778856530"
-        },
-        "idPedido": "572866842",
-        "activo": true
-    },
-    {
-        "fechaCompra": "2025-11-16",
-        "total": 49999.99,
-        "detallesCompra": [{
-            "precioUnitario": 49999.99,
-            "idDetalle": "543690039",
-            "cantidad": 1,
-            "producto": {
-                "tipo": "Almacenamiento",
-                "codigo": "966489655",
-                "nombre": "SSD Crucial MX500 1TB"
+            "precioUnitario": 39.99,
+            "idDetalle": "446157291",
+            "cantidad": 4,
+            "productos": {
+                "descripcion": "Módulo DDR4 económico de 8GB",
+                "garantiaMeses": 24,
+                "tipo": "MemoriaRAM",
+                "codigo": "523258948",
+                "frecuencia": "2666 MHz",
+                "subCategoria": "MEMORIA_RAM",
+                "peso": 0.05,
+                "categoria": "MEMORIA_RAM",
+                "tipoDeMemoria": "DDR4",
+                "numeroDeSerie": "11197911",
+                "nombre": "Teamgroup T-Force 8GB",
+                "marca": "Teamgroup",
+                "fechaIngreso": "2025-11-16",
+                "precio": 39.99,
+                "idProveedores": ["363510186"],
+                "stock": 30,
+                "dimension": "133x30x7 mm",
+                "activo": true,
+                "capacidad": 8
             }
         }],
         "proveedor": {
@@ -143,104 +33,227 @@
             "Apellido": "Castro",
             "ID": "424368618"
         },
-        "idPedido": "687449748",
+        "idPedido": "920499969",
         "activo": true
     },
     {
-        "fechaCompra": "2025-11-16",
-        "total": 199999.96,
+        "fechaCompra": "2025-11-17",
+        "total": 999.95,
         "detallesCompra": [{
-            "precioUnitario": 49999.99,
-            "idDetalle": "860069716",
-            "cantidad": 4,
-            "producto": {
-                "tipo": "Almacenamiento",
-                "codigo": "966489655",
-                "nombre": "SSD Crucial MX500 1TB"
+            "precioUnitario": 199.99,
+            "idDetalle": "412527718",
+            "cantidad": 5,
+            "productos": {
+                "descripcion": "Procesador de 6 núcleos y 12 hilos para gaming y productividad",
+                "garantiaMeses": 36,
+                "tipo": "Procesador",
+                "codigo": "203199958",
+                "subCategoria": "PROCESADOR_AMD",
+                "peso": 0.1,
+                "categoria": "PROCESADOR",
+                "numeroDeSerie": "64415395",
+                "nombre": "AMD Ryzen 5 5600X",
+                "marca": "AMD",
+                "fechaIngreso": "2025-11-16",
+                "precio": 199.99,
+                "numeroDeNucleos": 6,
+                "idProveedores": ["892940319"],
+                "frecuenciaDeReloj": "3.7 GHz",
+                "stock": 15,
+                "dimension": "40x40 mm",
+                "activo": true
             }
         }],
         "proveedor": {
-            "Nombre": "Martín",
-            "Apellido": "Romero",
-            "ID": "510927829"
+            "Nombre": "Ana",
+            "Apellido": "Martínez",
+            "ID": "363510186"
         },
-        "idPedido": "915114903",
+        "idPedido": "260738829",
         "activo": true
     },
     {
-        "fechaCompra": "2025-11-16",
-        "total": 549999.89,
-        "detallesCompra": [{
-            "precioUnitario": 49999.99,
-            "idDetalle": "931903903",
-            "cantidad": 11,
-            "producto": {
-                "tipo": "Almacenamiento",
-                "codigo": "966489655",
-                "nombre": "SSD Crucial MX500 1TB"
+        "fechaCompra": "2025-11-17",
+        "total": 111.49000000000001,
+        "detallesCompra": [
+            {
+                "precioUnitario": 54.5,
+                "idDetalle": "202437736",
+                "cantidad": 1,
+                "productos": {
+                    "descripcion": "Gabinete microATX compacto con flujo de aire optimizado",
+                    "garantiaMeses": 12,
+                    "tipo": "Gabinete",
+                    "codigo": "119963682",
+                    "subCategoria": "NINGUNA",
+                    "color": "Blanco",
+                    "peso": 5.2,
+                    "categoria": "GABINETE",
+                    "numeroDeSerie": "74305118",
+                    "alto": "450 mm",
+                    "nombre": "Cooler Master MasterBox Q300L",
+                    "marca": "Cooler Master",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 54.5,
+                    "conVentana": false,
+                    "ancho": "230 mm",
+                    "profundidad": "381 mm",
+                    "idProveedores": ["972453970"],
+                    "stock": 18,
+                    "dimension": "230x450x381 mm",
+                    "activo": true
+                }
+            },
+            {
+                "precioUnitario": 56.99,
+                "idDetalle": "872961996",
+                "cantidad": 1,
+                "productos": {
+                    "descripcion": "Adaptador PCIe Wi-Fi AC1900",
+                    "garantiaMeses": 24,
+                    "tipo": "PlacaDeRed",
+                    "codigo": "436838352",
+                    "dispositivosCompatibles": "PCs de escritorio con ranura PCIe",
+                    "subCategoria": "PLACA_DE_RED",
+                    "peso": 0.05,
+                    "categoria": "CONECTIVIDAD",
+                    "numeroDeSerie": "89565904",
+                    "nombre": "Asus PCE-AC68",
+                    "marca": "Asus",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 56.99,
+                    "idProveedores": ["169176549"],
+                    "stock": 12,
+                    "dimension": "120x70x20 mm",
+                    "activo": true
+                }
             }
-        }],
+        ],
+        "proveedor": {
+            "Nombre": "Diego",
+            "Apellido": "Fernández",
+            "ID": "830748676"
+        },
+        "idPedido": "710132993",
+        "activo": true
+    },
+    {
+        "fechaCompra": "2025-11-17",
+        "total": 1218.94,
+        "detallesCompra": [
+            {
+                "precioUnitario": 349.99,
+                "idDetalle": "424744020",
+                "cantidad": 3,
+                "productos": {
+                    "descripcion": "Tarjeta gráfica de gama media con soporte Ray Tracing y DLSS",
+                    "VRAM": "12GB GDDR6",
+                    "frecuenciaNucleo": "1320 MHz",
+                    "garantiaMeses": 36,
+                    "tipo": "PlacaDeVideo",
+                    "codigo": "913422056",
+                    "subCategoria": "PLACA_DE_VIDEO_GEFORCE",
+                    "peso": 1.2,
+                    "categoria": "PLACA_DE_VIDEO",
+                    "numeroDeSerie": "60998619",
+                    "nombre": "NVIDIA GeForce RTX 3060",
+                    "GPU": "GA106",
+                    "marca": "NVIDIA",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 349.99,
+                    "anchoDeBanda": "192 bits",
+                    "idProveedores": ["510927829"],
+                    "stock": 10,
+                    "dimension": "242x112x40 mm",
+                    "activo": true
+                }
+            },
+            {
+                "precioUnitario": 39.5,
+                "idDetalle": "226562800",
+                "cantidad": 2,
+                "productos": {
+                    "descripcion": "Adaptador inalámbrico PCIe con soporte Wi-Fi 6 y Bluetooth 5.0",
+                    "garantiaMeses": 36,
+                    "tipo": "PlacaDeRed",
+                    "codigo": "472898769",
+                    "dispositivosCompatibles": "PCs de escritorio y laptops con ranura M.2 o adaptador PCIe",
+                    "subCategoria": "PLACA_DE_RED",
+                    "peso": 0.03,
+                    "categoria": "CONECTIVIDAD",
+                    "numeroDeSerie": "69808614",
+                    "nombre": "Intel Wi-Fi 6 AX200",
+                    "marca": "Intel",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 39.5,
+                    "idProveedores": ["909995649"],
+                    "stock": 15,
+                    "dimension": "110x55x15 mm",
+                    "activo": true
+                }
+            },
+            {
+                "precioUnitario": 29.99,
+                "idDetalle": "620367830",
+                "cantidad": 3,
+                "productos": {
+                    "descripcion": "Tarjeta de red PCIe AC1300",
+                    "garantiaMeses": 36,
+                    "tipo": "PlacaDeRed",
+                    "codigo": "649054274",
+                    "dispositivosCompatibles": "PCs de escritorio con ranura PCIe",
+                    "subCategoria": "PLACA_DE_RED",
+                    "peso": 0.03,
+                    "categoria": "CONECTIVIDAD",
+                    "numeroDeSerie": "32847248",
+                    "nombre": "TP-Link Archer T6E",
+                    "marca": "TP-Link",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 29.99,
+                    "idProveedores": ["361950682"],
+                    "stock": 15,
+                    "dimension": "110x55x15 mm",
+                    "activo": true
+                }
+            }
+        ],
         "proveedor": {
             "Nombre": "Lucía",
             "Apellido": "Sánchez",
             "ID": "361950682"
         },
-        "idPedido": "741328066",
+        "idPedido": "439121322",
         "activo": true
     },
     {
-        "fechaCompra": "2025-11-16",
-        "total": 599999.88,
+        "fechaCompra": "2025-11-17",
+        "total": 99.99,
         "detallesCompra": [{
-            "precioUnitario": 49999.99,
-            "idDetalle": "150214510",
-            "cantidad": 12,
-            "producto": {
-                "tipo": "Almacenamiento",
-                "codigo": "966489655",
-                "nombre": "SSD Crucial MX500 1TB"
-            }
-        }],
-        "proveedor": {
-            "Nombre": "Paula",
-            "Apellido": "Herrera",
-            "ID": "945747393"
-        },
-        "idPedido": "296767247",
-        "activo": true
-    },
-    {
-        "fechaCompra": "2025-11-16",
-        "total": 99999.98,
-        "detallesCompra": [{
-            "precioUnitario": 49999.99,
-            "idDetalle": "524369566",
-            "cantidad": 2,
-            "producto": {
-                "tipo": "Almacenamiento",
-                "codigo": "966489655",
-                "nombre": "SSD Crucial MX500 1TB"
-            }
-        }],
-        "proveedor": {
-            "Nombre": "Juan",
-            "Apellido": "Pérez",
-            "ID": "133717095"
-        },
-        "idPedido": "648539034",
-        "activo": true
-    },
-    {
-        "fechaCompra": "2025-11-16",
-        "total": 399999.92,
-        "detallesCompra": [{
-            "precioUnitario": 49999.99,
-            "idDetalle": "330763772",
-            "cantidad": 8,
-            "producto": {
-                "tipo": "Almacenamiento",
-                "codigo": "966489655",
-                "nombre": "SSD Crucial MX500 1TB"
+            "precioUnitario": 99.99,
+            "idDetalle": "238297924",
+            "cantidad": 1,
+            "productos": {
+                "descripcion": "Gabinete ATX con panel frontal de malla y excelente flujo de aire",
+                "garantiaMeses": 24,
+                "tipo": "Gabinete",
+                "codigo": "306916277",
+                "subCategoria": "NINGUNA",
+                "color": "Negro",
+                "peso": 7.5,
+                "categoria": "GABINETE",
+                "numeroDeSerie": "48922474",
+                "alto": "427 mm",
+                "nombre": "Fractal Design Meshify C",
+                "marca": "Fractal Design",
+                "fechaIngreso": "2025-11-16",
+                "precio": 99.99,
+                "conVentana": true,
+                "ancho": "212 mm",
+                "profundidad": "440 mm",
+                "idProveedores": ["778856530"],
+                "stock": 8,
+                "dimension": "212x427x440 mm",
+                "activo": true
             }
         }],
         "proveedor": {
@@ -248,70 +261,623 @@
             "Apellido": "Gómez",
             "ID": "847517749"
         },
-        "idPedido": "175742061",
+        "idPedido": "812576822",
         "activo": true
     },
     {
-        "fechaCompra": "2025-11-16",
-        "total": 499999.89999999997,
+        "fechaCompra": "2025-11-17",
+        "total": 227.96,
         "detallesCompra": [{
-            "precioUnitario": 49999.99,
-            "idDetalle": "721764953",
-            "cantidad": 10,
-            "producto": {
-                "tipo": "Almacenamiento",
-                "codigo": "966489655",
-                "nombre": "SSD Crucial MX500 1TB"
+            "precioUnitario": 56.99,
+            "idDetalle": "274673295",
+            "cantidad": 4,
+            "productos": {
+                "descripcion": "Adaptador PCIe Wi-Fi AC1900",
+                "garantiaMeses": 24,
+                "tipo": "PlacaDeRed",
+                "codigo": "436838352",
+                "dispositivosCompatibles": "PCs de escritorio con ranura PCIe",
+                "subCategoria": "PLACA_DE_RED",
+                "peso": 0.05,
+                "categoria": "CONECTIVIDAD",
+                "numeroDeSerie": "89565904",
+                "nombre": "Asus PCE-AC68",
+                "marca": "Asus",
+                "fechaIngreso": "2025-11-16",
+                "precio": 56.99,
+                "idProveedores": ["169176549"],
+                "stock": 12,
+                "dimension": "120x70x20 mm",
+                "activo": true
             }
         }],
         "proveedor": {
-            "Nombre": "Tomás",
-            "Apellido": "Alvarez",
+            "Nombre": "Sofía",
+            "Apellido": "Rodríguez",
+            "ID": "909995649"
+        },
+        "idPedido": "267850293",
+        "activo": true
+    },
+    {
+        "fechaCompra": "2025-11-17",
+        "total": 183.96,
+        "detallesCompra": [{
+            "precioUnitario": 45.99,
+            "idDetalle": "742563828",
+            "cantidad": 4,
+            "productos": {
+                "descripcion": "Disipador de CPU con alto rendimiento y ventilador silencioso",
+                "garantiaMeses": 24,
+                "tipo": "Cooler",
+                "codigo": "611176964",
+                "subCategoria": "COOLER_CPU",
+                "peso": 0.75,
+                "categoria": "REFRIGERACION",
+                "numeroDeSerie": "16182868",
+                "nombre": "Cooler Master Hyper 212",
+                "marca": "Cooler Master",
+                "fechaIngreso": "2025-11-16",
+                "precio": 45.99,
+                "idProveedores": ["363510186"],
+                "stock": 15,
+                "dimension": "120x120x80 mm",
+                "nivelRuidoMaximo": "30 dB",
+                "velocidad": "2000 RPM",
+                "activo": true
+            }
+        }],
+        "proveedor": {
+            "Nombre": "Sergio",
+            "Apellido": "Acosta",
             "ID": "892940319"
         },
-        "idPedido": "428783216",
+        "idPedido": "533530187",
         "activo": true
     },
     {
-        "fechaCompra": "2025-11-16",
-        "total": 749999.85,
-        "detallesCompra": [{
-            "precioUnitario": 49999.99,
-            "idDetalle": "806070840",
-            "cantidad": 15,
-            "producto": {
-                "tipo": "Almacenamiento",
-                "codigo": "966489655",
-                "nombre": "SSD Crucial MX500 1TB"
+        "fechaCompra": "2025-11-17",
+        "total": 1039.91,
+        "detallesCompra": [
+            {
+                "precioUnitario": 49.99,
+                "idDetalle": "819845373",
+                "cantidad": 2,
+                "productos": {
+                    "descripcion": "Fuente de poder económica y confiable, 80 Plus White",
+                    "garantiaMeses": 36,
+                    "tipo": "FuenteDePoder",
+                    "codigo": "638133287",
+                    "subCategoria": "GENERICA",
+                    "peso": 1.5,
+                    "categoria": "FUENTE_DE_PODER",
+                    "numeroDeSerie": "86753025",
+                    "nombre": "EVGA 500 W1",
+                    "marca": "EVGA",
+                    "fechaIngreso": "2025-11-16",
+                    "potencia": "500W",
+                    "precio": 49.99,
+                    "tipoCertificacion": "NINGUNA",
+                    "idProveedores": ["361950682"],
+                    "stock": 30,
+                    "dimension": "140x85x150 mm",
+                    "activo": true
+                }
+            },
+            {
+                "precioUnitario": 219.99,
+                "idDetalle": "194755057",
+                "cantidad": 2,
+                "productos": {
+                    "descripcion": "Placa madre ATX para Intel 10ma/11va generación",
+                    "garantiaMeses": 36,
+                    "backConnect": true,
+                    "tipo": "PlacaMadre",
+                    "codigo": "535051033",
+                    "subCategoria": "PLACA_INTEL",
+                    "peso": 1.2,
+                    "categoria": "PLACA_MADRE",
+                    "numeroDeSerie": "89690217",
+                    "nombre": "ASRock Z590 Steel Legend",
+                    "botonBios": true,
+                    "marca": "ASRock",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 219.99,
+                    "idProveedores": ["424368618"],
+                    "stock": 8,
+                    "tipoMemoria": "DDR4",
+                    "dimension": "305x244 mm",
+                    "activo": true,
+                    "cantidadSlotMemoria": 4
+                }
+            },
+            {
+                "precioUnitario": 99.99,
+                "idDetalle": "759099814",
+                "cantidad": 5,
+                "productos": {
+                    "descripcion": "Gabinete ATX con panel frontal de malla y excelente flujo de aire",
+                    "garantiaMeses": 24,
+                    "tipo": "Gabinete",
+                    "codigo": "306916277",
+                    "subCategoria": "NINGUNA",
+                    "color": "Negro",
+                    "peso": 7.5,
+                    "categoria": "GABINETE",
+                    "numeroDeSerie": "48922474",
+                    "alto": "427 mm",
+                    "nombre": "Fractal Design Meshify C",
+                    "marca": "Fractal Design",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 99.99,
+                    "conVentana": true,
+                    "ancho": "212 mm",
+                    "profundidad": "440 mm",
+                    "idProveedores": ["778856530"],
+                    "stock": 8,
+                    "dimension": "212x427x440 mm",
+                    "activo": true
+                }
             }
-        }],
+        ],
         "proveedor": {
-            "Nombre": "Diego",
-            "Apellido": "Fernández",
-            "ID": "830748676"
+            "Nombre": "Nicolás",
+            "Apellido": "Castro",
+            "ID": "424368618"
         },
-        "idPedido": "142565692",
+        "idPedido": "225497681",
         "activo": true
     },
     {
-        "fechaCompra": "2025-11-16",
-        "total": 299999.94,
+        "fechaCompra": "2025-11-17",
+        "total": 252799.88,
+        "detallesCompra": [
+            {
+                "precioUnitario": 49999.99,
+                "idDetalle": "284501931",
+                "cantidad": 5,
+                "productos": {
+                    "descripcion": "Unidad de estado sólido SATA de 1TB",
+                    "garantiaMeses": 36,
+                    "tipo": "Almacenamiento",
+                    "codigo": "281449943",
+                    "subCategoria": "DISCO_SOLIDO_SSD",
+                    "peso": 0.07,
+                    "categoria": "ALMACENAMIENTO",
+                    "numeroDeSerie": "71237492",
+                    "nombre": "SSD Crucial MX500 1TB",
+                    "marca": "Crucial",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 49999.99,
+                    "idProveedores": ["847517749"],
+                    "stock": 18,
+                    "dimension": "2.5 pulgadas",
+                    "velocidad": "560MB/s lectura - 510MB/s escritura",
+                    "activo": true,
+                    "capacidad": "1TB"
+                }
+            },
+            {
+                "precioUnitario": 539.99,
+                "idDetalle": "268609654",
+                "cantidad": 5,
+                "productos": {
+                    "descripcion": "Procesador de 8 núcleos y 16 hilos de alto rendimiento",
+                    "garantiaMeses": 36,
+                    "tipo": "Procesador",
+                    "codigo": "126961749",
+                    "subCategoria": "PROCESADOR_INTEL",
+                    "peso": 0.12,
+                    "categoria": "PROCESADOR",
+                    "numeroDeSerie": "79149395",
+                    "nombre": "Intel Core i9-11900K",
+                    "marca": "Intel",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 539.99,
+                    "numeroDeNucleos": 8,
+                    "idProveedores": ["424368618"],
+                    "frecuenciaDeReloj": "3.5 GHz",
+                    "stock": 6,
+                    "dimension": "40x40 mm",
+                    "activo": true
+                }
+            },
+            {
+                "precioUnitario": 49.99,
+                "idDetalle": "851853950",
+                "cantidad": 2,
+                "productos": {
+                    "descripcion": "Adaptador PCIe Wi-Fi AC1900",
+                    "garantiaMeses": 24,
+                    "tipo": "PlacaDeRed",
+                    "codigo": "122224844",
+                    "dispositivosCompatibles": "PCs de escritorio con ranura PCIe",
+                    "subCategoria": "PLACA_DE_RED",
+                    "peso": 0.05,
+                    "categoria": "CONECTIVIDAD",
+                    "numeroDeSerie": "59440119",
+                    "nombre": "Asus PCE-AC68",
+                    "marca": "Asus",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 49.99,
+                    "idProveedores": ["830748676"],
+                    "stock": 12,
+                    "dimension": "120x70x20 mm",
+                    "activo": true
+                }
+            }
+        ],
+        "proveedor": {
+            "Nombre": "Sergio",
+            "Apellido": "Acosta",
+            "ID": "892940319"
+        },
+        "idPedido": "582595419",
+        "activo": true
+    },
+    {
+        "fechaCompra": "2025-11-17",
+        "total": 908.95,
+        "detallesCompra": [
+            {
+                "precioUnitario": 89.99,
+                "idDetalle": "856051843",
+                "cantidad": 5,
+                "productos": {
+                    "descripcion": "Gabinete ATX con panel lateral de vidrio templado y diseño minimalista",
+                    "garantiaMeses": 24,
+                    "tipo": "Gabinete",
+                    "codigo": "720903875",
+                    "subCategoria": "NINGUNA",
+                    "color": "Negro",
+                    "peso": 6.8,
+                    "categoria": "GABINETE",
+                    "numeroDeSerie": "54183422",
+                    "alto": "460 mm",
+                    "nombre": "NZXT H510",
+                    "marca": "NZXT",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 89.99,
+                    "conVentana": true,
+                    "ancho": "210 mm",
+                    "profundidad": "428 mm",
+                    "idProveedores": ["411600851"],
+                    "stock": 12,
+                    "dimension": "210x460x428 mm",
+                    "activo": true
+                }
+            },
+            {
+                "precioUnitario": 229.5,
+                "idDetalle": "499071849",
+                "cantidad": 2,
+                "productos": {
+                    "descripcion": "Placa madre ATX con soporte para Intel 10ma/11va generación y PCIe 4.0",
+                    "garantiaMeses": 36,
+                    "backConnect": true,
+                    "tipo": "PlacaMadre",
+                    "codigo": "316725012",
+                    "subCategoria": "PLACA_INTEL",
+                    "peso": 1.2,
+                    "categoria": "PLACA_MADRE",
+                    "numeroDeSerie": "41810583",
+                    "nombre": "MSI MPG Z590 Gaming Edge",
+                    "botonBios": true,
+                    "marca": "MSI",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 229.5,
+                    "idProveedores": ["945747393"],
+                    "stock": 10,
+                    "tipoMemoria": "DDR4",
+                    "dimension": "305x244 mm",
+                    "activo": true,
+                    "cantidadSlotMemoria": 4
+                }
+            }
+        ],
+        "proveedor": {
+            "Nombre": "Luis",
+            "Apellido": "García",
+            "ID": "961210452"
+        },
+        "idPedido": "590466311",
+        "activo": true
+    },
+    {
+        "fechaCompra": "2025-11-17",
+        "total": 1799.97,
         "detallesCompra": [{
-            "precioUnitario": 49999.99,
-            "idDetalle": "787166927",
-            "cantidad": 6,
-            "producto": {
-                "tipo": "Almacenamiento",
-                "codigo": "966489655",
-                "nombre": "SSD Crucial MX500 1TB"
+            "precioUnitario": 599.99,
+            "idDetalle": "169172744",
+            "cantidad": 3,
+            "productos": {
+                "descripcion": "Tarjeta gráfica de gama alta para gaming 1440p",
+                "VRAM": "8GB GDDR6",
+                "frecuenciaNucleo": "1500 MHz",
+                "garantiaMeses": 36,
+                "tipo": "PlacaDeVideo",
+                "codigo": "908999221",
+                "subCategoria": "PLACA_DE_VIDEO_GEFORCE",
+                "peso": 1.5,
+                "categoria": "PLACA_DE_VIDEO",
+                "numeroDeSerie": "84990857",
+                "nombre": "NVIDIA GeForce RTX 3070",
+                "GPU": "GA104",
+                "marca": "NVIDIA",
+                "fechaIngreso": "2025-11-16",
+                "precio": 599.99,
+                "anchoDeBanda": "256 bits",
+                "idProveedores": ["972453970"],
+                "stock": 5,
+                "dimension": "242x112x40 mm",
+                "activo": true
             }
         }],
         "proveedor": {
-            "Nombre": "Federico",
-            "Apellido": "Domínguez",
-            "ID": "972453970"
+            "Nombre": "Nicolás",
+            "Apellido": "Castro",
+            "ID": "424368618"
         },
-        "idPedido": "809095980",
+        "idPedido": "287906637",
+        "activo": true
+    },
+    {
+        "fechaCompra": "2025-11-17",
+        "total": 150569.92,
+        "detallesCompra": [
+            {
+                "precioUnitario": 29999.99,
+                "idDetalle": "933233072",
+                "cantidad": 5,
+                "productos": {
+                    "descripcion": "Unidad de estado sólido de 480GB",
+                    "garantiaMeses": 36,
+                    "tipo": "Almacenamiento",
+                    "codigo": "121761713",
+                    "subCategoria": "DISCO_SOLIDO_SSD",
+                    "peso": 0.05,
+                    "categoria": "ALMACENAMIENTO",
+                    "numeroDeSerie": "40652255",
+                    "nombre": "SSD Kingston A400",
+                    "marca": "Kingston",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 29999.99,
+                    "idProveedores": ["133717095"],
+                    "stock": 20,
+                    "dimension": "2.5 pulgadas",
+                    "velocidad": "500MB/s lectura - 450MB/s escritura",
+                    "activo": true,
+                    "capacidad": "480GB"
+                }
+            },
+            {
+                "precioUnitario": 189.99,
+                "idDetalle": "626542441",
+                "cantidad": 3,
+                "productos": {
+                    "descripcion": "Placa madre ATX para procesadores AMD Ryzen",
+                    "garantiaMeses": 36,
+                    "backConnect": true,
+                    "tipo": "PlacaMadre",
+                    "codigo": "466563186",
+                    "subCategoria": "PLACA_AMD",
+                    "peso": 1.1,
+                    "categoria": "PLACA_MADRE",
+                    "numeroDeSerie": "75279122",
+                    "nombre": "Gigabyte B550 AORUS Elite",
+                    "botonBios": false,
+                    "marca": "Gigabyte",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 189.99,
+                    "idProveedores": ["424368618"],
+                    "stock": 10,
+                    "tipoMemoria": "DDR4",
+                    "dimension": "305x244 mm",
+                    "activo": true,
+                    "cantidadSlotMemoria": 4
+                }
+            }
+        ],
+        "proveedor": {
+            "Nombre": "Juan",
+            "Apellido": "Pérez",
+            "ID": "133717095"
+        },
+        "idPedido": "420706858",
+        "activo": true
+    },
+    {
+        "fechaCompra": "2025-11-17",
+        "total": 100674.97,
+        "detallesCompra": [
+            {
+                "precioUnitario": 479.99,
+                "idDetalle": "320023815",
+                "cantidad": 1,
+                "productos": {
+                    "descripcion": "Tarjeta gráfica de alto rendimiento para gaming 1440p",
+                    "VRAM": "12GB GDDR6",
+                    "frecuenciaNucleo": "2321 MHz",
+                    "garantiaMeses": 36,
+                    "tipo": "PlacaDeVideo",
+                    "codigo": "873498553",
+                    "subCategoria": "PLACA_DE_VIDEO_RADEONAMD",
+                    "peso": 1.4,
+                    "categoria": "PLACA_DE_VIDEO",
+                    "numeroDeSerie": "89331214",
+                    "nombre": "AMD Radeon RX 6700 XT",
+                    "GPU": "Navi 22",
+                    "marca": "AMD",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 479.99,
+                    "anchoDeBanda": "192 bits",
+                    "idProveedores": ["411600851"],
+                    "stock": 8,
+                    "dimension": "267x120x50 mm",
+                    "activo": true
+                }
+            },
+            {
+                "precioUnitario": 19999,
+                "idDetalle": "172775038",
+                "cantidad": 5,
+                "productos": {
+                    "descripcion": "Disco rígido mecánico de 1TB para PC",
+                    "garantiaMeses": 24,
+                    "tipo": "Almacenamiento",
+                    "codigo": "929094428",
+                    "subCategoria": "DISCO_RIGIDO",
+                    "peso": 0.45,
+                    "categoria": "ALMACENAMIENTO",
+                    "numeroDeSerie": "44449585",
+                    "nombre": "WD Blue 1TB",
+                    "marca": "Western Digital",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 19999,
+                    "idProveedores": ["169176549"],
+                    "stock": 15,
+                    "dimension": "3.5 pulgadas",
+                    "velocidad": "7200 RPM",
+                    "activo": true,
+                    "capacidad": "1TB"
+                }
+            },
+            {
+                "precioUnitario": 99.99,
+                "idDetalle": "956686953",
+                "cantidad": 2,
+                "productos": {
+                    "descripcion": "Gabinete ATX con panel frontal de malla y excelente flujo de aire",
+                    "garantiaMeses": 24,
+                    "tipo": "Gabinete",
+                    "codigo": "306916277",
+                    "subCategoria": "NINGUNA",
+                    "color": "Negro",
+                    "peso": 7.5,
+                    "categoria": "GABINETE",
+                    "numeroDeSerie": "48922474",
+                    "alto": "427 mm",
+                    "nombre": "Fractal Design Meshify C",
+                    "marca": "Fractal Design",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 99.99,
+                    "conVentana": true,
+                    "ancho": "212 mm",
+                    "profundidad": "440 mm",
+                    "idProveedores": ["778856530"],
+                    "stock": 8,
+                    "dimension": "212x427x440 mm",
+                    "activo": true
+                }
+            }
+        ],
+        "proveedor": {
+            "Nombre": "Carla",
+            "Apellido": "Vargas",
+            "ID": "411600851"
+        },
+        "idPedido": "401014712",
+        "activo": true
+    },
+    {
+        "fechaCompra": "2025-11-17",
+        "total": 1619.97,
+        "detallesCompra": [{
+            "precioUnitario": 539.99,
+            "idDetalle": "426759242",
+            "cantidad": 3,
+            "productos": {
+                "descripcion": "Procesador de 8 núcleos y 16 hilos de alto rendimiento",
+                "garantiaMeses": 36,
+                "tipo": "Procesador",
+                "codigo": "126961749",
+                "subCategoria": "PROCESADOR_INTEL",
+                "peso": 0.12,
+                "categoria": "PROCESADOR",
+                "numeroDeSerie": "79149395",
+                "nombre": "Intel Core i9-11900K",
+                "marca": "Intel",
+                "fechaIngreso": "2025-11-16",
+                "precio": 539.99,
+                "numeroDeNucleos": 8,
+                "idProveedores": ["424368618"],
+                "frecuenciaDeReloj": "3.5 GHz",
+                "stock": 6,
+                "dimension": "40x40 mm",
+                "activo": true
+            }
+        }],
+        "proveedor": {
+            "Nombre": "Luis",
+            "Apellido": "García",
+            "ID": "961210452"
+        },
+        "idPedido": "876175522",
+        "activo": true
+    },
+    {
+        "fechaCompra": "2025-11-17",
+        "total": 2799.9300000000003,
+        "detallesCompra": [
+            {
+                "precioUnitario": 899.99,
+                "idDetalle": "328612988",
+                "cantidad": 2,
+                "productos": {
+                    "descripcion": "Tarjeta gráfica de gama alta optimizada para 4K y aplicaciones profesionales",
+                    "VRAM": "20GB GDDR6",
+                    "frecuenciaNucleo": "1980 MHz",
+                    "garantiaMeses": 24,
+                    "tipo": "PlacaDeVideo",
+                    "codigo": "163547253",
+                    "subCategoria": "PLACA_DE_VIDEO_RADEONAMD",
+                    "peso": 1.65,
+                    "categoria": "PLACA_DE_VIDEO",
+                    "numeroDeSerie": "38595379",
+                    "nombre": "AMD Radeon RX 7900 XT",
+                    "GPU": "Navi 31",
+                    "marca": "AMD",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 899.99,
+                    "anchoDeBanda": "320 bits",
+                    "idProveedores": ["133717095"],
+                    "stock": 8,
+                    "dimension": "276x135x51 mm",
+                    "activo": true
+                }
+            },
+            {
+                "precioUnitario": 199.99,
+                "idDetalle": "705951162",
+                "cantidad": 5,
+                "productos": {
+                    "descripcion": "Fuente modular de alto rendimiento, 80 Plus Platinum",
+                    "garantiaMeses": 60,
+                    "tipo": "FuenteDePoder",
+                    "codigo": "773899287",
+                    "subCategoria": "CERTIFICADA",
+                    "peso": 2,
+                    "categoria": "FUENTE_DE_PODER",
+                    "numeroDeSerie": "43337105",
+                    "nombre": "Corsair HX850",
+                    "marca": "Corsair",
+                    "fechaIngreso": "2025-11-16",
+                    "potencia": "850W",
+                    "precio": 199.99,
+                    "tipoCertificacion": "PLATINUM",
+                    "idProveedores": ["510927829"],
+                    "stock": 12,
+                    "dimension": "150x86x180 mm",
+                    "activo": true
+                }
+            }
+        ],
+        "proveedor": {
+            "Nombre": "Nicolás",
+            "Apellido": "Castro",
+            "ID": "424368618"
+        },
+        "idPedido": "507494807",
         "activo": true
     }
 ]

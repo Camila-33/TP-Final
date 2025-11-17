@@ -79,7 +79,7 @@ public class GestionUsuario implements MetodosGestion <Usuario>{
                             break;
 
                         case 5:
-                            u.setEmail(InputHelper.pedirEmail("Nuevo email:"));
+                            u.setEmail(InputHelper.pedirEmail("usuario", "Nuevo email:"));
                             break;
 
                         case 6:
@@ -123,10 +123,15 @@ public class GestionUsuario implements MetodosGestion <Usuario>{
         for (Usuario user : listaUsuarios) {
             if (user.equals(u)) {
 
-                char opcion = InputHelper.leerChar("¿Estás seguro de que quieres eliminar la cuenta? (s / n)");
+                if (!user.isActivo()) {
+                    System.err.println("Error: el usuario ya está dado de baja.");
+                    return;
+                }
+
+                char opcion = InputHelper.leerChar("¿Estás seguro de que quieres dar de baja al usuario? (s / n)");
 
                 if (opcion == 's') {
-                    user.setActivo(true);
+                    user.setActivo(false);
                     System.out.println("¡Cuenta dada de baja con éxito!");
                     GestionJSONUsuario.listaUsuarioToArchivo(listaUsuarios, "usuario.json");
 
@@ -149,6 +154,11 @@ public class GestionUsuario implements MetodosGestion <Usuario>{
 
         for (Usuario user : listaUsuarios) {
             if (user.equals(u)) {
+
+                if (user.isActivo()) {
+                    System.err.println("Error: el usuario ya está dado de alta.");
+                    return;
+                }
 
                 char opcion = InputHelper.leerChar("¿Estás seguro de que quieres dar de alta al usuario " + user.getNombre() + " " + user.getApellido() + "? (s / n)");
 

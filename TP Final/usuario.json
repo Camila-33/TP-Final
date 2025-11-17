@@ -1,14 +1,14 @@
 [
     {
-        "apellido": "Martínez",
-        "direccion": "Avenida Luna 202",
-        "contrasenia": "clave888",
-        "id": "600592413",
-        "telefono": "1111111102",
-        "nombre": "Laura",
-        "dni": "20202020",
-        "email": "laura.martinez@email.com",
-        "username": "usuario2",
+        "apellido": "Gómez",
+        "direccion": "Calle Sol 101",
+        "contrasenia": "pass1234",
+        "id": "138722167",
+        "telefono": "1111111101",
+        "nombre": "Pedro",
+        "dni": "10101010",
+        "email": "pedro.gomez@email.com",
+        "username": "usuario1",
         "activo": true
     },
     {
@@ -24,39 +24,15 @@
         "activo": true
     },
     {
-        "apellido": "Ramírez",
-        "direccion": "Calle Mar 505",
-        "contrasenia": "miuser99",
-        "id": "937568462",
-        "telefono": "1111111105",
-        "nombre": "Fernando",
-        "dni": "50505050",
-        "email": "fernando.ramirez@email.com",
-        "username": "usuario5",
-        "activo": true
-    },
-    {
-        "apellido": "Fernández",
-        "direccion": "Avenida Sol 606",
-        "contrasenia": "abcde123",
-        "id": "996473723",
-        "telefono": "1111111106",
-        "nombre": "Isabel",
-        "dni": "60606060",
-        "email": "isabel.fernandez@email.com",
-        "username": "usuario6",
-        "activo": true
-    },
-    {
-        "apellido": "Gómez",
-        "direccion": "Calle Sol 101",
-        "contrasenia": "pass1234",
-        "id": "138722167",
-        "telefono": "1111111101",
-        "nombre": "Pedro",
-        "dni": "10101010",
-        "email": "pedro.gomez@email.com",
-        "username": "usuario1",
+        "apellido": "Pérez",
+        "direccion": "Avenida Estrella 808",
+        "contrasenia": "tpclave8",
+        "id": "627585015",
+        "telefono": "1111111108",
+        "nombre": "Valeria",
+        "dni": "80808080",
+        "email": "valeria.perez@email.com",
+        "username": "usuario8",
         "activo": true
     },
     {
@@ -72,15 +48,15 @@
         "activo": true
     },
     {
-        "apellido": "Pérez",
-        "direccion": "Avenida Estrella 808",
-        "contrasenia": "tpclave8",
-        "id": "627585015",
-        "telefono": "1111111108",
-        "nombre": "Valeria",
-        "dni": "80808080",
-        "email": "valeria.perez@email.com",
-        "username": "usuario8",
+        "apellido": "Ramírez",
+        "direccion": "Calle Mar 505",
+        "contrasenia": "miuser99",
+        "id": "937568462",
+        "telefono": "1111111105",
+        "nombre": "Fernando",
+        "dni": "50505050",
+        "email": "fernando.ramirez@email.com",
+        "username": "usuario5",
         "activo": true
     },
     {
@@ -93,6 +69,42 @@
         "dni": "40404040",
         "email": "carolina.sanchez@email.com",
         "username": "usuario4",
+        "activo": true
+    },
+    {
+        "apellido": "López",
+        "direccion": "Avenida Luna 202",
+        "contrasenia": "clave5678@",
+        "id": "922380587",
+        "telefono": "1112223344",
+        "nombre": "María",
+        "dni": "20202098",
+        "email": "maria.lopez@email.com",
+        "username": "usuario9",
+        "activo": true
+    },
+    {
+        "apellido": "Fernández",
+        "direccion": "Avenida Sol 606",
+        "contrasenia": "abcde123",
+        "id": "996473723",
+        "telefono": "1111111106",
+        "nombre": "Isabel",
+        "dni": "60606060",
+        "email": "isabel.fernandez@email.com",
+        "username": "usuario6",
+        "activo": true
+    },
+    {
+        "apellido": "Martínez",
+        "direccion": "Avenida Luna 202",
+        "contrasenia": "clave888",
+        "id": "600592413",
+        "telefono": "1111111102",
+        "nombre": "Laura",
+        "dni": "20202020",
+        "email": "laura.martinez@email.com",
+        "username": "usuario2",
         "activo": true
     }
 ]

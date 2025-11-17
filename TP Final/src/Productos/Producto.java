@@ -45,7 +45,9 @@ public abstract class Producto {
     }
 
     public Producto() {
+        this.idProveedores = new ArrayList<>();
     }
+
 
     public TipoSubCategoria getSubCategoria() {
         return subCategoria;
@@ -165,6 +167,10 @@ public abstract class Producto {
 
     public void setIdProveedores(ArrayList<String> idProveedores) {
         this.idProveedores = idProveedores;
+    }
+
+    public void agregarID(String id){
+        idProveedores.add(id);
     }
 
     @Override

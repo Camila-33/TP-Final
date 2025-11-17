@@ -15,13 +15,13 @@ public class RegistroUser {
     }
 
     public Administrador registroAdministrador() {
-        System.out.println("Complete con sus datos:");
+        System.out.println("Complete los datos:");
 
         String username = InputHelper.pedirUsername("Nuevo username:");
         String contrasenia = InputHelper.pedirContraseniaRegistro("Contraseña");
         String nombre = InputHelper.pedirString("Nombre:");
         String apellido = InputHelper.pedirString("Apellido:");
-        String email = InputHelper.pedirEmail("Email:");
+        String email = InputHelper.pedirEmail("administrador", "Email:");
         String telefono = InputHelper.pedirTelefono("Teléfono:");
         String dni = InputHelper.pedirDniRegistro("administrador", "DNI:");
         String direccion = InputHelper.pedirDireccion("Dirección:");
@@ -31,13 +31,13 @@ public class RegistroUser {
 
 
     public Usuario registroUsuario() {
-        System.out.println("Complete con sus datos:");
+        System.out.println("Complete los datos:");
 
-        String username = InputHelper.pedirUsername("Nuevo username:");
-        String contrasenia = InputHelper.pedirContraseniaRegistro("Contraseña");
+        String username = InputHelper.pedirUsername("Username:");
+        String contrasenia = InputHelper.pedirContraseniaRegistro("Contraseña (debe contener al menos 8 carácteres y un carácter especial):");
         String nombre = InputHelper.pedirString("Nombre:");
         String apellido = InputHelper.pedirString("Apellido:");
-        String email = InputHelper.pedirEmail("Email:");
+        String email = InputHelper.pedirEmail("usuario", "Email:");
         String telefono = InputHelper.pedirTelefono("Teléfono:");
         String dni = InputHelper.pedirDniRegistro("usuario", "DNI:");
         String direccion = InputHelper.pedirDireccion("Dirección:");

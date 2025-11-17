@@ -14,15 +14,6 @@ public class GestionJSONDetalleVenta {
     }
 
 
-    public static void detalleVentaToArchivo(DetalleVenta detalleVenta, String nombreArchivo){
-
-        JSONArray jsonArray = new JSONArray();
-        jsonArray.put(serializarDetalleVenta(detalleVenta));
-
-        OperacionesLectoEscritura.grabar(nombreArchivo, jsonArray);
-    }
-
-
     public static JSONObject serializarDetalleVenta(DetalleVenta d) {
         JSONObject jsonObject = new JSONObject();
 
@@ -31,9 +22,9 @@ public class GestionJSONDetalleVenta {
             jsonObject.put("cantidad", d.getCantidad());
             jsonObject.put("precioUnitario", d.getPrecioUnitario());
 
-            JSONObject productoJson = GestionJSONProducto.serializarProductoParcial(d.getProducto());
+            JSONObject productoJson = GestionJSONProducto.serializarProducto(d.getProducto());
 
-            jsonObject.put("producto", productoJson);
+            jsonObject.put("productos", productoJson);
 
         } catch (JSONException ex) {
             ex.printStackTrace();
@@ -52,8 +43,8 @@ public class GestionJSONDetalleVenta {
             detalleVentaLeido.setCantidad(jsonObject.getInt("cantidad"));
             detalleVentaLeido.setPrecioUnitario(jsonObject.getDouble("precioUnitario"));
 
-            JSONObject jsonProducto = jsonObject.getJSONObject("producto");
-            Producto producto = GestionJSONProducto.deserializarProductoParcial(jsonProducto);
+            JSONObject jsonProducto = jsonObject.getJSONObject("productos");
+            Producto producto = GestionJSONProducto.deserializarProducto(jsonProducto);
 
             detalleVentaLeido.setProducto(producto);
 

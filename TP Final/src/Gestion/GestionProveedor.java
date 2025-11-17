@@ -1,5 +1,6 @@
 package Gestion;
 
+import Archivos.GestionJSONProductos.GestionJSONProducto;
 import Archivos.GestionJSONUsers.GestionJSONProveedor;
 import Enums.TipoProveedor;
 import IngresoDeDatos.InputHelper;
@@ -46,6 +47,7 @@ public class GestionProveedor {
                     System.out.println("4. CUIT");
                     System.out.println("5. Teléfono");
                     System.out.println("6. Tipo de proveedor");
+                    System.out.println("7. ");
                     System.out.println("7. Salir");
 
                     int opcion = InputHelper.leerInt("Elija una opción");
@@ -61,7 +63,7 @@ public class GestionProveedor {
                             break;
 
                         case 3:
-                            p.setEmail(InputHelper.pedirEmail("Nuevo email:"));
+                            p.setEmail(InputHelper.pedirEmail("proveedor", "Nuevo email:"));
                             break;
 
                         case 4:
@@ -103,6 +105,12 @@ public class GestionProveedor {
 
         for (Proveedor proveedor : listaProveedores) {
             if (proveedor.equals(p)) {
+
+                if (!proveedor.isActivo()) {
+                    System.err.println("Error: el proveedor ya está dado de baja.");
+                    return;
+                }
+
                 char opcion = InputHelper.leerChar("¿Estás seguro de que quieres dar de baja a este proveedor? (s / n)");
 
                 if (opcion == 's') {
@@ -126,6 +134,11 @@ public class GestionProveedor {
 
         for (Proveedor proveedor : listaProveedores) {
             if (proveedor.equals(p)) {
+
+                if (proveedor.isActivo()) {
+                    System.err.println("Error: el proveedor ya está dado de alta.");
+                    return;
+                }
 
                 char opcion = InputHelper.leerChar("¿Estás seguro de que quieres dar de alta a este proveedor? (s / n)");
 
@@ -183,51 +196,60 @@ public class GestionProveedor {
         return proveedor;
     }
 
-    public void cargarProveedor(){
+    public void cargarProveedor() {
 
         String nombre = InputHelper.pedirString("Ingrese el nombre del proveedor:");
         String apellido = InputHelper.pedirString("Ingrese el apellido:");
-        String email = InputHelper.pedirEmail("Ingrese un e-mail:");
+        String email = InputHelper.pedirEmail("proveedor", "Ingrese un e-mail:");
         String telefono = InputHelper.pedirTelefono("Ingrese un teléfono:");
         String cuit = InputHelper.pedirCuit("Ingrese el CUIT:");
 
         System.out.println("Elija el tipo de proveedor: ");
         TipoProveedor tipoProveedor = elegirTipoProveedor();
 
-        HashMap<String, Producto> nuevosProductos = cargarProductosParaProveedor();
-
         Proveedor proveedor = new Proveedor(nombre, apellido, email, telefono, cuit, tipoProveedor);
+
+        HashMap<String, Producto> nuevosProductos = cargarProductosParaProveedor(proveedor);
         proveedor.agregarProductos(nuevosProductos);
 
+        gestionProducto.actualizarProveedoresDeProductoJSON(proveedor, nuevosProductos);
+
         agregarProveedor(proveedor);
+
+        System.out.println("Proveedor cargado correctamente con " + nuevosProductos.size() + " productos asociados.");
     }
 
 
-    private HashMap<String, Producto> cargarProductosParaProveedor() {
-
+    private HashMap<String, Producto> cargarProductosParaProveedor(Proveedor proveedor) {
         HashMap<String, Producto> nuevosProductos = new HashMap<>();
 
-        int opcion;
         while (true) {
-
             System.out.println();
-            opcion = InputHelper.leerInt("¿Desea cargar productos nuevos (1) o elegir algunos ya existentes (2)?");
+            int opcion = InputHelper.leerInt("¿Desea cargar productos nuevos (1) o elegir algunos ya existentes (2)?");
 
             if (opcion == 1) {
-                return gestionProducto.cargarProductos();
+                HashMap<String, Producto> productosCargados = gestionProducto.cargarProductos();
+                nuevosProductos.putAll(productosCargados);
+                return nuevosProductos;
             }
 
             if (opcion == 2) {
                 while (true) {
-
                     Producto producto = gestionProducto.elegirProductosDisponibles();
-                    nuevosProductos.put(producto.getCodigo(), producto);
-                    System.out.println("Producto agregado correctamente.");
 
+                    HashMap<String, Producto> listaProductos = GestionJSONProducto.archivoProductosToLista("producto.json");
+                    Producto productoJSON = listaProductos.get(producto.getCodigo());
+
+                    if (productoJSON != null) {
+                        nuevosProductos.put(productoJSON.getCodigo(), productoJSON);
+                        System.out.println("Producto agregado correctamente.");
+
+                    } else {
+                        System.err.println("Error: producto no encontrad.");
+                    }
 
                     System.out.println("Para dejar de agregar productos presione 1. Para continuar, otro número.");
                     int opSalir = InputHelper.leerEnteroSwitch();
-
                     if (opSalir == 1) break;
                 }
 
@@ -237,6 +259,7 @@ public class GestionProveedor {
             System.out.println("Opción inválida. Ingrese 1 o 2.");
         }
     }
+
 
 
     public TipoProveedor elegirTipoProveedor(){
@@ -320,7 +343,7 @@ public class GestionProveedor {
 
                 break;
 
-            }catch (IndexOutOfBoundsException e){ //puede no funcionar
+            }catch (IndexOutOfBoundsException e){
                 System.err.println("Error: " +e.getMessage());
             }
         }

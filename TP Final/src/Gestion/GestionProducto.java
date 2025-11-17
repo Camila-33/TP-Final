@@ -194,7 +194,7 @@ public class GestionProducto {
 
     public HashMap<String, Producto> cargarProductos() {
 
-        HashMap<String, Producto> nuevosProductos = new HashMap<>();
+        HashMap<String, Producto> nuevosProductos;
         char continuar;
 
         do {
@@ -212,7 +212,6 @@ public class GestionProducto {
             System.out.println("Proveedores disponibles:");
             gestionProveedor.mostrarProveedoresDisponibles();
 
-            // Ahora permitimos seleccionar varios proveedores
             ArrayList<String> idProveedores = new ArrayList<>();
             boolean agregarOtro;
             do {
@@ -546,6 +545,7 @@ public class GestionProducto {
 
 
     public void modificarProducto(Producto producto) {
+
         listaProductos = GestionJSONProducto.archivoProductosToLista("producto.json");
 
         while (true) {
@@ -605,6 +605,7 @@ public class GestionProducto {
             System.out.println("0. Salir");
 
             int opcion = InputHelper.leerEnteroSwitch();
+            boolean opcionValida = true;
 
             if (opcion == 0) break;
 
@@ -618,95 +619,128 @@ public class GestionProducto {
                 case 7 -> producto.setStock(InputHelper.leerInt("Ingrese el nuevo stock: "));
                 case 8 -> producto.setGarantiaMeses(InputHelper.leerInt("Ingrese la nueva garantía (meses): "));
                 case 9 -> producto.setCodigo(InputHelper.leerIDOCodigo("Ingrese el nuevo código de proveedor: "));
+                default -> opcionValida = false;
             }
 
-            switch (producto) {
-                case Almacenamiento a -> {
-                    switch (opcion) {
-                        case 10 -> a.setCapacidad(InputHelper.leerString("Ingrese nueva capacidad: "));
-                        case 11 -> a.setVelocidad(InputHelper.leerString("Ingrese nueva velocidad: "));
-                        default -> System.out.println("Opción inválida.");
-                    }
-                }
-                case Cooler c -> {
-                    switch (opcion) {
-                        case 10 -> c.setVelocidad(InputHelper.leerString("Ingrese nueva velocidad: "));
-                        case 11 -> c.setNivelRuidoMaximo(InputHelper.leerString("Ingrese nuevo nivel de ruido: "));
-                        default -> System.out.println("Opción inválida.");
-                    }
-                }
-                case FuenteDePoder f -> {
-                    switch (opcion) {
-                        case 10 -> f.setPotencia(InputHelper.leerString("Ingrese nueva potencia: "));
-                        case 11 -> {
-                            if (f.getSubCategoria() == TipoSubCategoria.CERTIFICADA) {
-                                f.setTipoCertificacion(InputHelper.leerCertificacion());
-                            } else {
-                                System.out.println("Opción inválida.");
-                            }
+            if (!opcionValida) {
+                boolean opcionEspecificaValida = true;
+                switch (producto) {
+                    case Almacenamiento a -> {
+                        switch (opcion) {
+                            case 10 -> a.setCapacidad(InputHelper.leerString("Ingrese nueva capacidad: "));
+                            case 11 -> a.setVelocidad(InputHelper.leerString("Ingrese nueva velocidad: "));
+                            default -> opcionEspecificaValida = false;
                         }
-                        default -> System.out.println("Opción inválida.");
                     }
-                }
-                case Gabinete g -> {
-                    switch (opcion) {
-                        case 10 -> g.setConVentana(InputHelper.leerBoolean("Tiene ventana? (s/n): "));
-                        case 11 -> g.setColor(InputHelper.leerString("Ingrese nuevo color: "));
-                        case 12 -> g.setAncho(InputHelper.leerString("Ingrese nuevo ancho: "));
-                        case 13 -> g.setAlto(InputHelper.leerString("Ingrese nuevo alto: "));
-                        case 14 -> g.setProfundidad(InputHelper.leerString("Ingrese nueva profundidad: "));
-                        default -> System.out.println("Opción inválida.");
+                    case Cooler c -> {
+                        switch (opcion) {
+                            case 10 -> c.setVelocidad(InputHelper.leerString("Ingrese nueva velocidad: "));
+                            case 11 -> c.setNivelRuidoMaximo(InputHelper.leerString("Ingrese nuevo nivel de ruido: "));
+                            default -> opcionEspecificaValida = false;
+                        }
                     }
-                }
-                case MemoriaRAM m -> {
-                    switch (opcion) {
-                        case 10 -> m.setCapacidad(InputHelper.leerInt("Ingrese nueva capacidad: "));
-                        case 11 -> m.setTipoDeMemoria(InputHelper.leerString("Ingrese nuevo tipo de memoria: "));
-                        case 12 -> m.setFrecuencia(InputHelper.leerString("Ingrese nueva frecuencia: "));
-                        default -> System.out.println("Opción inválida.");
+                    case FuenteDePoder f -> {
+                        switch (opcion) {
+                            case 10 -> f.setPotencia(InputHelper.leerString("Ingrese nueva potencia: "));
+                            case 11 -> {
+                                if (f.getSubCategoria() == TipoSubCategoria.CERTIFICADA) {
+                                    f.setTipoCertificacion(InputHelper.leerCertificacion());
+                                } else {
+                                    opcionEspecificaValida = false;
+                                }
+                            }
+                            default -> opcionEspecificaValida = false;
+                        }
                     }
-                }
-                case PlacaDeRed p -> {
-                    if (opcion == 10)
-                        p.setDispoditivosCompatibles(InputHelper.leerString("Ingrese nuevos dispositivos compatibles: "));
-                    else System.out.println("Opción inválida.");
-                }
-                case PlacaDeVideo p -> {
-                    switch (opcion) {
-                        case 10 -> p.setGPU(InputHelper.leerString("Ingrese nueva GPU: "));
-                        case 11 -> p.setVRAM(InputHelper.leerString("Ingrese nueva VRAM: "));
-                        case 12 ->
-                                p.setFrecuenciaNucleo(InputHelper.leerString("Ingrese nueva frecuencia del núcleo: "));
-                        case 13 -> p.setAnchoDeBanda(InputHelper.leerString("Ingrese nuevo ancho de banda: "));
-                        default -> System.out.println("Opción inválida.");
+                    case Gabinete g -> {
+                        switch (opcion) {
+                            case 10 -> g.setConVentana(InputHelper.leerBoolean("Tiene ventana? (s/n): "));
+                            case 11 -> g.setColor(InputHelper.leerString("Ingrese nuevo color: "));
+                            case 12 -> g.setAncho(InputHelper.leerString("Ingrese nuevo ancho: "));
+                            case 13 -> g.setAlto(InputHelper.leerString("Ingrese nuevo alto: "));
+                            case 14 -> g.setProfundidad(InputHelper.leerString("Ingrese nueva profundidad: "));
+                            default -> opcionEspecificaValida = false;
+                        }
                     }
-                }
-                case PlacaMadre p -> {
-                    switch (opcion) {
-                        case 10 -> p.setTipoMemoria(InputHelper.leerString("Ingrese nuevo tipo de memoria: "));
-                        case 11 -> p.setCantidadSlotMemoria(InputHelper.leerInt("Ingrese nueva cantidad de slots: "));
-                        case 12 -> p.setBackConnect(InputHelper.leerBoolean("Tiene Back Connect? (s/n): "));
-                        case 13 -> p.setBotonBios(InputHelper.leerBoolean("Tiene botón de Bios? (s/n): "));
-                        default -> System.out.println("Opción inválida.");
+                    case MemoriaRAM m -> {
+                        switch (opcion) {
+                            case 10 -> m.setCapacidad(InputHelper.leerInt("Ingrese nueva capacidad: "));
+                            case 11 -> m.setTipoDeMemoria(InputHelper.leerString("Ingrese nuevo tipo de memoria: "));
+                            case 12 -> m.setFrecuencia(InputHelper.leerString("Ingrese nueva frecuencia: "));
+                            default -> opcionEspecificaValida = false;
+                        }
                     }
-                }
-                case Procesador pr -> {
-                    switch (opcion) {
-                        case 10 ->
-                                pr.setFrecuenciaDeReloj(InputHelper.leerString("Ingrese nueva frecuencia de reloj: "));
-                        case 11 -> pr.setNumeroDeNucleos(InputHelper.leerInt("Ingrese nuevo número de núcleos: "));
-                        default -> System.out.println("Opción inválida.");
+                    case PlacaDeRed p -> {
+                        if (opcion == 10)
+                            p.setDispoditivosCompatibles(InputHelper.leerString("Ingrese nuevos dispositivos compatibles: "));
+                        else opcionEspecificaValida = false;
                     }
+                    case PlacaDeVideo p -> {
+                        switch (opcion) {
+                            case 10 -> p.setGPU(InputHelper.leerString("Ingrese nueva GPU: "));
+                            case 11 -> p.setVRAM(InputHelper.leerString("Ingrese nueva VRAM: "));
+                            case 12 -> p.setFrecuenciaNucleo(InputHelper.leerString("Ingrese nueva frecuencia del núcleo: "));
+                            case 13 -> p.setAnchoDeBanda(InputHelper.leerString("Ingrese nuevo ancho de banda: "));
+                            default -> opcionEspecificaValida = false;
+                        }
+                    }
+                    case PlacaMadre p -> {
+                        switch (opcion) {
+                            case 10 -> p.setTipoMemoria(InputHelper.leerString("Ingrese nuevo tipo de memoria: "));
+                            case 11 -> p.setCantidadSlotMemoria(InputHelper.leerInt("Ingrese nueva cantidad de slots: "));
+                            case 12 -> p.setBackConnect(InputHelper.leerBoolean("Tiene Back Connect? (s/n): "));
+                            case 13 -> p.setBotonBios(InputHelper.leerBoolean("Tiene botón de Bios? (s/n): "));
+                            default -> opcionEspecificaValida = false;
+                        }
+                    }
+                    case Procesador pr -> {
+                        switch (opcion) {
+                            case 10 -> pr.setFrecuenciaDeReloj(InputHelper.leerString("Ingrese nueva frecuencia de reloj: "));
+                            case 11 -> pr.setNumeroDeNucleos(InputHelper.leerInt("Ingrese nuevo número de núcleos: "));
+                            default -> opcionEspecificaValida = false;
+                        }
+                    }
+                    default -> opcionEspecificaValida = false;
                 }
-                default -> System.out.println("Opción inválida.");
+
+                if (!opcionEspecificaValida) {
+                    System.out.println("Opción inválida.");
+                }
             }
 
             char continuar = InputHelper.leerChar("¿Desea modificar otro atributo del producto? (s/n): ");
-            if (continuar != 's') break;
+            if (continuar != 's' && continuar != 'S') break;
         }
 
         listaProductos.put(producto.getCodigo(), producto);
         GestionJSONProducto.listaProductosToArchivo(listaProductos, "producto.json");
         System.out.println("Producto modificado correctamente.");
     }
+
+
+    public void actualizarProveedoresDeProductoJSON(Proveedor proveedor, HashMap<String, Producto> nuevosProductos) {
+
+        HashMap<String, Producto> listaProductos = GestionJSONProducto.archivoProductosToLista("producto.json");
+
+        for (Producto pNuevo : nuevosProductos.values()) {
+            if (listaProductos.containsKey(pNuevo.getCodigo())) {
+
+                Producto pExistente = listaProductos.get(pNuevo.getCodigo());
+
+                if (pExistente.getIdProveedores() == null) {
+                    pExistente.setIdProveedores(new ArrayList<>());
+                }
+
+                if (!pExistente.getIdProveedores().contains(proveedor.getIdProveedor())) {
+                    pExistente.agregarID(proveedor.getIdProveedor());
+                }
+
+                listaProductos.put(pExistente.getCodigo(), pExistente);
+            }
+        }
+
+        GestionJSONProducto.listaProductosToArchivo(listaProductos, "producto.json");
+    }
+
+
 }

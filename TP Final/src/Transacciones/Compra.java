@@ -89,7 +89,7 @@ public class Compra {
 
     public void mostrarCompra() {
 
-        System.out.println("\n=== Detalle de la Compra ===");
+        System.out.println("\n===Compra ===");
         System.out.println("ID Pedido: " + idPedido);
         System.out.println("Fecha: " + fechaCompra);
         System.out.println("Proveedor: " +proveedor.getNombre() + " " + proveedor.getApellido());

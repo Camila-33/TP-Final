@@ -18,13 +18,6 @@ public class GestionJSONAdministrador {
         OperacionesLectoEscritura.grabar(nombreArchivo, serializarListaAdministradores(listaAdmins));
     }
 
-    public static void adminToArchivo(Administrador administrador, String nombreArchivo){
-
-        JSONArray jsonArray = new JSONArray();
-        jsonArray.put(serializarAdmin(administrador));
-
-        OperacionesLectoEscritura.grabar(nombreArchivo, jsonArray);
-    }
 
     public static JSONArray serializarListaAdministradores(HashSet<Administrador> listaAdmins){
 

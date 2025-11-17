@@ -197,6 +197,43 @@ public class Validaciones {
         return existe;
     }
 
+
+    public static boolean existeEmail (String email, String tipoUsuario){
+
+        boolean existe = false;
+
+        HashSet<Administrador> administradores = GestionJSONAdministrador.archivoAdminToLista("administrador.json");
+        HashSet<Usuario> usuarios = GestionJSONUsuario.archivoUsuarioToLista("usuario.json");
+        HashSet<Proveedor> proveedores = GestionJSONProveedor.archivoProveedorToLista("proveedor.json");
+
+        if(tipoUsuario.equalsIgnoreCase("administrador")){
+            for (Administrador a : administradores){
+                if (a.getEmail().equals(email)) {
+                    existe = true;
+                    break;
+                }
+            }
+
+        }else if (tipoUsuario.equalsIgnoreCase("usuario")){
+            for (Usuario e : usuarios){
+                if (e.getEmail().equals(email)) {
+                    existe = true;
+                    break;
+                }
+            }
+
+        }else{
+            for (Proveedor p : proveedores){
+                if (p.getEmail().equals(email)){
+                    existe = true;
+                    break;
+                }
+            }
+        }
+
+        return existe;
+    }
+
     public static boolean existeUser(String username){
 
         boolean existe = false;

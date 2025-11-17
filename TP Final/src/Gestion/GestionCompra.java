@@ -91,7 +91,7 @@ public class GestionCompra {
             System.out.println("\n¿Qué desea modificar?");
             System.out.println("1. Proveedor");
             System.out.println("2. Detalles de compra (productos y cantidades)");
-            System.out.println("3. Cancelar modificación");
+            System.out.println("3. Salir dle apartado de modificación");
 
             int opcion = InputHelper.leerEnteroSwitch();
 
@@ -186,7 +186,7 @@ public class GestionCompra {
             Compra compra = compras.get(idPedido);
 
             if (!compra.isActivo()) {
-                System.out.println("La compra con ID " + idPedido + " ya estaba cancelada.");
+                System.out.println("La compra con ID " + idPedido + " ya está cancelada.");
                 return;
             }
 

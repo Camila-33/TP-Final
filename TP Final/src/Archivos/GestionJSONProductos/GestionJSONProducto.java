@@ -28,13 +28,6 @@ public class GestionJSONProducto {
         OperacionesLectoEscritura.grabar(nombreArchivo, jsonArray);
     }
 
-    public static void productoToArchivo(Producto producto, String nombreArchivo) {
-
-        JSONArray jsonArray = new JSONArray();
-        jsonArray.put(serializarProductoParcial(producto));
-
-        OperacionesLectoEscritura.grabar(nombreArchivo, jsonArray);
-    }
 
     public static JSONObject serializarProducto(Producto p) {
 
@@ -122,6 +115,19 @@ public class GestionJSONProducto {
 
         json.put("codigo", p.getCodigo());
         json.put("nombre", p.getNombre());
+        json.put("precio", p.getPrecio());
+
+        return json;
+    }
+
+    public static JSONObject serializarProductoParcialProveedor(Producto p) {
+
+        JSONObject json = new JSONObject();
+
+        json.put("tipo", p.getClass().getSimpleName());
+
+        json.put("codigo", p.getCodigo());
+        json.put("nombre", p.getNombre());
 
         return json;
     }
@@ -171,11 +177,17 @@ public class GestionJSONProducto {
             p.setGarantiaMeses(json.getInt("garantiaMeses"));
 
             JSONArray jsonArray = json.optJSONArray("idProveedores");
-            ArrayList<String> idProveedores = new ArrayList<>();
 
             if (jsonArray != null) {
+                if (p.getIdProveedores() == null) {
+                    p.setIdProveedores(new ArrayList<>());
+                }
+
                 for (int i = 0; i < jsonArray.length(); i++) {
-                    idProveedores.add(jsonArray.getString(i));
+                    String id = jsonArray.getString(i);
+                    if (!p.getIdProveedores().contains(id)) {
+                        p.getIdProveedores().add(id);
+                    }
                 }
             }
 
@@ -246,6 +258,24 @@ public class GestionJSONProducto {
 
             p.setCodigo(json.getString("codigo"));
             p.setNombre(json.getString("nombre"));
+            p.setPrecio(json.getDouble("precio"));
+
+            return p;
+
+        } catch (Exception e) {
+            System.err.println("Error al deserializar parcialmente: " + e.getMessage());
+        }
+
+        return null;
+    }
+
+    public static Producto deserializarProductoParcialProveedor(JSONObject json) {
+        try {
+            String tipo = json.optString("tipo");
+            Producto p = getProducto(tipo);
+
+            p.setCodigo(json.getString("codigo"));
+            p.setNombre(json.getString("nombre"));
 
             return p;
 
@@ -272,6 +302,5 @@ public class GestionJSONProducto {
             default -> throw new IllegalArgumentException("Tipo de producto desconocido: " + tipo);
         };
     }
-
 }
 

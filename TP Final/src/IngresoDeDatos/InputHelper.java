@@ -44,13 +44,18 @@ public class InputHelper {
         }
     }
 
-    public static String pedirEmail(String mensaje) {
+    public static String pedirEmail(String tipo, String mensaje) {
         while (true) {
             try {
                 System.out.println(mensaje);
                 String email = teclado.nextLine();
                 Validaciones.validarEmail(email);
-                return email;
+
+                if (Validaciones.existeEmail(email, tipo)) {
+                    System.err.println("El Email ya existe. Ingrese otro.");
+                } else {
+                    return email;
+                }
 
             } catch (DatoInvalidoException e) {
                 System.err.println("Error: " + e.getMessage());
@@ -95,7 +100,7 @@ public class InputHelper {
                 Validaciones.validarNombreUsuario(username);
 
                 if (Validaciones.existeUser(username)) {
-                    System.out.println("El Username ya existe. Ingrese otro.");
+                    System.err.println("El Username ya existe. Ingrese otro.");
                 } else {
                     return username;
                 }
@@ -130,14 +135,14 @@ public class InputHelper {
         while (true) {
             try {
                 System.out.println(mensaje);
-                String dni = teclado.next();
+                String dni = teclado.nextLine().trim();
 
                 Validaciones.validarDNI(dni);
 
                 if (!Validaciones.existeDni(dni, tipo)) {
                     return dni;
                 } else {
-                    System.out.println("El DNI ya existe en el sistema.");
+                    System.err.println("El DNI ya existe en el sistema.");
                 }
 
             } catch (DatoInvalidoException e) {
@@ -266,6 +271,7 @@ public class InputHelper {
 
             int op = teclado.nextInt();
             teclado.nextLine();
+
             switch(op) {
                 case 1: return TipoCertificacion.BRONZE;
                 case 2: return TipoCertificacion.SILVER;
