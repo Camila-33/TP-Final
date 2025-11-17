@@ -8,6 +8,8 @@ import Users.UsuarioSistema.Administrador;
 
 import java.util.HashSet;
 
+import static IngresoDeDatos.InputHelper.teclado;
+
 public class GestionAdministrador implements MetodosGestion <Administrador>{
 
     private HashSet<Administrador> listaAdministradores;
@@ -57,6 +59,7 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
                     System.out.println("9. Salir");
 
                     int opcion = InputHelper.leerEnteroSwitch();
+                    teclado.nextLine();
 
                     switch (opcion) {
 
@@ -65,7 +68,7 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
                             break;
 
                         case 2:
-                            a.setContrasena(InputHelper.pedirContrasenia("Nueva contraseña: "));
+                            a.setContrasena(InputHelper.pedirContraseniaRegistro("Nueva contraseña: "));
                             break;
 
                         case 3:
@@ -85,7 +88,7 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
                             break;
 
                         case 7:
-                            a.setDni(InputHelper.pedirDni("administrador", "Nuevo DNI:"));
+                            a.setDni(InputHelper.pedirDniRegistro("administrador", "Nuevo DNI:"));
                             break;
 
                         case 8:
@@ -160,7 +163,6 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
     }
 
 
-
     @Override
     public void darDeAltaUsuario(Administrador a) {
 
@@ -170,38 +172,17 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
             if (admin.equals(a)) {
 
                 char opcion = InputHelper.leerChar(
-                        "¿Estás seguro de que quieres dar de alta al administrador " + admin.getNombre() + " " + admin.getApellido() + "? (s / n)");
+                        "¿Estás seguro de que quieres dar de alta al administrador " + admin.getNombreCompleto() + "? (s / n)");
 
                 if (opcion == 's') {
-
-                    int intentos = 0;
-
-                    while (intentos < 3) {
-                        String contrasenia = InputHelper.pedirContrasenia("Ingrese su contraseña para dar de alta la cuenta");
-
-                        if (contrasenia.equals(admin.getContrasena())) {
-                            admin.setActivo(true);
-                            System.out.println("¡Cuenta dada de alta con éxito!");
-                            GestionJSONAdministrador.listaAdminsToArchivo(listaAdministradores, "administrador.json");
-                            return;
-
-                        } else {
-                            intentos++;
-
-                            if (intentos < 3) {
-                                System.out.println(
-                                        "Contraseña incorrecta, inténtelo nuevamente (" + (3 - intentos) + " intentos restantes)"
-                                );
-                            } else {
-                                System.out.println("Ha superado el número máximo de intentos. Operación cancelada.");
-                            }
-                        }
-                    }
+                    admin.setActivo(true);
+                    System.out.println("¡Cuenta dada de alta con éxito!");
+                    GestionJSONAdministrador.listaAdminsToArchivo(listaAdministradores, "administrador.json");
 
                 } else {
                     System.out.println("Operación cancelada");
-                    return;
                 }
+                return;
             }
         }
 
@@ -229,7 +210,37 @@ public class GestionAdministrador implements MetodosGestion <Administrador>{
         listaAdministradores = GestionJSONAdministrador.archivoAdminToLista("administrador.json");
 
         for(Administrador admin : listaAdministradores) {
-            admin.mostrarDatosUsuario();
+            mostrarDatosUsuario(admin);
+        }
+    }
+
+    @Override
+    public void mostrarDatosUsuario(Administrador a){
+
+        listaAdministradores = GestionJSONAdministrador.archivoAdminToLista("administrador.json");
+
+        for (Administrador administrador : listaAdministradores) {
+            if (administrador.getIdUsuario().equals(a.getIdUsuario())) {
+
+                a = administrador;
+
+                System.out.println();
+                System.out.println("--------------------------------------------");
+                System.out.println("PERFIL DE ADMINISTRADOR: " + a.getNombreCompleto());
+                System.out.println("--------------------------------------------");
+
+                System.out.println("ID: " + a.getIdUsuario());
+                System.out.println("Username: " + a.getUserName());
+                System.out.println("Contraseña: **********");
+                System.out.println("Nombre: " + a.getNombre());
+                System.out.println("Apellido: " + a.getApellido());
+                System.out.println("DNI: " + a.getDni());
+                System.out.println("Teléfono: " + a.getTelefono());
+                System.out.println("Activo: " + (a.isActivo() ? "Sí" : "No"));
+                System.out.println("Dirección: " + a.getDireccion());
+                System.out.println("Email: " + a.getEmail());
+                System.out.println("--------------------------------------------");
+            }
         }
     }
 }

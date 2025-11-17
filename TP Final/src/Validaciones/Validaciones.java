@@ -1,8 +1,10 @@
 package Validaciones;
 
 import Archivos.GestionJSONUsers.GestionJSONAdministrador;
+import Archivos.GestionJSONUsers.GestionJSONProveedor;
 import Archivos.GestionJSONUsers.GestionJSONUsuario;
 import Excepciones.DatoInvalidoException;
+import Users.Proveedor;
 import Users.UsuarioSistema.Administrador;
 import Users.UsuarioSistema.Usuario;
 
@@ -52,7 +54,7 @@ public class Validaciones {
         }
 
         if (!contrasenia.matches(".*[0-9].*")) {
-            throw new DatoInvalidoException("La contraseña debe contener al menos un numero.");
+            throw new DatoInvalidoException("La contraseña debe contener al menos un número.");
         }
 
         if (!contrasenia.matches(".*[!@#$%^&*_(),.?\":{}|<>].*")) {
@@ -98,8 +100,8 @@ public class Validaciones {
             throw new DatoInvalidoException("La dimensión no puede estar vacía.");
         }
 
-        if (!dimension.matches("[0-9xX. ]+")) {
-            throw new DatoInvalidoException("La dimensión solo puede contener números, 'x' y puntos.");
+        if (!dimension.matches("[0-9xX. ]+[a-zA-Z]*")) {
+            throw new DatoInvalidoException("La dimensión solo puede contener números, 'x', puntos y unidades como mm, cm, etc.");
         }
     }
 
@@ -175,7 +177,7 @@ public class Validaciones {
         boolean existe = false;
 
         HashSet<Administrador> administradores = GestionJSONAdministrador.archivoAdminToLista("administrador.json");
-        HashSet<Usuario> usuarios = GestionJSONUsuario.archivoUsuarioToLista("empleado.json");
+        HashSet<Usuario> usuarios = GestionJSONUsuario.archivoUsuarioToLista("usuario.json");
 
         if(tipoUsuario.equalsIgnoreCase("administrador")){
             for (Administrador a : administradores){
@@ -219,5 +221,17 @@ public class Validaciones {
         }
 
         return existe;
+    }
+
+    public static boolean existeCodigoProveedor(String codigoProveedor) {
+
+        HashSet<Proveedor> listaProveedores = GestionJSONProveedor.archivoProveedorToLista("proveedor.json");
+
+        for (Proveedor p : listaProveedores) {
+            if (p.getIdProveedor().equals(codigoProveedor)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -1,5 +1,6 @@
 package Transacciones;
 
+import IngresoDeDatos.InputHelper;
 import Transacciones.Detalles.DetalleVenta;
 
 import java.time.LocalDate;
@@ -13,7 +14,6 @@ import java.util.List;
 
 public class Venta {
 
-    private static int contador = 0;
     private String idVenta;
     private List<DetalleVenta> detalleVenta;
     private double total;
@@ -22,7 +22,7 @@ public class Venta {
 
 
     public Venta(List<DetalleVenta> detalleVenta) {
-        this.idVenta = String.valueOf(++contador);
+        this.idVenta = InputHelper.generarCodigoUnico();
         this.detalleVenta = (detalleVenta != null) ? detalleVenta : new ArrayList<>();
         this.fecha = LocalDate.now();
         this.activo = true;

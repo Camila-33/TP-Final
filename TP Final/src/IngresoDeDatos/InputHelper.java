@@ -4,12 +4,14 @@ import Enums.TipoCertificacion;
 import Excepciones.DatoInvalidoException;
 import Validaciones.Validaciones;
 
+import java.security.SecureRandom;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputHelper {
 
-    private static Scanner teclado = new Scanner(System.in);
+    public static Scanner teclado = new Scanner(System.in);
+    private static final SecureRandom random = new SecureRandom();
 
     public InputHelper() {
     }
@@ -104,7 +106,7 @@ public class InputHelper {
         }
     }
 
-    public static String pedirContrasenia(String mensaje) {
+    public static String pedirContraseniaRegistro(String mensaje) {
         while (true) {
             try {
                 System.out.println(mensaje);
@@ -118,11 +120,17 @@ public class InputHelper {
         }
     }
 
-    public static String pedirDni(String tipo, String mensaje) {
+    public static String pedirContrasenia(String mensaje) {
+        System.out.println(mensaje);
+        String contrasenia = teclado.nextLine();
+        return contrasenia;
+    }
+
+    public static String pedirDniRegistro(String tipo, String mensaje) {
         while (true) {
             try {
                 System.out.println(mensaje);
-                String dni = teclado.nextLine();
+                String dni = teclado.next();
 
                 Validaciones.validarDNI(dni);
 
@@ -131,6 +139,21 @@ public class InputHelper {
                 } else {
                     System.out.println("El DNI ya existe en el sistema.");
                 }
+
+            } catch (DatoInvalidoException e) {
+                System.err.println("Error: " + e.getMessage());
+            }
+        }
+    }
+
+    public static String pedirDni(String tipo, String mensaje) {
+        while (true) {
+            try {
+                System.out.println(mensaje);
+                String dni = teclado.next();
+
+                Validaciones.validarDNI(dni);
+                return dni;
 
             } catch (DatoInvalidoException e) {
                 System.err.println("Error: " + e.getMessage());
@@ -205,11 +228,13 @@ public class InputHelper {
             } catch (DatoInvalidoException e) {
                 System.err.println("Error: " + e.getMessage());
 
-            }catch (InputMismatchException e) {
+            } catch (InputMismatchException e) {
                 System.err.println("Debe ingresar un número válido. Intente nuevamente.");
+                teclado.nextLine();
             }
         }
     }
+
 
     public static boolean leerBoolean(String mensaje) {
         while(true) {
@@ -302,6 +327,7 @@ public class InputHelper {
         while (true) {
             try {
                 numero = teclado.nextInt();
+                teclado.nextLine();
                 return numero;
 
             } catch (InputMismatchException e) {
@@ -309,5 +335,10 @@ public class InputHelper {
                 teclado.nextLine();
             }
         }
+    }
+
+    public static String generarCodigoUnico() {
+        int numero = 100000000 + random.nextInt(900000000);
+        return String.valueOf(numero);
     }
 }

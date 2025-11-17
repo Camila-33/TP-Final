@@ -1,0 +1,414 @@
+[
+    {
+        "total": 1199.98,
+        "detallesVenta": [{
+            "precioUnitario": 599.99,
+            "idDetalle": "533510612",
+            "cantidad": 2,
+            "producto": {
+                "tipo": "PlacaDeVideo",
+                "codigo": "825749770",
+                "nombre": "NVIDIA GeForce RTX 3070"
+            }
+        }],
+        "idVenta": "114541239",
+        "fechaVenta": "2025-11-16",
+        "activo": true
+    },
+    {
+        "total": 539.9300000000001,
+        "detallesVenta": [
+            {
+                "precioUnitario": 219.99,
+                "idDetalle": "635992098",
+                "cantidad": 2,
+                "producto": {
+                    "tipo": "PlacaMadre",
+                    "codigo": "413276641",
+                    "nombre": "ASRock Z590 Steel Legend"
+                }
+            },
+            {
+                "precioUnitario": 19.99,
+                "idDetalle": "533173896",
+                "cantidad": 5,
+                "producto": {
+                    "tipo": "PlacaDeRed",
+                    "codigo": "853045521",
+                    "nombre": "TP-Link TG-3468"
+                }
+            }
+        ],
+        "idVenta": "833013968",
+        "fechaVenta": "2025-11-16",
+        "activo": true
+    },
+    {
+        "total": 2478.48,
+        "detallesVenta": [
+            {
+                "precioUnitario": 359.5,
+                "idDetalle": "875011478",
+                "cantidad": 3,
+                "producto": {
+                    "tipo": "Procesador",
+                    "codigo": "166907182",
+                    "nombre": "Intel Core i7-11700K"
+                }
+            },
+            {
+                "precioUnitario": 699.99,
+                "idDetalle": "660145401",
+                "cantidad": 2,
+                "producto": {
+                    "tipo": "PlacaDeVideo",
+                    "codigo": "106060709",
+                    "nombre": "AMD Radeon RX 6800"
+                }
+            }
+        ],
+        "idVenta": "157214394",
+        "fechaVenta": "2025-11-16",
+        "activo": true
+    },
+    {
+        "total": 552.46,
+        "detallesVenta": [
+            {
+                "precioUnitario": 84.99,
+                "idDetalle": "974111305",
+                "cantidad": 4,
+                "producto": {
+                    "tipo": "MemoriaRAM",
+                    "codigo": "508587642",
+                    "nombre": "G.Skill Ripjaws V 16GB"
+                }
+            },
+            {
+                "precioUnitario": 42.5,
+                "idDetalle": "737195884",
+                "cantidad": 5,
+                "producto": {
+                    "tipo": "MemoriaRAM",
+                    "codigo": "222359604",
+                    "nombre": "Kingston HyperX Fury 8GB"
+                }
+            }
+        ],
+        "idVenta": "251326186",
+        "fechaVenta": "2025-11-16",
+        "activo": true
+    },
+    {
+        "total": 2001.91,
+        "detallesVenta": [
+            {
+                "precioUnitario": 199.99,
+                "idDetalle": "856478805",
+                "cantidad": 4,
+                "producto": {
+                    "tipo": "Procesador",
+                    "codigo": "714192743",
+                    "nombre": "AMD Ryzen 5 5600X"
+                }
+            },
+            {
+                "precioUnitario": 25.5,
+                "idDetalle": "730303201",
+                "cantidad": 4,
+                "producto": {
+                    "tipo": "Cooler",
+                    "codigo": "810379011",
+                    "nombre": "Noctua NF-F12"
+                }
+            },
+            {
+                "precioUnitario": 219.99,
+                "idDetalle": "456011272",
+                "cantidad": 5,
+                "producto": {
+                    "tipo": "PlacaMadre",
+                    "codigo": "413276641",
+                    "nombre": "ASRock Z590 Steel Legend"
+                }
+            }
+        ],
+        "idVenta": "585196775",
+        "fechaVenta": "2025-11-16",
+        "activo": true
+    },
+    {
+        "total": 149.97,
+        "detallesVenta": [{
+            "precioUnitario": 49.99,
+            "idDetalle": "734044685",
+            "cantidad": 3,
+            "producto": {
+                "tipo": "PlacaDeRed",
+                "codigo": "190521756",
+                "nombre": "Asus PCE-AC68"
+            }
+        }],
+        "idVenta": "125452541",
+        "fechaVenta": "2025-11-16",
+        "activo": true
+    },
+    {
+        "total": 80145.98000000001,
+        "detallesVenta": [
+            {
+                "precioUnitario": 19999,
+                "idDetalle": "343905663",
+                "cantidad": 4,
+                "producto": {
+                    "tipo": "Almacenamiento",
+                    "codigo": "371921696",
+                    "nombre": "WD Blue 1TB"
+                }
+            },
+            {
+                "precioUnitario": 49.99,
+                "idDetalle": "125264286",
+                "cantidad": 1,
+                "producto": {
+                    "tipo": "PlacaDeRed",
+                    "codigo": "190521756",
+                    "nombre": "Asus PCE-AC68"
+                }
+            },
+            {
+                "precioUnitario": 99.99,
+                "idDetalle": "380258160",
+                "cantidad": 1,
+                "producto": {
+                    "tipo": "Gabinete",
+                    "codigo": "356571105",
+                    "nombre": "Fractal Design Meshify C"
+                }
+            }
+        ],
+        "idVenta": "961039547",
+        "fechaVenta": "2025-11-16",
+        "activo": true
+    },
+    {
+        "total": 100794.96,
+        "detallesVenta": [
+            {
+                "precioUnitario": 199.99,
+                "idDetalle": "180311070",
+                "cantidad": 4,
+                "producto": {
+                    "tipo": "Procesador",
+                    "codigo": "714192743",
+                    "nombre": "AMD Ryzen 5 5600X"
+                }
+            },
+            {
+                "precioUnitario": 19999,
+                "idDetalle": "313527224",
+                "cantidad": 5,
+                "producto": {
+                    "tipo": "Almacenamiento",
+                    "codigo": "371921696",
+                    "nombre": "WD Blue 1TB"
+                }
+            }
+        ],
+        "idVenta": "659730337",
+        "fechaVenta": "2025-11-16",
+        "activo": true
+    },
+    {
+        "total": 20398.98,
+        "detallesVenta": [
+            {
+                "precioUnitario": 199.99,
+                "idDetalle": "166916122",
+                "cantidad": 2,
+                "producto": {
+                    "tipo": "Procesador",
+                    "codigo": "714192743",
+                    "nombre": "AMD Ryzen 5 5600X"
+                }
+            },
+            {
+                "precioUnitario": 19999,
+                "idDetalle": "300292054",
+                "cantidad": 1,
+                "producto": {
+                    "tipo": "Almacenamiento",
+                    "codigo": "371921696",
+                    "nombre": "WD Blue 1TB"
+                }
+            }
+        ],
+        "idVenta": "898112150",
+        "fechaVenta": "2025-11-16",
+        "activo": true
+    },
+    {
+        "total": 1919.41,
+        "detallesVenta": [
+            {
+                "precioUnitario": 219.99,
+                "idDetalle": "630767838",
+                "cantidad": 4,
+                "producto": {
+                    "tipo": "PlacaMadre",
+                    "codigo": "413276641",
+                    "nombre": "ASRock Z590 Steel Legend"
+                }
+            },
+            {
+                "precioUnitario": 39.5,
+                "idDetalle": "665077336",
+                "cantidad": 1,
+                "producto": {
+                    "tipo": "PlacaDeRed",
+                    "codigo": "987617880",
+                    "nombre": "Intel Wi-Fi 6 AX200"
+                }
+            },
+            {
+                "precioUnitario": 199.99,
+                "idDetalle": "673553901",
+                "cantidad": 5,
+                "producto": {
+                    "tipo": "FuenteDePoder",
+                    "codigo": "640557392",
+                    "nombre": "Corsair HX850"
+                }
+            }
+        ],
+        "idVenta": "661240972",
+        "fechaVenta": "2025-11-16",
+        "activo": true
+    },
+    {
+        "total": 1797.5,
+        "detallesVenta": [{
+            "precioUnitario": 359.5,
+            "idDetalle": "588960915",
+            "cantidad": 5,
+            "producto": {
+                "tipo": "Procesador",
+                "codigo": "166907182",
+                "nombre": "Intel Core i7-11700K"
+            }
+        }],
+        "idVenta": "616913607",
+        "fechaVenta": "2025-11-16",
+        "activo": true
+    },
+    {
+        "total": 150025.45,
+        "detallesVenta": [
+            {
+                "precioUnitario": 25.5,
+                "idDetalle": "451550674",
+                "cantidad": 1,
+                "producto": {
+                    "tipo": "Cooler",
+                    "codigo": "810379011",
+                    "nombre": "Noctua NF-F12"
+                }
+            },
+            {
+                "precioUnitario": 29999.99,
+                "idDetalle": "123660225",
+                "cantidad": 5,
+                "producto": {
+                    "tipo": "Almacenamiento",
+                    "codigo": "212948272",
+                    "nombre": "SSD Kingston A400"
+                }
+            }
+        ],
+        "idVenta": "748172791",
+        "fechaVenta": "2025-11-16",
+        "activo": true
+    },
+    {
+        "total": 399.95000000000005,
+        "detallesVenta": [
+            {
+                "precioUnitario": 42.5,
+                "idDetalle": "299285481",
+                "cantidad": 4,
+                "producto": {
+                    "tipo": "MemoriaRAM",
+                    "codigo": "222359604",
+                    "nombre": "Kingston HyperX Fury 8GB"
+                }
+            },
+            {
+                "precioUnitario": 45.99,
+                "idDetalle": "465994595",
+                "cantidad": 5,
+                "producto": {
+                    "tipo": "Cooler",
+                    "codigo": "370882173",
+                    "nombre": "Cooler Master Hyper 212"
+                }
+            }
+        ],
+        "idVenta": "591023707",
+        "fechaVenta": "2025-11-16",
+        "activo": true
+    },
+    {
+        "total": 1236.93,
+        "detallesVenta": [
+            {
+                "precioUnitario": 219.99,
+                "idDetalle": "407663553",
+                "cantidad": 4,
+                "producto": {
+                    "tipo": "PlacaMadre",
+                    "codigo": "413276641",
+                    "nombre": "ASRock Z590 Steel Legend"
+                }
+            },
+            {
+                "precioUnitario": 84.99,
+                "idDetalle": "381100612",
+                "cantidad": 3,
+                "producto": {
+                    "tipo": "MemoriaRAM",
+                    "codigo": "508587642",
+                    "nombre": "G.Skill Ripjaws V 16GB"
+                }
+            },
+            {
+                "precioUnitario": 25.5,
+                "idDetalle": "767784153",
+                "cantidad": 4,
+                "producto": {
+                    "tipo": "Cooler",
+                    "codigo": "810379011",
+                    "nombre": "Noctua NF-F12"
+                }
+            }
+        ],
+        "idVenta": "586939915",
+        "fechaVenta": "2025-11-16",
+        "activo": true
+    },
+    {
+        "total": 29999.99,
+        "detallesVenta": [{
+            "precioUnitario": 29999.99,
+            "idDetalle": "780830160",
+            "cantidad": 1,
+            "producto": {
+                "tipo": "Almacenamiento",
+                "codigo": "212948272",
+                "nombre": "SSD Kingston A400"
+            }
+        }],
+        "idVenta": "401790389",
+        "fechaVenta": "2025-11-16",
+        "activo": true
+    }
+]

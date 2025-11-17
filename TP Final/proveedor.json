@@ -1,110 +1,367 @@
 [
     {
+        "Nombre": "Luis",
+        "CUIT": "20-55555555-5",
+        "Email": "luis.garcia@email.com",
+        "Productos": [
+            {
+                "tipo": "Cooler",
+                "codigo": "810379011",
+                "nombre": "Noctua NF-F12"
+            },
+            {
+                "tipo": "PlacaDeRed",
+                "codigo": "853045521",
+                "nombre": "TP-Link TG-3468"
+            }
+        ],
+        "Apellido": "García",
+        "Fecha de alta": "2025-11-16",
+        "Tipo proveedor": "ENSAMBLADOR",
+        "ID": "961210452",
+        "Teléfono": "1111111115",
+        "Estado": true
+    },
+    {
         "Nombre": "María",
-        "CUIT": "30405060708",
+        "CUIT": "20-22222222-2",
         "Email": "maria.gomez@email.com",
         "Productos": [
             {
-                "descripcion": "Gabinete ATX con ventana lateral de vidrio templado",
-                "garantiaMeses": 24,
-                "tipo": "Gabinete",
-                "codigo": "3",
-                "subCategoria": "NINGUNA",
-                "color": "Negro",
-                "peso": 6.8,
-                "categoria": "GABINETE",
-                "numeroDeSerie": "26800896",
-                "alto": "460 mm",
-                "nombre": "NZXT H510",
-                "marca": "NZXT",
-                "fechaIngreso": "2025-11-11",
-                "precio": 12000,
-                "conVentana": true,
-                "idProveedor": "2",
-                "ancho": "210 mm",
-                "profundidad": "428 mm",
-                "stock": 10,
-                "dimension": "210 x 460 x 428 mm",
-                "activo": true
+                "tipo": "Almacenamiento",
+                "codigo": "966489655",
+                "nombre": "SSD Crucial MX500 1TB"
             },
             {
-                "descripcion": "Tarjeta de red con soporte Gigabit Ethernet",
-                "garantiaMeses": 24,
-                "tipo": "PlacaDeRed",
-                "codigo": "4",
-                "dispositivosCompatibles": "PC, Laptop, Servidor",
-                "subCategoria": "PLACA_DE_RED",
-                "peso": 0.15,
-                "categoria": "CONECTIVIDAD",
-                "numeroDeSerie": "46891728",
-                "nombre": "Placa Red Gigabit",
-                "marca": "TP-Link",
-                "fechaIngreso": "2025-11-11",
-                "precio": 79.99,
-                "idProveedor": "2",
-                "stock": 50,
-                "dimension": "12x9 cm",
-                "activo": true
+                "tipo": "MemoriaRAM",
+                "codigo": "222359604",
+                "nombre": "Kingston HyperX Fury 8GB"
             }
         ],
         "Apellido": "Gómez",
-        "Fecha de alta": "2025-11-11",
+        "Fecha de alta": "2025-11-16",
+        "Tipo proveedor": "MINORISTA",
+        "ID": "847517749",
+        "Teléfono": "1111111112",
+        "Estado": true
+    },
+    {
+        "Nombre": "Carla",
+        "CUIT": "20-10101010-1",
+        "Email": "carla.vargas@email.com",
+        "Productos": [
+            {
+                "tipo": "Gabinete",
+                "codigo": "948937037",
+                "nombre": "NZXT H510"
+            },
+            {
+                "tipo": "PlacaDeVideo",
+                "codigo": "745263827",
+                "nombre": "AMD Radeon RX 6700 XT"
+            }
+        ],
+        "Apellido": "Vargas",
+        "Fecha de alta": "2025-11-16",
+        "Tipo proveedor": "IMPORTADOR",
+        "ID": "411600851",
+        "Teléfono": "1111111120",
+        "Estado": true
+    },
+    {
+        "Nombre": "Lucía",
+        "CUIT": "20-88888888-8",
+        "Email": "lucia.sanchez@email.com",
+        "Productos": [
+            {
+                "tipo": "FuenteDePoder",
+                "codigo": "521762398",
+                "nombre": "EVGA 500 W1"
+            },
+            {
+                "tipo": "PlacaDeRed",
+                "codigo": "734656505",
+                "nombre": "TP-Link Archer T6E"
+            }
+        ],
+        "Apellido": "Sánchez",
+        "Fecha de alta": "2025-11-16",
+        "Tipo proveedor": "IMPORTADOR",
+        "ID": "361950682",
+        "Teléfono": "1111111118",
+        "Estado": true
+    },
+    {
+        "Nombre": "Ana",
+        "CUIT": "20-44444444-4",
+        "Email": "ana.martinez@email.com",
+        "Productos": [
+            {
+                "tipo": "MemoriaRAM",
+                "codigo": "695729480",
+                "nombre": "Teamgroup T-Force 8GB"
+            },
+            {
+                "tipo": "Cooler",
+                "codigo": "370882173",
+                "nombre": "Cooler Master Hyper 212"
+            }
+        ],
+        "Apellido": "Martínez",
+        "Fecha de alta": "2025-11-16",
+        "Tipo proveedor": "IMPORTADOR",
+        "ID": "363510186",
+        "Teléfono": "1111111114",
+        "Estado": true
+    },
+    {
+        "Nombre": "Carlos",
+        "CUIT": "20-33333333-3",
+        "Email": "carlos.lopez@email.com",
+        "Productos": [
+            {
+                "tipo": "PlacaDeRed",
+                "codigo": "436838352",
+                "nombre": "Asus PCE-AC68"
+            },
+            {
+                "tipo": "Almacenamiento",
+                "codigo": "371921696",
+                "nombre": "WD Blue 1TB"
+            },
+            {
+                "tipo": "MemoriaRAM",
+                "codigo": "508587642",
+                "nombre": "G.Skill Ripjaws V 16GB"
+            }
+        ],
+        "Apellido": "López",
+        "Fecha de alta": "2025-11-16",
+        "Tipo proveedor": "IMPORTADOR",
+        "ID": "169176549",
+        "Teléfono": "1111111113",
+        "Estado": true
+    },
+    {
+        "Nombre": "Martín",
+        "CUIT": "20-99999999-9",
+        "Email": "martin.romero@email.com",
+        "Productos": [
+            {
+                "tipo": "PlacaDeVideo",
+                "codigo": "615121570",
+                "nombre": "NVIDIA GeForce RTX 3060"
+            },
+            {
+                "tipo": "FuenteDePoder",
+                "codigo": "640557392",
+                "nombre": "Corsair HX850"
+            }
+        ],
+        "Apellido": "Romero",
+        "Fecha de alta": "2025-11-16",
+        "Tipo proveedor": "ENSAMBLADOR",
+        "ID": "510927829",
+        "Teléfono": "1111111119",
+        "Estado": true
+    },
+    {
+        "Nombre": "Sergio",
+        "CUIT": "20-43131313-1",
+        "Email": "sergio.acosta@gmail.com",
+        "Productos": [
+            {
+                "tipo": "PlacaMadre",
+                "codigo": "841096674",
+                "nombre": "ASUS ROG Strix B550-F"
+            },
+            {
+                "tipo": "Procesador",
+                "codigo": "714192743",
+                "nombre": "AMD Ryzen 5 5600X"
+            }
+        ],
+        "Apellido": "Acosta",
+        "Fecha de alta": "2025-11-16",
         "Tipo proveedor": "MAYORISTA",
-        "ID": "2",
-        "Teléfono": "1199887766",
+        "ID": "892940319",
+        "Teléfono": "2235678721",
+        "Estado": true
+    },
+    {
+        "Nombre": "Federico",
+        "CUIT": "20-11111111-2",
+        "Email": "federico.dominguez@email.com",
+        "Productos": [
+            {
+                "tipo": "PlacaDeVideo",
+                "codigo": "825749770",
+                "nombre": "NVIDIA GeForce RTX 3070"
+            },
+            {
+                "tipo": "Gabinete",
+                "codigo": "482259873",
+                "nombre": "Cooler Master MasterBox Q300L"
+            }
+        ],
+        "Apellido": "Domínguez",
+        "Fecha de alta": "2025-11-16",
+        "Tipo proveedor": "MAYORISTA",
+        "ID": "972453970",
+        "Teléfono": "1111111121",
         "Estado": true
     },
     {
         "Nombre": "Juan",
-        "CUIT": "20304050607",
+        "CUIT": "20-11111111-1",
         "Email": "juan.perez@email.com",
         "Productos": [
             {
-                "descripcion": "Disipador de CPU con ventilador silencioso",
-                "garantiaMeses": 24,
-                "tipo": "Cooler",
-                "codigo": "1",
-                "subCategoria": "COOLER_CPU",
-                "peso": 0.8,
-                "categoria": "REFRIGERACION",
-                "numeroDeSerie": "21009352",
-                "nombre": "Cooler Master Hyper 212",
-                "marca": "Cooler Master",
-                "fechaIngreso": "2025-11-11",
-                "precio": 7500,
-                "idProveedor": "1",
-                "stock": 25,
-                "dimension": "120 x 79 x 159 mm",
-                "nivelRuidoMaximo": "25 dBA",
-                "velocidad": "2000 RPM",
-                "activo": true
+                "tipo": "Almacenamiento",
+                "codigo": "212948272",
+                "nombre": "SSD Kingston A400"
             },
             {
-                "descripcion": "Fuente de poder modular con eficiencia 80+ Gold",
-                "garantiaMeses": 36,
-                "tipo": "FuenteDePoder",
-                "codigo": "2",
-                "subCategoria": "CERTIFICADA",
-                "peso": 1.8,
-                "categoria": "FUENTE_DE_PODER",
-                "numeroDeSerie": "79657608",
-                "nombre": "Corsair RM750",
-                "marca": "Corsair",
-                "fechaIngreso": "2025-11-11",
-                "potencia": "750W",
-                "precio": 18000,
-                "tipoCertificacion": "GOLD",
-                "idProveedor": "1",
-                "stock": 15,
-                "dimension": "150 x 86 x 160 mm",
-                "activo": true
+                "tipo": "PlacaDeVideo",
+                "codigo": "163547253",
+                "nombre": "AMD Radeon RX 7900 XT"
+            },
+            {
+                "tipo": "MemoriaRAM",
+                "codigo": "307013693",
+                "nombre": "Corsair Vengeance LPX 16GB"
             }
         ],
         "Apellido": "Pérez",
-        "Fecha de alta": "2025-11-11",
+        "Fecha de alta": "2025-11-16",
+        "Tipo proveedor": "MAYORISTA",
+        "ID": "133717095",
+        "Teléfono": "1111111111",
+        "Estado": true
+    },
+    {
+        "Nombre": "Diego",
+        "CUIT": "20-77777777-7",
+        "Email": "diego.fernandez@email.com",
+        "Productos": [
+            {
+                "tipo": "PlacaDeRed",
+                "codigo": "190521756",
+                "nombre": "Asus PCE-AC68"
+            },
+            {
+                "tipo": "FuenteDePoder",
+                "codigo": "332160708",
+                "nombre": "Corsair RM750x"
+            }
+        ],
+        "Apellido": "Fernández",
+        "Fecha de alta": "2025-11-16",
+        "Tipo proveedor": "MAYORISTA",
+        "ID": "830748676",
+        "Teléfono": "1111111117",
+        "Estado": true
+    },
+    {
+        "Nombre": "Nicolás",
+        "CUIT": "20-15151515-1",
+        "Email": "nicolas.castro@email.com",
+        "Productos": [
+            {
+                "tipo": "Procesador",
+                "codigo": "617764832",
+                "nombre": "Intel Core i9-11900K"
+            },
+            {
+                "tipo": "PlacaMadre",
+                "codigo": "704408641",
+                "nombre": "Gigabyte B550 AORUS Elite"
+            },
+            {
+                "tipo": "PlacaMadre",
+                "codigo": "413276641",
+                "nombre": "ASRock Z590 Steel Legend"
+            },
+            {
+                "tipo": "Procesador",
+                "codigo": "920510464",
+                "nombre": "AMD Ryzen 7 5800X"
+            }
+        ],
+        "Apellido": "Castro",
+        "Fecha de alta": "2025-11-16",
+        "Tipo proveedor": "IMPORTADOR",
+        "ID": "424368618",
+        "Teléfono": "1111111125",
+        "Estado": true
+    },
+    {
+        "Nombre": "Sofía",
+        "CUIT": "20-66666666-6",
+        "Email": "sofia.rodriguez@email.com",
+        "Productos": [
+            {
+                "tipo": "PlacaDeRed",
+                "codigo": "987617880",
+                "nombre": "Intel Wi-Fi 6 AX200"
+            },
+            {
+                "tipo": "Cooler",
+                "codigo": "955738548",
+                "nombre": "ARCTIC F12 PWM"
+            }
+        ],
+        "Apellido": "Rodríguez",
+        "Fecha de alta": "2025-11-16",
         "Tipo proveedor": "MINORISTA",
-        "ID": "1",
-        "Teléfono": "1122334455",
+        "ID": "909995649",
+        "Teléfono": "1111111116",
+        "Estado": true
+    },
+    {
+        "Nombre": "Valentina",
+        "CUIT": "20-12121212-1",
+        "Email": "valentina.rojas@email.com",
+        "Productos": [
+            {
+                "tipo": "Gabinete",
+                "codigo": "356571105",
+                "nombre": "Fractal Design Meshify C"
+            },
+            {
+                "tipo": "PlacaDeVideo",
+                "codigo": "106060709",
+                "nombre": "AMD Radeon RX 6800"
+            }
+        ],
+        "Apellido": "Rojas",
+        "Fecha de alta": "2025-11-16",
+        "Tipo proveedor": "MINORISTA",
+        "ID": "778856530",
+        "Teléfono": "1111111122",
+        "Estado": true
+    },
+    {
+        "Nombre": "Paula",
+        "CUIT": "20-14141414-1",
+        "Email": "paula.herrera@email.com",
+        "Productos": [
+            {
+                "tipo": "PlacaMadre",
+                "codigo": "561629090",
+                "nombre": "MSI MPG Z590 Gaming Edge"
+            },
+            {
+                "tipo": "Procesador",
+                "codigo": "166907182",
+                "nombre": "Intel Core i7-11700K"
+            }
+        ],
+        "Apellido": "Herrera",
+        "Fecha de alta": "2025-11-16",
+        "Tipo proveedor": "MINORISTA",
+        "ID": "945747393",
+        "Teléfono": "1111111124",
         "Estado": true
     }
 ]

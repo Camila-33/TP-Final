@@ -59,7 +59,7 @@ public class GestionJSONCompra {
             jsonObject.put("fechaCompra", c.getFechaCompra().toString());
             jsonObject.put("activo", c.isActivo());
 
-            jsonObject.put("proveedor", GestionJSONProveedor.serializarProveedor(c.getProveedor()));
+            jsonObject.put("proveedor", GestionJSONProveedor.serializarProveedorParcial(c.getProveedor()));
 
             JSONArray detallesArray = new JSONArray();
             for (DetalleCompra d : c.getDetallesCompra()) {
@@ -124,7 +124,7 @@ public class GestionJSONCompra {
             compraLeida.setActivo(jsonObject.getBoolean("activo"));
 
             JSONObject jsonProveedor = jsonObject.getJSONObject("proveedor");
-            Proveedor proveedor = GestionJSONProveedor.deserializarProveedor(jsonProveedor);
+            Proveedor proveedor = GestionJSONProveedor.deserializarProveedorParcial(jsonProveedor);
             compraLeida.setProveedor(proveedor);
 
             JSONArray jsonDetalles = jsonObject.getJSONArray("detallesCompra");
@@ -144,5 +144,6 @@ public class GestionJSONCompra {
 
         return compraLeida;
     }
+
 }
 

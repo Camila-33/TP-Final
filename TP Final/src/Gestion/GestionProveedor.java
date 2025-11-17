@@ -9,14 +9,16 @@ import Validaciones.Validaciones;
 
 import java.util.*;
 
+import static IngresoDeDatos.InputHelper.teclado;
+
 public class GestionProveedor {
 
     private HashSet<Proveedor> listaProveedores;
     private GestionProducto gestionProducto;
 
-    public GestionProveedor() {
+    public GestionProveedor(GestionProducto gestionProducto) {
         this.listaProveedores = new HashSet<>();
-        this.gestionProducto = new GestionProducto();
+        this.gestionProducto = gestionProducto;
     }
 
     public void agregarProveedor(Proveedor nuevoProveedor){
@@ -41,8 +43,8 @@ public class GestionProveedor {
                     System.out.println("1. Nombre");
                     System.out.println("2. Apellido");
                     System.out.println("3. E-mail");
-                    System.out.println("4. Teléfono");
                     System.out.println("4. CUIT");
+                    System.out.println("5. Teléfono");
                     System.out.println("6. Tipo de proveedor");
                     System.out.println("7. Salir");
 
@@ -101,18 +103,16 @@ public class GestionProveedor {
 
         for (Proveedor proveedor : listaProveedores) {
             if (proveedor.equals(p)) {
-
                 char opcion = InputHelper.leerChar("¿Estás seguro de que quieres dar de baja a este proveedor? (s / n)");
 
                 if (opcion == 's') {
-                    p.setActivo(false);
-                    System.out.println("¡Proveedor dado de baja con éxito!");
+                    proveedor.setActivo(false);
                     GestionJSONProveedor.listaProveedorToArchivo(listaProveedores, "proveedor.json");
+                    System.out.println("¡Proveedor dado de baja con éxito!");
 
                 } else {
                     System.out.println("Operación cancelada");
                 }
-
                 return;
             }
         }
@@ -127,12 +127,12 @@ public class GestionProveedor {
         for (Proveedor proveedor : listaProveedores) {
             if (proveedor.equals(p)) {
 
-                char opcion = InputHelper.leerChar("¿Estás seguro de que quieres dar de baja a este proveedor? (s / n)");
+                char opcion = InputHelper.leerChar("¿Estás seguro de que quieres dar de alta a este proveedor? (s / n)");
 
                 if (opcion == 's') {
-                    p.setActivo(false);
-                    System.out.println("¡Proveedor dado de baja con éxito!");
+                    proveedor.setActivo(true);
                     GestionJSONProveedor.listaProveedorToArchivo(listaProveedores, "proveedor.json");
+                    System.out.println("¡Proveedor dado de alta con éxito!");
 
                 } else {
                     System.out.println("Operación cancelada");
@@ -145,13 +145,14 @@ public class GestionProveedor {
         System.out.println("No se encontró al proveedor");
     }
 
+
     public void mostrarProveedoresPorCoincidencia(String nombre){
 
         boolean encontrado = false;
 
         for(Proveedor p : listaProveedores){
             if(p.getNombre().toLowerCase().contains(nombre)){
-                p.mostrarDatosProveedor();
+                mostrarDatosProveedor(p);
                 encontrado = true;
             }
         }
@@ -161,7 +162,7 @@ public class GestionProveedor {
         }
     }
 
-    public Proveedor buscarProveedoresPorId(String id) {
+    public Proveedor buscarProveedorPorId(String id) {
 
         listaProveedores = GestionJSONProveedor.archivoProveedorToLista("proveedor.json");
 
@@ -200,6 +201,7 @@ public class GestionProveedor {
 
         agregarProveedor(proveedor);
     }
+
 
     private HashMap<String, Producto> cargarProductosParaProveedor() {
 
@@ -331,8 +333,94 @@ public class GestionProveedor {
         listaProveedores = GestionJSONProveedor.archivoProveedorToLista("proveedor.json");
 
         for (Proveedor proveedor : listaProveedores) {
-            proveedor.mostrarDatosProveedor();
+            mostrarDatosProveedor(proveedor);
         }
+    }
+
+    public void mostrarProveedoresDisponibles(){
+
+        listaProveedores = GestionJSONProveedor.archivoProveedorToLista("proveedor.json");
+
+        System.out.println("=== Lista de Proveedores ===");
+        for (Proveedor p : listaProveedores) {
+            if (p.isActivo()){
+                System.out.println(p.getIdProveedor() + " - " + p.getNombreCompleto());
+            }
+        }
+    }
+
+
+    public void mostrarDatosProveedor(Proveedor p) {
+
+        listaProveedores = GestionJSONProveedor.archivoProveedorToLista("proveedor.json");
+
+        for (Proveedor proveedor : listaProveedores) {
+            if (proveedor.getIdProveedor().equals(p.getIdProveedor())) {
+
+                p = proveedor;
+
+                System.out.println();
+                System.out.println("--------------------------------------------");
+                System.out.println("PERFIL DE PROVEEDOR: " + p.getNombreCompleto());
+                System.out.println("--------------------------------------------");
+
+                System.out.println("ID: " + p.getIdProveedor());
+                System.out.println("Nombre: " + p.getNombre());
+                System.out.println("Apellido: " + p.getApellido());
+                System.out.println("Email: " + p.getEmail());
+                System.out.println("Teléfono: " + p.getTelefono());
+                System.out.println("CUIT: " + p.getCuit());
+                System.out.println("Activo: " + (p.isActivo() ? "Sí" : "No"));
+                System.out.println("Fecha de alta: " + p.getFechaAlta().toString());
+                System.out.println("Tipo de proveedor: " + p.getTipoProveedor());
+                System.out.println("Cantidad de productos suministrados: " + p.getProductosSuministrados().size());
+                System.out.println("--------------------------------------------");
+            }
+        }
+    }
+
+
+    public HashMap<String, Producto> actualizarProductosProveedor(Producto nuevoProducto){
+
+        listaProveedores = GestionJSONProveedor.archivoProveedorToLista("proveedor.json");
+        HashMap<String, Producto> nuevosProductos = new HashMap<>();
+
+        if (nuevoProducto != null && nuevoProducto.getCodigo() != null) {
+
+            nuevosProductos.put(nuevoProducto.getCodigo(), nuevoProducto);
+
+            for (String idProv : nuevoProducto.getIdProveedores()) {
+                Proveedor proveedorEncontrado = null;
+
+                for (Proveedor p : listaProveedores) {
+                    if (p.getIdProveedor().equals(idProv)) {
+                        proveedorEncontrado = p;
+                        break;
+                    }
+                }
+
+                if (proveedorEncontrado != null) {
+
+                    HashMap<String, Producto> prodParaProveedor = proveedorEncontrado.getProductosSuministrados();
+                    if (prodParaProveedor == null) {
+                        prodParaProveedor = new HashMap<>();
+                    }
+
+                    prodParaProveedor.put(nuevoProducto.getCodigo(), nuevoProducto);
+
+                    proveedorEncontrado.setProductosSuministrados(prodParaProveedor);
+
+                } else {
+                    System.err.println("Error: El proveedor con ID " + idProv + " no existe.");
+                }
+            }
+
+            GestionJSONProveedor.listaProveedorToArchivo(listaProveedores, "proveedor.json");
+
+            System.out.println("Producto agregado correctamente al/los proveedor(es).");
+        }
+
+        return nuevosProductos;
     }
 
 }

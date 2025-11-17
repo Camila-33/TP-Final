@@ -18,12 +18,12 @@ public class RegistroUser {
         System.out.println("Complete con sus datos:");
 
         String username = InputHelper.pedirUsername("Nuevo username:");
-        String contrasenia = InputHelper.pedirContrasenia("Contraseña");
+        String contrasenia = InputHelper.pedirContraseniaRegistro("Contraseña");
         String nombre = InputHelper.pedirString("Nombre:");
         String apellido = InputHelper.pedirString("Apellido:");
         String email = InputHelper.pedirEmail("Email:");
         String telefono = InputHelper.pedirTelefono("Teléfono:");
-        String dni = InputHelper.pedirDni("administrador", "DNI:");
+        String dni = InputHelper.pedirDniRegistro("administrador", "DNI:");
         String direccion = InputHelper.pedirDireccion("Dirección:");
 
         return new Administrador(username, contrasenia, nombre, apellido, email, telefono, dni, direccion);
@@ -34,12 +34,12 @@ public class RegistroUser {
         System.out.println("Complete con sus datos:");
 
         String username = InputHelper.pedirUsername("Nuevo username:");
-        String contrasenia = InputHelper.pedirContrasenia("Contraseña");
+        String contrasenia = InputHelper.pedirContraseniaRegistro("Contraseña");
         String nombre = InputHelper.pedirString("Nombre:");
         String apellido = InputHelper.pedirString("Apellido:");
         String email = InputHelper.pedirEmail("Email:");
         String telefono = InputHelper.pedirTelefono("Teléfono:");
-        String dni = InputHelper.pedirDni("usuario", "DNI:");
+        String dni = InputHelper.pedirDniRegistro("usuario", "DNI:");
         String direccion = InputHelper.pedirDireccion("Dirección:");
 
         return new Usuario(username, contrasenia, nombre, apellido, email, telefono, dni, direccion);

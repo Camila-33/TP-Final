@@ -10,8 +10,8 @@ public class Almacenamiento extends Producto{
     private String capacidad;
     private String velocidad;
 
-    public Almacenamiento(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria, String idProveedor, String capacidad, String velocidad) {
-        super(nombre, descripcion, precio, peso, dimension, marca, stock, garantiaMeses, categoria, subCategoria, idProveedor);
+    public Almacenamiento(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria, String capacidad, String velocidad) {
+        super(nombre, descripcion, precio, peso, dimension, marca, stock, garantiaMeses, categoria, subCategoria);
         this.capacidad = capacidad;
         this.velocidad = velocidad;
     }

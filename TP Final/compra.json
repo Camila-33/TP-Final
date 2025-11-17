@@ -1,0 +1,317 @@
+[
+    {
+        "fechaCompra": "2025-11-16",
+        "total": 449999.91,
+        "detallesCompra": [{
+            "precioUnitario": 49999.99,
+            "idDetalle": "938087133",
+            "cantidad": 9,
+            "producto": {
+                "tipo": "Almacenamiento",
+                "codigo": "966489655",
+                "nombre": "SSD Crucial MX500 1TB"
+            }
+        }],
+        "proveedor": {
+            "Nombre": "Luis",
+            "Apellido": "García",
+            "ID": "961210452"
+        },
+        "idPedido": "669440855",
+        "activo": true
+    },
+    {
+        "fechaCompra": "2025-11-16",
+        "total": 699999.86,
+        "detallesCompra": [{
+            "precioUnitario": 49999.99,
+            "idDetalle": "673554027",
+            "cantidad": 14,
+            "producto": {
+                "tipo": "Almacenamiento",
+                "codigo": "966489655",
+                "nombre": "SSD Crucial MX500 1TB"
+            }
+        }],
+        "proveedor": {
+            "Nombre": "Sofía",
+            "Apellido": "Rodríguez",
+            "ID": "909995649"
+        },
+        "idPedido": "321004203",
+        "activo": true
+    },
+    {
+        "fechaCompra": "2025-11-16",
+        "total": 649999.87,
+        "detallesCompra": [{
+            "precioUnitario": 49999.99,
+            "idDetalle": "212520652",
+            "cantidad": 13,
+            "producto": {
+                "tipo": "Almacenamiento",
+                "codigo": "966489655",
+                "nombre": "SSD Crucial MX500 1TB"
+            }
+        }],
+        "proveedor": {
+            "Nombre": "Carlos",
+            "Apellido": "López",
+            "ID": "169176549"
+        },
+        "idPedido": "257719191",
+        "activo": true
+    },
+    {
+        "fechaCompra": "2025-11-16",
+        "total": 149999.97,
+        "detallesCompra": [{
+            "precioUnitario": 49999.99,
+            "idDetalle": "572220050",
+            "cantidad": 3,
+            "producto": {
+                "tipo": "Almacenamiento",
+                "codigo": "966489655",
+                "nombre": "SSD Crucial MX500 1TB"
+            }
+        }],
+        "proveedor": {
+            "Nombre": "Ana",
+            "Apellido": "Martínez",
+            "ID": "363510186"
+        },
+        "idPedido": "169534655",
+        "activo": true
+    },
+    {
+        "fechaCompra": "2025-11-16",
+        "total": 249999.94999999998,
+        "detallesCompra": [{
+            "precioUnitario": 49999.99,
+            "idDetalle": "195584940",
+            "cantidad": 5,
+            "producto": {
+                "tipo": "Almacenamiento",
+                "codigo": "966489655",
+                "nombre": "SSD Crucial MX500 1TB"
+            }
+        }],
+        "proveedor": {
+            "Nombre": "Carla",
+            "Apellido": "Vargas",
+            "ID": "411600851"
+        },
+        "idPedido": "133616580",
+        "activo": true
+    },
+    {
+        "fechaCompra": "2025-11-16",
+        "total": 349999.93,
+        "detallesCompra": [{
+            "precioUnitario": 49999.99,
+            "idDetalle": "158815276",
+            "cantidad": 7,
+            "producto": {
+                "tipo": "Almacenamiento",
+                "codigo": "966489655",
+                "nombre": "SSD Crucial MX500 1TB"
+            }
+        }],
+        "proveedor": {
+            "Nombre": "Valentina",
+            "Apellido": "Rojas",
+            "ID": "778856530"
+        },
+        "idPedido": "572866842",
+        "activo": true
+    },
+    {
+        "fechaCompra": "2025-11-16",
+        "total": 49999.99,
+        "detallesCompra": [{
+            "precioUnitario": 49999.99,
+            "idDetalle": "543690039",
+            "cantidad": 1,
+            "producto": {
+                "tipo": "Almacenamiento",
+                "codigo": "966489655",
+                "nombre": "SSD Crucial MX500 1TB"
+            }
+        }],
+        "proveedor": {
+            "Nombre": "Nicolás",
+            "Apellido": "Castro",
+            "ID": "424368618"
+        },
+        "idPedido": "687449748",
+        "activo": true
+    },
+    {
+        "fechaCompra": "2025-11-16",
+        "total": 199999.96,
+        "detallesCompra": [{
+            "precioUnitario": 49999.99,
+            "idDetalle": "860069716",
+            "cantidad": 4,
+            "producto": {
+                "tipo": "Almacenamiento",
+                "codigo": "966489655",
+                "nombre": "SSD Crucial MX500 1TB"
+            }
+        }],
+        "proveedor": {
+            "Nombre": "Martín",
+            "Apellido": "Romero",
+            "ID": "510927829"
+        },
+        "idPedido": "915114903",
+        "activo": true
+    },
+    {
+        "fechaCompra": "2025-11-16",
+        "total": 549999.89,
+        "detallesCompra": [{
+            "precioUnitario": 49999.99,
+            "idDetalle": "931903903",
+            "cantidad": 11,
+            "producto": {
+                "tipo": "Almacenamiento",
+                "codigo": "966489655",
+                "nombre": "SSD Crucial MX500 1TB"
+            }
+        }],
+        "proveedor": {
+            "Nombre": "Lucía",
+            "Apellido": "Sánchez",
+            "ID": "361950682"
+        },
+        "idPedido": "741328066",
+        "activo": true
+    },
+    {
+        "fechaCompra": "2025-11-16",
+        "total": 599999.88,
+        "detallesCompra": [{
+            "precioUnitario": 49999.99,
+            "idDetalle": "150214510",
+            "cantidad": 12,
+            "producto": {
+                "tipo": "Almacenamiento",
+                "codigo": "966489655",
+                "nombre": "SSD Crucial MX500 1TB"
+            }
+        }],
+        "proveedor": {
+            "Nombre": "Paula",
+            "Apellido": "Herrera",
+            "ID": "945747393"
+        },
+        "idPedido": "296767247",
+        "activo": true
+    },
+    {
+        "fechaCompra": "2025-11-16",
+        "total": 99999.98,
+        "detallesCompra": [{
+            "precioUnitario": 49999.99,
+            "idDetalle": "524369566",
+            "cantidad": 2,
+            "producto": {
+                "tipo": "Almacenamiento",
+                "codigo": "966489655",
+                "nombre": "SSD Crucial MX500 1TB"
+            }
+        }],
+        "proveedor": {
+            "Nombre": "Juan",
+            "Apellido": "Pérez",
+            "ID": "133717095"
+        },
+        "idPedido": "648539034",
+        "activo": true
+    },
+    {
+        "fechaCompra": "2025-11-16",
+        "total": 399999.92,
+        "detallesCompra": [{
+            "precioUnitario": 49999.99,
+            "idDetalle": "330763772",
+            "cantidad": 8,
+            "producto": {
+                "tipo": "Almacenamiento",
+                "codigo": "966489655",
+                "nombre": "SSD Crucial MX500 1TB"
+            }
+        }],
+        "proveedor": {
+            "Nombre": "María",
+            "Apellido": "Gómez",
+            "ID": "847517749"
+        },
+        "idPedido": "175742061",
+        "activo": true
+    },
+    {
+        "fechaCompra": "2025-11-16",
+        "total": 499999.89999999997,
+        "detallesCompra": [{
+            "precioUnitario": 49999.99,
+            "idDetalle": "721764953",
+            "cantidad": 10,
+            "producto": {
+                "tipo": "Almacenamiento",
+                "codigo": "966489655",
+                "nombre": "SSD Crucial MX500 1TB"
+            }
+        }],
+        "proveedor": {
+            "Nombre": "Tomás",
+            "Apellido": "Alvarez",
+            "ID": "892940319"
+        },
+        "idPedido": "428783216",
+        "activo": true
+    },
+    {
+        "fechaCompra": "2025-11-16",
+        "total": 749999.85,
+        "detallesCompra": [{
+            "precioUnitario": 49999.99,
+            "idDetalle": "806070840",
+            "cantidad": 15,
+            "producto": {
+                "tipo": "Almacenamiento",
+                "codigo": "966489655",
+                "nombre": "SSD Crucial MX500 1TB"
+            }
+        }],
+        "proveedor": {
+            "Nombre": "Diego",
+            "Apellido": "Fernández",
+            "ID": "830748676"
+        },
+        "idPedido": "142565692",
+        "activo": true
+    },
+    {
+        "fechaCompra": "2025-11-16",
+        "total": 299999.94,
+        "detallesCompra": [{
+            "precioUnitario": 49999.99,
+            "idDetalle": "787166927",
+            "cantidad": 6,
+            "producto": {
+                "tipo": "Almacenamiento",
+                "codigo": "966489655",
+                "nombre": "SSD Crucial MX500 1TB"
+            }
+        }],
+        "proveedor": {
+            "Nombre": "Federico",
+            "Apellido": "Domínguez",
+            "ID": "972453970"
+        },
+        "idPedido": "809095980",
+        "activo": true
+    }
+]

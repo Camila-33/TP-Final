@@ -1,15 +1,15 @@
 package Productos;
 
-import Archivos.GestionJSONProductos.GestionJSONProducto;
 import Enums.TipoCategoria;
 import Enums.TipoSubCategoria;
+import IngresoDeDatos.InputHelper;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public abstract class Producto {
 
-    protected static int contador = 0;
     protected String nombre;
     protected String descripcion;
     protected String codigo;
@@ -20,16 +20,16 @@ public abstract class Producto {
     protected boolean activo;
     protected int stock;
     protected int garantiaMeses;
-    private String idProveedor;
+    private ArrayList<String> idProveedores;
     protected String numeroDeSerie;
     protected LocalDate fechaIngreso;
     protected TipoCategoria categoria;
     protected TipoSubCategoria subCategoria;
 
-    public Producto(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria, String idProveedor) {
+    public Producto(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria) {
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.codigo = String.valueOf(++contador);
+        this.codigo = InputHelper.generarCodigoUnico();
         this.precio = precio;
         this.peso = peso;
         this.dimension = dimension;
@@ -37,7 +37,7 @@ public abstract class Producto {
         this.activo = true;
         this.stock = stock;
         this.garantiaMeses = garantiaMeses;
-        this.idProveedor = idProveedor;
+        this.idProveedores = new ArrayList<>();
         this.fechaIngreso = LocalDate.now();
         this.categoria = categoria;
         this.subCategoria = subCategoria;
@@ -143,14 +143,6 @@ public abstract class Producto {
         this.garantiaMeses = garantiaMeses;
     }
 
-    public String getIdProveedor() {
-        return idProveedor;
-    }
-
-    public void setIdProveedor(String idProveedor) {
-        this.idProveedor = idProveedor;
-    }
-
     public LocalDate getFechaIngreso() {
         return fechaIngreso;
     }
@@ -165,6 +157,14 @@ public abstract class Producto {
 
     public void setCategoria(TipoCategoria categoria) {
         this.categoria = categoria;
+    }
+
+    public ArrayList<String> getIdProveedores() {
+        return idProveedores;
+    }
+
+    public void setIdProveedores(ArrayList<String> idProveedores) {
+        this.idProveedores = idProveedores;
     }
 
     @Override
@@ -189,5 +189,6 @@ public abstract class Producto {
         System.out.println("Marca: " + marca);
         System.out.println("Stock: " + stock);
         System.out.println("Garantía: " + garantiaMeses + " meses");
+        System.out.println("IdProveedores: " + idProveedores);
     }
 }

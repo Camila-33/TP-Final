@@ -1,8 +1,11 @@
 package Users.UsuarioSistema;
 
+import IngresoDeDatos.InputHelper;
+
+import java.util.Objects;
+
 public abstract class UsuarioSistema {
 
-    protected static int contador = 0;
     protected String idUsuario;
     protected String userName;
     protected String contrasena;
@@ -15,7 +18,7 @@ public abstract class UsuarioSistema {
     protected String direccion;
 
     public UsuarioSistema(String userName, String contrasena, String nombre, String apellido, String email, String telefono, String dni, String direccion) {
-        this.idUsuario = String.valueOf(++contador);
+        this.idUsuario = InputHelper.generarCodigoUnico();
         this.contrasena = contrasena;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -115,22 +118,31 @@ public abstract class UsuarioSistema {
         return this.nombre + " " + this.apellido;
     }
 
-    public void mostrarDatosUsuario(){
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        UsuarioSistema that = (UsuarioSistema) o;
+        return activo == that.activo && Objects.equals(idUsuario, that.idUsuario) && Objects.equals(userName, that.userName) && Objects.equals(contrasena, that.contrasena) && Objects.equals(nombre, that.nombre) && Objects.equals(apellido, that.apellido) && Objects.equals(email, that.email) && Objects.equals(telefono, that.telefono) && Objects.equals(dni, that.dni) && Objects.equals(direccion, that.direccion);
+    }
 
-        System.out.println();
-        System.out.println("--------------------------------------------");
-        System.out.println("PERFIL DE " + getClass().getSimpleName().toUpperCase() + ": " + nombre + " " + apellido);
-        System.out.println("--------------------------------------------");
+    @Override
+    public int hashCode() {
+        return Objects.hash(idUsuario, userName, contrasena, nombre, apellido, email, activo, telefono, dni, direccion);
+    }
 
-        System.out.println("ID: " + idUsuario);
-        System.out.println("Username: " + userName);
-        System.out.println("Contraseña: **********");
-        System.out.println("Nombre: " + nombre);
-        System.out.println("Apellido: " + apellido);
-        System.out.println("DNI: " + dni);
-        System.out.println("Teléfono: " + telefono);
-        System.out.println("Dirección: " + direccion);
-        System.out.println("Email: " + email);
-        System.out.println("--------------------------------------------");
+    @Override
+    public String toString() {
+        return "UsuarioSistema{" +
+                "idUsuario = '" + idUsuario + '\'' +
+                ", userName = '" + userName + '\'' +
+                ", contrasena = '" + contrasena + '\'' +
+                ", nombre = '" + nombre + '\'' +
+                ", apellido = '" + apellido + '\'' +
+                ", email = '" + email + '\'' +
+                ", activo = " + activo +
+                ", telefono = '" + telefono + '\'' +
+                ", dni = '" + dni + '\'' +
+                ", direccion = '" + direccion + '\'' +
+                '}';
     }
 }

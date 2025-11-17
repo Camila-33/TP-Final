@@ -1,5 +1,6 @@
 package Gestion;
 
+import Archivos.GestionJSONProductos.GestionJSONProducto;
 import Archivos.GestionJSONVenta.GestionJSONVenta;
 import IngresoDeDatos.InputHelper;
 import Productos.Producto;
@@ -13,10 +14,12 @@ public class GestionVenta {
 
     private HashMap<String, Venta> listaVentas;
     private GestionProducto gestionProducto;
+    private HashMap<String, Producto> listaProductos;
 
     public GestionVenta() {
         this.listaVentas = new HashMap<>();
         this.gestionProducto = new GestionProducto();
+        this.listaProductos = new HashMap<>();
     }
 
 
@@ -30,16 +33,25 @@ public class GestionVenta {
     public void cargarOrdenVenta() {
 
         List<DetalleVenta> detalles = new ArrayList<>();
-        char boton;
+        listaProductos = GestionJSONProducto.archivoProductosToLista("producto.json");
+        char boton = ' ';
 
         do {
             System.out.println("Seleccione un producto para agregar a la venta:");
             Producto producto = gestionProducto.elegirProductosDisponibles();
 
-            int cantidad = InputHelper.leerInt("Elija una opción:");
+            int cantidad = InputHelper.leerInt("Ingrese la cantidad a vender:");
+
+            if (cantidad > producto.getStock()) {
+                System.out.println("¡No hay suficiente stock! Stock disponible: " + producto.getStock());
+                continue;
+            }
 
             DetalleVenta detalle = new DetalleVenta(producto, cantidad);
             detalles.add(detalle);
+
+            producto.setStock(producto.getStock() - cantidad);
+            listaProductos.put(producto.getCodigo(), producto);
 
             boton = InputHelper.leerChar("¿Desea agregar otro producto? (s / n)");
 
@@ -50,6 +62,8 @@ public class GestionVenta {
         listaVentas.put(nuevaVenta.getIdVenta(), nuevaVenta);
 
         agregarYguardar(nuevaVenta);
+        GestionJSONProducto.listaProductosToArchivo(listaProductos, "producto.json");
+
         System.out.println("Orden de venta cargada correctamente. ID: " + nuevaVenta.getIdVenta());
         System.out.println("Total: " + nuevaVenta.getTotal());
     }
@@ -58,6 +72,7 @@ public class GestionVenta {
     public void cancelarOrdenDeVenta(Venta venta) {
 
         listaVentas = GestionJSONVenta.archivoVentaToLista("venta.json");
+        listaProductos = GestionJSONProducto.archivoProductosToLista("producto.json");
 
         if (!venta.isActivo()) {
             System.out.println("La orden de venta ya está cancelada.");
@@ -71,8 +86,18 @@ public class GestionVenta {
             if (opcion == 's') {
                 venta.setActivo(false);
 
+                for (DetalleVenta detalle : venta.getDetalleVenta()) {
+                    Producto producto = detalle.getProducto();
+                    int cantidad = detalle.getCantidad();
+                    producto.setStock(producto.getStock() + cantidad);
+
+                    listaProductos.put(producto.getCodigo(), producto);
+                }
+
                 GestionJSONVenta.listaVentaToArchivo(listaVentas, "venta.json");
-                System.out.println("¡Orden de venta cancelada con éxito!");
+                GestionJSONProducto.listaProductosToArchivo(listaProductos, "producto.json");
+
+                System.out.println("¡Orden de venta cancelada con éxito y stock actualizado!");
                 return;
 
             } else if (opcion == 'n') {

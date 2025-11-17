@@ -1,5 +1,6 @@
 package Transacciones;
 
+import IngresoDeDatos.InputHelper;
 import Transacciones.Detalles.DetalleCompra;
 import Users.Proveedor;
 
@@ -9,7 +10,6 @@ import java.util.List;
 
 public class Compra {
 
-    private static int contador = 0;
     private String idPedido;
     private double total;
     private LocalDate fechaCompra;
@@ -22,12 +22,12 @@ public class Compra {
     }
 
     public Compra(Proveedor proveedor) {
-        this.idPedido = String.valueOf(++contador);
+        this.idPedido = InputHelper.generarCodigoUnico();
+        this.detallesCompra = new ArrayList<>();
         this.total = getTotal();
         this.fechaCompra = LocalDate.now();
         this.proveedor = proveedor;
         this.activo = true;
-        this.detallesCompra = new ArrayList<>();
     }
 
     public boolean isActivo() {
@@ -86,11 +86,6 @@ public class Compra {
     public void agregarDetalleCompra(DetalleCompra detalleCompra){
         detallesCompra.add(detalleCompra);
     }
-
-    public void borrarDetalle(DetalleCompra detalle) {
-        detallesCompra.remove(detalle);
-    }
-
 
     public void mostrarCompra() {
 

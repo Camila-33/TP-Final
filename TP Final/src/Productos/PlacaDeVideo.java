@@ -12,8 +12,8 @@ public class PlacaDeVideo extends  Producto{
     private String frecuenciaNucleo;
     private String anchoDeBanda;
 
-    public PlacaDeVideo(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria, String idProveedor, String GPU, String VRAM, String frecuenciaNucleo, String anchoDeBanda) {
-        super(nombre, descripcion, precio, peso, dimension, marca, stock, garantiaMeses, categoria, subCategoria, idProveedor);
+    public PlacaDeVideo(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria, String GPU, String VRAM, String frecuenciaNucleo, String anchoDeBanda) {
+        super(nombre, descripcion, precio, peso, dimension, marca, stock, garantiaMeses, categoria, subCategoria);
         this.GPU = GPU;
         this.VRAM = VRAM;
         this.frecuenciaNucleo = frecuenciaNucleo;

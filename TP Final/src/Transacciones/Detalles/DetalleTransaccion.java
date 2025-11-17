@@ -1,19 +1,19 @@
 package Transacciones.Detalles;
 
+import IngresoDeDatos.InputHelper;
 import Productos.Producto;
 
 import java.util.Objects;
 
 public abstract class DetalleTransaccion {
 
-    protected static int contador = 0;
     protected String idDetalle;
     protected Producto producto;
     protected int cantidad;
     protected double precioUnitario;
 
     public DetalleTransaccion(Producto producto, int cantidad) {
-        this.idDetalle = String.valueOf(++contador);
+        this.idDetalle = InputHelper.generarCodigoUnico();
         this.producto = producto;
         this.cantidad = cantidad;
         this.precioUnitario = producto.getPrecio();

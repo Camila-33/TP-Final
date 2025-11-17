@@ -1,6 +1,7 @@
 package Users;
 
 import Enums.TipoProveedor;
+import IngresoDeDatos.InputHelper;
 import Productos.Producto;
 
 import java.time.LocalDate;
@@ -8,7 +9,6 @@ import java.util.*;
 
 public class Proveedor {
 
-    private static int contador = 0;
     private String idProveedor;
     private String nombre;
     private String apellido;
@@ -21,7 +21,7 @@ public class Proveedor {
     private HashMap<String, Producto> productosSuministrados;
 
     public Proveedor(String nombre, String apellido, String email, String telefono, String cuit, TipoProveedor tipoProveedor) {
-        this.idProveedor = String.valueOf(++contador);
+        this.idProveedor = InputHelper.generarCodigoUnico();
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
@@ -134,7 +134,6 @@ public class Proveedor {
         }
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -147,23 +146,19 @@ public class Proveedor {
         return Objects.hash(idProveedor, nombre, apellido, email, telefono, cuit, activo, fechaAlta, tipoProveedor, productosSuministrados);
     }
 
-    public void mostrarDatosProveedor() {
-
-        System.out.println();
-        System.out.println("--------------------------------------------");
-        System.out.println("PERFIL DE PROVEEDOR: " + getNombreCompleto());
-        System.out.println("--------------------------------------------");
-
-        System.out.println("ID: " + idProveedor);
-        System.out.println("Nombre: " + nombre);
-        System.out.println("Apellido: " + apellido);
-        System.out.println("Email: " + email);
-        System.out.println("Teléfono: " + telefono);
-        System.out.println("CUIT: " + cuit);
-        System.out.println("Activo: " + (activo ? "Sí" : "No"));
-        System.out.println("Fecha de alta: " + fechaAlta);
-        System.out.println("Tipo de proveedor: " + tipoProveedor);
-        System.out.println("Cantidad de productos suministrados: " + productosSuministrados.size());
-        System.out.println("--------------------------------------------");
+    @Override
+    public String toString() {
+        return "Proveedor{" +
+                "idProveedor = '" + idProveedor + '\'' +
+                ", nombre = '" + nombre + '\'' +
+                ", apellido = '" + apellido + '\'' +
+                ", email = '" + email + '\'' +
+                ", telefono = '" + telefono + '\'' +
+                ", cuit = '" + cuit + '\'' +
+                ", activo = " + activo +
+                ", fechaAlta = " + fechaAlta +
+                ", tipoProveedor = " + tipoProveedor +
+                ", productosSuministrados = " + productosSuministrados +
+                '}';
     }
 }

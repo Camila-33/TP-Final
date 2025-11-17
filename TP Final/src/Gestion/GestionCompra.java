@@ -1,6 +1,7 @@
 package Gestion;
 
 import Archivos.GestionJSONCompra.GestionJSONCompra;
+import Archivos.GestionJSONProductos.GestionJSONProducto;
 import IngresoDeDatos.InputHelper;
 import Transacciones.Compra;
 import Productos.Producto;
@@ -15,11 +16,13 @@ public class GestionCompra {
     private HashMap<String, Compra> compras;
     private GestionProveedor gestionProveedor;
     private GestionProducto gestionProducto;
+    private HashMap<String, Producto> listaProductos;
 
     public GestionCompra() {
         this.compras = new HashMap<>();
-        this.gestionProveedor = new GestionProveedor();
         this.gestionProducto = new GestionProducto();
+        this.gestionProveedor = new GestionProveedor(gestionProducto);
+        this.listaProductos = new HashMap<>();
     }
 
 
@@ -177,17 +180,33 @@ public class GestionCompra {
     public void cancelarCompra(String idPedido) {
 
         compras = GestionJSONCompra.archivoCompraToLista("compra.json");
+        listaProductos = GestionJSONProducto.archivoProductosToLista("producto.json");
 
         if (compras.containsKey(idPedido)) {
             Compra compra = compras.get(idPedido);
-            compra.setActivo(false);
-            System.out.println("La compra con ID " + idPedido + " fue cancelada correctamente.");
 
+            if (!compra.isActivo()) {
+                System.out.println("La compra con ID " + idPedido + " ya estaba cancelada.");
+                return;
+            }
+
+            compra.setActivo(false);
+
+            for (DetalleCompra detalle : compra.getDetallesCompra()) {
+                Producto producto = detalle.getProducto();
+                int cantidad = detalle.getCantidad();
+                producto.setStock(producto.getStock() - cantidad);
+
+                listaProductos.put(producto.getCodigo(), producto);
+            }
+
+            GestionJSONCompra.listaCompraToArchivo(compras, "compra.json");
+            GestionJSONProducto.listaProductosToArchivo(listaProductos, "producto.json");
+
+            System.out.println("La compra con ID " + idPedido + " fue cancelada correctamente y el stock actualizado.");
         } else {
             throw new IllegalArgumentException("No se encontró una compra con el ID: " + idPedido);
         }
-
-        GestionJSONCompra.listaCompraToArchivo(compras, "compra.json");
     }
 
 

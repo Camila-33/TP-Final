@@ -8,6 +8,8 @@ import Users.UsuarioSistema.Usuario;
 
 import java.util.HashSet;
 
+import static IngresoDeDatos.InputHelper.teclado;
+
 public class GestionUsuario implements MetodosGestion <Usuario>{
 
     private HashSet<Usuario> listaUsuarios;
@@ -56,6 +58,7 @@ public class GestionUsuario implements MetodosGestion <Usuario>{
                     System.out.println("9. Salir");
 
                     int opcion = InputHelper.leerEnteroSwitch();
+                    teclado.nextLine();
 
                     switch (opcion) {
 
@@ -64,7 +67,7 @@ public class GestionUsuario implements MetodosGestion <Usuario>{
                             break;
 
                         case 2:
-                            u.setContrasena(InputHelper.pedirContrasenia("Nueva contraseña: "));
+                            u.setContrasena(InputHelper.pedirContraseniaRegistro("Nueva contraseña: "));
                             break;
 
                         case 3:
@@ -84,7 +87,7 @@ public class GestionUsuario implements MetodosGestion <Usuario>{
                             break;
 
                         case 7:
-                            u.setDni(InputHelper.pedirDni("usuario", "Nuevo DNI:"));
+                            u.setDni(InputHelper.pedirDniRegistro("usuario", "Nuevo DNI:"));
                             break;
 
                         case 8:
@@ -185,7 +188,38 @@ public class GestionUsuario implements MetodosGestion <Usuario>{
         listaUsuarios = GestionJSONUsuario.archivoUsuarioToLista("usuario.json");
 
         for(Usuario user : listaUsuarios) {
-            user.mostrarDatosUsuario();
+            mostrarDatosUsuario(user);
+        }
+    }
+
+
+    @Override
+    public void mostrarDatosUsuario(Usuario u){
+
+        listaUsuarios = GestionJSONUsuario.archivoUsuarioToLista("usuario.json");
+
+        for (Usuario usuario : listaUsuarios) {
+            if (usuario.getIdUsuario().equals(u.getIdUsuario())) {
+
+                u = usuario;
+
+                System.out.println();
+                System.out.println("--------------------------------------------");
+                System.out.println("PERFIL DE USUARIO: " + u.getNombreCompleto());
+                System.out.println("--------------------------------------------");
+
+                System.out.println("ID: " + u.getIdUsuario());
+                System.out.println("Username: " + u.getUserName());
+                System.out.println("Contraseña: **********");
+                System.out.println("Nombre: " + u.getNombre());
+                System.out.println("Apellido: " + u.getApellido());
+                System.out.println("DNI: " + u.getDni());
+                System.out.println("Teléfono: " + u.getTelefono());
+                System.out.println("Activo: " + (u.isActivo() ? "Sí" : "No"));
+                System.out.println("Dirección: " + u.getDireccion());
+                System.out.println("Email: " + u.getEmail());
+                System.out.println("--------------------------------------------");
+            }
         }
     }
 }

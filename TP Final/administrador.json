@@ -1,12 +1,98 @@
-[{
-    "apellido": "Pérez",
-    "direccion": "Calle Falsa 123",
-    "contrasenia": "1234",
-    "id": "1",
-    "telefono": "1234567890",
-    "nombre": "Juan",
-    "dni": "12345678",
-    "email": "juan.perez@email.com",
-    "username": "admin1",
-    "activo": true
-}]
+[
+    {
+        "apellido": "García",
+        "direccion": "Avenida Sol 202",
+        "contrasenia": "test0001",
+        "id": "821459492",
+        "telefono": "1111111115",
+        "nombre": "Luis",
+        "dni": "56789012",
+        "email": "luis.garcia@email.com",
+        "username": "admin5",
+        "activo": true
+    },
+    {
+        "apellido": "Fernández",
+        "direccion": "Avenida Mar 404",
+        "contrasenia": "miclave8",
+        "id": "407668707",
+        "telefono": "1111111117",
+        "nombre": "Diego",
+        "dni": "78901234",
+        "email": "diego.fernandez@email.com",
+        "username": "admin7",
+        "activo": true
+    },
+    {
+        "apellido": "Pérez",
+        "direccion": "Calle Falsa 123",
+        "contrasenia": "clave123",
+        "id": "967286052",
+        "telefono": "1111111111",
+        "nombre": "Juan",
+        "dni": "12345678",
+        "email": "juan.perez@email.com",
+        "username": "admin1",
+        "activo": true
+    },
+    {
+        "apellido": "López",
+        "direccion": "Avenida Siempre Viva 789",
+        "contrasenia": "usuario8",
+        "id": "593041875",
+        "telefono": "1111111113",
+        "nombre": "Carlos",
+        "dni": "34567890",
+        "email": "carlos.lopez@email.com",
+        "username": "admin3",
+        "activo": true
+    },
+    {
+        "apellido": "Gómez",
+        "direccion": "Calle Verdadera 456",
+        "contrasenia": "admin001",
+        "id": "992879702",
+        "telefono": "1111111112",
+        "nombre": "María",
+        "dni": "23456789",
+        "email": "maria.gomez@email.com",
+        "username": "admin2",
+        "activo": true
+    },
+    {
+        "apellido": "Rodríguez",
+        "direccion": "Calle Estrella 303",
+        "contrasenia": "abc12345",
+        "id": "336115364",
+        "telefono": "1111111116",
+        "nombre": "Sofía",
+        "dni": "67890123",
+        "email": "sofia.rodriguez@email.com",
+        "username": "admin6",
+        "activo": true
+    },
+    {
+        "apellido": "Martínez",
+        "direccion": "Calle Luna 101",
+        "contrasenia": "pass2024",
+        "id": "304400309",
+        "telefono": "1111111114",
+        "nombre": "Ana",
+        "dni": "45678901",
+        "email": "ana.martinez@email.com",
+        "username": "admin4",
+        "activo": true
+    },
+    {
+        "apellido": "Sánchez",
+        "direccion": "Calle Río 505",
+        "contrasenia": "simple78@",
+        "id": "705039189",
+        "telefono": "2236790541",
+        "nombre": "Lucía",
+        "dni": "43567123",
+        "email": "lucia.sanchez@gmail.com",
+        "username": "admin8",
+        "activo": true
+    }
+]

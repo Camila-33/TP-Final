@@ -12,8 +12,8 @@ public class PlacaMadre extends Producto{
     private boolean backConnect;
     private boolean botonBios;
 
-    public PlacaMadre(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria, String idProveedor, String tipoMemoria, int cantidadSlotMemoria, boolean backConnect, boolean botonBios) {
-        super(nombre, descripcion, precio, peso, dimension, marca, stock, garantiaMeses, categoria, subCategoria, idProveedor);
+    public PlacaMadre(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria, String tipoMemoria, int cantidadSlotMemoria, boolean backConnect, boolean botonBios) {
+        super(nombre, descripcion, precio, peso, dimension, marca, stock, garantiaMeses, categoria, subCategoria);
         this.tipoMemoria = tipoMemoria;
         this.cantidadSlotMemoria = cantidadSlotMemoria;
         this.backConnect = backConnect;

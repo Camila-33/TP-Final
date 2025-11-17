@@ -1,6 +1,7 @@
 package Gestion;
 
 import Archivos.GestionJSONProductos.GestionJSONProducto;
+import Archivos.GestionJSONUsers.GestionJSONProveedor;
 import Enums.TipoCategoria;
 import Enums.TipoCertificacion;
 import Enums.TipoSubCategoria;
@@ -14,9 +15,11 @@ import java.util.*;
 public class GestionProducto {
 
     private HashMap<String, Producto> listaProductos;
+    private GestionProveedor gestionProveedor;
 
     public GestionProducto() {
         this.listaProductos = new HashMap<>();
+        this.gestionProveedor = new GestionProveedor(this);
     }
 
     public void agregarProducto(Producto p){
@@ -34,21 +37,15 @@ public class GestionProducto {
             if(entry.getValue().equals(p)){
                 char opcion = InputHelper.leerChar("¿Estás seguro de que quieres dar de baja este producto? (s / n)");
 
-                while (true){
+                if (opcion == 's') {
+                    entry.getValue().setActivo(false);
+                    System.out.println("¡Producto dado de baja con éxito!");
+                    GestionJSONProducto.listaProductosToArchivo(listaProductos, "producto.json");
 
-                    if(opcion == 's'){
-
-                        p.setActivo(false);
-                        System.out.println("¡Producto dado de baja con éxito!");
-                        GestionJSONProducto.listaProductosToArchivo(listaProductos, "producto.json");
-
-                        return;
-
-                    }else if (opcion == 'n') {
-                        System.out.println("Operación cancelada");
-                        return;
-                    }
+                } else {
+                    System.out.println("Operación cancelada");
                 }
+                return;
             }
         }
 
@@ -63,21 +60,15 @@ public class GestionProducto {
             if(entry.getValue().equals(p)){
                 char opcion = InputHelper.leerChar("¿Estás seguro de que quieres dar de alta este producto? (s / n)");
 
-                while (true){
+                if (opcion == 's') {
+                    entry.getValue().setActivo(true);
+                    System.out.println("¡Producto dado de alta con éxito!");
+                    GestionJSONProducto.listaProductosToArchivo(listaProductos, "producto.json");
 
-                    if(opcion == 's'){
-
-                        p.setActivo(true);
-                        System.out.println("¡Producto dado de alta con éxito!");
-                        GestionJSONProducto.listaProductosToArchivo(listaProductos, "producto.json");
-
-                        return;
-
-                    }else if (opcion == 'n') {
-                        System.out.println("Operación cancelada");
-                        return;
-                    }
+                } else {
+                    System.out.println("Operación cancelada");
                 }
+                return;
             }
         }
 
@@ -94,7 +85,7 @@ public class GestionProducto {
             String nombreProducto = entry.getValue().getNombre().toLowerCase();
 
             if (nombreProducto.contains(nombreBusqueda)) {
-                System.out.println("Codigo: " + entry.getKey() + ", Producto: " + entry.getValue());
+                System.out.println("Codigo: " + entry.getKey() + ", Producto: " + entry.getValue().getNombre());
                 encontrado = true;
             }
         }
@@ -144,12 +135,13 @@ public class GestionProducto {
         listaProductos = GestionJSONProducto.archivoProductosToLista("producto.json");
         List<Producto> productos = new ArrayList<>(listaProductos.values());
 
-        int i = 0;
+        int i = 1;
 
         System.out.println("=== Lista de Productos ===");
         for (Producto p : productos){
             if(p.isActivo()){
-                System.out.println(i+1 + "- " + "Nombre: " + p.getNombre() + ", Precio: " +p.getPrecio());
+                System.out.println(i + "- " + "Nombre: " + p.getNombre() + ", Precio: " +p.getPrecio());
+                i++;
             }
         }
 
@@ -165,11 +157,12 @@ public class GestionProducto {
         listaProductos = proveedor.getProductosSuministrados();
         List<Producto> productos = new ArrayList<>(listaProductos.values());
 
-        int i = 0;
+        int i = 1;
 
         System.out.println("Productos disponibles de " + proveedor.getNombre() + ":");
         for (Producto p : productos) {
-            System.out.println(i+1 + ". " + p.getNombre() + " (Stock actual: " + p.getStock() + ")");
+            System.out.println(i + ". " + p.getNombre());
+            i++;
         }
 
         int opcion = ingresarOpcionValida(productos);
@@ -200,6 +193,7 @@ public class GestionProducto {
 
 
     public HashMap<String, Producto> cargarProductos() {
+
         HashMap<String, Producto> nuevosProductos = new HashMap<>();
         char continuar;
 
@@ -214,7 +208,26 @@ public class GestionProducto {
             String marca = InputHelper.leerMarca("Ingrese la marca del producto: ");
             int stock = InputHelper.leerInt("Ingrese el stock disponible: ");
             int garantia = InputHelper.leerInt("Ingrese la garantía en meses: ");
-            String codigo = InputHelper.leerIDOCodigo("Ingrese el código del proveedor: ");
+
+            System.out.println("Proveedores disponibles:");
+            gestionProveedor.mostrarProveedoresDisponibles();
+
+            // Ahora permitimos seleccionar varios proveedores
+            ArrayList<String> idProveedores = new ArrayList<>();
+            boolean agregarOtro;
+            do {
+                String idProv = InputHelper.leerIDOCodigo("Ingrese el código del proveedor: ");
+                if (Validaciones.existeCodigoProveedor(idProv)) {
+                    if (!idProveedores.contains(idProv)) {
+                        idProveedores.add(idProv);
+                    } else {
+                        System.out.println("Proveedor ya agregado a la lista.");
+                    }
+                } else {
+                    System.out.println("El proveedor ingresado no existe. Intente nuevamente.");
+                }
+                agregarOtro = InputHelper.leerBoolean("¿Desea agregar otro proveedor para este producto? (s/n): ");
+            } while (agregarOtro);
 
             System.out.println("Seleccione la categoría del producto");
             TipoCategoria categoria = elegirCategoria();
@@ -229,28 +242,28 @@ public class GestionProducto {
                     String capacidad = InputHelper.leerString("Ingrese la capacidad: ");
                     String velocidad = InputHelper.leerString("Ingrese la velocidad: ");
 
-                    nuevoProducto = new Almacenamiento(nombre, descripcion, precio, peso, dimension, marca, stock, garantia,
-                            categoria, subCategoria, capacidad, velocidad, codigo);
+                    nuevoProducto = new Almacenamiento(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, capacidad, velocidad);
+                    nuevoProducto.setIdProveedores(idProveedores);
                     break;
 
                 case 2:
                     String velocidadCooler = InputHelper.leerString("Ingrese la velocidad: ");
                     String ruidoMax = InputHelper.leerString("Ingrese el nivel de ruido máximo: ");
 
-                    nuevoProducto = new Cooler(nombre, descripcion, precio, peso, dimension, marca, stock, garantia,
-                            categoria, subCategoria, velocidadCooler, ruidoMax, codigo);
+                    nuevoProducto = new Cooler(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, velocidadCooler, ruidoMax);
+                    nuevoProducto.setIdProveedores(idProveedores);
                     break;
 
                 case 3:
                     String potencia = InputHelper.leerString("Ingrese la potencia: ");
                     TipoCertificacion tipoCertificacion = null;
 
-                    if(subCategoria == TipoSubCategoria.CERTIFICADA) {
+                    if (subCategoria == TipoSubCategoria.CERTIFICADA) {
                         tipoCertificacion = InputHelper.leerCertificacion();
                     }
 
-                    nuevoProducto = new FuenteDePoder(nombre, descripcion, precio, peso, dimension, marca, stock,
-                            garantia, categoria, subCategoria, potencia, codigo, tipoCertificacion);
+                    nuevoProducto = new FuenteDePoder(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, potencia, tipoCertificacion);
+                    nuevoProducto.setIdProveedores(idProveedores);
                     break;
 
                 case 4:
@@ -260,8 +273,8 @@ public class GestionProducto {
                     String alto = InputHelper.leerString("Ingrese el alto del gabinete: ");
                     String profundidad = InputHelper.leerString("Ingrese la profundidad del gabinete: ");
 
-                    nuevoProducto = new Gabinete(nombre, descripcion, precio, peso, dimension, marca, stock, garantia,
-                            categoria, subCategoria, codigo, ventana, color, ancho, alto, profundidad);
+                    nuevoProducto = new Gabinete(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, ventana, color, ancho, alto, profundidad);
+                    nuevoProducto.setIdProveedores(idProveedores);
                     break;
 
                 case 5:
@@ -269,15 +282,15 @@ public class GestionProducto {
                     String tipoMemoria = InputHelper.leerString("Ingrese el tipo de memoria: ");
                     String frecuencia = InputHelper.leerString("Ingrese la frecuencia: ");
 
-                    nuevoProducto = new MemoriaRAM(nombre, descripcion, precio, peso, dimension, marca, stock, garantia,
-                            categoria, subCategoria, codigo, capacidadMemoria, tipoMemoria, frecuencia);
+                    nuevoProducto = new MemoriaRAM(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, capacidadMemoria, tipoMemoria, frecuencia);
+                    nuevoProducto.setIdProveedores(idProveedores);
                     break;
 
                 case 6:
                     String dispositivosCompatibles = InputHelper.leerString("Ingrese los dispositivos compatibles: ");
 
-                    nuevoProducto = new PlacaDeRed(nombre, descripcion, precio, peso, dimension, marca, stock, garantia,
-                            categoria, subCategoria, codigo, dispositivosCompatibles);
+                    nuevoProducto = new PlacaDeRed(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, dispositivosCompatibles);
+                    nuevoProducto.setIdProveedores(idProveedores);
                     break;
 
                 case 7:
@@ -286,8 +299,8 @@ public class GestionProducto {
                     String frecuenciaNucleo = InputHelper.leerString("Ingrese la frecuencia del núcleo: ");
                     String anchoBanda = InputHelper.leerString("Ingrese el ancho de banda: ");
 
-                    nuevoProducto = new PlacaDeVideo(nombre, descripcion, precio, peso, dimension, marca, stock, garantia,
-                            categoria, subCategoria, codigo, GPU, VRAM, frecuenciaNucleo, anchoBanda);
+                    nuevoProducto = new PlacaDeVideo(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, GPU, VRAM, frecuenciaNucleo, anchoBanda);
+                    nuevoProducto.setIdProveedores(idProveedores);
                     break;
 
                 case 8:
@@ -296,27 +309,20 @@ public class GestionProducto {
                     boolean backConnect = InputHelper.leerBoolean("¿Tiene Back Connect? (s/n): ");
                     boolean botonBios = InputHelper.leerBoolean("¿Tiene un botón de Bios? (s/n): ");
 
-                    nuevoProducto = new PlacaMadre(nombre, descripcion, precio, peso, dimension, marca, stock, garantia,
-                            categoria, subCategoria, codigo, memoriaTipo, slotsMemoria, backConnect, botonBios);
+                    nuevoProducto = new PlacaMadre(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, memoriaTipo, slotsMemoria, backConnect, botonBios);
+                    nuevoProducto.setIdProveedores(idProveedores);
                     break;
 
                 case 9:
                     String frecuenciaDeReloj = InputHelper.leerString("Ingrese la frecuencia de reloj: ");
                     int numeroNucleos = InputHelper.leerInt("Ingrese el número de núcleos: ");
 
-                    nuevoProducto = new Procesador(nombre, descripcion, precio, peso, dimension, marca, stock, garantia,
-                            categoria, subCategoria, codigo, frecuenciaDeReloj, numeroNucleos);
+                    nuevoProducto = new Procesador(nombre, descripcion, precio, peso, dimension, marca, stock, garantia, categoria, subCategoria, frecuenciaDeReloj, numeroNucleos);
+                    nuevoProducto.setIdProveedores(idProveedores);
                     break;
             }
 
-            if (nuevoProducto != null && nuevoProducto.getCodigo() != null) {
-                nuevosProductos.put(nuevoProducto.getCodigo(), nuevoProducto);
-                agregarProducto(nuevoProducto);
-                System.out.println("Producto agregado correctamente.");
-
-            } else {
-                System.err.println("Error: el producto no fue agregado porque no fue creado correctamente.");
-            }
+            nuevosProductos = gestionProveedor.actualizarProductosProveedor(nuevoProducto);
 
             continuar = InputHelper.leerChar("¿Desea cargar otro producto? (s/n): ");
 
@@ -372,7 +378,7 @@ public class GestionProducto {
         System.out.println("8. Procesador");
         System.out.println("9. Refrigeración");
 
-            int opcion = InputHelper.leerEnteroSwitch();
+        int opcion = InputHelper.leerEnteroSwitch();
 
         tipoCategoria = switch (opcion) {
             case 1 -> TipoCategoria.ALMACENAMIENTO;
@@ -412,7 +418,7 @@ public class GestionProducto {
             }
 
             case CONECTIVIDAD -> {
-                System.out.println("Se elegirá automáticamente la subcategoría para la categoría de conectividad");
+                System.out.println("Se elegirá automáticamente la subcategoría PLACA DE RED para la categoría de conectividad");
                 return TipoSubCategoria.PLACA_DE_RED;
             }
 
@@ -540,15 +546,12 @@ public class GestionProducto {
 
 
     public void modificarProducto(Producto producto) {
-
         listaProductos = GestionJSONProducto.archivoProductosToLista("producto.json");
 
-        char opcionContinuar;
-
-        do {
+        while (true) {
             System.out.println("\n--- Modificar Producto ---");
             System.out.println("Producto actual:");
-            System.out.println(producto);
+            producto.mostrarProducto();
 
             System.out.println("\nSeleccione el atributo a modificar:");
             System.out.println("1. Nombre");
@@ -561,210 +564,149 @@ public class GestionProducto {
             System.out.println("8. Garantía");
             System.out.println("9. Código de proveedor");
 
-            int opcion = InputHelper.leerEnteroSwitch();
-
-            switch (opcion) {
-                case 1:
-                    producto.setNombre(InputHelper.leerNombreProducto("Ingrese el nuevo nombre: "));
-                    break;
-                case 2:
-                    producto.setDescripcion(InputHelper.leerDescripcion("Ingrese la nueva descripción: "));
-                    break;
-                case 3:
-                    producto.setPrecio(InputHelper.leerDouble("Ingrese el nuevo precio: "));
-                    break;
-                case 4:
-                    producto.setPeso(InputHelper.leerDouble("Ingrese el nuevo peso: "));
-                    break;
-                case 5:
-                    producto.setDimension(InputHelper.leerDimension("Ingrese la nueva dimensión: "));
-                    break;
-                case 6:
-                    producto.setMarca(InputHelper.leerMarca("Ingrese la nueva marca: "));
-                    break;
-                case 7:
-                    producto.setStock(InputHelper.leerInt("Ingrese el nuevo stock: "));
-                    break;
-                case 8:
-                    producto.setGarantiaMeses(InputHelper.leerInt("Ingrese la nueva garantía (meses): "));
-                    break;
-                case 9:
-                    producto.setCodigo(InputHelper.leerIDOCodigo("Ingrese el nuevo código de proveedor: "));
-                    break;
-                default:
-                    System.out.println("Opción inválida.");
-            }
-
-            if (producto instanceof Almacenamiento a) {
+            if (producto instanceof Almacenamiento) {
                 System.out.println("10. Capacidad");
                 System.out.println("11. Velocidad");
-
-                int op = InputHelper.leerEnteroSwitch();
-
-                switch (op) {
-                    case 10:
-                        a.setCapacidad(InputHelper.leerString("Ingrese nueva capacidad: "));
-                        break;
-                    case 11:
-                        a.setVelocidad(InputHelper.leerString("Ingrese nueva velocidad: "));
-                        break;
-                }
-
-            } else if (producto instanceof Cooler c) {
+            } else if (producto instanceof Cooler) {
                 System.out.println("10. Velocidad");
                 System.out.println("11. Nivel de ruido");
-
-                int op = InputHelper.leerEnteroSwitch();
-
-                switch (op) {
-                    case 10:
-                        c.setVelocidad(InputHelper.leerString("Ingrese nueva velocidad: "));
-                        break;
-                    case 11:
-                        c.setNivelRuidoMaximo(InputHelper.leerString("Ingrese nuevo nivel de ruido: "));
-                        break;
-                }
-
             } else if (producto instanceof FuenteDePoder f) {
                 System.out.println("10. Potencia");
-
                 if (f.getSubCategoria() == TipoSubCategoria.CERTIFICADA) {
                     System.out.println("11. Tipo de certificación");
                 }
-
-                int op = InputHelper.leerEnteroSwitch();
-
-                switch (op) {
-                    case 10:
-                        f.setPotencia(InputHelper.leerString("Ingrese nueva potencia: "));
-                        break;
-                    case 11:
-                        if (f.getSubCategoria() == TipoSubCategoria.CERTIFICADA) {
-                            f.setTipoCertificacion(InputHelper.leerCertificacion());
-                        }
-                        break;
-                }
-
-            } else if (producto instanceof Gabinete g) {
+            } else if (producto instanceof Gabinete) {
                 System.out.println("10. Ventana (s/n)");
                 System.out.println("11. Color");
                 System.out.println("12. Ancho");
                 System.out.println("13. Alto");
                 System.out.println("14. Profundidad");
-
-                int op = InputHelper.leerEnteroSwitch();
-
-                switch (op) {
-                    case 10:
-                        g.setConVentana(InputHelper.leerBoolean("Tiene ventana? (s/n): "));
-                        break;
-                    case 11:
-                        g.setColor(InputHelper.leerString("Ingrese nuevo color: "));
-                        break;
-                    case 12:
-                        g.setAncho(InputHelper.leerString("Ingrese nuevo ancho: "));
-                        break;
-                    case 13:
-                        g.setAlto(InputHelper.leerString("Ingrese nuevo alto: "));
-                        break;
-                    case 14:
-                        g.setProfundidad(InputHelper.leerString("Ingrese nueva profundidad: "));
-                        break;
-                }
-
-            } else if (producto instanceof MemoriaRAM m) {
+            } else if (producto instanceof MemoriaRAM) {
                 System.out.println("10. Capacidad");
                 System.out.println("11. Tipo de memoria");
                 System.out.println("12. Frecuencia");
-
-                int op = InputHelper.leerEnteroSwitch();
-
-                switch (op) {
-                    case 10:
-                        m.setCapacidad(InputHelper.leerInt("Ingrese nueva capacidad: "));
-                        break;
-                    case 11:
-                        m.setTipoDeMemoria(InputHelper.leerString("Ingrese nuevo tipo de memoria: "));
-                        break;
-                    case 12:
-                        m.setFrecuencia(InputHelper.leerString("Ingrese nueva frecuencia: "));
-                        break;
-                }
-
-            } else if (producto instanceof PlacaDeRed p) {
+            } else if (producto instanceof PlacaDeRed) {
                 System.out.println("10. Dispositivos compatibles");
-
-                p.setDispoditivosCompatibles(InputHelper.leerString("Ingrese nuevos dispositivos compatibles: "));
-
-            } else if (producto instanceof PlacaDeVideo p) {
+            } else if (producto instanceof PlacaDeVideo) {
                 System.out.println("10. GPU");
                 System.out.println("11. VRAM");
                 System.out.println("12. Frecuencia del núcleo");
                 System.out.println("13. Ancho de banda");
-
-                int op = InputHelper.leerEnteroSwitch();
-
-                switch (op) {
-                    case 10:
-                        p.setGPU(InputHelper.leerString("Ingrese nueva GPU: "));
-                        break;
-                    case 11:
-                        p.setVRAM(InputHelper.leerString("Ingrese nueva VRAM: "));
-                        break;
-                    case 12:
-                        p.setFrecuenciaNucleo(InputHelper.leerString("Ingrese nueva frecuencia del núcleo: "));
-                        break;
-                    case 13:
-                        p.setAnchoDeBanda(InputHelper.leerString("Ingrese nuevo ancho de banda: "));
-                        break;
-                }
-
-            } else if (producto instanceof PlacaMadre p) {
+            } else if (producto instanceof PlacaMadre) {
                 System.out.println("10. Tipo de memoria");
                 System.out.println("11. Cantidad de slots");
                 System.out.println("12. Back Connect (s/n)");
                 System.out.println("13. Botón de Bios (s/n)");
-
-                int op = InputHelper.leerEnteroSwitch();;
-
-                switch (op) {
-                    case 10:
-                        p.setTipoMemoria(InputHelper.leerString("Ingrese nuevo tipo de memoria: "));
-                        break;
-                    case 11:
-                        p.setCantidadSlotMemoria(InputHelper.leerInt("Ingrese nueva cantidad de slots: "));
-                        break;
-                    case 12:
-                        p.setBackConnect(InputHelper.leerBoolean("Tiene Back Connect? (s/n): "));
-                        break;
-                    case 13:
-                        p.setBotonBios(InputHelper.leerBoolean("Tiene botón de Bios? (s/n): "));
-                        break;
-                }
-
-            } else if (producto instanceof Procesador pr) {
+            } else if (producto instanceof Procesador) {
                 System.out.println("10. Frecuencia de reloj");
                 System.out.println("11. Número de núcleos");
-
-                int op = InputHelper.leerEnteroSwitch();
-
-                switch (op) {
-                    case 10:
-                        pr.setFrecuenciaDeReloj(InputHelper.leerString("Ingrese nueva frecuencia de reloj: "));
-                        break;
-                    case 11:
-                        pr.setNumeroDeNucleos(InputHelper.leerInt("Ingrese nuevo número de núcleos: "));
-                        break;
-                }
             }
 
-            opcionContinuar = InputHelper.leerChar("¿Desea modificar otro atributo? (s/n)");
+            System.out.println("0. Salir");
 
-        } while (opcionContinuar == 's');
+            int opcion = InputHelper.leerEnteroSwitch();
+
+            if (opcion == 0) break;
+
+            switch (opcion) {
+                case 1 -> producto.setNombre(InputHelper.leerNombreProducto("Ingrese el nuevo nombre: "));
+                case 2 -> producto.setDescripcion(InputHelper.leerDescripcion("Ingrese la nueva descripción: "));
+                case 3 -> producto.setPrecio(InputHelper.leerDouble("Ingrese el nuevo precio: "));
+                case 4 -> producto.setPeso(InputHelper.leerDouble("Ingrese el nuevo peso: "));
+                case 5 -> producto.setDimension(InputHelper.leerDimension("Ingrese la nueva dimensión: "));
+                case 6 -> producto.setMarca(InputHelper.leerMarca("Ingrese la nueva marca: "));
+                case 7 -> producto.setStock(InputHelper.leerInt("Ingrese el nuevo stock: "));
+                case 8 -> producto.setGarantiaMeses(InputHelper.leerInt("Ingrese la nueva garantía (meses): "));
+                case 9 -> producto.setCodigo(InputHelper.leerIDOCodigo("Ingrese el nuevo código de proveedor: "));
+            }
+
+            switch (producto) {
+                case Almacenamiento a -> {
+                    switch (opcion) {
+                        case 10 -> a.setCapacidad(InputHelper.leerString("Ingrese nueva capacidad: "));
+                        case 11 -> a.setVelocidad(InputHelper.leerString("Ingrese nueva velocidad: "));
+                        default -> System.out.println("Opción inválida.");
+                    }
+                }
+                case Cooler c -> {
+                    switch (opcion) {
+                        case 10 -> c.setVelocidad(InputHelper.leerString("Ingrese nueva velocidad: "));
+                        case 11 -> c.setNivelRuidoMaximo(InputHelper.leerString("Ingrese nuevo nivel de ruido: "));
+                        default -> System.out.println("Opción inválida.");
+                    }
+                }
+                case FuenteDePoder f -> {
+                    switch (opcion) {
+                        case 10 -> f.setPotencia(InputHelper.leerString("Ingrese nueva potencia: "));
+                        case 11 -> {
+                            if (f.getSubCategoria() == TipoSubCategoria.CERTIFICADA) {
+                                f.setTipoCertificacion(InputHelper.leerCertificacion());
+                            } else {
+                                System.out.println("Opción inválida.");
+                            }
+                        }
+                        default -> System.out.println("Opción inválida.");
+                    }
+                }
+                case Gabinete g -> {
+                    switch (opcion) {
+                        case 10 -> g.setConVentana(InputHelper.leerBoolean("Tiene ventana? (s/n): "));
+                        case 11 -> g.setColor(InputHelper.leerString("Ingrese nuevo color: "));
+                        case 12 -> g.setAncho(InputHelper.leerString("Ingrese nuevo ancho: "));
+                        case 13 -> g.setAlto(InputHelper.leerString("Ingrese nuevo alto: "));
+                        case 14 -> g.setProfundidad(InputHelper.leerString("Ingrese nueva profundidad: "));
+                        default -> System.out.println("Opción inválida.");
+                    }
+                }
+                case MemoriaRAM m -> {
+                    switch (opcion) {
+                        case 10 -> m.setCapacidad(InputHelper.leerInt("Ingrese nueva capacidad: "));
+                        case 11 -> m.setTipoDeMemoria(InputHelper.leerString("Ingrese nuevo tipo de memoria: "));
+                        case 12 -> m.setFrecuencia(InputHelper.leerString("Ingrese nueva frecuencia: "));
+                        default -> System.out.println("Opción inválida.");
+                    }
+                }
+                case PlacaDeRed p -> {
+                    if (opcion == 10)
+                        p.setDispoditivosCompatibles(InputHelper.leerString("Ingrese nuevos dispositivos compatibles: "));
+                    else System.out.println("Opción inválida.");
+                }
+                case PlacaDeVideo p -> {
+                    switch (opcion) {
+                        case 10 -> p.setGPU(InputHelper.leerString("Ingrese nueva GPU: "));
+                        case 11 -> p.setVRAM(InputHelper.leerString("Ingrese nueva VRAM: "));
+                        case 12 ->
+                                p.setFrecuenciaNucleo(InputHelper.leerString("Ingrese nueva frecuencia del núcleo: "));
+                        case 13 -> p.setAnchoDeBanda(InputHelper.leerString("Ingrese nuevo ancho de banda: "));
+                        default -> System.out.println("Opción inválida.");
+                    }
+                }
+                case PlacaMadre p -> {
+                    switch (opcion) {
+                        case 10 -> p.setTipoMemoria(InputHelper.leerString("Ingrese nuevo tipo de memoria: "));
+                        case 11 -> p.setCantidadSlotMemoria(InputHelper.leerInt("Ingrese nueva cantidad de slots: "));
+                        case 12 -> p.setBackConnect(InputHelper.leerBoolean("Tiene Back Connect? (s/n): "));
+                        case 13 -> p.setBotonBios(InputHelper.leerBoolean("Tiene botón de Bios? (s/n): "));
+                        default -> System.out.println("Opción inválida.");
+                    }
+                }
+                case Procesador pr -> {
+                    switch (opcion) {
+                        case 10 ->
+                                pr.setFrecuenciaDeReloj(InputHelper.leerString("Ingrese nueva frecuencia de reloj: "));
+                        case 11 -> pr.setNumeroDeNucleos(InputHelper.leerInt("Ingrese nuevo número de núcleos: "));
+                        default -> System.out.println("Opción inválida.");
+                    }
+                }
+                default -> System.out.println("Opción inválida.");
+            }
+
+            char continuar = InputHelper.leerChar("¿Desea modificar otro atributo del producto? (s/n): ");
+            if (continuar != 's') break;
+        }
 
         listaProductos.put(producto.getCodigo(), producto);
         GestionJSONProducto.listaProductosToArchivo(listaProductos, "producto.json");
         System.out.println("Producto modificado correctamente.");
     }
-
 }

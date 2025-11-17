@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,11 +28,10 @@ public class GestionJSONProducto {
         OperacionesLectoEscritura.grabar(nombreArchivo, jsonArray);
     }
 
-
     public static void productoToArchivo(Producto producto, String nombreArchivo) {
 
         JSONArray jsonArray = new JSONArray();
-        jsonArray.put(serializarProducto(producto));
+        jsonArray.put(serializarProductoParcial(producto));
 
         OperacionesLectoEscritura.grabar(nombreArchivo, jsonArray);
     }
@@ -52,7 +52,13 @@ public class GestionJSONProducto {
         json.put("activo", p.isActivo());
         json.put("stock", p.getStock());
         json.put("garantiaMeses", p.getGarantiaMeses());
-        json.put("idProveedor", p.getIdProveedor());
+
+        if (p.getIdProveedores() != null) {
+            json.put("idProveedores", new JSONArray(p.getIdProveedores()));
+        } else {
+            json.put("idProveedores", new JSONArray());
+        }
+
         json.put("numeroDeSerie", p.getNumeroDeSerie());
         json.put("fechaIngreso", p.getFechaIngreso().toString());
         json.put("categoria", p.getCategoria().name());
@@ -70,12 +76,7 @@ public class GestionJSONProducto {
             }
             case FuenteDePoder fp -> {
                 json.put("potencia", fp.getPotencia());
-
-                if (fp.getTipoCertificacion() != null) {
-                    json.put("tipoCertificacion", fp.getTipoCertificacion().name());
-                } else {
-                    json.put("tipoCertificacion", "NO_TIENE");
-                }
+                json.put("tipoCertificacion", fp.getTipoCertificacion().name());
             }
             case Gabinete g -> {
                 json.put("conVentana", g.isConVentana());
@@ -113,6 +114,17 @@ public class GestionJSONProducto {
         return json;
     }
 
+    public static JSONObject serializarProductoParcial(Producto p) {
+
+        JSONObject json = new JSONObject();
+
+        json.put("tipo", p.getClass().getSimpleName());
+
+        json.put("codigo", p.getCodigo());
+        json.put("nombre", p.getNombre());
+
+        return json;
+    }
 
     public static HashMap<String, Producto> archivoProductosToLista(String nombreArchivo) {
 
@@ -157,7 +169,16 @@ public class GestionJSONProducto {
             p.setActivo(json.getBoolean("activo"));
             p.setStock(json.getInt("stock"));
             p.setGarantiaMeses(json.getInt("garantiaMeses"));
-            p.setIdProveedor(json.getString("idProveedor"));
+
+            JSONArray jsonArray = json.optJSONArray("idProveedores");
+            ArrayList<String> idProveedores = new ArrayList<>();
+
+            if (jsonArray != null) {
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    idProveedores.add(jsonArray.getString(i));
+                }
+            }
+
             p.setNumeroDeSerie(json.getString("numeroDeSerie"));
             p.setFechaIngreso(LocalDate.parse(json.getString("fechaIngreso")));
             p.setCategoria(TipoCategoria.valueOf(json.getString("categoria").toUpperCase()));
@@ -175,12 +196,7 @@ public class GestionJSONProducto {
             } else if (p instanceof FuenteDePoder fp) {
                 fp.setPotencia(json.getString("potencia"));
                 String certStr = json.getString("tipoCertificacion");
-
-                if (certStr.equalsIgnoreCase("NO_TIENE")) {
-                    fp.setTipoCertificacion(null);
-                } else {
-                    fp.setTipoCertificacion(TipoCertificacion.valueOf(certStr.toUpperCase()));
-                }
+                fp.setTipoCertificacion(TipoCertificacion.valueOf(certStr.toUpperCase()));
 
             } else if (p instanceof Gabinete g) {
                 g.setConVentana(json.getBoolean("conVentana"));
@@ -222,6 +238,24 @@ public class GestionJSONProducto {
 
         return null;
     }
+
+    public static Producto deserializarProductoParcial(JSONObject json) {
+        try {
+            String tipo = json.optString("tipo");
+            Producto p = getProducto(tipo);
+
+            p.setCodigo(json.getString("codigo"));
+            p.setNombre(json.getString("nombre"));
+
+            return p;
+
+        } catch (Exception e) {
+            System.err.println("Error al deserializar parcialmente: " + e.getMessage());
+        }
+
+        return null;
+    }
+
 
     private static Producto getProducto(String tipo) {
 

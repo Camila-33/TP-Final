@@ -24,7 +24,6 @@ public class GestionJSONDetalleVenta {
 
 
     public static JSONObject serializarDetalleVenta(DetalleVenta d) {
-
         JSONObject jsonObject = new JSONObject();
 
         try {
@@ -32,7 +31,9 @@ public class GestionJSONDetalleVenta {
             jsonObject.put("cantidad", d.getCantidad());
             jsonObject.put("precioUnitario", d.getPrecioUnitario());
 
-            jsonObject.put("producto", GestionJSONProducto.serializarProducto(d.getProducto()));
+            JSONObject productoJson = GestionJSONProducto.serializarProductoParcial(d.getProducto());
+
+            jsonObject.put("producto", productoJson);
 
         } catch (JSONException ex) {
             ex.printStackTrace();
@@ -40,6 +41,7 @@ public class GestionJSONDetalleVenta {
 
         return jsonObject;
     }
+
 
     public static DetalleVenta deserializarDetalleVenta(JSONObject jsonObject) {
 
@@ -51,7 +53,8 @@ public class GestionJSONDetalleVenta {
             detalleVentaLeido.setPrecioUnitario(jsonObject.getDouble("precioUnitario"));
 
             JSONObject jsonProducto = jsonObject.getJSONObject("producto");
-            Producto producto = GestionJSONProducto.deserializarProducto(jsonProducto);
+            Producto producto = GestionJSONProducto.deserializarProductoParcial(jsonProducto);
+
             detalleVentaLeido.setProducto(producto);
 
         } catch (JSONException e) {
@@ -60,5 +63,6 @@ public class GestionJSONDetalleVenta {
 
         return detalleVentaLeido;
     }
+
 }
 

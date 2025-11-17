@@ -10,8 +10,8 @@ public class Cooler extends Producto{
     private String velocidad;
     private String nivelRuidoMaximo;
 
-    public Cooler(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria, String idProveedor, String velocidad, String nivelRuidoMaximo) {
-        super(nombre, descripcion, precio, peso, dimension, marca, stock, garantiaMeses, categoria, subCategoria, idProveedor);
+    public Cooler(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria, String velocidad, String nivelRuidoMaximo) {
+        super(nombre, descripcion, precio, peso, dimension, marca, stock, garantiaMeses, categoria, subCategoria);
         this.velocidad = velocidad;
         this.nivelRuidoMaximo = nivelRuidoMaximo;
     }

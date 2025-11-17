@@ -10,7 +10,6 @@ import Users.UsuarioSistema.Administrador;
 import Users.UsuarioSistema.Usuario;
 
 import java.io.FileNotFoundException;
-import java.util.*;
 
 public class GestionMenu {
 
@@ -24,7 +23,7 @@ public class GestionMenu {
 
     public GestionMenu() {
         this.gestionProducto = new GestionProducto();
-        this.gestionProveedor = new GestionProveedor();
+        this.gestionProveedor = new GestionProveedor(gestionProducto);
         this.gestionAdministrador = new GestionAdministrador();
         this.gestionUsuario = new GestionUsuario();
         this.gestionCompra = new GestionCompra();
@@ -127,7 +126,6 @@ public class GestionMenu {
 
                 default:
                     System.out.println("Opción incorrecta. Por favor, selecciona una opción válida.");
-
                     break;
             }
         }
@@ -142,7 +140,7 @@ public class GestionMenu {
             System.out.println("¡BIENVENIDO/A " +administrador.getNombre()+ " " +administrador.getApellido()+"!");
             System.out.println("=================================================");
 
-            System.out.println("Elija una opción");
+            System.out.println("\nElija una opción:");
             System.out.println("1. Mi cuenta");
             System.out.println("2. Gestión productos");
             System.out.println("3. Gestión proveedores");
@@ -173,7 +171,7 @@ public class GestionMenu {
                     break;
 
                 case 5:
-
+                    gestionStockAdministrador();
                     break;
 
                 case 6:
@@ -200,7 +198,7 @@ public class GestionMenu {
 
         while (true) {
 
-            System.out.println("Elija una opción");
+            System.out.println("\nElija una opción:");
             System.out.println("1. Cargar productos");
             System.out.println("2. Dar de baja productos");
             System.out.println("3. Dar de alta productos");
@@ -246,9 +244,9 @@ public class GestionMenu {
                 case 5:
                     String codigo = InputHelper.leerIDOCodigo("Ingrese el código del producto que quiere modificar");
                     Producto pM = gestionProducto.buscarProductoPorCodigo(codigo);
-                    gestionProducto.modificarProducto(pM);
 
                     if(pM != null){
+                        gestionProducto.modificarProducto(pM);
                         pM.mostrarProducto();
                     }
 
@@ -284,7 +282,7 @@ public class GestionMenu {
 
         while (true){
 
-            System.out.println("Elija una opción");
+            System.out.println("\nElija una opción:");
             System.out.println("1. Cargar proveedor");
             System.out.println("2. Dar de baja proveedor");
             System.out.println("3. Dar de alta proveedor");
@@ -304,7 +302,7 @@ public class GestionMenu {
 
                 case 2:
                     String idB = InputHelper.leerIDOCodigo("Ingrese la ID del proveedor que quiere dar de baja");
-                    Proveedor pB = gestionProveedor.buscarProveedoresPorId(idB);
+                    Proveedor pB = gestionProveedor.buscarProveedorPorId(idB);
 
                     if(pB != null){
                         gestionProveedor.darBajaProveedor(pB);
@@ -314,7 +312,7 @@ public class GestionMenu {
 
                 case 3:
                     String idA = InputHelper.leerIDOCodigo("Ingrese la ID del proveedor que quiere dar de alta");
-                    Proveedor pA = gestionProveedor.buscarProveedoresPorId(idA);
+                    Proveedor pA = gestionProveedor.buscarProveedorPorId(idA);
 
                     if(pA != null){
                         gestionProveedor.darAltaProveedor(pA);
@@ -334,7 +332,7 @@ public class GestionMenu {
 
                 case 6:
                     String idC = InputHelper.leerIDOCodigo("Ingrese la ID del proveedor que quiere modificar");
-                    Proveedor pM = gestionProveedor.buscarProveedoresPorId(idC);
+                    Proveedor pM = gestionProveedor.buscarProveedorPorId(idC);
 
                     if(pM != null){
                         gestionProveedor.modificarProveedor(pM);
@@ -344,10 +342,10 @@ public class GestionMenu {
 
                 case 7:
                     String id = InputHelper.leerIDOCodigo("Ingrese la ID del proveedor que quiere buscar:");
-                    Proveedor p = gestionProveedor.buscarProveedoresPorId(id);
+                    Proveedor p = gestionProveedor.buscarProveedorPorId(id);
 
                     if(p != null){
-                        p.mostrarDatosProveedor();
+                        gestionProveedor.mostrarDatosProveedor(p);
                     }
 
                     break;
@@ -368,7 +366,7 @@ public class GestionMenu {
 
         while (true) {
 
-            System.out.println("Elija una opción");
+            System.out.println("\nElija una opción:");
             System.out.println("1. Ver mi perfil");
             System.out.println("2. Modificar mi cuenta");
             System.out.println("3. Eliminar cuenta");
@@ -381,7 +379,7 @@ public class GestionMenu {
             switch (opcion) {
 
                 case 1:
-                    administrador.mostrarDatosUsuario();
+                    gestionAdministrador.mostrarDatosUsuario(administrador);
                     break;
 
                 case 2:
@@ -425,7 +423,7 @@ public class GestionMenu {
 
         while (true) {
 
-            System.out.println("Elija una opción");
+            System.out.println("\nElija una opción:");
             System.out.println("1. Registrar usuario");
             System.out.println("2. Dar de baja usuario");
             System.out.println("3. Dar de alta usuario");
@@ -473,7 +471,7 @@ public class GestionMenu {
 
                     if (aux3 != null) {
                         System.out.println("El usuario fue encontrado exitosamente. Mostrando perfil...");
-                        aux3.mostrarDatosUsuario();
+                        gestionUsuario.mostrarDatosUsuario(aux3);
                     } else {
                         System.out.println("No se encontró ningún usuario con ese DNI.");
                     }
@@ -559,7 +557,7 @@ public class GestionMenu {
 
         while (true) {
 
-            System.out.println("Elija una opción");
+            System.out.println("\nElija una opción:");
             System.out.println("1. Ver mi perfil");
             System.out.println("2. Modificar mi cuenta");
             System.out.println("3. Atrás");
@@ -569,7 +567,7 @@ public class GestionMenu {
             switch (opcion) {
 
                 case 1:
-                    usuario.mostrarDatosUsuario();
+                    gestionUsuario.mostrarDatosUsuario(usuario);
                     break;
 
                 case 2:
@@ -592,7 +590,7 @@ public class GestionMenu {
 
         while (true) {
 
-            System.out.println("Elija una opción");
+            System.out.println("\nElija una opción:");
             System.out.println("1. Generar orden de compra");
             System.out.println("2. Cancelar orden de compra");
             System.out.println("3. Mostrar ordenes de compra");
@@ -666,7 +664,7 @@ public class GestionMenu {
 
         while (true) {
 
-            System.out.println("Elija una opción");
+            System.out.println("\nElija una opción:");
             System.out.println("1. Cargar orden de venta");
             System.out.println("2. Cancelar orden de venta");
             System.out.println("3. Mostrar ordenes de venta");
@@ -726,6 +724,35 @@ public class GestionMenu {
                     break;
 
                 case 6:
+                    System.out.println("Volviendo al menú anterior...");
+                    return;
+
+                default:
+                    System.out.println("Opción invalida. Por favor, ingrese una opción valida");
+                    break;
+            }
+        }
+    }
+
+
+    public void gestionStockAdministrador(){
+        while (true) {
+
+            System.out.println("\nElija una opción:");
+            System.out.println("1. Mostrar stock de un producto");
+            System.out.println("2. Atrás");
+
+            int opcion = InputHelper.leerEnteroSwitch();
+
+            switch (opcion) {
+
+                case 1:
+                    String codigo = InputHelper.leerIDOCodigo("Ingrese el código del producto para consultar su stock:");
+                    Producto p = gestionProducto.buscarProductoPorCodigo(codigo);
+                    System.out.println("Código: " + p.getCodigo() + " - Nombre: " +p.getNombre());
+                    break;
+
+                case 2:
                     System.out.println("Volviendo al menú anterior...");
                     return;
 

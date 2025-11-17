@@ -11,8 +11,8 @@ public class MemoriaRAM extends Producto{
     private String tipoDeMemoria;
     private String frecuencia;
 
-    public MemoriaRAM(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria, String idProveedor, int capacidad, String tipoDeMemoria, String frecuencia) {
-        super(nombre, descripcion, precio, peso, dimension, marca, stock, garantiaMeses, categoria, subCategoria, idProveedor);
+    public MemoriaRAM(String nombre, String descripcion, double precio, double peso, String dimension, String marca, int stock, int garantiaMeses, TipoCategoria categoria, TipoSubCategoria subCategoria, int capacidad, String tipoDeMemoria, String frecuencia) {
+        super(nombre, descripcion, precio, peso, dimension, marca, stock, garantiaMeses, categoria, subCategoria);
         this.capacidad = capacidad;
         this.tipoDeMemoria = tipoDeMemoria;
         this.frecuencia = frecuencia;
