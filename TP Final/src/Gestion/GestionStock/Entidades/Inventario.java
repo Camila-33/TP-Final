@@ -157,4 +157,14 @@ public final class Inventario implements  iCargar
         return total;
     }
 
+    
+    
+    public boolean registrarStockProducto(Producto producto)
+    {
+        //Si el stock no existe se crea:
+        if (  !gestionStock.verificarExistenciaStock(producto.getCodigo())
+        {
+            gestionStock.agregar( new Stock(producto.getCodigo(), producto.getStock()) );
+        }
+    }
 }
