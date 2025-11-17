@@ -1,10 +1,11 @@
 package GestionStock.Gestor;
 
 
+import GestionStock.Archivos.ArchivoSistema;
 import GestionStock.Archivos.ManagerJSONLote;
 import GestionStock.Entidades.Lote;
-import GestionStock.Archivos.ArchivoSistema;
 import GestionStock.Interfaces.*;
+import GestionStock.Interfaces.iListar;
 import GestionStock.Utils.Utils;
 
 import java.util.*;

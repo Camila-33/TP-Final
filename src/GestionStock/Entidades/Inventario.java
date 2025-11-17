@@ -6,6 +6,7 @@ import GestionStock.Gestor.GestionLote;
 import GestionStock.Gestor.GestionStock;
 import GestionStock.Gestor.GestorMovimiento;
 import GestionStock.Interfaces.iCargar;
+import Users.UsuarioSistema.Usuario;
 
 import java.util.ArrayList;
 
@@ -14,25 +15,21 @@ public final class Inventario implements  iCargar
     private GestionLote gestionLote;
     private GestionStock gestionStock;
     private GestorMovimiento gestorMovimiento;
-
-    private Usuario usuario;
+    private String idUsuario;
 
 
     public Inventario()
     {
+        
+        //Se crean los archivos necesarios para el sistema por unica vez:
         ArchivoSistema.inicializarArchivosSistema();
-        this.usuario = usuario;
+
+
+        //Se cargan los archivos:
         cargar();
     }
 
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
 
     public GestionLote getGestionLote() {
         return gestionLote;
@@ -50,7 +47,13 @@ public final class Inventario implements  iCargar
         this.gestionStock = gestionStock;
     }
 
+    public String getIdUsuario() {
+        return idUsuario;
+    }
 
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
+    }
 
     @Override
     public void cargar()
@@ -79,14 +82,14 @@ public final class Inventario implements  iCargar
         //Se actualiza el stock:
         gestionStock.actualizarCantStock( idProductoIngresado, cantidadActualizada );
 
+         //se registra el movimiento interno del inventario:
         gestorMovimiento.agregar(
-          new Movimiento(usuario.getIdUsuario(),TipoMovimiento.ENTRADA, nuevo.getIdProducto(), nuevo.getId(), nuevo.getCantidadInicial())
+          new Movimiento(idUsuario,TipoMovimiento.ENTRADA, nuevo.getIdProducto(), nuevo.getId(), nuevo.getCantidadInicial())
         );
     }
 
     public void sacarProducto(String idProducto, int cantidad)
     {
-        //validar parametros:
 
         //verificar existencia del stock disponible:
         if ( gestionStock.verificarExistenciaStock(idProducto) )
@@ -97,8 +100,10 @@ public final class Inventario implements  iCargar
             //se calcula su nuevo stock y se actualiza:
             gestionStock.actualizarCantStock( idProducto, gestionLote.calcularStockProducto(idProducto));
 
+
+            //se registra el movimiento interno del inventario:
             gestorMovimiento.agregar(
-                    new Movimiento(usuario.getIdUsuario(),TipoMovimiento.SALIDA, idProducto, null, cantidad)
+                    new Movimiento(idUsuario,TipoMovimiento.SALIDA, idProducto, null, cantidad)
             );
         }
     }
@@ -108,21 +113,26 @@ public final class Inventario implements  iCargar
     {
         return gestorMovimiento.listar();
     }
+
+    
     public String listarRegistroMovimientosInventario(String idUsuario)
     {
         return gestorMovimiento.listar(idUsuario);
     }
 
+    
     public String listarStockProductos( )
     {
         return  gestionStock.listar();
     }
 
+    
     public String listarLotesProducto( )
     {
         return gestionLote.listar();
     }
 
+    
     public String listarLotesProducto(String idProducto)
     {
         return gestionLote.listar(idProducto);
@@ -135,16 +145,19 @@ public final class Inventario implements  iCargar
         return gestionStock.altaStockProducto(idProducto);
     }
 
+    
     public boolean darBajaStockProducto(String idProducto)
     {
         return gestionStock.bajaStockProducto(idProducto);
     }
 
+    
     public boolean darBajaLoteProducto(String idLote)
     {
         return gestionLote.eliminar(idLote);
     }
 
+    
     public double calcularValoracionInventario( )
     {
         double total = 0;

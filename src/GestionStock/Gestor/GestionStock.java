@@ -1,9 +1,10 @@
 package GestionStock.Gestor;
 
+import GestionStock.Archivos.ArchivoSistema;
 import GestionStock.Archivos.ManagerJSONStock;
 import GestionStock.Entidades.Stock;
-import GestionStock.Archivos.ArchivoSistema;
 import GestionStock.Interfaces.*;
+import GestionStock.Interfaces.iListar;
 import GestionStock.Utils.Utils;
 
 import java.util.LinkedHashSet;
@@ -17,6 +18,8 @@ public final class GestionStock implements iAgregar<Stock>, iEliminar<Stock>, iL
         cargar();
     }
 
+
+    
     //Busca por atributo idProducto: String - filtra por el hashCode,equals y estado activo: boolean:
     public Stock buscar(String idProducto)
     {
@@ -29,6 +32,9 @@ public final class GestionStock implements iAgregar<Stock>, iEliminar<Stock>, iL
         }
         return null;
     }
+
+    
+    
     public boolean verificarExistenciaStock(Stock stock)
     {
         if (stock == null)
@@ -40,6 +46,8 @@ public final class GestionStock implements iAgregar<Stock>, iEliminar<Stock>, iL
         return  listaPrincipal.contains(stock);
     }
 
+
+    
     public boolean verificarExistenciaStock(String idProducto)
     {
         Stock buscado = buscar(idProducto);
@@ -47,6 +55,8 @@ public final class GestionStock implements iAgregar<Stock>, iEliminar<Stock>, iL
         return false;
     }
 
+
+    
     @Override
     public boolean agregar(Stock stock)
     {
@@ -59,6 +69,7 @@ public final class GestionStock implements iAgregar<Stock>, iEliminar<Stock>, iL
         return false;
     }
 
+    
     @Override
     public boolean eliminar(Stock stock)
     {
@@ -76,11 +87,12 @@ public final class GestionStock implements iAgregar<Stock>, iEliminar<Stock>, iL
         return false;
     }
 
+    
     @Override
     public String listar()
     {
         StringBuilder sb = new StringBuilder(Utils.dibujarEncabezadoTablaStock());
-        String separador = Utils.dibujarBarra(sb.length() / 3, "-");
+        String separador = Utils.dibujarBarra(sb.length() / 3, "-"); // sb.length / 3 : Es para calcular la longitud total de los campos del enecabezado.
 
         if (listaPrincipal.isEmpty())
         {
@@ -98,6 +110,8 @@ public final class GestionStock implements iAgregar<Stock>, iEliminar<Stock>, iL
         return sb.toString();
     }
 
+
+    
     public String listar(boolean activos)
     {
         StringBuilder sb = new StringBuilder(Utils.dibujarEncabezadoTablaStock());
@@ -150,7 +164,7 @@ public final class GestionStock implements iAgregar<Stock>, iEliminar<Stock>, iL
 
     public boolean bajaStockProducto(String idproducto)
     {
-        return eliminar( new Stock(idproducto, 0,0,0) );
+        return eliminar( new Stock(idproducto) );
     }
 
 
