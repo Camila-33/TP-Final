@@ -83,7 +83,7 @@ public class GestionProducto {
                         p.setActivo(true);
                         System.out.println("¡Producto dado de alta con éxito!");
                         GestionJSONProducto.listaProductosToArchivo(listaProductos, "producto.json");
-                        inventario.darBajaStockProducto(p.getCodigo());
+                        inventario.darAltaStockProducto(p.getCodigo());
                         return;
 
                     }else if (opcion.equalsIgnoreCase("no")) {
