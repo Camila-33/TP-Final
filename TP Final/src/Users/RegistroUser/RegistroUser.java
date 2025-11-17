@@ -8,16 +8,13 @@ import java.util.Scanner;
 
 public class RegistroUser {
 
-    private Scanner teclado;
-
     public RegistroUser() {
-        this.teclado = new Scanner(System.in);
     }
 
     public Administrador registroAdministrador() {
         System.out.println("Complete los datos:");
 
-        String username = InputHelper.pedirUsername("Nuevo username:");
+        String username = InputHelper.pedirUsername("Username:");
         String contrasenia = InputHelper.pedirContraseniaRegistro("Contraseña");
         String nombre = InputHelper.pedirString("Nombre:");
         String apellido = InputHelper.pedirString("Apellido:");
