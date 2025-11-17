@@ -1,5 +1,36 @@
 [
     {
+        "total": 99.98,
+        "detallesVenta": [{
+            "precioUnitario": 49.99,
+            "idDetalle": "884171532",
+            "cantidad": 2,
+            "productos": {
+                "descripcion": "Fuente de poder económica y confiable, 80 Plus White",
+                "garantiaMeses": 36,
+                "tipo": "FuenteDePoder",
+                "codigo": "638133287",
+                "subCategoria": "GENERICA",
+                "peso": 1.5,
+                "categoria": "FUENTE_DE_PODER",
+                "numeroDeSerie": "86753025",
+                "nombre": "EVGA 500 W1",
+                "marca": "EVGA",
+                "fechaIngreso": "2025-11-16",
+                "potencia": "500W",
+                "precio": 49.99,
+                "tipoCertificacion": "NINGUNA",
+                "idProveedores": ["361950682"],
+                "stock": 30,
+                "dimension": "140x85x150 mm",
+                "activo": true
+            }
+        }],
+        "idVenta": "419019721",
+        "fechaVenta": "2025-11-17",
+        "activo": false
+    },
+    {
         "total": 197.5,
         "detallesVenta": [{
             "precioUnitario": 39.5,
@@ -20,7 +51,7 @@
                 "fechaIngreso": "2025-11-16",
                 "precio": 39.5,
                 "idProveedores": ["909995649"],
-                "stock": 15,
+                "stock": 20,
                 "dimension": "110x55x15 mm",
                 "activo": true
             }
@@ -321,6 +352,64 @@
             }
         ],
         "idVenta": "149983645",
+        "fechaVenta": "2025-11-17",
+        "activo": true
+    },
+    {
+        "total": 649.96,
+        "detallesVenta": [
+            {
+                "precioUnitario": 49.99,
+                "idDetalle": "486342707",
+                "cantidad": 1,
+                "productos": {
+                    "descripcion": "Fuente de poder económica y confiable, 80 Plus White",
+                    "garantiaMeses": 36,
+                    "tipo": "FuenteDePoder",
+                    "codigo": "638133287",
+                    "subCategoria": "GENERICA",
+                    "peso": 1.5,
+                    "categoria": "FUENTE_DE_PODER",
+                    "numeroDeSerie": "86753025",
+                    "nombre": "EVGA 500 W1",
+                    "marca": "EVGA",
+                    "fechaIngreso": "2025-11-16",
+                    "potencia": "500W",
+                    "precio": 49.99,
+                    "tipoCertificacion": "NINGUNA",
+                    "idProveedores": ["361950682"],
+                    "stock": 29,
+                    "dimension": "140x85x150 mm",
+                    "activo": true
+                }
+            },
+            {
+                "precioUnitario": 199.99,
+                "idDetalle": "958191190",
+                "cantidad": 3,
+                "productos": {
+                    "descripcion": "Procesador de 6 núcleos y 12 hilos para gaming y productividad",
+                    "garantiaMeses": 36,
+                    "tipo": "Procesador",
+                    "codigo": "203199958",
+                    "subCategoria": "PROCESADOR_AMD",
+                    "peso": 0.1,
+                    "categoria": "PROCESADOR",
+                    "numeroDeSerie": "64415395",
+                    "nombre": "AMD Ryzen 5 5600X",
+                    "marca": "AMD",
+                    "fechaIngreso": "2025-11-16",
+                    "precio": 199.99,
+                    "numeroDeNucleos": 6,
+                    "idProveedores": ["892940319"],
+                    "frecuenciaDeReloj": "3.7 GHz",
+                    "stock": 12,
+                    "dimension": "40x40 mm",
+                    "activo": true
+                }
+            }
+        ],
+        "idVenta": "480653777",
         "fechaVenta": "2025-11-17",
         "activo": true
     },

@@ -6,7 +6,6 @@ import IngresoDeDatos.InputHelper;
 import Transacciones.Compra;
 import Productos.Producto;
 import Transacciones.Detalles.DetalleCompra;
-import Users.Proveedor;
 import Validaciones.Validaciones;
 
 import java.util.*;
@@ -38,8 +37,9 @@ public class GestionCompra {
      */
     public void cargarCompra() {
 
-        Compra compra = new Compra();
+        listaProductos = GestionJSONProducto.archivoProductosToLista("producto.json");
 
+        Compra compra = new Compra();
         boolean seguir = true;
 
         while (seguir) {
@@ -50,23 +50,28 @@ public class GestionCompra {
             Producto p = detalleCompra.getProducto();
             p.setStock(p.getStock() + detalleCompra.getCantidad());
 
+            listaProductos.put(p.getCodigo(), p);
+
             System.out.println("Stock actualizado para " + p.getNombre() + ": " + p.getStock());
 
-            char respuesta = InputHelper.leerChar("¿Desea agregar otro producto de este proveedor? (s/n): ");
+            char respuesta = InputHelper.leerChar("¿Desea agregar otro producto? (s/n): ");
 
             if (respuesta != 's') {
                 seguir = false;
             }
         }
 
+        GestionJSONProducto.listaProductosToArchivo(listaProductos, "producto.json");
+
         agregarYguardar(compra);
+
         System.out.println("¡Compra registrada con éxito!");
     }
 
 
     public DetalleCompra cargarDetalleCompra() {
 
-        System.out.println("Elija alguno de los siguientes productos para comprar a un proveedor");
+        System.out.println("Elija alguno de los siguientes productos para comprar:");
 
         Producto productoSeleccionado = gestionProducto.elegirProductosDisponibles();
 
@@ -187,15 +192,18 @@ public class GestionCompra {
             for (DetalleCompra detalle : compra.getDetallesCompra()) {
                 Producto producto = detalle.getProducto();
                 int cantidad = detalle.getCantidad();
-                producto.setStock(producto.getStock() - cantidad);
 
+                producto.setStock(producto.getStock() - cantidad);
                 listaProductos.put(producto.getCodigo(), producto);
             }
+
+            compras.put(compra.getIdPedido(), compra);
 
             GestionJSONCompra.listaCompraToArchivo(compras, "compra.json");
             GestionJSONProducto.listaProductosToArchivo(listaProductos, "producto.json");
 
             System.out.println("La compra con ID " + idPedido + " fue cancelada correctamente y el stock actualizado.");
+
         } else {
             throw new IllegalArgumentException("No se encontró una compra con el ID: " + idPedido);
         }

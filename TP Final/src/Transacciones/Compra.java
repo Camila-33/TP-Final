@@ -16,11 +16,7 @@ public class Compra {
     private boolean activo;
     private List<DetalleCompra> detallesCompra;
 
-
     public Compra() {
-    }
-
-    public Compra(Proveedor proveedor) {
         this.idPedido = InputHelper.generarCodigoUnico();
         this.detallesCompra = new ArrayList<>();
         this.total = getTotal();

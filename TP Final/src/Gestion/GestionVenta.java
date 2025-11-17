@@ -79,11 +79,12 @@ public class GestionVenta {
             return;
         }
 
-        System.out.println("Venta encontrada: " + venta);
         char opcion = InputHelper.leerChar("¿Está seguro que desea cancelar esta orden de venta? (s / n)");
 
         while (true) {
+
             if (opcion == 's') {
+
                 venta.setActivo(false);
 
                 for (DetalleVenta detalle : venta.getDetalleVenta()) {
@@ -94,15 +95,22 @@ public class GestionVenta {
                     listaProductos.put(producto.getCodigo(), producto);
                 }
 
+                listaVentas.put(venta.getIdVenta(), venta);
+
                 GestionJSONVenta.listaVentaToArchivo(listaVentas, "venta.json");
                 GestionJSONProducto.listaProductosToArchivo(listaProductos, "producto.json");
 
-                System.out.println("¡Orden de venta cancelada con éxito y stock actualizado!");
+                System.out.println("¡Orden de venta cancelada con éxito!");
                 return;
 
             } else if (opcion == 'n') {
+
                 System.out.println("Operación cancelada");
                 return;
+
+            } else {
+                System.out.println("Opción inválida. Intente nuevamente.");
+                opcion = InputHelper.leerChar("¿Está seguro que desea cancelar esta orden de venta? (s / n)");
             }
         }
     }
@@ -180,8 +188,11 @@ public class GestionVenta {
 
         } while (opcion != 4);
 
+        listaVentas.put(venta.getIdVenta(), venta);
+
         GestionJSONVenta.listaVentaToArchivo(listaVentas, "venta.json");
     }
+
 
 
     private double calcularTotal(List<DetalleVenta> detalles) {

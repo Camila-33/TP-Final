@@ -535,6 +535,37 @@
     },
     {
         "fechaCompra": "2025-11-17",
+        "total": 99.98,
+        "detallesCompra": [{
+            "precioUnitario": 49.99,
+            "idDetalle": "814304341",
+            "cantidad": 2,
+            "productos": {
+                "descripcion": "Fuente de poder económica y confiable, 80 Plus White",
+                "garantiaMeses": 36,
+                "tipo": "FuenteDePoder",
+                "codigo": "638133287",
+                "subCategoria": "GENERICA",
+                "peso": 1.5,
+                "categoria": "FUENTE_DE_PODER",
+                "numeroDeSerie": "86753025",
+                "nombre": "EVGA 500 W1",
+                "marca": "EVGA",
+                "fechaIngreso": "2025-11-16",
+                "potencia": "500W",
+                "precio": 49.99,
+                "tipoCertificacion": "NINGUNA",
+                "idProveedores": ["361950682"],
+                "stock": 30,
+                "dimension": "140x85x150 mm",
+                "activo": true
+            }
+        }],
+        "idPedido": "718305898",
+        "activo": true
+    },
+    {
+        "fechaCompra": "2025-11-17",
         "total": 1799.97,
         "detallesCompra": [{
             "precioUnitario": 599.99,
@@ -804,5 +835,36 @@
         ],
         "idPedido": "507494807",
         "activo": true
+    },
+    {
+        "fechaCompra": "2025-11-17",
+        "total": 99.98,
+        "detallesCompra": [{
+            "precioUnitario": 49.99,
+            "idDetalle": "358580647",
+            "cantidad": 2,
+            "productos": {
+                "descripcion": "Fuente de poder económica y confiable, 80 Plus White",
+                "garantiaMeses": 36,
+                "tipo": "FuenteDePoder",
+                "codigo": "638133287",
+                "subCategoria": "GENERICA",
+                "peso": 1.5,
+                "categoria": "FUENTE_DE_PODER",
+                "numeroDeSerie": "86753025",
+                "nombre": "EVGA 500 W1",
+                "marca": "EVGA",
+                "fechaIngreso": "2025-11-16",
+                "potencia": "500W",
+                "precio": 49.99,
+                "tipoCertificacion": "NINGUNA",
+                "idProveedores": ["361950682"],
+                "stock": 30,
+                "dimension": "140x85x150 mm",
+                "activo": true
+            }
+        }],
+        "idPedido": "732772769",
+        "activo": false
     }
 ]
